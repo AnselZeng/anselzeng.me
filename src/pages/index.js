@@ -34,7 +34,7 @@ const IndexPage = () => {
             {[{
               cover: TELUScover,
               company: 'Telus • Internship [2023]',
-              project: 'open ran orchestration and automation',
+              project: 'streamlining operations with a dynamic ticket management system',
               tags: ['Software Development', '5G Infrastructure', 'DevOps', 'Zero-Touch Provisioning'],
               link: '/telus',
             }, {
