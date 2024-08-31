@@ -1,0 +1,24 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.96);
+  z-index: -1;
+}
+
+.menuList {
+  list-style: none;
+}
+
+.menuItem {
+  display: block;
+  color: inherit;
+  /* padding: 4px; */
+  transition: color 0.3s ease;
+}
+
+.menuItem:hover {
+  color: #FF7B00;
+}
