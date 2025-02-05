@@ -30,7 +30,7 @@ export default function Page() {
           <VStack align="start" spacing={6}>
             <Heading size="2xl">Blackpink In Your Area</Heading>
             <HStack>
-              <Avatar name="Ansel Zeng" bg="orange" />
+              <Avatar name="Ansel Zeng" src="/blog/pfp.png" />
               <VStack spacing={0} align="start">
                 <Text>Ansel Zeng</Text>
                 <Text fontSize="small">Feb 12, 2021 • 3 min read</Text>

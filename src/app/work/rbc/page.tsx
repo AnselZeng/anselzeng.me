@@ -80,7 +80,7 @@ export default function Page() {
 
       <Points
         heading="03 | KEY INITIATIVES"
-        subtitle="What I Did & What I Learned"
+        subtitle="what i did & what i learned"
         overviewText="This experience not only opened my eyes to the banking industry and agile software development but also taught me the importance of project management—bridging the gap between business and technology. I got to witness the integral role of product owners in leading presentations and meetings, gaining firsthand insights into their ability to guide and drive project discussions effectively."
         additionalText="Additionally, I had the privilege of working closely with a senior developer who mentored me throughout the internship. Her experience and expertise, along with the opportunity to collaborate with other professionals, expanded my technical knowledge and problem-solving abilities."
         titleOne="successes"

@@ -33,13 +33,15 @@ export const PlacesTable = () => {
     { flag: "🇨🇺", name: "Cuba", continent: "North America", date: "December 27, 2022", status: "Visited" },
     { flag: "🇨🇼", name: "Curaçao", continent: "North/South America", date: "December 20, 2023", status: "Visited" },
     { flag: "🇧🇶", name: "Bonaire", continent: "North/South America", date: "December 25, 2023", status: "Visited" },
+    { flag: "🇸🇽", name: "Sint Maarten", continent: "North America", date: "December 19, 2024", status: "Visited" },
+    { flag: "🇦🇮", name: "Anguilla", continent: "North America", date: "December 21, 2024", status: "Visited" },
     { flag: "🇰🇷", name: "South Korea", continent: "East Asia", date: "Spring 2025", status: "Next Up" },
   ];
 
   return (
     <Container px={12} maxW="container.lg">
       <Heading pt={{ base: 12, lg: 24 }} pb={4} size="md">
-        My Travel Logs
+        my travel logs
       </Heading>
       <TableContainer>
         <Table variant="striped" colorScheme="orange">

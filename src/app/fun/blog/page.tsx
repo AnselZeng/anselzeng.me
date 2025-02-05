@@ -61,7 +61,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
             </Box>
             <VStack align="start" w="100%" p={6} spacing={3}>
               <HStack>
-                <Avatar name={name} bg="orange" />
+                <Avatar name={name} src="/blog/pfp.png" />
                 <VStack spacing={0} align="start">
                   <Text>{name}</Text>
                   <Text fontSize="small">{date}</Text>

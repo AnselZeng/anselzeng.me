@@ -76,7 +76,7 @@ const Footer = () => {
           ))}
         </HStack>
         <Text textAlign='center' color='#793802'>
-          © 2024 - Ansel Zeng
+          © 2025 - Ansel Zeng
         </Text>
       </Flex>
     </Container>

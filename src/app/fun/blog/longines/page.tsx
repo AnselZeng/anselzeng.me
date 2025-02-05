@@ -32,7 +32,7 @@ export default function Page() {
           <VStack align="start" spacing={6}>
             <Heading size="2xl">From Crown to Caliber</Heading>
             <HStack>
-              <Avatar name="Ansel Zeng" bg="orange" />
+              <Avatar name="Ansel Zeng" src="/blog/pfp.png" />
               <VStack spacing={0} align="start">
                 <Text>Ansel Zeng</Text>
                 <Text fontSize="small">Jul 27, 2022 • 2 min read</Text>

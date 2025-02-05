@@ -64,6 +64,7 @@ const menuItemsMobile = [
   { href: "/work/telus", label: "telus" },
   { href: "/work/ips", label: "ips" },
   { href: "/work/rbc", label: "rbc" },
+  { href: "/fun/design", label: "design" },
   { href: "/fun/travels", label: "travels" },
   { href: "/fun/blog", label: "blog" },
   { href: "/about", label: "about" },
@@ -129,7 +130,7 @@ const navButtonStyles = {
 
 const menuItemsDesktop = [
   { label: "work", items: [{ href: "/work/telus", label: "telus 🗼" }, { href: "/work/ips", label: "ips 🎧" }, { href: "/work/rbc", label: "rbc 🏦" }] },
-  { label: "fun", items: [{ href: "/fun/travels", label: "travels ✈️" }, { href: "/fun/blog", label: "blog 📝" }] },
+  { label: "fun", items: [{ href: "/fun/design", label: "design 🎨" }, { href: "/fun/travels", label: "travels ✈️" }, { href: "/fun/blog", label: "blog 📝" }] },
 ];
 
 const sidebarVariants = {

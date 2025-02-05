@@ -14,7 +14,7 @@ import {
   Image,
   Stack,
   Spinner,
-  Skeleton
+  Skeleton,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useState, useRef, useEffect } from "react";
@@ -142,17 +142,17 @@ export default function Page() {
             )}
           </Box>
           <VStack w={{ base: '100%', lg: '40%' }} align="start" spacing={4} fontSize={{ base: 'small', lg: 'medium' }}>
-            <Heading>Who am I?</Heading>
+            <Heading>about me</Heading>
             <Text>
-              I&rsquo;m Ansel Zeng, currently pursuing a dual degree in Computer Science and Business Administration at{' '}
+              I&apos;m currently pursuing a dual degree in Computer Science and Business Administration at{' '}
               <Text as="span" color="#4F2683" fontWeight="bold">Western University</Text> and{' '}
-              <Text as="span" color="#034638" fontWeight="bold">Ivey Business School</Text>. This winter, I&rsquo;ll be on exchange at Tsinghua University in China.
+              <Text as="span" color="#034638" fontWeight="bold">Ivey Business School</Text>. This winter, I&apos;ll be on exchange at Tsinghua University in China.
             </Text>
             <Text>
-              At the core, I&rsquo;m passionate about building impactful solutions. I believe in technology&rsquo;s power to drive meaningful change and focus on blending business strategy with design thinking to create products that are not only functional but truly transformative.
+              At the core, I&apos;m passionate about building impactful solutions. I believe in technology&apos;s power to drive meaningful change and focus on blending business strategy with design thinking to create products that are not only functional but truly transformative.
             </Text>
             <Text>
-              Feel free to reach out and get connected—I&rsquo;d love to meet new people!
+              In my free time, you&apos;ll find me curating new playlists and updating my Notion dashboard. Feel free to reach out and get connected—I&apos;d love to meet new people!
             </Text>
           </VStack>
         </Stack>
@@ -202,26 +202,26 @@ export default function Page() {
       </Container>
 
       <Container px={12} py={{ base: '12', lg: '24' }} maxW={'container.lg'}>
-        <Heading pb={4} size={'md'}>Hobbies and Interests</Heading>
+        <Heading pb={4} size={'md'}>hobbies and interests</Heading>
         <VStack align={'start'} spacing={4} fontSize={{ base: 'small', lg: 'medium'}}>
           <Text>
-            I&rsquo;ve always had a strong passion for staying active and engaged in various pursuits. 
+            I&apos;ve always had a strong passion for staying active and engaged in various pursuits. 
             One of the most defining aspects of my life was playing hockey for 11 years, which taught 
             me discipline, resilience, and the value of teamwork. Although I had to step away from 
-            the sport due to the COVID-19 pandemic, my love for the game remains strong. I also follow 
-            several professional teams across different sports, including the New Orleans Saints, Chelsea F.C., 
-            Scuderia Ferrari, and the San Antonio Spurs. Cheering for these teams allows me to stay connected 
-            to my love for sports, no matter the season.
+            the sport due to the pandemic, my love for the game remains strong. I also follow 
+            several professional teams across different sports, including the New Orleans Saints, Chelsea F.C.,
+            Chicago Blackhawks, Scuderia Ferrari, and the San Antonio Spurs. Cheering for these teams allows
+            me to stay connected to my love for sports, no matter the season.
           </Text>
           <Text>
             Beyond sports, my time in scouting has been a major influence on my growth and character. 
             From my early days as a Cub, I advanced through Scouts and Venturer, eventually becoming a 
-            Leader in Training. Along the way, I earned the Chief Scout&rsquo;s Award, the highest honour 
+            Leader in Training. Along the way, I earned the Chief Scout&apos;s Award, the highest honour 
             in Scouts Canada, which has been one of my proudest achievements. Scouting nurtured my sense of 
             adventure, leadership, and community, and these values continue to guide me in many aspects of my life.
           </Text>
           <Text>
-            Outside of these activities, I love exploring new creative outlets. Whether it&rsquo;s diving 
+            Outside of these activities, I love exploring new creative outlets. Whether it&apos;s diving 
             into new technology, photography, or experimenting with different culinary techniques, I find 
             joy in learning and continuously improving. I also enjoy spending time outdoors, whether hiking, 
             keeping my Strava streak going, or simply appreciating nature. These experiences help me unwind 
@@ -229,6 +229,7 @@ export default function Page() {
           </Text>
         </VStack>
       </Container>
+
     </Container>
   );
 }

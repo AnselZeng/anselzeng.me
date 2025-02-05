@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Providers } from './providers';
+import { Provider } from "@/components/ui/provider";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import Head from "next/head";
@@ -24,11 +24,11 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body className={inter.className}>
-        <Providers>
+        <Provider>
           <Navbar />
           {children}
           <Footer />
-        </Providers>
+        </Provider>
       </body>
     </html>
   );
