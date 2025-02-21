@@ -1,5 +1,8 @@
 import { Image, Box, Container, Heading, HStack, Text, VStack, Link, Badge } from "@chakra-ui/react";
 import { FC } from 'react';
+import { motion } from "framer-motion";
+
+const MotionBox = motion(Box);
 
 interface ContentProps {
   imageUrl: string;
@@ -28,12 +31,12 @@ const Content: FC<ContentProps> = ({
   tags,
   reverse = false,
   link,
-  color = '#000' // Default color
+  color = '#000'
 }) => {
   return (
     <HStack
       spacing={8}
-      flexDirection={reverse ? 'row-reverse' : 'row'}
+      flexDirection={{ base: 'column', lg: reverse ? 'row-reverse' : 'row' }}
       w="100%"
     >
       <VStack w="100%" align="start" spacing={4}>
@@ -153,60 +156,88 @@ const Content: FC<ContentProps> = ({
 const ContentSection = () => {
   return (
     <Container bg="white" p={0} maxW="100%">
-      <Container px={12} py={{ base: '12', lg: '24' }} maxW="container.lg">
-        <VStack spacing={20}>
-          <Content
-            imageUrl='/home/telus.svg'
-            imageAlt='telus'
-            boxImageUrl='/home/telus.png'
-            boxImageAlt='telus'
-            maxImageHeight={8}
-            boxMaxHeight={44}
-            heading='Telus'
-            description='Streamlining operations with a dynamic ticket management system.'
-            tags='Software Engineering // DevOps // Internship'
-            reverse={true}
-            link='/work/telus'
-            color='#66CC00'
-          />
-          <Content
-            imageUrl='/home/ips.svg'
-            imageAlt='ips'
-            boxImageUrl='/home/ips.png'
-            boxImageAlt='ips'
-            maxImageHeight={12}
-            boxMaxHeight={48}
-            heading='Ivey Product Society'
-            description="Enhancing spotify's social experience through customization on the profile page."
-            tags='Product Management // UX Research // Fellowship'
-            link='/work/ips'
-            color='#B4A3C5'
-          />
-          <Content
-            imageUrl='/home/rbc.svg'
-            imageAlt='rbc'
-            boxImageUrl='/home/rbc.png'
-            boxImageAlt='rbc'
-            maxImageHeight={12}
-            boxMaxHeight={56}
-            heading='Royal Bank of Canada'
-            description='Redefining the mortgage application process by building an enhanced evaluation engine for consumers and advisors.'
-            tags='Software Engineering // Full-stack // Internship'
-            reverse={true}
-            link='/work/rbc'
-            color='#0066D0'
-          />
-          <Content
-            imageUrl='/home/tweebaa.svg'
-            imageAlt='tweebaa'
-            boxImageUrl='/home/tweebaa.png'
-            boxImageAlt='tweebaa'
-            maxImageHeight={12}
-            boxMaxHeight={60}
-            heading='Tweebaa'
-            description="Pioneering the future of e-commerce through value-exchanging social networking."
-            tags='UX/UI Design // Wireframing // Internship'
-          />
+      <Container px={{ base: 6, lg: 12 }} py={{ base: '12', lg: '24' }} maxW="container.lg">
+        <VStack spacing={{ base: 10, lg: 20 }}>
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <Content
+              imageUrl='/home/telus.svg'
+              imageAlt='telus'
+              boxImageUrl='/home/telus.png'
+              boxImageAlt='telus'
+              maxImageHeight={8}
+              boxMaxHeight={44}
+              heading='Telus'
+              description='Streamlining operations with a dynamic ticket management system.'
+              tags='Software Engineering // DevOps // Internship'
+              reverse={true}
+              link='/work/telus'
+              color='#66CC00'
+            />
+          </MotionBox>
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <Content
+              imageUrl='/home/ips.svg'
+              imageAlt='ips'
+              boxImageUrl='/home/ips.png'
+              boxImageAlt='ips'
+              maxImageHeight={12}
+              boxMaxHeight={48}
+              heading='Ivey Product Society'
+              description="Enhancing spotify's social experience through customization on the profile page."
+              tags='Product Management // UX Research // Fellowship'
+              link='/work/ips'
+              color='#B4A3C5'
+            />
+          </MotionBox>
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <Content
+              imageUrl='/home/rbc.svg'
+              imageAlt='rbc'
+              boxImageUrl='/home/rbc.png'
+              boxImageAlt='rbc'
+              maxImageHeight={12}
+              boxMaxHeight={56}
+              heading='Royal Bank of Canada'
+              description='Redefining the mortgage application process by building an enhanced evaluation engine for consumers and advisors.'
+              tags='Software Engineering // Full-stack // Internship'
+              reverse={true}
+              link='/work/rbc'
+              color='#0066D0'
+            />
+          </MotionBox>
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <Content
+              imageUrl='/home/tweebaa.svg'
+              imageAlt='tweebaa'
+              boxImageUrl='/home/tweebaa.png'
+              boxImageAlt='tweebaa'
+              maxImageHeight={12}
+              boxMaxHeight={60}
+              heading='Tweebaa'
+              description="Pioneering the future of e-commerce through value-exchanging social networking."
+              tags='UX/UI Design // Wireframing // Internship'
+            />
+          </MotionBox>
         </VStack>
       </Container>
     </Container>

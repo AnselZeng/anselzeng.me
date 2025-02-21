@@ -15,7 +15,6 @@
 .menuItem {
   display: block;
   color: inherit;
-  /* padding: 4px; */
   transition: color 0.3s ease;
 }
 

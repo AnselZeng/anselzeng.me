@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Box, Container, Flex, Image, Text, VStack } from "@chakra-ui/react";
 import Header from '../../../components/work/Header';
@@ -7,6 +8,10 @@ import Points from '../../../components/work/Points';
 import TwoTabs from '../../../components/work/TwoTabs';
 import BasicText from '../../../components/work/BasicText';
 import Highlights from '../../../components/work/Highlights';
+import { motion } from 'framer-motion';
+
+const MotionBox = motion(Box);
+const MotionImage = motion(Image);
 
 export default function Page() {
   const pictures = [
@@ -135,11 +140,33 @@ export default function Page() {
       <Box px={12} maxW={'container.lg'} m={'auto'}>
         <Box px='10%' py={{ base: '10', lg: '20' }} bg={'#EBEBEB'}>
           <VStack maxW='100%' spacing='4' alignItems='flex-start'>
-            <Text m='auto' pb='4' fontSize='2xl' fontWeight='black' color={'#1D1D1F'}>mockup</Text>
-            <Image src={'/telus/tms.png'} alt='mockup' />
-            <Text fontSize='lg' color={'#1D1D1F'}>
-              This design showcases the login page, main ticket grid display, create ticket modal window, and ticket details modal window for <b>streamlined ticket management</b>.
-            </Text>
+            <MotionBox
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5 }}
+              m='auto'
+            >
+              <Text pb='4' fontSize='2xl' fontWeight='black' color={'#1D1D1F'}>mockup</Text>
+            </MotionBox>
+            <MotionImage
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5 }}
+              src={'/telus/tms.png'}
+              alt='mockup'
+            />
+            <MotionBox
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.5 }}
+            >
+              <Text fontSize='lg' color={'#1D1D1F'}>
+                This design showcases the login page, main ticket grid display, create ticket modal window, and ticket details modal window for <b>streamlined ticket management</b>.
+              </Text>
+            </MotionBox>
           </VStack>
         </Box>
       </Box>

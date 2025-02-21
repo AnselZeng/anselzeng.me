@@ -112,7 +112,7 @@ const buttonStyles = {
   cursor: "pointer",
   position: "fixed" as const,
   top: "37px",
-  right: "67px",
+  right: "43px",
   width: "22px",
   height: "18px",
   borderRadius: "50%",
@@ -135,11 +135,11 @@ const menuItemsDesktop = [
 
 const sidebarVariants = {
   open: (height = 1000) => ({
-    clipPath: `circle(${Math.max(window.innerWidth, window.innerHeight) * 2}px at calc(100% - 78px) calc(46px))`,
+    clipPath: `circle(${Math.max(window.innerWidth, window.innerHeight) * 2}px at calc(100% - 54px) calc(46px))`,
     transition: { type: "spring", stiffness: 20, restDelta: 2 },
   }),
   closed: {
-    clipPath: "circle(30px at calc(100% - 78px) calc(46px))",
+    clipPath: "circle(30px at calc(100% - 54px) calc(46px))",
     transition: { delay: 0.4, type: "spring", stiffness: 400, damping: 40 },
   },
 };
@@ -152,7 +152,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <Container maxW="80rem" px={12} pos="absolute" left="50%" transform="translateX(-50%)" zIndex="101">
+    <Container maxW="80rem" px={{ base: 6, lg: 12 }} pos="absolute" left="50%" transform="translateX(-50%)" zIndex="101">
       <Flex py={4} alignItems="center" justifyContent="space-between">
         <Link href="/" passHref>
           <Heading as="span" fontSize="xxx-large" _hover={{ color: "#FF7B00" }} aria-label="home">AZ</Heading>
@@ -177,7 +177,7 @@ export default function Navbar() {
               left="0"
               width="100%"
               zIndex="101"
-              style={{ 
+              style={{
                 opacity: isOpen ? 1 : 0,
                 pointerEvents: isOpen ? 'auto' : 'none',
                 transition: 'opacity 0.3s ease'

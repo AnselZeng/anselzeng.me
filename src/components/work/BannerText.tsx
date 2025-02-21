@@ -1,5 +1,9 @@
+'use client';
 import { Box, VStack, Heading, Text } from '@chakra-ui/react';
 import { FC } from 'react';
+import { motion } from 'framer-motion';
+
+const MotionBox = motion(Box);
 
 interface BannerTextProps {
   heading: string;
@@ -17,7 +21,7 @@ const BannerText: FC<BannerTextProps> = ({
   textColor,
 }) => {
   return (
-    <Box px={12} py={{ base: 12, lg: 24 }} bg={primaryColour} m="auto">
+    <Box px={{ base: 6, lg: 12 }} py={{ base: 12, lg: 24 }} bg={primaryColour} m="auto">
       <Box
         px={{ base: 0, lg: 12 }}
         maxW="container.lg"
@@ -26,17 +30,31 @@ const BannerText: FC<BannerTextProps> = ({
         justifyContent="center"
       >
         <VStack maxW={{ base: '100%', lg: '80%' }} spacing={4}>
-          <Heading
-            size="sm"
-            color={secondaryColour}
-            fontFamily="orelega"
-            textAlign="center"
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
           >
-            {heading}
-          </Heading>
-          <Text fontSize={{ base: 'xl', lg: '3xl' }} color={textColor} textAlign="center">
-            {mainText}
-          </Text>
+            <Heading
+              size="sm"
+              color={secondaryColour}
+              fontFamily="orelega"
+              textAlign="center"
+            >
+              {heading}
+            </Heading>
+          </MotionBox>
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <Text fontSize={{ base: 'xl', lg: '3xl' }} color={textColor} textAlign="center">
+              {mainText}
+            </Text>
+          </MotionBox>
         </VStack>
       </Box>
     </Box>

@@ -1,5 +1,10 @@
+'use client';
 import { Box, VStack, Text, Image, Divider } from '@chakra-ui/react';
 import { FC } from 'react';
+import { motion } from 'framer-motion';
+
+const MotionBox = motion(Box);
+const MotionImage = motion(Image);
 
 interface ShowcaseItem {
   src: string;
@@ -17,28 +22,78 @@ interface ShowcaseProps {
 
 const Showcase: FC<ShowcaseProps> = ({ title, items, bgColor, textColor }) => {
   return (
-    <Box px={12} maxW="container.lg" m="auto">
-      <Box px="10%" py={{ base: '10', lg: '20' }} bg={bgColor}>
+    <Box px={{ base: 6, lg: 12 }} maxW="container.lg" m="auto">
+      <Box px={{ base: 6, lg: '10%' }} py={{ base: '10', lg: '20' }} bg={bgColor}>
         <VStack maxW="100%" spacing={4} alignItems="flex-start">
-          <Text m="auto" pb={4} fontSize="2xl" fontWeight="black" color={textColor}>
-            {title}
-          </Text>
-          <Image src={items[0].src} alt={items[0].alt} />
-          <Text pb={4} fontSize="lg" color={textColor}>
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <Text m="auto" pb={4} fontSize="2xl" fontWeight="black" color={textColor}>
+              {title}
+            </Text>
+          </MotionBox>
+          <MotionImage
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+            src={items[0].src}
+            alt={items[0].alt}
+          />
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <Text pb={4} fontSize="lg" color={textColor}>
             {`Fig 1. ${items[0].description} `}
             <b>{items[0].boldText}</b>.
           </Text>
-          <Image src={items[1].src} alt={items[1].alt} />
-          <Text pb={4} fontSize="lg" color={textColor}>
+          </MotionBox>
+          <MotionImage
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+            src={items[1].src}
+            alt={items[1].alt}
+          />
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <Text pb={4} fontSize="lg" color={textColor}>
             {`Fig 2. ${items[1].description} `}
             <b>{items[1].boldText}</b>.
           </Text>
+          </MotionBox>
           <Divider borderColor="black" />
-          <Image pt={4} src={items[2].src} alt={items[2].alt} />
-          <Text fontSize="lg" color={textColor}>
+          <MotionImage
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+            pt={4}
+            src={items[2].src}
+            alt={items[2].alt}
+          />
+          <MotionBox
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.5 }}
+          >
+            <Text fontSize="lg" color={textColor}>
             {`Fig 3. ${items[2].description} `}
             <b>{items[2].boldText}</b>.
           </Text>
+          </MotionBox>
         </VStack>
       </Box>
     </Box>

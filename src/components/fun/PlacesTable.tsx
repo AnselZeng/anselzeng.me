@@ -1,4 +1,5 @@
 import {
+  Box,
   Container,
   Heading,
   Table,
@@ -10,6 +11,10 @@ import {
   Thead,
   Tr
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
+
+const MotionTr = motion(Tr);
+const MotionBox = motion(Box);
 
 export const PlacesTable = () => {
   const countries = [
@@ -39,43 +44,63 @@ export const PlacesTable = () => {
   ];
 
   return (
-    <Container px={12} maxW="container.lg">
-      <Heading pt={{ base: 12, lg: 24 }} pb={4} size="md">
-        my travel logs
-      </Heading>
-      <TableContainer>
-        <Table variant="striped" colorScheme="orange">
-          <Thead>
-            <Tr>
-              <Th>Flag</Th>
-              <Th>Country/Territory</Th>
-              <Th>Continent</Th>
-              <Th>Entry Date</Th>
-              <Th>Status</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {countries.map((country, index) => (
-              <Tr key={index}>
-                <Td>{country.flag}</Td>
-                <Td>{country.name}</Td>
-                <Td>{country.continent}</Td>
-                <Td>{country.date}</Td>
-                <Td>{country.status}</Td>
+    <Container px={{ base: 6, lg: 12 }} maxW="container.lg">
+      <MotionBox
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.5 }}
+      >
+        <Heading pt={{ base: 12, lg: 24 }} pb={4} size="md">
+          my travel logs
+        </Heading>
+      </MotionBox>
+      <MotionBox
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.5 }}
+      >
+        <TableContainer>
+          <Table variant="striped" colorScheme="orange">
+            <Thead>
+              <Tr>
+                <Th>Flag</Th>
+                <Th>Country/Territory</Th>
+                <Th>Continent</Th>
+                <Th>Entry Date</Th>
+                <Th>Status</Th>
               </Tr>
-            ))}
-          </Tbody>
-          <Tfoot>
-            <Tr>
-              <Th>Flag</Th>
-              <Th>Country/Territory</Th>
-              <Th>Continent</Th>
-              <Th>Entry Date</Th>
-              <Th>Status</Th>
-            </Tr>
-          </Tfoot>
-        </Table>
-      </TableContainer>
+            </Thead>
+            <Tbody>
+              {countries.map((country, index) => (
+                <MotionTr
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-10px" }}
+                  transition={{ duration: 0.3, delay: index * 0.03 }}
+                >
+                  <Td>{country.flag}</Td>
+                  <Td>{country.name}</Td>
+                  <Td>{country.continent}</Td>
+                  <Td>{country.date}</Td>
+                  <Td>{country.status}</Td>
+                </MotionTr>
+              ))}
+            </Tbody>
+            <Tfoot>
+              <Tr>
+                <Th>Flag</Th>
+                <Th>Country/Territory</Th>
+                <Th>Continent</Th>
+                <Th>Entry Date</Th>
+                <Th>Status</Th>
+              </Tr>
+            </Tfoot>
+          </Table>
+        </TableContainer>
+      </MotionBox>
     </Container>
   );
 };
