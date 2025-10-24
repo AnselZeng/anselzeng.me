@@ -1,8 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    optimizePackageImports: ["@chakra-ui/react"],
+  images: {
+    domains: ['localhost'],
+    unoptimized: true
   },
-};
+  experimental: {
+    optimizePackageImports: ['@chakra-ui/react', 'framer-motion']
+  }
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
