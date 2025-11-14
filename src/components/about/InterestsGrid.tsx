@@ -58,6 +58,7 @@ export default function InterestsGrid() {
   const { isOpen: isMusicOpen, onOpen: onMusicOpen, onClose: onMusicClose } = useDisclosure();
   const { isOpen: isSportsOpen, onOpen: onSportsOpen, onClose: onSportsClose } = useDisclosure();
   const { isOpen: isVideographyOpen, onOpen: onVideographyOpen, onClose: onVideographyClose } = useDisclosure();
+  const [selectedVideoTab, setSelectedVideoTab] = useState(0);
   
   // Sports teams state
   const [teamPositions, setTeamPositions] = useState<Record<string, { position: string; name: string; logo: string; league: string; motto: string }>>({
@@ -1126,13 +1127,54 @@ export default function InterestsGrid() {
                     <Box w="6px" h="6px" bg="purple.500" borderRadius="full"></Box>
                   </HStack>
 
-                  <Tabs variant="enclosed" colorScheme="purple">
+                  <Tabs variant="enclosed" colorScheme="purple" index={selectedVideoTab} onChange={setSelectedVideoTab}>
                     <TabList>
+                      <Tab flex={1}>Vienna</Tab>
                       <Tab flex={1}>Panama</Tab>
                       <Tab flex={1}>Costa Rica</Tab>
                       <Tab flex={1}>Poppy</Tab>
                     </TabList>
                     <TabPanels>
+                      <TabPanel px={0} py={0}>
+                        <Box bg="gradient-to-br from-purple.50 to-purple.100" borderRadius="lg" pt={4} px={0} pb={0}>
+                          <Flex direction={{ base: "column", lg: "row" }} align="stretch">
+                            {/* Video */}
+                            <Box flex={1}>
+                              <Box
+                                position="relative"
+                                w="100%"
+                                borderRadius="md"
+                                overflow="hidden"
+                                bg="black"
+                                sx={{
+                                  aspectRatio: "16/9"
+                                }}
+                              >
+                                <iframe
+                                  width="100%"
+                                  height="100%"
+                                  src="https://www.youtube.com/embed/xMHY4k8ylrQ"
+                                  title="Vienna"
+                                  frameBorder="0"
+                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                  allowFullScreen
+                                  style={{ borderRadius: "8px" }}
+                                />
+                              </Box>
+                            </Box>
+                            
+                            {/* Text Content */}
+                            <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
+                              <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
+                                <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Vienna Visit</Heading>
+                                <Text fontSize={{ base: "sm", lg: "md" }} color="purple.700" lineHeight="1.6">
+                                  During September 2025, I went on a two-week road trip around Austria and Czechia with my mom. We spent 4 of those days in Vienna, visiting all sorts of museums, art galleries, and the royal palaces. The city's rich history and stunning architecture left a lasting impression, from the grandeur of Schönbrunn Palace to the masterpieces housed in the Kunsthistorisches Museum. Seeing Klimt's "The Kiss" in person was a highlight of the trip. I already miss Almdudler.
+                                </Text>
+                              </VStack>
+                            </Box>
+                          </Flex>
+                        </Box>
+                      </TabPanel>
                       <TabPanel px={0} py={0}>
                         <Box bg="gradient-to-br from-blue.50 to-blue.100" borderRadius="lg" pt={4} px={0} pb={0}>
                           <Flex direction={{ base: "column", lg: "row" }} align="stretch">

@@ -333,6 +333,8 @@ export default function BlogPage() {
                         w={{ base: '100%', lg: '500px' }}
                         h={{ base: '200px', lg: 'auto' }}
                         overflow="hidden"
+                        onContextMenu={(e) => e.preventDefault()}
+                        userSelect="none"
                       >
                         <Image
                           src={post.image}
@@ -340,6 +342,8 @@ export default function BlogPage() {
                           width="100%"
                           height="100%"
                           objectFit="cover"
+                          draggable={false}
+                          onContextMenu={(e) => e.preventDefault()}
                         />
                       </Box>
                       
@@ -353,7 +357,12 @@ export default function BlogPage() {
                       >
                         {/* Author Info */}
                         <HStack spacing={3} align="center">
-                          <Avatar name="Ansel Zeng" src="/blog/pfp.png" size="md" />
+                          <Box
+                            onContextMenu={(e) => e.preventDefault()}
+                            userSelect="none"
+                          >
+                            <Avatar name="Ansel Zeng" src="/blog/pfp.png" size="md" />
+                          </Box>
                           <VStack spacing={2} align="flex-start">
                             <Text fontSize="md" fontWeight="600" color="gray.800" lineHeight="1.2" m={0} p={0}>
                               Ansel Zeng

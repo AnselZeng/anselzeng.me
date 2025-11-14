@@ -198,6 +198,8 @@ export default function About() {
                       boxShadow: '3xl',
                     }}
                     transition="all 0.3s ease"
+                    onContextMenu={(e) => e.preventDefault()}
+                    userSelect="none"
                   >
                     <Image
                       src={personalPhotos[0].src}
@@ -205,6 +207,8 @@ export default function About() {
                       width="100%"
                       height={{ base: "300px", lg: "500px" }}
                       objectFit="cover"
+                      draggable={false}
+                      onContextMenu={(e) => e.preventDefault()}
                     />
                     <Box
                       position="absolute"
@@ -372,6 +376,8 @@ export default function About() {
                       boxShadow: '3xl',
                     }}
                     transition="all 0.3s ease"
+                    onContextMenu={(e) => e.preventDefault()}
+                    userSelect="none"
                   >
                     <Image
                       src={personalPhotos[1].src}
@@ -379,6 +385,8 @@ export default function About() {
                       width="100%"
                       height="100%"
                       objectFit="cover"
+                      draggable={false}
+                      onContextMenu={(e) => e.preventDefault()}
                     />
                     <Box
                       position="absolute"
@@ -422,6 +430,8 @@ export default function About() {
                       boxShadow: '3xl',
                     }}
                     transition="all 0.3s ease"
+                    onContextMenu={(e) => e.preventDefault()}
+                    userSelect="none"
                   >
                     <Image
                       src={personalPhotos[2].src}
@@ -429,6 +439,8 @@ export default function About() {
                       width="100%"
                       height="100%"
                       objectFit="cover"
+                      draggable={false}
+                      onContextMenu={(e) => e.preventDefault()}
                     />
                     <Box
                       position="absolute"
@@ -472,6 +484,8 @@ export default function About() {
                       boxShadow: '3xl',
                     }}
                     transition="all 0.3s ease"
+                    onContextMenu={(e) => e.preventDefault()}
+                    userSelect="none"
                   >
                     <Image
                       src={personalPhotos[3].src}
@@ -479,6 +493,8 @@ export default function About() {
                       width="100%"
                       height="100%"
                       objectFit="cover"
+                      draggable={false}
+                      onContextMenu={(e) => e.preventDefault()}
                     />
                     <Box
                       position="absolute"
@@ -522,6 +538,8 @@ export default function About() {
                       boxShadow: '3xl',
                     }}
                     transition="all 0.3s ease"
+                    onContextMenu={(e) => e.preventDefault()}
+                    userSelect="none"
                   >
                     <Image
                       src={personalPhotos[4].src}
@@ -529,6 +547,8 @@ export default function About() {
                       width="100%"
                       height="100%"
                       objectFit="cover"
+                      draggable={false}
+                      onContextMenu={(e) => e.preventDefault()}
                     />
                     <Box
                       position="absolute"
@@ -572,6 +592,8 @@ export default function About() {
                       boxShadow: '3xl',
                     }}
                     transition="all 0.3s ease"
+                    onContextMenu={(e) => e.preventDefault()}
+                    userSelect="none"
                   >
                     <Image
                       src={personalPhotos[6].src}
@@ -579,6 +601,8 @@ export default function About() {
                       width="100%"
                       height="100%"
                       objectFit="cover"
+                      draggable={false}
+                      onContextMenu={(e) => e.preventDefault()}
                     />
                     <Box
                       position="absolute"
@@ -622,6 +646,8 @@ export default function About() {
                       boxShadow: '3xl',
                     }}
                     transition="all 0.3s ease"
+                    onContextMenu={(e) => e.preventDefault()}
+                    userSelect="none"
                   >
                     <Image
                       src={personalPhotos[5].src}
@@ -629,6 +655,8 @@ export default function About() {
                       width="100%"
                       height="100%"
                       objectFit="cover"
+                      draggable={false}
+                      onContextMenu={(e) => e.preventDefault()}
                     />
                     <Box
                       position="absolute"
@@ -875,7 +903,12 @@ export default function About() {
               <TabList ref={tabListRef} overflowX="auto" overflowY="hidden">
                 {experiences.map((item, index) => (
                   <Tab key={index} px={{ base: 0, lg: 4 }} py={{ base: 2, lg: 4 }} _hover={{ bg: "orange.100" }} minW={{ base: "40px", lg: "fit-content" }}>
-                    <Image src={item.logoSrc} alt={item.logoAlt} w={{ base: 6, lg: 8 }} maxH={{ base: 4, lg: 6 }} />
+                    <Box
+                      onContextMenu={(e) => e.preventDefault()}
+                      userSelect="none"
+                    >
+                      <Image src={item.logoSrc} alt={item.logoAlt} w={{ base: 6, lg: 8 }} maxH={{ base: 4, lg: 6 }} draggable={false} onContextMenu={(e) => e.preventDefault()} />
+                    </Box>
                   </Tab>
                 ))}
               </TabList>
@@ -899,7 +932,12 @@ export default function About() {
                     >
                       <VStack align={'start'} spacing={{ base: 3, lg: 4 }}>
                         <HStack spacing={{ base: 3, lg: 4 }} align="center">
-                          <Image src={item.logoSrc} alt={item.logoAlt} w={{ base: 10, lg: 12 }} h={{ base: 10, lg: 12 }} />
+                          <Box
+                            onContextMenu={(e) => e.preventDefault()}
+                            userSelect="none"
+                          >
+                            <Image src={item.logoSrc} alt={item.logoAlt} w={{ base: 10, lg: 12 }} h={{ base: 10, lg: 12 }} draggable={false} onContextMenu={(e) => e.preventDefault()} />
+                          </Box>
                           <VStack align="flex-start" spacing={1}>
                             <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="700" color="gray.800" m={0} p={0}>
                               {item.title}

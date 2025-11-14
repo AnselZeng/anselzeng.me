@@ -173,6 +173,8 @@ export default function BlogPost({
                   boxShadow: '3xl',
                 }}
                 transition="all 0.3s ease"
+                onContextMenu={(e) => e.preventDefault()}
+                userSelect="none"
               >
                 <Image
                   src={coverImage}
@@ -180,6 +182,8 @@ export default function BlogPost({
                   width="100%"
                   height={{ base: "250px", lg: "400px" }}
                   objectFit="cover"
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
                 />
               </Box>
             </MotionBox>
@@ -204,7 +208,7 @@ export default function BlogPost({
                     fontSize={{ base: "md", lg: "xl" }}
                     color="gray.700"
                     lineHeight={{ base: "1.6", lg: "1.8" }}
-                    textAlign="justify"
+                    textAlign="left"
                   >
                     {section.content}
                   </Text>
@@ -227,6 +231,8 @@ export default function BlogPost({
                         }}
                         transition="all 0.3s ease"
                         onClick={() => handleImageClick(image.src, index, imageIndex)}
+                        onContextMenu={(e) => e.preventDefault()}
+                        userSelect="none"
                       >
                         <Image
                           src={image.src}
@@ -234,6 +240,8 @@ export default function BlogPost({
                           width="100%"
                           height={{ base: "200px", lg: "auto" }}
                           objectFit="cover"
+                          draggable={false}
+                          onContextMenu={(e) => e.preventDefault()}
                         />
                       </Box>
                     ))}
