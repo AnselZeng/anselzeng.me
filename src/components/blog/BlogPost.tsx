@@ -64,7 +64,7 @@ interface BlogPostProps {
   coverImage: string;
   sections: Array<{
     type: 'text' | 'imageGroup';
-    content?: string;
+    content?: string | React.ReactNode;
     images?: Array<{
       src: string;
       alt: string;

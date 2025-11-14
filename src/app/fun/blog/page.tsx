@@ -50,6 +50,17 @@ const itemVariants = {
 
 const blogPosts = [
   {
+    id: 'chapter',
+    title: 'Starting a New Chapter',
+    excerpt: "It's 11:56 am, Friday, November 14, 2025. This morning I went out for a nice walk around the neighbourhood, through the forest and past the train tracks to grab a cup of coffee from Timmies. Going on walks has become more routine lately, since it feels like I'm just counting down the days, sitting at home aimlessly, in a way that weirdly reminds me of quarantine five years ago. Each walk feels like downtime for my eyes and brain after spending nearly every waking minute staring at my monitor, which pretty much sums up my day-to-day.",
+    image: '/blog/chapter.png',
+    date: 'Nov 14, 2025',
+    readTime: '4 min read',
+    category: 'Reflection',
+    color: 'orange',
+    href: '/fun/blog/chapter',
+  },
+  {
     id: 'harbin',
     title: 'Five Days in Harbin',
     excerpt: "It's 4:07 pm, Thursday, February 6, 2025. I just returned home with my Grandpa after joining him on his daily walk. As I listened to his numerous travels and adventures, I felt inspired to write down my recent solo trip to the chilly city of Harbin. Located in China's northernmost and easternmost province, Heilongjiang, the area is notoriously known for its bitterly cold winters. When I stepped off the high-speed rail, I was greeted by what felt like a cool breeze.",
@@ -107,12 +118,12 @@ const blogPosts = [
 ];
 
 const categories = [
-  { name: 'All', count: 5, color: 'gray' },
+  { name: 'All', count: 6, color: 'gray' },
   { name: 'Travel', count: 2, color: 'blue' },
   { name: 'Adventure', count: 1, color: 'cyan' },
   { name: 'Personal', count: 1, color: 'purple' },
   { name: 'Music', count: 1, color: 'teal' },
-  { name: 'Reflection', count: 1, color: 'green' },
+  { name: 'Reflection', count: 2, color: 'green' },
 ];
 
 export default function BlogPage() {
