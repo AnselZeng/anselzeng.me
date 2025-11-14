@@ -68,10 +68,9 @@ const projects = [
     tags: ['UX/UI Design', 'Wireframing', 'Internship'],
     image: '/home/tweebaa.png',
     logo: '/home/tweebaa.svg',
-    link: '#',
-    color: '#FF6B6B',
+    link: '/work/tweebaa',
+    color: '#DC2626',
     reverse: false,
-    comingSoon: true,
   },
 ];
 
@@ -205,6 +204,8 @@ export default function Home() {
                   boxShadow: '3xl',
                 }}
                 transition="all 0.3s ease"
+                onContextMenu={(e) => e.preventDefault()}
+                userSelect="none"
               >
                 <Image
                   src="/home/me.png"
@@ -212,6 +213,8 @@ export default function Home() {
                   width="100%"
                   height={{ base: "300px", lg: "auto" }}
                   objectFit="cover"
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
                 />
                 <Box
                   position="absolute"

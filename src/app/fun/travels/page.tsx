@@ -9,9 +9,7 @@ import {
   Text,
   VStack,
   HStack,
-  Image,
   Grid,
-  GridItem,
   Badge,
   useBreakpointValue,
   AccordionItem,
@@ -54,37 +52,6 @@ const itemVariants = {
     },
   },
 };
-
-const travelHighlights = [
-  {
-    title: 'Everest Base Camp',
-    location: 'Nepal',
-    description: 'An unforgettable night at the base of the world\'s highest mountain.',
-    image: '/about/everest.jpeg',
-    category: 'Adventure',
-  },
-  {
-    title: 'Cloud Forest Zip-lining',
-    location: 'Monteverde, Costa Rica',
-    description: 'Soaring through the canopy of Costa Rica\'s mystical cloud forests.',
-    image: '/about/klein.jpeg',
-    category: 'Nature',
-  },
-  {
-    title: 'Santorini Sunset',
-    location: 'Greece',
-    description: 'Relaxing in a rooftop hot tub while overlooking the Aegean Sea.',
-    image: '/about/pillows.jpeg',
-    category: 'Relaxation',
-  },
-  {
-    title: 'Urban Exploration',
-    location: 'Barcelona, Spain',
-    description: 'Discovering Barcelona\'s innovative superblocks and urban design.',
-    image: '/about/bloor.jpeg',
-    category: 'Culture',
-  },
-];
 
 const travelStats = [
   { number: '18', label: 'Countries Visited', icon: '🌍' },
@@ -165,7 +132,7 @@ export default function TravelsPage() {
                 maxW="800px"
                 lineHeight="1.6"
               >
-                Welcome to my travel journey - exploring cultures, cities, and natural wonders across three continents
+                Exploring cultures, cities, and natural wonders
               </Text>
             </MotionVStack>
           </VStack>
@@ -392,113 +359,8 @@ export default function TravelsPage() {
         <PlacesTable />
       </Box>
 
-      {/* Travel Highlights Section */}
-      <Box bg="teal.50" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
-          >
-            <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
-              <Badge
-                colorScheme="teal"
-                variant="subtle"
-                px={3}
-                py={1}
-                borderRadius="full"
-                fontSize="sm"
-                fontWeight="600"
-              >
-                Memorable Moments
-              </Badge>
-              <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                Travel Highlights
-              </Heading>
-              <Text
-                fontSize={{ base: "md", lg: "lg" }}
-                color="gray.600"
-                maxW="600px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                Some of my most unforgettable travel experiences that have shaped my perspective on the world.
-              </Text>
-            </MotionVStack>
-
-            <MotionGrid
-              variants={containerVariants}
-              templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
-              gap={8}
-              w="full"
-            >
-              {travelHighlights.map((highlight, index) => (
-                <MotionBox
-                  key={highlight.title}
-                  variants={itemVariants}
-                  bg="white"
-                  borderRadius="2xl"
-                  overflow="hidden"
-                  boxShadow="lg"
-                  _hover={{
-                    boxShadow: '2xl',
-                    transform: 'translateY(-8px)',
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <Box position="relative">
-                    <Image
-                      src={highlight.image}
-                      alt={highlight.title}
-                      width="100%"
-                      height="250px"
-                      objectFit="cover"
-                    />
-                    <Box
-                      position="absolute"
-                      top={4}
-                      right={4}
-                    >
-                      <Badge
-                        colorScheme="teal"
-                        variant="solid"
-                        px={3}
-                        py={1}
-                        borderRadius="full"
-                        fontSize="sm"
-                      >
-                        {highlight.category}
-                      </Badge>
-                    </Box>
-                  </Box>
-                  <VStack spacing={4} p={6} align="flex-start">
-                    <VStack spacing={2} align="flex-start" w="full">
-                      <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="600" color="gray.800">
-                        {highlight.title}
-                      </Heading>
-                      <Text color="teal.500" fontWeight="600">
-                        {highlight.location}
-                      </Text>
-                    </VStack>
-                    <Text color="gray.600" lineHeight="1.6">
-                      {highlight.description}
-                    </Text>
-                  </VStack>
-                </MotionBox>
-              ))}
-            </MotionGrid>
-          </MotionVStack>
-        </Container>
-      </Box>
-
       {/* Inspiration Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
+      <Box bg="teal.50" py={{ base: 12, lg: 24 }}>
         <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
           <MotionVStack
             variants={containerVariants}
@@ -602,7 +464,7 @@ export default function TravelsPage() {
       </Box>
 
       {/* CTA Section */}
-      <Box bg="orange.50" py={{ base: 12, lg: 24 }}>
+      <Box bg="white" py={{ base: 12, lg: 24 }}>
         <Container maxW="container.lg" px={{ base: 6, lg: 12 }}>
           <MotionVStack
             variants={containerVariants}

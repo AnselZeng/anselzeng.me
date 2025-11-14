@@ -18,12 +18,15 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ansel Zeng - Portfolio",
+  title: {
+    default: "ansel zeng | home",
+    template: "ansel zeng | %s",
+  },
   description: "CS & business student passionate about software development and creating meaningful user experiences",
   keywords: ["portfolio", "software engineer", "product management", "UX design", "Ansel Zeng"],
   authors: [{ name: "Ansel Zeng" }],
   openGraph: {
-    title: "Ansel Zeng - Portfolio",
+    title: "ansel zeng",
     description: "CS & business student passionate about software development and creating meaningful user experiences",
     type: "website",
   },

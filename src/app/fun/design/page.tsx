@@ -148,7 +148,7 @@ export default function DesignPage() {
                 maxW="800px"
                 lineHeight="1.6"
               >
-                Welcome to my design portfolio - a collection of creative projects that blend functionality with aesthetics
+                A collection of creative projects that blend functionality with aesthetics
               </Text>
             </MotionVStack>
           </VStack>

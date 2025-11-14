@@ -168,6 +168,11 @@ export default function BlogPost({
                 boxShadow="2xl"
                 maxW={{ base: "100%", lg: "800px" }}
                 w="full"
+                _hover={{
+                  transform: 'translateY(-8px)',
+                  boxShadow: '3xl',
+                }}
+                transition="all 0.3s ease"
               >
                 <Image
                   src={coverImage}

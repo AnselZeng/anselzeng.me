@@ -972,12 +972,13 @@ export default function RBCPage() {
             <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
               <Button
                 as={Link}
-                href="/about"
+                href="/work/tweebaa"
                 size={{ base: "md", lg: "lg" }}
                 variant="solid"
+                rightIcon={<ChevronRightIcon />}
                 w={{ base: "full", lg: "auto" }}
               >
-                Learn More About Me
+                Next Project
               </Button>
               <Button
                 as={Link}

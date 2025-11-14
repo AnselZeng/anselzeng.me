@@ -17,6 +17,7 @@ import {
   Tooltip,
   Collapse,
   IconButton,
+  SimpleGrid,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
 import { motion } from "framer-motion";
@@ -110,7 +111,6 @@ export const PlacesTable = () => {
         { name: "Michigan", status: "Visited" },
         { name: "Nevada", status: "Visited" },
         { name: "New York", status: "Visited" },
-        { name: "Puerto Rico", status: "Visited" },
         { name: "Utah", status: "Visited" },
         { name: "Washington", status: "Visited" },
         { name: "Washington, D.C. (Federal District)", status: "Visited" },
@@ -162,7 +162,7 @@ export const PlacesTable = () => {
         <Text fontSize="sm" fontWeight="600" color="gray.700" mb={3} textAlign="center">
           Canadian Provinces & Territories
         </Text>
-        <VStack spacing={1} align="stretch" w="100%">
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={2} w="100%">
           {provinces.map((province, index) => (
             <HStack key={province.name} spacing={2} py={0.5}>
               <Text fontSize="xs" color="gray.400" fontWeight="600" minW="16px" textAlign="center">
@@ -170,10 +170,11 @@ export const PlacesTable = () => {
               </Text>
               <Text fontSize="sm" color="gray.600" fontWeight="500" flex={1}>
                 {province.name}
+                {province.lived && ' 🏠'}
               </Text>
             </HStack>
           ))}
-        </VStack>
+        </SimpleGrid>
       </Box>
     );
   };
@@ -191,7 +192,7 @@ export const PlacesTable = () => {
       { name: "New York", visited: true },
       { name: "Utah", visited: true },
       { name: "Washington", visited: true },
-        { name: "Washington, D.C. (Federal District)", visited: true },
+      { name: "Washington, D.C. (Federal District)", visited: true },
     ];
 
     return (
@@ -199,7 +200,7 @@ export const PlacesTable = () => {
         <Text fontSize="sm" fontWeight="600" color="gray.700" mb={3} textAlign="center">
           US States Visited
         </Text>
-        <VStack spacing={1} align="stretch" w="100%">
+        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={2} w="100%">
           {states.map((state, index) => (
             <HStack key={state.name} spacing={2} py={0.5}>
               <Text fontSize="xs" color="gray.400" fontWeight="600" minW="16px" textAlign="center">
@@ -210,7 +211,7 @@ export const PlacesTable = () => {
               </Text>
             </HStack>
           ))}
-        </VStack>
+        </SimpleGrid>
       </Box>
     );
   };

@@ -153,7 +153,7 @@ export default function BlogPage() {
                 maxW="800px"
                 lineHeight="1.6"
               >
-                Welcome to my blog - a collection of thoughts, experiences, and reflections from my journey through life
+                A collection of thoughts, experiences, and reflections from my journey through life
               </Text>
             </MotionVStack>
           </VStack>
@@ -208,7 +208,7 @@ export default function BlogPage() {
             >
               {[
                 {
-                  title: 'Personal Growth',
+                  title: 'Self Reflection',
                   description: 'Reflecting on experiences and lessons learned along the way.',
                   icon: '🌱',
                 },

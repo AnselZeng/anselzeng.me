@@ -43,6 +43,7 @@ const navSections: NavSection[] = [
       { href: '/work/telus', label: 'Telus', emoji: '🗼' },
       { href: '/work/ips', label: 'IPS', emoji: '🎧' },
       { href: '/work/rbc', label: 'RBC', emoji: '🏦' },
+      { href: '/work/tweebaa', label: 'Tweebaa', emoji: '📱' },
     ],
   },
   {
