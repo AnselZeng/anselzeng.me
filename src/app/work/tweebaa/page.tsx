@@ -354,7 +354,7 @@ export default function TweebaaPage() {
       </Box>
 
       {/* Challenge Section */}
-      <Box bg="red.800" py={{ base: 16, lg: 24 }}>
+      <Box bg="red.700" py={{ base: 16, lg: 24 }}>
         <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
           <MotionVStack
             variants={containerVariants}

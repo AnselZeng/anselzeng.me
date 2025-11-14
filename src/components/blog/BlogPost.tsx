@@ -275,7 +275,7 @@ export default function BlogPost({
               </Text>
             </MotionVStack>
 
-            <VStack spacing={3} w={{ base: "full", lg: "auto" }}>
+            <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
               <Button
                 as={Link}
                 href="/fun/blog"
@@ -295,7 +295,7 @@ export default function BlogPost({
               >
                 Learn More About Me
               </Button>
-            </VStack>
+            </Flex>
           </MotionVStack>
         </Container>
       </Box>

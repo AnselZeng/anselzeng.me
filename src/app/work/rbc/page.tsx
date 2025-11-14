@@ -389,7 +389,7 @@ export default function RBCPage() {
       </Box>
 
       {/* Challenge Section */}
-      <Box bg="blue.500" py={{ base: 16, lg: 24 }}>
+      <Box bg="blue.600" py={{ base: 16, lg: 24 }}>
         <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
           <MotionVStack
             variants={containerVariants}
