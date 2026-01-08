@@ -249,7 +249,7 @@ export default function About() {
 
                   <VStack spacing={4} align={{ base: "center", lg: "start" }}>
                     <Text color="gray.600" lineHeight="1.6" fontSize={{ base: "md", lg: "lg" }}>
-                  I&apos;m an incoming Master of Computer Science student at{' '}
+                  I&apos;m a Master of Computer Science student at{' '}
                   <Text as="span" color="#990000" fontWeight="bold">
                     <Link href="https://viterbischool.usc.edu/" target="_blank" rel="noopener noreferrer">
                       USC Viterbi School of Engineering
