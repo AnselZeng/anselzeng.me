@@ -24,9 +24,7 @@ import {
   TabPanel,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-
-const MotionBox = motion(Box);
+import { MotionBox } from '@/lib/motion';
 
 const itemVariants = {
   visible: { opacity: 1, y: 0 },

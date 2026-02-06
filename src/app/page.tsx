@@ -10,18 +10,14 @@ import {
   VStack,
   HStack,
   Image,
-  Divider,
   Badge,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import ProjectCard from '@/components/home/ProjectCard';
 import { ChevronRightIcon } from '@chakra-ui/icons';
-
-const MotionBox = motion(Box);
-const MotionVStack = motion(VStack);
-const MotionHStack = motion(HStack);
+import { MotionBox, MotionVStack, MotionHStack } from '@/lib/motion';
+import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 const projects = [
   {
@@ -73,28 +69,6 @@ const projects = [
     reverse: false,
   },
 ];
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut',
-    },
-  },
-};
 
 export default function Home() {
   const isMobile = useBreakpointValue({ base: true, lg: false });

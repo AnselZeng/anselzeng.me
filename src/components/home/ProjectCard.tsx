@@ -12,21 +12,10 @@ import {
   Badge,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ChevronRightIcon } from '@chakra-ui/icons';
-
-const MotionBox = motion(Box);
-const MotionVStack = motion(VStack);
-const MotionHStack = motion(HStack);
-
-// Helper function to convert hex to rgba
-const hexToRgba = (hex: string, alpha: number): string => {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
+import { MotionBox, MotionVStack, MotionHStack } from '@/lib/motion';
+import { hexToRgba } from '@/lib/utils';
 
 interface Project {
   id: string;
