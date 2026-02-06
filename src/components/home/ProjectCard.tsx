@@ -82,15 +82,19 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       <Flex direction={{ base: 'column', lg: 'row' }} align="center" gap={{ base: 3, lg: 5 }} py={{ base: 3, lg: 4 }} px={{ base: 3, lg: 8 }}>
         {/* Content */}
         <VStack align={{ base: 'center', lg: 'flex-start' }} textAlign={{ base: 'center', lg: 'left' }} spacing={{ base: 2, lg: 2.5 }} flex={{ base: 'initial', lg: '1 1 0%' }} w={{ base: '100%', lg: 'auto' }} px={{ base: 2, lg: 4 }} order={{ base: 2, lg: isReverse ? 2 : 1 }}>
-          {/* Logo */}
+          {/* Logo – max width and height so it fits in a 40×48 box, but container shrinks to image so no extra vertical gap on wide logos */}
           <Box
             onContextMenu={(e) => e.preventDefault()}
             userSelect="none"
+            display="inline-flex"
+            alignItems="center"
+            justifyContent="center"
           >
             <Image 
               src={project.logo} 
               alt={`${project.title} logo`} 
-              maxH={{ base: "40px", lg: "48px" }} 
+              maxW={{ base: "40px", lg: "48px" }}
+              maxH={{ base: "40px", lg: "48px" }}
               objectFit="contain"
               draggable={false}
               onContextMenu={(e) => e.preventDefault()}
@@ -99,7 +103,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           {/* Title & Subtitle */}
           <VStack spacing={0.5} align={{ base: 'center', lg: 'flex-start' }}>
             <Heading
-              fontSize={{ base: 'lg', lg: 'xl' }}
+              fontSize={{ base: 'xl', lg: '2xl' }}
               fontWeight="700"
               sx={{
                 background: `linear-gradient(to right, ${project.color}, black 100%)`,
@@ -112,7 +116,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             </Heading>
           </VStack>
           {/* Description */}
-          <Text fontSize="sm" color="gray.600" lineHeight="1.55" maxW="400px" mt={0}>{project.description}</Text>
+          <Text fontSize="md" color="gray.600" lineHeight="1.55" maxW="400px" mt={0}>{project.description}</Text>
           {/* Tags */}
           <HStack spacing={1.5} wrap="wrap" justify={{ base: 'center', lg: 'flex-start' }}>
             {project.tags.map((tag, tagIndex) => (

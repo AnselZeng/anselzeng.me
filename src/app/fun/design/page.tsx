@@ -143,7 +143,7 @@ export default function DesignPage() {
                 Design 🎨
               </Heading>
               <Text
-                fontSize={{ base: "sm", lg: "md" }}
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 lineHeight="1.6"
@@ -185,7 +185,7 @@ export default function DesignPage() {
                 A Brief Introduction
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -194,7 +194,7 @@ export default function DesignPage() {
                 Since my first internship as a UX/UI designer, I fell in love with Figma and discovered a passion for creating intuitive, user-focused designs. I've always felt a strong creative drive, which led me to volunteer for design roles in school projects, assignments, and even case competitions.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -237,7 +237,7 @@ export default function DesignPage() {
                 My Creative Approach
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="520px"
                 mx="auto"
@@ -305,16 +305,16 @@ export default function DesignPage() {
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
-                      fontSize="sm"
+                      fontSize="md"
                       fontWeight="600"
                       color="pink.600"
                     >
                       {process.step}
                     </Box>
-                    <Heading fontSize="sm" fontWeight="600" color="gray.800">
+                    <Heading fontSize="md" fontWeight="600" color="gray.800">
                       {process.title}
                     </Heading>
-                    <Text fontSize="sm" color="gray.600" lineHeight="1.5">
+                    <Text fontSize="md" color="gray.600" lineHeight="1.5">
                       {process.description}
                     </Text>
                   </VStack>
@@ -355,7 +355,7 @@ export default function DesignPage() {
                 Design Portfolio
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="520px"
                 mx="auto"
@@ -414,14 +414,14 @@ export default function DesignPage() {
                       alignItems="center"
                       justifyContent="center"
                     >
-                      <Text color="white" fontWeight="600" fontSize="sm">
+                      <Text color="white" fontWeight="600" fontSize="md">
                         View Details
                       </Text>
                     </Box>
                   </Box>
                   <VStack spacing={4} p={6} align="flex-start">
                     <HStack justify="space-between" w="full">
-                      <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
+                      <Heading fontSize="md" fontWeight="600" color="gray.800">
                         {project.title}
                       </Heading>
                       <Badge
@@ -430,7 +430,7 @@ export default function DesignPage() {
                         px={3}
                         py={1}
                         borderRadius="full"
-                        fontSize="sm"
+                        fontSize="md"
                       >
                         {project.category}
                       </Badge>
@@ -482,7 +482,7 @@ export default function DesignPage() {
                 Let&apos;s Create Together
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="520px"
                 mx="auto"

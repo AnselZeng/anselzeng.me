@@ -182,7 +182,7 @@ export default function TelusPage() {
                 px={4}
                 py={2}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 Software Engineering Internship
@@ -248,7 +248,7 @@ export default function TelusPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 01 | Overview
@@ -261,7 +261,7 @@ export default function TelusPage() {
                 Transforming Telecommunications with Telus
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -293,7 +293,7 @@ export default function TelusPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Role</Text>
-                    <Text fontSize="sm" color="gray.600">Software Engineer Intern</Text>
+                    <Text fontSize="md" color="gray.600">Software Engineer Intern</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -314,7 +314,7 @@ export default function TelusPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Team</Text>
-                    <Text fontSize="sm" color="gray.600">Open RAN, Orchestration & Automation, DevOps, Infrastructure</Text>
+                    <Text fontSize="md" color="gray.600">Open RAN, Orchestration & Automation, DevOps, Infrastructure</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -335,7 +335,7 @@ export default function TelusPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Tools</Text>
-                    <Text fontSize="sm" color="gray.600">JavaScript, Google Sheets API, Linux, Kubernetes</Text>
+                    <Text fontSize="md" color="gray.600">JavaScript, Google Sheets API, Linux, Kubernetes</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -356,7 +356,7 @@ export default function TelusPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Timeline</Text>
-                    <Text fontSize="sm" color="gray.600">May – Aug 2023</Text>
+                    <Text fontSize="md" color="gray.600">May – Aug 2023</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -366,7 +366,7 @@ export default function TelusPage() {
       </Box>
 
       {/* Challenge Section */}
-      <Box bg="purple.500" py={{ base: 16, lg: 24 }}>
+      <Box bg="purple.500" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
@@ -383,7 +383,7 @@ export default function TelusPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 02 | The Challenge
@@ -396,7 +396,7 @@ export default function TelusPage() {
                 Navigating Legacy Infrastructure
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="white"
                 maxW="640px"
                 mx="auto"
@@ -410,7 +410,7 @@ export default function TelusPage() {
       </Box>
 
       {/* ORAN Components Section */}
-      <Box bg="white" py={{ base: 16, lg: 24 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
@@ -426,7 +426,7 @@ export default function TelusPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 03 | Understanding ORAN
@@ -439,7 +439,7 @@ export default function TelusPage() {
                 Hold On, What Exactly Is ORAN?
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -448,7 +448,7 @@ export default function TelusPage() {
                 Open RAN, or Open Radio Access Network, revolutionizes the telecom industry's approach to building and operating mobile networks. Unlike traditional systems, which rely on a single vendor for tightly integrated components, Open RAN fosters an open and flexible ecosystem. By separating various parts of the radio access network, it allows operators to utilize equipment from multiple vendors adhering to common standards, ensuring seamless interoperability.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -499,7 +499,7 @@ export default function TelusPage() {
       </Box>
 
       {/* Learning Moments Section */}
-      <Box bg="purple.50" py={{ base: 16, lg: 24 }}>
+      <Box bg="purple.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
@@ -515,7 +515,7 @@ export default function TelusPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 04 | Educational Insights
@@ -542,7 +542,7 @@ export default function TelusPage() {
                       <Tab 
                         key={moment.title} 
                         fontWeight="600" 
-                        fontSize="sm"
+                        fontSize="md"
                         flex="1"
                         py={4}
                         _selected={{ 
@@ -602,7 +602,7 @@ export default function TelusPage() {
                             <Box flex="1">
                               <VStack align="flex-start" spacing={6} h="full" justify="center">
                                 {moment.content.map((paragraph, pIndex) => (
-                                  <Text key={pIndex} color="gray.600" lineHeight="1.6" fontSize="sm">
+                                  <Text key={pIndex} color="gray.600" lineHeight="1.6" fontSize="md">
                                     {paragraph}
                                   </Text>
                                 ))}
@@ -612,7 +612,7 @@ export default function TelusPage() {
                         ) : (
                           <VStack align="flex-start" spacing={6}>
                             {moment.content.map((paragraph, pIndex) => (
-                              <Text key={pIndex} color="gray.600" lineHeight="1.6" fontSize="sm">
+                              <Text key={pIndex} color="gray.600" lineHeight="1.6" fontSize="md">
                                 {paragraph}
                               </Text>
                             ))}
@@ -629,7 +629,7 @@ export default function TelusPage() {
       </Box>
 
       {/* Ticket Management System Section */}
-      <Box bg="white" py={{ base: 16, lg: 24 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
@@ -645,7 +645,7 @@ export default function TelusPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 05 | My Work
@@ -658,7 +658,7 @@ export default function TelusPage() {
                 The DevOps Ticket Management System
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -667,7 +667,7 @@ export default function TelusPage() {
                 The latter part of my internship at Telus provided a unique opportunity to tackle a crucial challenge encountered by the team: the absence of a centralized ticket management system. Reliance on Excel had resulted in inefficiencies and hindered effective workload management. Teaming up with a fellow developer, I took the lead in developing an internal ticket management system tailored to Telus' specific needs.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -699,7 +699,7 @@ export default function TelusPage() {
                       objectFit="cover"
                     />
                   </Box>
-                    <Text fontSize="sm" color="gray.600" maxW="560px">
+                    <Text fontSize="md" color="gray.600" maxW="560px">
                     This design showcases the login page, main ticket grid display, create ticket modal window, and ticket details modal window for{' '}
                       <Text as="span" fontWeight="600" color="purple.500">
                       streamlined ticket management
@@ -714,7 +714,7 @@ export default function TelusPage() {
       </Box>
 
       {/* Highlights Section */}
-      <Box bg="purple.50" py={{ base: 16, lg: 24 }}>
+      <Box bg="purple.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
@@ -730,7 +730,7 @@ export default function TelusPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 06 | Highlights
@@ -799,7 +799,7 @@ export default function TelusPage() {
                 Closing the Chapter
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="560px"
                 mx="auto"
@@ -808,7 +808,7 @@ export default function TelusPage() {
                 Reflecting on my time at Telus, it's evident that it was a transformative experience in the realm of DevOps. This internship immersed me in the real-world challenges of business operations and software development, pushing me to expand my skills and knowledge. From tackling new concepts to leading the ticket management system project, I've seen substantial growth in my abilities.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="560px"
                 mx="auto"

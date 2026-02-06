@@ -1,7 +1,7 @@
 /* Modern CSS Reset and Global Styles */
 :root {
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'Gambetta', Georgia, serif;
 
   /* Type scale – smaller, cleaner, consistent */
   --text-hero: clamp(1.75rem, 3.5vw, 2.5rem);   /* ~28–40px */

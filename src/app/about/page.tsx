@@ -219,7 +219,7 @@ export default function About() {
                       p={6}
                       color="white"
                     >
-                      <Text fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="white" m={0} p={0}>
+                      <Text fontSize="md" fontWeight="600" color="white" m={0} p={0}>
                         Featured Moment
                       </Text>
                     </Box>
@@ -248,7 +248,7 @@ export default function About() {
                   </Heading>
 
                   <VStack spacing={4} align={{ base: "center", lg: "start" }}>
-                    <Text color="gray.600" lineHeight="1.6" fontSize={{ base: "sm", lg: "md" }}>
+                    <Text color="gray.600" lineHeight="1.6" fontSize="md">
                   I&apos;m a Master of Computer Science student at{' '}
                   <Text as="span" color="#990000" fontWeight="bold">
                     <Link href="https://viterbischool.usc.edu/" target="_blank" rel="noopener noreferrer">
@@ -262,7 +262,7 @@ export default function About() {
                   </Text>, where I gained valuable international perspectives on technology and innovation.
                     </Text>
                     
-                    <Text color="gray.600" lineHeight="1.6" fontSize={{ base: "sm", lg: "md" }}>
+                    <Text color="gray.600" lineHeight="1.6" fontSize="md">
                       I recently completed my undergraduate dual degree in Computer Science and Business Administration at{' '}
                       <Text as="span" color="#4F2683" fontWeight="bold">
                         <Link href="https://www.uwo.ca/index.html" target="_blank" rel="noopener noreferrer">
@@ -276,7 +276,7 @@ export default function About() {
                       </Text>, where I developed a strong foundation in both technical and business domains.
                     </Text>
                     
-                    <Text color="gray.600" lineHeight="1.6" fontSize={{ base: "sm", lg: "md" }}>
+                    <Text color="gray.600" lineHeight="1.6" fontSize="md">
                       At the core, I&apos;m passionate about building impactful solutions. I believe in technology&apos;s power to drive meaningful change and focus on blending business strategy with design thinking to create products that are not only functional but truly transformative.
                     </Text>
                   </VStack>
@@ -314,7 +314,7 @@ export default function About() {
       </Container>
 
       {/* Life Through My Lens Section */}
-      <Box bg="white" py={{ base: 12, lg: 20 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionBox
             variants={containerVariants}
@@ -339,7 +339,7 @@ export default function About() {
                 <Heading fontSize={{ base: 'xl', lg: '3xl' }} fontWeight="700" color="gray.800">
                   Life Through My Lens
                 </Heading>
-                <Text fontSize="sm" color="gray.600" maxW="520px" mx="auto" lineHeight="1.55">
+                <Text fontSize="md" color="gray.600" maxW="520px" mx="auto" lineHeight="1.55">
                   Capturing memories from adventures, achievements, and everyday moments that shape who I am.
                 </Text>
               </VStack>
@@ -707,7 +707,7 @@ export default function About() {
 <Heading fontSize={{ base: 'xl', lg: '3xl' }} fontWeight="700" color="gray.800">
                 What I Do
               </Heading>
-<Text fontSize="sm" color="gray.600" maxW="520px" mx="auto" lineHeight="1.55">
+<Text fontSize="md" color="gray.600" maxW="520px" mx="auto" lineHeight="1.55">
                 Combining technical skills with creative problem-solving to build impactful solutions.
                 </Text>
               </VStack>
@@ -743,7 +743,7 @@ export default function About() {
                       <Heading fontSize={{ base: 'xl', lg: '2xl' }} fontWeight="700" color="gray.800">
                         Software Development
                       </Heading>
-                      <Text fontSize={{ base: "sm", lg: "md" }} color="gray.600" lineHeight="1.7">
+                      <Text fontSize="md" color="gray.600" lineHeight="1.7">
                         Full-stack development with React, Node.js, Python, and cloud technologies. I build scalable microservices and APIs, 
                         working with modern frameworks and deployment pipelines. From frontend interfaces to backend systems, I create 
                         robust applications that handle real-world challenges.
@@ -787,7 +787,7 @@ export default function About() {
                       <Heading fontSize={{ base: 'xl', lg: '2xl' }} fontWeight="700" color="gray.800">
                         Product Design
                       </Heading>
-                      <Text fontSize={{ base: "sm", lg: "md" }} color="gray.600" lineHeight="1.7">
+                      <Text fontSize="md" color="gray.600" lineHeight="1.7">
                         User research, wireframing, prototyping, and design systems. I create intuitive interfaces using Figma and 
                         design thinking methodologies. My approach combines user empathy with technical feasibility to deliver 
                         products that users love and developers can build efficiently.
@@ -831,7 +831,7 @@ export default function About() {
                       <Heading fontSize={{ base: 'xl', lg: '2xl' }} fontWeight="700" color="gray.800">
                         Research & Analysis
                       </Heading>
-                      <Text fontSize={{ base: "sm", lg: "md" }} color="gray.600" lineHeight="1.7">
+                      <Text fontSize="md" color="gray.600" lineHeight="1.7">
                         Data-driven decision making through quantitative and qualitative research methods. I conduct market analysis, 
                         user interviews, and competitive research to inform product strategy. My analytical approach helps identify 
                         opportunities and validate solutions before implementation.
@@ -875,7 +875,7 @@ export default function About() {
                       <Heading fontSize={{ base: 'xl', lg: '2xl' }} fontWeight="700" color="gray.800">
                         System Architecture
                       </Heading>
-                      <Text fontSize={{ base: "sm", lg: "md" }} color="gray.600" lineHeight="1.7">
+                      <Text fontSize="md" color="gray.600" lineHeight="1.7">
                         Designing distributed systems, DevOps pipelines, and infrastructure. I work with Docker, Kubernetes, and cloud platforms 
                         to build scalable, maintainable architectures. My focus is on creating systems that are both performant and resilient, 
                         ensuring they can grow with business needs.
@@ -1030,7 +1030,7 @@ export default function About() {
                 Let's Connect
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="520px"
                 mx="auto"

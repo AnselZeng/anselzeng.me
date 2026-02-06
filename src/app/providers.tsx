@@ -5,9 +5,9 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 // Enhanced theme: clean, professional typography and spacing
 const theme = extendTheme({
   fonts: {
-    heading: 'var(--font-sans), system-ui, sans-serif',
+    heading: 'var(--font-serif), Georgia, serif',
     body: 'var(--font-sans), system-ui, sans-serif',
-    mono: 'var(--font-mono), monospace',
+    mono: 'var(--font-sans), system-ui, sans-serif',
   },
   fontSizes: {
     xs: '0.75rem',    // 12px

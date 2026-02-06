@@ -159,7 +159,7 @@ export default function BlogPage() {
                 One Thought Per Year 📝
               </Heading>
               <Text
-                fontSize={{ base: "sm", lg: "md" }}
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 lineHeight="1.6"
@@ -201,7 +201,7 @@ export default function BlogPage() {
                 Why I Write
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -252,10 +252,10 @@ export default function BlogPage() {
                 >
                   <VStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "4xl" }}>{value.icon}</Text>
-                    <Heading fontSize="sm" fontWeight="600" color="gray.800">
+                    <Heading fontSize="md" fontWeight="600" color="gray.800">
                       {value.title}
                     </Heading>
-                    <Text fontSize="sm" color="gray.600" lineHeight="1.5">
+                    <Text fontSize="md" color="gray.600" lineHeight="1.5">
                       {value.description}
                     </Text>
                   </VStack>
@@ -267,7 +267,7 @@ export default function BlogPage() {
       </Box>
 
       {/* Blog Posts Section */}
-      <Box bg="cyan.50" py={{ base: 16, lg: 24 }}>
+      <Box bg="cyan.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
@@ -296,9 +296,9 @@ export default function BlogPage() {
                 Recent Thoughts
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
-                maxW="600px"
+                maxW="560px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -367,7 +367,7 @@ export default function BlogPage() {
                             <Text fontSize="md" fontWeight="600" color="gray.800" lineHeight="1.2" m={0} p={0}>
                               Ansel Zeng
                             </Text>
-                            <Text fontSize="sm" color="gray.500" lineHeight="1" m={0} p={0}>
+                            <Text fontSize="md" color="gray.500" lineHeight="1" m={0} p={0}>
                               {post.date}
                             </Text>
                           </VStack>
@@ -375,7 +375,7 @@ export default function BlogPage() {
 
                         {/* Main Content */}
                         <VStack spacing={3} align="flex-start" w="full" flex={1}>
-                          <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
+                          <Heading fontSize="md" fontWeight="600" color="gray.800">
                             {post.title}
                           </Heading>
                           <Text color="gray.600" lineHeight="1.6" noOfLines={4} m={0} p={0}>
@@ -385,7 +385,7 @@ export default function BlogPage() {
 
                         {/* Footer */}
                         <HStack spacing={2} w="full" justify="space-between" align="center">
-                          <Text fontSize="sm" color="gray.500" m={0} p={0}>
+                          <Text fontSize="md" color="gray.500" m={0} p={0}>
                             {post.readTime}
                           </Text>
                           <ChevronRightIcon color="gray.400" />
@@ -420,9 +420,9 @@ export default function BlogPage() {
                 Stay Connected
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
-                maxW="600px"
+                maxW="560px"
                 mx="auto"
                 lineHeight="1.6"
               >

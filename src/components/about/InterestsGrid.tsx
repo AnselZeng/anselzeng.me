@@ -1167,7 +1167,7 @@ export default function InterestsGrid() {
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Vienna Visit</Heading>
-                                <Text fontSize={{ base: "sm", lg: "md" }} color="purple.700" lineHeight="1.6">
+                                <Text fontSize="md" color="purple.700" lineHeight="1.6">
                                   During September 2025, I went on a two-week road trip around Austria and Czechia with my mom. We spent 4 of those days in Vienna, visiting all sorts of museums, art galleries, and the royal palaces. The city's rich history and stunning architecture left a lasting impression, from the grandeur of Schönbrunn Palace to the masterpieces housed in the Kunsthistorisches Museum. Seeing Klimt's "The Kiss" in person was a highlight of the trip. I already miss Almdudler.
                                 </Text>
                               </VStack>
@@ -1207,7 +1207,7 @@ export default function InterestsGrid() {
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Panama Adventure</Heading>
-                                <Text fontSize={{ base: "sm", lg: "md" }} color="purple.700" lineHeight="1.6">
+                                <Text fontSize="md" color="purple.700" lineHeight="1.6">
                                   From December 25th, 2017 to January 1st, 2018 I went to visit Panama, a country well known for it's significant Canal. I had the incredible opportunity to see the Panama Canal up close, witnessing this man-made waterway that stretches 80km from the Atlantic to the Pacific. One of the most fascinating things I learned is that you can see both the sunrise and sunset from the same spot because Panama's unique geography allows you to witness both oceans from one location.
                                 </Text>
                               </VStack>
@@ -1247,7 +1247,7 @@ export default function InterestsGrid() {
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Costa Rica Journey</Heading>
-                                <Text fontSize={{ base: "sm", lg: "md" }} color="purple.700" lineHeight="1.6">
+                                <Text fontSize="md" color="purple.700" lineHeight="1.6">
                                   From March 10th, 2018 to March 18th, 2018 I went to visit Costa Rica, a country well known for it's significant Volcanoes. During my adventure, I experienced the longest zipline in Central America at Monteverde, soaring through the canopy and witnessing incredible views of the volcanic landscape below. I explored various types of rainforests, from cloud forests to tropical rainforests, each offering unique ecosystems and breathtaking biodiversity. Pura vida!
                                 </Text>
                               </VStack>
@@ -1287,7 +1287,7 @@ export default function InterestsGrid() {
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Poppy</Heading>
-                                <Text fontSize={{ base: "sm", lg: "md" }} color="purple.700" lineHeight="1.6">
+                                <Text fontSize="md" color="purple.700" lineHeight="1.6">
                                   A video Michael and I made for Remembrance Day. We storyplanned the entire project, incorporating voiceover of the poem "In Flanders Fields" while filming around our city, visiting parks and meaningful locations. It was played at our school assembly and we won an award from the Royal Canadian Legion, a nonprofit Canadian veterans organization, for the video. Lest we forget.
                                 </Text>
                               </VStack>

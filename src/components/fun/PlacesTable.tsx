@@ -245,7 +245,7 @@ export const PlacesTable = () => {
             My Travel Journey
           </Heading>
           <Text
-            fontSize="sm"
+            fontSize="md"
             color="gray.600"
             maxW="520px"
             mx="auto"

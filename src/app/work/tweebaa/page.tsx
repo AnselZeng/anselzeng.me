@@ -161,7 +161,7 @@ export default function TweebaaPage() {
                 px={4}
                 py={2}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 UX/UI Design Internship
@@ -227,7 +227,7 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 01 | Overview
@@ -240,7 +240,7 @@ export default function TweebaaPage() {
                 My First Design Journey
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -249,7 +249,7 @@ export default function TweebaaPage() {
                 Joining Tweebaa as a UX/UI Design Intern during the summer of 2021 marked my first professional internship experience. I was tasked with helping out the lead designer with her work, but mainly was assigned a lot of brand new sections that had nothing before.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -281,7 +281,7 @@ export default function TweebaaPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Role</Text>
-                    <Text fontSize="sm" color="gray.600">UX/UI Design Intern</Text>
+                    <Text fontSize="md" color="gray.600">UX/UI Design Intern</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -302,7 +302,7 @@ export default function TweebaaPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Team</Text>
-                    <Text fontSize="sm" color="gray.600">Mobile App Design Team</Text>
+                    <Text fontSize="md" color="gray.600">Mobile App Design Team</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -323,7 +323,7 @@ export default function TweebaaPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Tools</Text>
-                    <Text fontSize="sm" color="gray.600">Figma, Adobe Creative Suite</Text>
+                    <Text fontSize="md" color="gray.600">Figma, Adobe Creative Suite</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -344,7 +344,7 @@ export default function TweebaaPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Timeline</Text>
-                    <Text fontSize="sm" color="gray.600">May – Aug 2021</Text>
+                    <Text fontSize="md" color="gray.600">May – Aug 2021</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -354,7 +354,7 @@ export default function TweebaaPage() {
       </Box>
 
       {/* Challenge Section */}
-      <Box bg="red.700" py={{ base: 16, lg: 24 }}>
+      <Box bg="red.700" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
@@ -371,7 +371,7 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 02 | The Challenge
@@ -384,7 +384,7 @@ export default function TweebaaPage() {
                 Building a Mobile App from the Ground Up
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="white"
                 maxW="640px"
                 mx="auto"
@@ -414,7 +414,7 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 03 | My Experience
@@ -427,7 +427,7 @@ export default function TweebaaPage() {
                 Building from Blank Pages
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -436,7 +436,7 @@ export default function TweebaaPage() {
                 Being assigned brand new sections that had nothing before meant I had to wireframe things from scratch, spending countless hours tweaking the smallest components. This made me realize how every little thing starts from a blank page—literally—and that you build it out from there.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -466,7 +466,7 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 04 | What I Learned
@@ -479,7 +479,7 @@ export default function TweebaaPage() {
                 Design Fundamentals & Best Practices
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -546,7 +546,7 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 05 | My Work
@@ -559,7 +559,7 @@ export default function TweebaaPage() {
                 Designing Key App Sections
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -568,7 +568,7 @@ export default function TweebaaPage() {
                 Throughout my internship, I designed multiple brand new sections for the app, each requiring careful consideration of user flows, interactions, and visual consistency. I had never thought about how many actions or interactions a feature included until I had to design each and every frame—from home pages to details pages, including countless interactions like saving, favouriting, editing, and deleting.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -606,7 +606,7 @@ export default function TweebaaPage() {
                         <Heading fontSize={{ base: "xl", lg: "2xl" }} fontWeight="600" color="gray.800">
                           {section.title}
                         </Heading>
-                        <Text color="gray.600" lineHeight="1.6" fontSize="sm">
+                        <Text color="gray.600" lineHeight="1.6" fontSize="md">
                           {section.description}
                         </Text>
                       </VStack>
@@ -659,7 +659,7 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 06 | Impact & Results
@@ -672,7 +672,7 @@ export default function TweebaaPage() {
                 Making a Difference
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -766,7 +766,7 @@ export default function TweebaaPage() {
                 Closing the Chapter
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="560px"
                 mx="auto"
@@ -775,7 +775,7 @@ export default function TweebaaPage() {
                 Reflecting on my time at Tweebaa, it's evident that this was a transformative experience that launched my journey into UX/UI design. As my first internship, it taught me the value of persistence, adaptability, and the importance of design thinking in creating meaningful user experiences.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="560px"
                 mx="auto"

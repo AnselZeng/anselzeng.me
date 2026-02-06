@@ -152,7 +152,7 @@ export default function Home() {
               </Heading>
 
               <Text
-                fontSize={{ base: 'sm', lg: 'md' }}
+                fontSize="md"
                 color="gray.600"
                 maxW="520px"
                 lineHeight="1.55"
@@ -263,7 +263,7 @@ export default function Home() {
                 Recent Projects
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="480px"
                 mx="auto"
@@ -307,7 +307,7 @@ export default function Home() {
                 Let&apos;s Work Together
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="440px"
                 mx="auto"

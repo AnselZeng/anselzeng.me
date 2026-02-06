@@ -127,7 +127,7 @@ export default function TravelsPage() {
                 Adventures Around the Globe ✈️
               </Heading>
               <Text
-                fontSize={{ base: "sm", lg: "md" }}
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 lineHeight="1.6"
@@ -169,7 +169,7 @@ export default function TravelsPage() {
                 A Brief Introduction
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -178,7 +178,7 @@ export default function TravelsPage() {
                 Raised across three continents in three countries—the Netherlands, China, and Canada—I've had the unique privilege of experiencing the richness and diversity of different cultures early on. These experiences shaped my curiosity, fueling my desire to always ask "why" and "how," and sparked a lifelong passion for understanding the world around me.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -187,7 +187,7 @@ export default function TravelsPage() {
                 A special place in my heart is reserved for cities and their stories, particularly when it comes to urban development. From Barcelona's superblocks that redefine modern city life to the radial design of Mexico City, these cities reflect not only the ingenuity of their people but also the evolving needs of the communities they serve.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -196,7 +196,7 @@ export default function TravelsPage() {
                 Some of my favorite travel memories include zip-lining through the cloud forests of Monteverde, relaxing in a rooftop hot tub while overlooking the Aegean Sea in Santorini, and spending an unforgettable night at Everest Base Camp. Each adventure deepened my appreciation for the world's natural wonders and the diverse experiences it offers.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -239,7 +239,7 @@ export default function TravelsPage() {
                 Places I've Explored
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="520px"
                 mx="auto"
@@ -332,9 +332,9 @@ export default function TravelsPage() {
                             spacing={3}
                             align="center"
                           >
-                            <Text fontSize="sm" m={0} p={0}>{stat.icon}</Text>
+                            <Text fontSize="md" m={0} p={0}>{stat.icon}</Text>
                             <HStack spacing={2} align="center">
-                              <Text fontSize="sm" fontWeight="700" color="teal.500" m={0} p={0}>
+                              <Text fontSize="md" fontWeight="700" color="teal.500" m={0} p={0}>
                                 {stat.number}
                               </Text>
                               <Text fontSize={{ base: "xs", lg: "sm" }} fontWeight="500" color="gray.600" m={0} p={0}>
@@ -389,7 +389,7 @@ export default function TravelsPage() {
                 Why I Travel
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -398,7 +398,7 @@ export default function TravelsPage() {
                 Earlier this year, my mom embarked on a remarkable expedition to Antarctica, fulfilling her lifelong dream of visiting all seven continents. Her achievement inspires me to continue exploring the world, not just to see new places but to gain new perspectives.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -449,10 +449,10 @@ export default function TravelsPage() {
                 >
                   <VStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "4xl" }}>{value.icon}</Text>
-                    <Heading fontSize="sm" fontWeight="600" color="gray.800">
+                    <Heading fontSize="md" fontWeight="600" color="gray.800">
                       {value.title}
                     </Heading>
-                    <Text fontSize="sm" color="gray.600" lineHeight="1.5">
+                    <Text fontSize="md" color="gray.600" lineHeight="1.5">
                       {value.description}
                     </Text>
                   </VStack>
@@ -483,7 +483,7 @@ export default function TravelsPage() {
                 Ready for the Next Adventure
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="520px"
                 mx="auto"

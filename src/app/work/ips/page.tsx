@@ -117,7 +117,7 @@ export default function IPSPage() {
                 </Text>
               </Heading>
               <Text
-                fontSize={{ base: "sm", lg: "md" }}
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 lineHeight="1.6"
@@ -180,7 +180,7 @@ export default function IPSPage() {
                 The Path to Product
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -189,7 +189,7 @@ export default function IPSPage() {
                 The Ivey Product Fellowship is an alumni-facilitated bootcamp where students engage in product-management-focused curriculum and showcase a capstone product to industry professionals. As someone who had little to no prior experience in the product realm, I was thrilled to be surrounded by a community of accomplished alumni.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -198,7 +198,7 @@ export default function IPSPage() {
                 Having listened to 164,498 minutes of music in just the past year, it was natural for me to select Spotify as the app for my capstone project. As an avid music streamer from morning till night, I've become intimately familiar with the app's latest features and intricate UX/UI design details. However, this immersion also led me to harbor complaints and a persistent feeling that something was missing.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -230,7 +230,7 @@ export default function IPSPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Role</Text>
-                    <Text fontSize="sm" color="gray.600">Product Management Fellow</Text>
+                    <Text fontSize="md" color="gray.600">Product Management Fellow</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -251,7 +251,7 @@ export default function IPSPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Team</Text>
-                    <Text fontSize="sm" color="gray.600">Ansel (Me 😄), Brennan (Program Lead), David (Alumni Coach), Rohan (Student Mentor)</Text>
+                    <Text fontSize="md" color="gray.600">Ansel (Me 😄), Brennan (Program Lead), David (Alumni Coach), Rohan (Student Mentor)</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -272,7 +272,7 @@ export default function IPSPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Tools</Text>
-                    <Text fontSize="sm" color="gray.600">Notion, Figma</Text>
+                    <Text fontSize="md" color="gray.600">Notion, Figma</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -293,7 +293,7 @@ export default function IPSPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Timeline</Text>
-                    <Text fontSize="sm" color="gray.600">Jan – Apr 2023</Text>
+                    <Text fontSize="md" color="gray.600">Jan – Apr 2023</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -303,7 +303,7 @@ export default function IPSPage() {
       </Box>
 
       {/* Challenge Section */}
-      <Box bg="green.500" py={{ base: 16, lg: 24 }}>
+      <Box bg="green.500" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
@@ -333,7 +333,7 @@ export default function IPSPage() {
                 Spotify's Social Gap
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="white"
                 maxW="640px"
                 mx="auto"
@@ -376,7 +376,7 @@ export default function IPSPage() {
                 Is There Really Something Wrong?
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -385,7 +385,7 @@ export default function IPSPage() {
                 Spotify's limited social capabilities hinder meaningful interaction between users, resulting in difficulties with music discovery, playlist sharing, and engagement with friends' listening habits. This issue can potentially impede user retention and underutilization of the platform.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -399,7 +399,7 @@ export default function IPSPage() {
       </Box>
 
       {/* User Research Section */}
-      <Box bg="green.50" py={{ base: 16, lg: 24 }}>
+      <Box bg="green.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
@@ -428,7 +428,7 @@ export default function IPSPage() {
                 Gaining Some User Insights
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -470,7 +470,7 @@ export default function IPSPage() {
                         display="flex"
                         alignItems="center"
                         justifyContent="center"
-                        fontSize="sm"
+                        fontSize="md"
                         fontWeight="600"
                         color="green.600"
                       >
@@ -489,7 +489,7 @@ export default function IPSPage() {
       </Box>
 
       {/* Value Proposition Section */}
-      <Box bg="green.500" py={{ base: 16, lg: 24 }}>
+      <Box bg="green.500" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
@@ -519,7 +519,7 @@ export default function IPSPage() {
                 Enhanced Social Experience
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="white"
                 maxW="640px"
                 mx="auto"
@@ -562,7 +562,7 @@ export default function IPSPage() {
                 Unveiling Your Melodic Persona
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -593,7 +593,7 @@ export default function IPSPage() {
                           height="auto"
                           objectFit="cover"
                         />
-                        <Text color="gray.600" lineHeight="1.6" fontSize="sm" maxW="600px">
+                        <Text color="gray.600" lineHeight="1.6" fontSize="md" maxW="560px">
                           {showcase.description}{' '}
                           <Text as="span" fontWeight="600" color="green.500">
                             {showcase.boldText}
@@ -613,7 +613,7 @@ export default function IPSPage() {
       </Box>
 
       {/* Impact Section */}
-      <Box bg="green.50" py={{ base: 16, lg: 24 }}>
+      <Box bg="green.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
@@ -642,7 +642,7 @@ export default function IPSPage() {
                 Key Takeaways
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -651,7 +651,7 @@ export default function IPSPage() {
                 As the curtains draw on my journey with Ivey Product Society, I'm filled with gratitude for the immense growth and learning I have experienced. From creating a Product Requirements Document to conducting user research, the hands-on nature of the program not only sharpened my product skills but also taught me the art of translating ideas into tangible solutions.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -660,7 +660,7 @@ export default function IPSPage() {
                 Undoubtedly, one of the standout moments was presenting my capstone project to a panel of PMs from Meta and Wealthsimple. The intensity of the technical questions definitely put me on the spot, but the thorough feedback I received left a lasting mark on my product mindset and thought process. It was a transformative experience that propelled me to new heights.
               </Text>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 mx="auto"
@@ -693,7 +693,7 @@ export default function IPSPage() {
                 <VStack spacing={4} align="flex-start">
                   <HStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "3xl" }}>🎯</Text>
-                    <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
+                    <Heading fontSize="md" fontWeight="600" color="gray.800">
                       Product Strategy
                     </Heading>
                   </HStack>
@@ -720,7 +720,7 @@ export default function IPSPage() {
                 <VStack spacing={4} align="flex-start">
                   <HStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "3xl" }}>👥</Text>
-                    <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
+                    <Heading fontSize="md" fontWeight="600" color="gray.800">
                       User Research
                     </Heading>
                   </HStack>
@@ -747,7 +747,7 @@ export default function IPSPage() {
                 <VStack spacing={4} align="flex-start">
                   <HStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "3xl" }}>🎨</Text>
-                    <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
+                    <Heading fontSize="md" fontWeight="600" color="gray.800">
                       Design Thinking
                     </Heading>
                   </HStack>
@@ -774,7 +774,7 @@ export default function IPSPage() {
                 <VStack spacing={4} align="flex-start">
                   <HStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "3xl" }}>📊</Text>
-                    <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
+                    <Heading fontSize="md" fontWeight="600" color="gray.800">
                       Market Analysis
                     </Heading>
                   </HStack>
@@ -808,9 +808,9 @@ export default function IPSPage() {
                 Product Management Journey
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
-                maxW="600px"
+                maxW="560px"
                 mx="auto"
                 lineHeight="1.6"
               >

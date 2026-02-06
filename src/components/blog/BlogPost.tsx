@@ -205,7 +205,7 @@ export default function BlogPost({
               <MotionBox key={index} variants={itemVariants} w="full">
                 {section.type === 'text' ? (
                   <Text
-                    fontSize={{ base: "sm", lg: "md" }}
+                    fontSize="md"
                     color="gray.700"
                     lineHeight="1.55"
                     textAlign="left"
@@ -273,9 +273,9 @@ export default function BlogPost({
                 Thanks for Reading
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="600px"
+                maxW="560px"
                 mx="auto"
                 lineHeight="1.6"
               >
