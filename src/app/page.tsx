@@ -212,6 +212,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true, margin: '-80px' }}
             spacing={{ base: 8, lg: 10 }}
+            align={{ base: 'center', lg: 'stretch' }}
           >
             <MotionVStack variants={itemVariants} spacing={3} textAlign="center">
               <Badge
@@ -244,7 +245,7 @@ export default function Home() {
               </Text>
             </MotionVStack>
 
-            <VStack spacing={{ base: 10, lg: 12 }} w="full">
+            <VStack spacing={{ base: 10, lg: 12 }} w="full" alignItems={{ base: 'center', lg: 'stretch' }}>
               {projects.map((project, index) => (
                 <ProjectCard
                   key={project.id}

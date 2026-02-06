@@ -66,7 +66,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
   return (
     <MotionBox
       variants={cardVariants}
-      w="full"
+      w={{ base: 'auto', lg: 'full' }}
+      maxW={{ base: '100%', lg: 'none' }}
     >
       <Flex direction={{ base: 'row', lg: 'row' }} align={{ base: 'center', lg: 'center' }} gap={{ base: 3, lg: 5 }} py={{ base: 3, lg: 4 }} px={{ base: 3, lg: 8 }}>
         {/* Image area - on mobile: left side, smaller; on desktop: unchanged */}
@@ -185,9 +186,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             </Heading>
           </VStack>
           <Text fontSize={{ base: 'sm', lg: 'md' }} color="gray.600" lineHeight="1.55" maxW="400px" mt={0} noOfLines={{ base: 2, lg: 999 }}>{project.description}</Text>
-          <HStack spacing={1.5} wrap="wrap" justify="flex-start">
+          <HStack spacing={1.5} wrap="wrap" justify="flex-start" display={{ base: 'none', lg: 'flex' }}>
             {project.tags.map((tag, tagIndex) => (
-              <Badge key={tagIndex} colorScheme="gray" variant="subtle" px={1.5} py={0.5} borderRadius="full" fontSize={{ base: '0.45rem', lg: 'xs' }}>
+              <Badge key={tagIndex} colorScheme="gray" variant="subtle" px={1.5} py={0.5} borderRadius="full" fontSize="xs">
                 {tag}
               </Badge>
             ))}
