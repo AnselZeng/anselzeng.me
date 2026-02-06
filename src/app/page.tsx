@@ -101,8 +101,8 @@ export default function Home() {
 
   return (
     <Box>
-      {/* Hero Section */}
-      <Container maxW="container.xl" px={{ base: 6, lg: 12 }} py={{ base: 16, lg: 32 }}>
+      {/* Hero Section – tighter spacing, smaller type */}
+      <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
           initial="hidden"
@@ -113,7 +113,7 @@ export default function Home() {
             <Flex
               direction={{ base: 'column', lg: 'row' }}
               align="center"
-              gap={{ base: 6, lg: 16 }}
+              gap={{ base: 6, lg: 14 }}
               w="full"
             >
             {/* Left Content */}
@@ -121,13 +121,13 @@ export default function Home() {
               variants={itemVariants}
               align={{ base: 'center', lg: 'flex-start' }}
               textAlign={{ base: 'center', lg: 'left' }}
-              spacing={{ base: 4, lg: 6 }}
+              spacing={{ base: 3, lg: 4 }}
               flex={1}
             >
-              <HStack spacing={3} align="center">
-                <Box bg="brand.500" h="2px" w="2rem" />
+              <HStack spacing={2} align="center">
+                <Box bg="brand.500" h="1.5px" w="1.25rem" />
                 <Text
-                  fontSize="sm"
+                  fontSize="xs"
                   fontWeight="600"
                   color="brand.500"
                   letterSpacing="wider"
@@ -139,9 +139,9 @@ export default function Home() {
               </HStack>
 
               <Heading
-                fontSize={{ base: '3xl', md: '4xl', lg: '6xl' }}
+                fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
                 fontWeight="700"
-                lineHeight="1.1"
+                lineHeight="1.15"
                 color="gray.800"
               >
                 I&apos;m{' '}
@@ -152,23 +152,23 @@ export default function Home() {
               </Heading>
 
               <Text
-                fontSize={{ base: 'md', lg: 'xl' }}
+                fontSize={{ base: 'sm', lg: 'md' }}
                 color="gray.600"
-                maxW="600px"
-                lineHeight="1.6"
+                maxW="520px"
+                lineHeight="1.55"
               >
                 CS & business student passionate about software development and creating
                 meaningful user experiences. I find inspiration in the ever-evolving world of
                 technology, exploring how it can be leveraged to create positive change.
               </Text>
 
-               <Flex pt={4} w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
+               <Flex pt={3} w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={2}>
                 <Button
                   as={Link}
                   href="/Ansel_Zeng_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  size={{ base: "md", lg: "lg" }}
+                  size="sm"
                   variant="solid"
                   rightIcon={<ChevronRightIcon />}
                   w={{ base: "full", lg: "auto" }}
@@ -178,7 +178,7 @@ export default function Home() {
                 <Button
                   as={Link}
                   href="/about"
-                  size={{ base: "md", lg: "lg" }}
+                  size="sm"
                   variant="outline"
                   w={{ base: "full", lg: "auto" }}
                 >
@@ -191,7 +191,7 @@ export default function Home() {
             <MotionBox
               variants={itemVariants}
               flex={1}
-              maxW={{ base: "300px", lg: "400px" }}
+              maxW={{ base: "260px", lg: "340px" }}
               mx="auto"
             >
               <Box
@@ -211,7 +211,7 @@ export default function Home() {
                   src="/home/me.png"
                   alt="Ansel Zeng"
                   width="100%"
-                  height={{ base: "300px", lg: "auto" }}
+                  height={{ base: "260px", lg: "auto" }}
                   objectFit="cover"
                   draggable={false}
                   onContextMenu={(e) => e.preventDefault()}
@@ -233,47 +233,48 @@ export default function Home() {
         </MotionBox>
       </Container>
 
-      {/* Projects Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      {/* Projects Section – consistent section spacing */}
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            viewport={{ once: true, margin: '-80px' }}
+            spacing={{ base: 8, lg: 10 }}
           >
-            <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
+            <MotionVStack variants={itemVariants} spacing={3} textAlign="center">
               <Badge
                 colorScheme="orange"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Featured Work
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Recent Projects
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="600px"
+                maxW="480px"
                 mx="auto"
+                lineHeight="1.55"
               >
                 A collection of my recent work experiences and projects that showcase my
                 skills in software engineering, product management, and design.
               </Text>
             </MotionVStack>
 
-            <VStack spacing={{ base: 16, lg: 20 }} w="full">
+            <VStack spacing={{ base: 10, lg: 12 }} w="full">
               {projects.map((project, index) => (
                 <ProjectCard
                   key={project.id}
@@ -287,40 +288,41 @@ export default function Home() {
       </Box>
 
       {/* CTA Section */}
-      <Box bg="brand.50" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.lg" px={{ base: 6, lg: 12 }}>
+      <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 6, lg: 8 }}
+            viewport={{ once: true, margin: '-80px' }}
+            spacing={{ base: 4, lg: 5 }}
             textAlign="center"
           >
-            <MotionVStack variants={itemVariants} spacing={4}>
+            <MotionVStack variants={itemVariants} spacing={2}>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Let&apos;s Work Together
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="500px"
+                maxW="440px"
                 mx="auto"
+                lineHeight="1.55"
               >
                 I&apos;m always interested in new opportunities and exciting projects.
                 Let&apos;s connect and create something amazing together.
               </Text>
             </MotionVStack>
 
-             <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
+             <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={2}>
               <Button
                 as={Link}
                 href="/about"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="solid"
                 rightIcon={<ChevronRightIcon />}
                 w={{ base: "full", lg: "auto" }}
@@ -330,7 +332,7 @@ export default function Home() {
               <Button
                 as={Link}
                 href="/fun/blog"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="outline"
                 w={{ base: "full", lg: "auto" }}
               >

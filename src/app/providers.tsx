@@ -2,12 +2,24 @@
 
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
-// Enhanced theme with better colors and typography
+// Enhanced theme: clean, professional typography and spacing
 const theme = extendTheme({
   fonts: {
-    heading: 'var(--font-inter), system-ui, sans-serif',
-    body: 'var(--font-inter), system-ui, sans-serif',
-    mono: 'var(--font-jetbrains-mono), monospace',
+    heading: 'var(--font-sans), system-ui, sans-serif',
+    body: 'var(--font-sans), system-ui, sans-serif',
+    mono: 'var(--font-mono), monospace',
+  },
+  fontSizes: {
+    xs: '0.75rem',    // 12px
+    sm: '0.8125rem',  // 13px
+    md: '0.9375rem',  // 15px
+    lg: '1.125rem',   // 18px
+    xl: '1.25rem',    // 20px
+    '2xl': '1.375rem', // 22px
+    '3xl': '1.75rem',  // 28px
+    '4xl': '2rem',     // 32px
+    '5xl': '2.25rem',  // 36px
+    '6xl': '2.5rem',   // 40px
   },
   colors: {
     brand: {
@@ -41,7 +53,8 @@ const theme = extendTheme({
         bg: 'brand.50',
         color: 'gray.800',
         fontFamily: 'body',
-        lineHeight: '1.6',
+        fontSize: 'md',
+        lineHeight: '1.5',
       },
       '*': {
         borderColor: 'gray.200',
@@ -92,6 +105,7 @@ const theme = extendTheme({
       baseStyle: {
         fontWeight: '600',
         color: 'gray.800',
+        letterSpacing: '-0.02em',
       },
     },
     Text: {

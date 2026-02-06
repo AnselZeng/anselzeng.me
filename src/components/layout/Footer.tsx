@@ -54,10 +54,10 @@ export default function Footer() {
 
   return (
     <Box as="footer" bg="white" borderTop="1px solid" borderColor="gray.200">
-      <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
-        <VStack spacing={{ base: 6, lg: 8 }} py={{ base: 8, lg: 12 }}>
+      <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
+        <VStack spacing={{ base: 4, lg: 5 }} py={{ base: 6, lg: 8 }}>
           {/* Social Links */}
-          <HStack spacing={{ base: 4, lg: 6 }}>
+          <HStack spacing={{ base: 3, lg: 4 }}>
             {socialLinks.map((social) => (
               <motion.div
                 key={social.name}
@@ -72,7 +72,7 @@ export default function Footer() {
                   _hover={{ color: social.color }}
                   transition="color 0.2s"
                 >
-                  <Icon as={social.icon} boxSize={{ base: 5, lg: 6 }} />
+                  <Icon as={social.icon} boxSize={{ base: 4, lg: 5 }} />
                 </Link>
               </motion.div>
             ))}
@@ -88,10 +88,10 @@ export default function Footer() {
             w="full"
             gap={4}
           >
-            <Text color="gray.500" fontSize={{ base: "xs", lg: "sm" }}>
+            <Text color="gray.500" fontSize="xs">
               © {currentYear} Ansel Zeng. All rights reserved.
             </Text>
-            <Text color="gray.500" fontSize={{ base: "xs", lg: "sm" }}>
+            <Text color="gray.500" fontSize="xs">
               Built with Next.js, Chakra UI & Framer Motion
             </Text>
           </Flex>

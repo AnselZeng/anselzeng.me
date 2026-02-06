@@ -79,9 +79,9 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       variants={cardVariants}
       w="full"
     >
-      <Flex direction={{ base: 'column', lg: 'row' }} align="center" gap={{ base: 3, lg: 4 }} py={{ base: 4, lg: 6 }} px={{ base: 4, lg: 12 }}>
+      <Flex direction={{ base: 'column', lg: 'row' }} align="center" gap={{ base: 3, lg: 5 }} py={{ base: 3, lg: 4 }} px={{ base: 3, lg: 8 }}>
         {/* Content */}
-        <VStack align={{ base: 'center', lg: 'flex-start' }} textAlign={{ base: 'center', lg: 'left' }} spacing={{ base: 3, lg: 4 }} flex={{ base: 'initial', lg: '1 1 0%' }} w={{ base: '100%', lg: 'auto' }} px={{ base: 2, lg: 6 }} order={{ base: 2, lg: isReverse ? 2 : 1 }}>
+        <VStack align={{ base: 'center', lg: 'flex-start' }} textAlign={{ base: 'center', lg: 'left' }} spacing={{ base: 2, lg: 2.5 }} flex={{ base: 'initial', lg: '1 1 0%' }} w={{ base: '100%', lg: 'auto' }} px={{ base: 2, lg: 4 }} order={{ base: 2, lg: isReverse ? 2 : 1 }}>
           {/* Logo */}
           <Box
             onContextMenu={(e) => e.preventDefault()}
@@ -90,16 +90,16 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             <Image 
               src={project.logo} 
               alt={`${project.title} logo`} 
-              maxH={{ base: "50px", lg: "60px" }} 
+              maxH={{ base: "40px", lg: "48px" }} 
               objectFit="contain"
               draggable={false}
               onContextMenu={(e) => e.preventDefault()}
             />
           </Box>
           {/* Title & Subtitle */}
-          <VStack spacing={1} align={{ base: 'center', lg: 'flex-start' }}>
+          <VStack spacing={0.5} align={{ base: 'center', lg: 'flex-start' }}>
             <Heading
-              fontSize={{ base: 'lg', lg: '2xl' }}
+              fontSize={{ base: 'lg', lg: 'xl' }}
               fontWeight="700"
               sx={{
                 background: `linear-gradient(to right, ${project.color}, black 100%)`,
@@ -112,20 +112,20 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             </Heading>
           </VStack>
           {/* Description */}
-          <Text fontSize={{ base: "sm", lg: "md" }} color="gray.600" lineHeight="1.6" maxW="440px" mt={0}>{project.description}</Text>
+          <Text fontSize="sm" color="gray.600" lineHeight="1.55" maxW="400px" mt={0}>{project.description}</Text>
           {/* Tags */}
-          <HStack spacing={2} wrap="wrap" justify={{ base: 'center', lg: 'flex-start' }}>
+          <HStack spacing={1.5} wrap="wrap" justify={{ base: 'center', lg: 'flex-start' }}>
             {project.tags.map((tag, tagIndex) => (
-              <Badge key={tagIndex} colorScheme="gray" variant="subtle" px={{ base: 1.5, lg: 2 }} py={0.5} borderRadius="full" fontSize={{ base: "2xs", lg: "xs" }}>
+              <Badge key={tagIndex} colorScheme="gray" variant="subtle" px={1.5} py={0.5} borderRadius="full" fontSize="xs">
                 {tag}
               </Badge>
             ))}
           </HStack>
           {/* CTA Button */}
-          <Box pt={2}>
+          <Box pt={1.5}>
             {project.comingSoon ? (
               <Button
-                size={{ base: "sm", lg: "md" }}
+                size="sm"
                 variant="outline"
                 borderColor={project.color}
                 color={project.color}
@@ -139,7 +139,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               <Button
                 as={Link}
                 href={project.link}
-                size={{ base: "sm", lg: "md" }}
+                size="sm"
                 variant="outline"
                 borderColor={project.color}
                 color={project.color}
@@ -153,13 +153,13 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           </Box>
         </VStack>
         {/* Image area - intrinsic size, capped height, centered; no stretch */}
-        <MotionBox variants={imageVariants} flex={{ base: '0 0 auto', lg: '1 1 0%' }} w={{ base: '100%', lg: 'auto' }} px={{ base: 2, lg: 6 }} order={{ base: 1, lg: isReverse ? 1 : 2 }}>
+        <MotionBox variants={imageVariants} flex={{ base: '0 0 auto', lg: '1 1 0%' }} w={{ base: '100%', lg: 'auto' }} px={{ base: 2, lg: 4 }} order={{ base: 1, lg: isReverse ? 1 : 2 }}>
           <Box
             position="relative"
             bgGradient={`linear(to top, ${hexToRgba(project.color, 0.15)}, ${hexToRgba(project.color, 0.05)}, transparent)`}
             borderRadius="lg"
-            pt={{ base: 2, lg: 3 }}
-            pb={{ base: 4, lg: 5 }}
+            pt={{ base: 1.5, lg: 2 }}
+            pb={{ base: 3, lg: 4 }}
             borderBottom={`2px solid ${project.color}`}
             sx={{
               '&::after': {
@@ -191,7 +191,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                   <Image
                     src={project.image}
                     alt={project.title}
-                    maxH={{ base: '120px', md: '140px', lg: '170px' }}
+                    maxH={{ base: '100px', md: '120px', lg: '140px' }}
                     maxW="100%"
                     height="auto"
                     width="auto"
@@ -219,7 +219,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                   <Image
                     src={project.image}
                     alt={project.title}
-                    maxH={{ base: '120px', md: '140px', lg: '170px' }}
+                    maxH={{ base: '100px', md: '120px', lg: '140px' }}
                     maxW="100%"
                     height="auto"
                     width="auto"
