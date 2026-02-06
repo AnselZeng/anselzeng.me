@@ -24,9 +24,7 @@ import {
   TabPanel,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
-
-const MotionBox = motion(Box);
+import { MotionBox } from '@/lib/motion';
 
 const itemVariants = {
   visible: { opacity: 1, y: 0 },
@@ -60,7 +58,6 @@ export default function InterestsGrid() {
   const { isOpen: isVideographyOpen, onOpen: onVideographyOpen, onClose: onVideographyClose } = useDisclosure();
   const [selectedVideoTab, setSelectedVideoTab] = useState(0);
   
-  // Sports teams state
   const [teamPositions, setTeamPositions] = useState<Record<string, { position: string; name: string; logo: string; league: string; motto: string }>>({
     saints: { position: "top", name: "New Orleans Saints", logo: "/about/sports/saints.png", league: "NFL • American Football", motto: "Who Dat Nation" },
     spurs: { position: "topRight", name: "San Antonio Spurs", logo: "/about/sports/spurs.png", league: "NBA • Basketball", motto: "Go Spurs Go" },
@@ -83,7 +80,6 @@ export default function InterestsGrid() {
       const centerTeamKey = Object.keys(newPositions).find(key => newPositions[key as keyof typeof newPositions].position === "center");
       
       if (centerTeamKey) {
-        // Swap positions
         const clickedPosition = newPositions[clickedTeamKey as keyof typeof newPositions].position;
         newPositions[clickedTeamKey as keyof typeof newPositions].position = "center";
         newPositions[centerTeamKey as keyof typeof newPositions].position = clickedPosition;
@@ -96,330 +92,235 @@ export default function InterestsGrid() {
   return (
     <>
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} w="full">
-        {/* 1. Movies & Shows Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
-          cursor="pointer"
-          _hover={{
-            borderColor: "red.300",
-            boxShadow: "lg",
-            transform: "translateY(-2px)",
-          }}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "pointer" }}
+          _hover={isMobile ? undefined : { borderColor: "red.300", boxShadow: "lg", transform: "translateY(-2px)" }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          onClick={() => {
-            if (isMobile) {
-              alert("Coming Soon!");
-            } else {
-              onMoviesOpen();
-            }
-          }}
+          onClick={() => { if (!isMobile) onMoviesOpen(); }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="red.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🍿</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="red.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🍿</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Movies & Shows</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              From Studio Ghibli films to binge-worthy series. I love getting lost in great storytelling.
-            </Text>
-            <Text fontSize="sm" color="red.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Movies & Shows</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                From Studio Ghibli films to binge-worthy series. I love getting lost in great storytelling.
+              </Text>
+              <Text fontSize="xs" color="red.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
-        {/* 2. Music Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
-          cursor="pointer"
-          _hover={{
-            borderColor: "teal.300",
-            boxShadow: "lg",
-            transform: "translateY(-2px)",
-          }}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "pointer" }}
+          _hover={isMobile ? undefined : { borderColor: "teal.300", boxShadow: "lg", transform: "translateY(-2px)" }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          onClick={() => {
-            if (isMobile) {
-              alert("Coming Soon!");
-            } else {
-              onMusicOpen();
-            }
-          }}
+          onClick={() => { if (!isMobile) onMusicOpen(); }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="teal.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🎵</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="teal.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🎵</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Music</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              A huge music enthusiast with 150K+ minutes streamed annually. From vinyl collecting to discovering new artists.
-            </Text>
-            <Text fontSize="sm" color="teal.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Music</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                A huge music enthusiast with 150K+ minutes streamed annually. From vinyl collecting to discovering new artists.
+              </Text>
+              <Text fontSize="xs" color="teal.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
-        {/* 3. Sports Teams Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
-          cursor="pointer"
-          _hover={{
-            borderColor: "orange.300",
-            boxShadow: "lg",
-            transform: "translateY(-2px)",
-          }}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "pointer" }}
+          _hover={isMobile ? undefined : { borderColor: "orange.300", boxShadow: "lg", transform: "translateY(-2px)" }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          onClick={() => {
-            if (isMobile) {
-              alert("Coming Soon!");
-            } else {
-              onSportsOpen();
-            }
-          }}
+          onClick={() => { if (!isMobile) onSportsOpen(); }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="orange.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">⚽</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="orange.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>⚽</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Sports Teams</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              Following multiple teams across different sports and leagues. Always cheering for my favourites.
-            </Text>
-            <Text fontSize="sm" color="orange.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Sports Teams</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                Following multiple teams across different sports and leagues. Always cheering for my favourites.
+              </Text>
+              <Text fontSize="xs" color="orange.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
-        {/* 4. Camping & Nature Section */}
-        {/* Note: Modal was disabled - green colors used were: green.300 (hover border), green.500 (text), green.600 (modal title), green.50 (modal bg), green.800 (modal text), green.700 (modal bullets) */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "auto" }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="green.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🏕️</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="green.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🏕️</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Camping & Nature</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              From scouting adventures to outdoor exploration. Proud recipient of the Chief Scout&apos;s Award.
-            </Text>
-            <Text fontSize="sm" color="gray.400" fontWeight="500">Coming Soon</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Camping & Nature</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                From scouting adventures to outdoor exploration. Proud recipient of the Chief Scout&apos;s Award.
+              </Text>
+              <Text fontSize="xs" color="gray.400" fontWeight="500">Coming Soon</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
-        {/* 5. Hockey Section */}
-        {/* Note: Modal was disabled - colors used were: blue.300 (hover border), blue.500 (text), blue.600 (modal title), blue.50 (modal bg), blue.800 (modal text), blue.700 (modal bullets) */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "auto" }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="blue.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🏒</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="blue.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🏒</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Hockey</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              11 years of competitive hockey taught me discipline, resilience, and the value of teamwork.
-            </Text>
-            <Text fontSize="sm" color="gray.400" fontWeight="500">Coming Soon</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Hockey</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                11 years of competitive hockey taught me discipline, resilience, and the value of teamwork.
+              </Text>
+              <Text fontSize="xs" color="gray.400" fontWeight="500">Coming Soon</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
-        {/* 6. Videography Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
-          cursor="pointer"
-          _hover={{
-            borderColor: "purple.300",
-            boxShadow: "lg",
-            transform: "translateY(-2px)",
-          }}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "pointer" }}
+          _hover={isMobile ? undefined : { borderColor: "purple.300", boxShadow: "lg", transform: "translateY(-2px)" }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          onClick={() => {
-            if (isMobile) {
-              alert("Coming Soon!");
-            } else {
-              onVideographyOpen();
-            }
-          }}
+          onClick={() => { if (!isMobile) onVideographyOpen(); }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="purple.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🎬</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="purple.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🎬</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Videography</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              Cinematic vlogs, travel documentaries, and robotics coverage. Passionate about storytelling through film.
-            </Text>
-            <Text fontSize="sm" color="purple.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Videography</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                Cinematic vlogs, travel documentaries, and robotics coverage. Passionate about storytelling through film.
+              </Text>
+              <Text fontSize="xs" color="purple.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
-        {/* 7. Chess Section */}
-        {/* Note: Modal was disabled - colors used were: gray.400 (hover border), gray.500 (text), gray.600 (modal title), gray.50 (modal bg), gray.800 (modal text), gray.700 (modal bullets) */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "auto" }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="gray.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">♟️</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="gray.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>♟️</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Chess</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              Strategic thinking and problem-solving through the ancient game of kings.
-            </Text>
-            <Text fontSize="sm" color="gray.400" fontWeight="500">Coming Soon</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Chess</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                Strategic thinking and problem-solving through the ancient game of kings.
+              </Text>
+              <Text fontSize="xs" color="gray.400" fontWeight="500">Coming Soon</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
-        {/* 8. Running Section */}
-        {/* Note: Modal was disabled - colors used were: cyan.300 (hover border), cyan.500 (text), cyan.600 (modal title), cyan.50 (modal bg), cyan.800 (modal text), cyan.700 (modal bullets) */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "auto" }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="cyan.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🏃</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="cyan.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🏃</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Running</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              Tracking my runs and staying active with Strava. From casual jogs to longer distances.
-            </Text>
-            <Text fontSize="sm" color="gray.400" fontWeight="500">Coming Soon</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Running</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                Tracking my runs and staying active with Strava. From casual jogs to longer distances.
+              </Text>
+              <Text fontSize="xs" color="gray.400" fontWeight="500">Coming Soon</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
-        {/* 9. Cooking Section */}
-        {/* Note: Modal was disabled - colors used were: yellow.400 (hover border), yellow.600 (text), yellow.600 (modal title), yellow.50 (modal bg), yellow.800 (modal text), yellow.700 (modal bullets) */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "auto" }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="yellow.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">👨‍🍳</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="yellow.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>👨‍🍳</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Cooking</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              Experimenting with flavours and techniques to create delicious meals and memories.
-            </Text>
-            <Text fontSize="sm" color="gray.400" fontWeight="500">Coming Soon</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Cooking</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                Experimenting with flavours and techniques to create delicious meals and memories.
+              </Text>
+              <Text fontSize="xs" color="gray.400" fontWeight="500">Coming Soon</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
       </SimpleGrid>
 
-      {/* Movies & Shows Modal */}
       <Modal isOpen={isMoviesOpen} onClose={onMoviesClose} size={{ base: "xl", md: "4xl", lg: "6xl" }} isCentered>
         <ModalOverlay bg="blackAlpha.600" backdropFilter="blur(4px)" />
         <ModalContent borderRadius="2xl" overflow="hidden" boxShadow="2xl">
@@ -448,17 +349,14 @@ export default function InterestsGrid() {
           <ModalCloseButton size="lg" color="red.600" />
           <ModalBody p={8} bg="gray.50">
             <HStack spacing={8} align="stretch">
-                {/* Left side container with both poster stacks */}
                 <Box flex={1} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="red.100">
                   <VStack spacing={0} align="center" justify="space-between" h="full">
-                    {/* Movies Section */}
                     <VStack spacing={0} align="center">
                     <HStack spacing={3} align="center">
                       <Box w="6px" h="6px" bg="red.500" borderRadius="full"></Box>
                       <Heading fontSize="lg" color="red.800" fontWeight="600">Movies</Heading>
                       <Box w="6px" h="6px" bg="red.500" borderRadius="full"></Box>
                     </HStack>
-                    {/* Movie Posters Stack */}
                     <Box position="relative" height="180px" width="400px" display="flex" justifyContent="center" alignItems="center">
                       {movies.map((movie, index) => (
                         <Box
@@ -480,7 +378,6 @@ export default function InterestsGrid() {
                           zIndex={index === 3 ? 20 : [15, 16, 17, 18, 19, 18, 15][index]}
                           cursor="pointer"
                           onClick={() => {
-                            // Update selected info (movie)
                             const titleEl = document.getElementById('selected-title');
                             const yearEl = document.getElementById('selected-year');
                             const directorEl = document.getElementById('selected-director');
@@ -497,7 +394,6 @@ export default function InterestsGrid() {
                             if (ratingEl) ratingEl.textContent = movie.rating;
                             if (noteEl) noteEl.textContent = movie.note;
                             
-                            // Reset all movie posters
                             const moviePosters = document.querySelectorAll('[data-movie-poster]');
                             moviePosters.forEach((poster, i) => {
                               if (i === index) {
@@ -519,7 +415,6 @@ export default function InterestsGrid() {
                               }
                             });
                             
-                            // Reset all show posters to default (middle on top, no protruding effect)
                             const showPosters = document.querySelectorAll('[data-show-poster]');
                             showPosters.forEach((poster, i) => {
                               if (i === 3) {
@@ -545,14 +440,12 @@ export default function InterestsGrid() {
                     </Box>
                   </VStack>
 
-                  {/* TV Shows Section */}
                   <VStack spacing={0} align="center">
                     <HStack spacing={3} align="center">
                       <Box w="6px" h="6px" bg="red.500" borderRadius="full"></Box>
                       <Heading fontSize="lg" color="red.800" fontWeight="600">TV Shows</Heading>
                       <Box w="6px" h="6px" bg="red.500" borderRadius="full"></Box>
                     </HStack>
-                    {/* Show Posters Stack */}
                     <Box position="relative" height="180px" width="400px" display="flex" justifyContent="center" alignItems="center">
                       {shows.map((show, index) => (
                         <Box
@@ -574,7 +467,6 @@ export default function InterestsGrid() {
                           zIndex={index === 3 ? 20 : [15, 16, 17, 18, 19, 18, 15][index]}
                           cursor="pointer"
                           onClick={() => {
-                            // Update selected info (show)
                             const titleEl = document.getElementById('selected-title');
                             const yearEl = document.getElementById('selected-year');
                             const directorEl = document.getElementById('selected-director');
@@ -591,7 +483,6 @@ export default function InterestsGrid() {
                             if (ratingEl) ratingEl.textContent = show.rating;
                             if (noteEl) noteEl.textContent = show.note;
                             
-                            // Reset all show posters
                             const showPosters = document.querySelectorAll('[data-show-poster]');
                             showPosters.forEach((poster, i) => {
                               if (i === index) {
@@ -613,7 +504,6 @@ export default function InterestsGrid() {
                               }
                             });
                             
-                            // Reset all movie posters to default (middle on top, no protruding effect)
                             const moviePosters = document.querySelectorAll('[data-movie-poster]');
                             moviePosters.forEach((poster, i) => {
                               if (i === 3) {
@@ -641,7 +531,6 @@ export default function InterestsGrid() {
                   </VStack>
                 </Box>
                 
-                {/* Right side with single info box */}
                 <Box flex={1} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="red.100">
                   <VStack spacing={5} align="center">
                     <Box position="relative">
@@ -709,7 +598,6 @@ export default function InterestsGrid() {
         </ModalContent>
       </Modal>
 
-      {/* Music Modal */}
       <Modal isOpen={isMusicOpen} onClose={onMusicClose} size={{ base: "xl", md: "4xl", lg: "6xl" }} isCentered>
         <ModalOverlay bg="blackAlpha.600" backdropFilter="blur(4px)" />
         <ModalContent borderRadius="2xl" overflow="hidden" boxShadow="2xl">
@@ -738,7 +626,6 @@ export default function InterestsGrid() {
           <ModalCloseButton size="lg" color="teal.600" />
           <ModalBody p={8} bg="gray.50">
             <VStack spacing={8} align="stretch">
-              {/* Currently Listening Section */}
               <Box bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="teal.100">
                 <VStack spacing={6} align="stretch">
                   <HStack spacing={3} align="center" justify="center">
@@ -748,7 +635,6 @@ export default function InterestsGrid() {
                   </HStack>
                   
                   <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
-                    {/* Le Sserafim */}
                     <MotionBox 
                       bg="gradient-to-br from-red.50 to-red.100" 
                       borderRadius="lg" 
@@ -778,7 +664,6 @@ export default function InterestsGrid() {
                       </HStack>
                     </MotionBox>
 
-                    {/* AJ Tracey */}
                     <MotionBox 
                       bg="gradient-to-br from-blue.50 to-blue.100" 
                       borderRadius="lg" 
@@ -808,7 +693,6 @@ export default function InterestsGrid() {
                       </HStack>
                     </MotionBox>
 
-                    {/* ODESZA */}
                     <MotionBox 
                       bg="gradient-to-br from-green.50 to-green.100" 
                       borderRadius="lg" 
@@ -838,7 +722,6 @@ export default function InterestsGrid() {
                       </HStack>
                     </MotionBox>
 
-                    {/* Zhao Lei */}
                     <MotionBox 
                       bg="gradient-to-br from-yellow.50 to-yellow.100" 
                       borderRadius="lg" 
@@ -871,9 +754,7 @@ export default function InterestsGrid() {
                 </VStack>
               </Box>
 
-              {/* Bottom Section - Side by Side */}
               <HStack spacing={6} align="stretch">
-                {/* Spotify Wrapped Stats */}
                 <Box flex={1} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="teal.100">
                   <VStack spacing={4} align="stretch" justify="center" h="full">
                     <HStack spacing={3} align="center" justify="center">
@@ -917,7 +798,6 @@ export default function InterestsGrid() {
                   </VStack>
                 </Box>
 
-                {/* Musical Lifestyle */}
                 <Box flex={1.5} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="teal.100">
                   <VStack spacing={4} align="stretch">
                     
@@ -936,7 +816,6 @@ export default function InterestsGrid() {
         </ModalContent>
       </Modal>
 
-      {/* Sports Teams Modal */}
       <Modal isOpen={isSportsOpen} onClose={onSportsClose} size={{ base: "xl", md: "4xl", lg: "6xl" }} isCentered>
         <ModalOverlay bg="blackAlpha.600" backdropFilter="blur(4px)" />
         <ModalContent borderRadius="2xl" overflow="hidden" boxShadow="2xl">
@@ -965,14 +844,12 @@ export default function InterestsGrid() {
           <ModalCloseButton size="lg" color="orange.600" />
           <ModalBody p={8} bg="gray.50">
             <HStack spacing={8} align="stretch">
-              {/* Left side - Circular logo arrangement */}
               <Box flex={1} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="orange.100">
                 <VStack spacing={6} align="center" justify="center" h="full">
                   <Text fontSize="sm" color="orange.600" fontWeight="500" textAlign="center">
                     Click any team to view details
                   </Text>
                   <Box position="relative" width="300px" height="300px" display="flex" alignItems="center" justifyContent="center">
-                    {/* Dynamic team logos based on positions */}
                     {Object.entries(teamPositions).map(([teamKey, team]) => {
                       const isCenter = team.position === "center";
                       const size = isCenter ? "80px" : "60px";
@@ -1049,7 +926,6 @@ export default function InterestsGrid() {
                 </VStack>
               </Box>
 
-              {/* Right side - Selected team info */}
               <Box flex={1} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="orange.100">
                 <VStack spacing={6} align="center" justify="center" h="full">
                   <Box
@@ -1089,7 +965,6 @@ export default function InterestsGrid() {
         </ModalContent>
       </Modal>
 
-      {/* Videography Modal */}
       <Modal isOpen={isVideographyOpen} onClose={onVideographyClose} size={{ base: "xl", md: "4xl", lg: "6xl" }} isCentered>
         <ModalOverlay bg="blackAlpha.600" backdropFilter="blur(4px)" />
         <ModalContent borderRadius="2xl" overflow="hidden" boxShadow="2xl">
@@ -1118,7 +993,6 @@ export default function InterestsGrid() {
           <ModalCloseButton size={{ base: "md", lg: "lg" }} color="purple.600" />
           <ModalBody p={{ base: 4, lg: 8 }} bg="gray.50">
             <VStack spacing={{ base: 6, lg: 8 }} align="stretch">
-              {/* Featured Videos Section */}
               <Box bg="white" borderRadius="xl" p={{ base: 4, lg: 6 }} boxShadow="lg" border="1px solid" borderColor="purple.100">
                 <VStack spacing={6} align="stretch">
                   <HStack spacing={3} align="center" justify="center">
@@ -1138,7 +1012,6 @@ export default function InterestsGrid() {
                       <TabPanel px={0} py={0}>
                         <Box bg="gradient-to-br from-purple.50 to-purple.100" borderRadius="lg" pt={4} px={0} pb={0}>
                           <Flex direction={{ base: "column", lg: "row" }} align="stretch">
-                            {/* Video */}
                             <Box flex={1}>
                               <Box
                                 position="relative"
@@ -1163,11 +1036,10 @@ export default function InterestsGrid() {
                               </Box>
                             </Box>
                             
-                            {/* Text Content */}
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Vienna Visit</Heading>
-                                <Text fontSize={{ base: "sm", lg: "md" }} color="purple.700" lineHeight="1.6">
+                                <Text fontSize="md" color="purple.700" lineHeight="1.6">
                                   During September 2025, I went on a two-week road trip around Austria and Czechia with my mom. We spent 4 of those days in Vienna, visiting all sorts of museums, art galleries, and the royal palaces. The city's rich history and stunning architecture left a lasting impression, from the grandeur of Schönbrunn Palace to the masterpieces housed in the Kunsthistorisches Museum. Seeing Klimt's "The Kiss" in person was a highlight of the trip. I already miss Almdudler.
                                 </Text>
                               </VStack>
@@ -1178,7 +1050,6 @@ export default function InterestsGrid() {
                       <TabPanel px={0} py={0}>
                         <Box bg="gradient-to-br from-blue.50 to-blue.100" borderRadius="lg" pt={4} px={0} pb={0}>
                           <Flex direction={{ base: "column", lg: "row" }} align="stretch">
-                            {/* Video */}
                             <Box flex={1}>
                               <Box
                                 position="relative"
@@ -1203,11 +1074,10 @@ export default function InterestsGrid() {
                               </Box>
                             </Box>
                             
-                            {/* Text Content */}
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Panama Adventure</Heading>
-                                <Text fontSize={{ base: "sm", lg: "md" }} color="purple.700" lineHeight="1.6">
+                                <Text fontSize="md" color="purple.700" lineHeight="1.6">
                                   From December 25th, 2017 to January 1st, 2018 I went to visit Panama, a country well known for it's significant Canal. I had the incredible opportunity to see the Panama Canal up close, witnessing this man-made waterway that stretches 80km from the Atlantic to the Pacific. One of the most fascinating things I learned is that you can see both the sunrise and sunset from the same spot because Panama's unique geography allows you to witness both oceans from one location.
                                 </Text>
                               </VStack>
@@ -1218,7 +1088,6 @@ export default function InterestsGrid() {
                       <TabPanel px={0} py={0}>
                         <Box bg="gradient-to-br from-green.50 to-green.100" borderRadius="lg" pt={4} px={0} pb={0}>
                           <Flex direction={{ base: "column", lg: "row" }} align="stretch">
-                            {/* Video */}
                             <Box flex={1}>
                               <Box
                                 position="relative"
@@ -1243,11 +1112,10 @@ export default function InterestsGrid() {
                               </Box>
                             </Box>
                             
-                            {/* Text Content */}
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Costa Rica Journey</Heading>
-                                <Text fontSize={{ base: "sm", lg: "md" }} color="purple.700" lineHeight="1.6">
+                                <Text fontSize="md" color="purple.700" lineHeight="1.6">
                                   From March 10th, 2018 to March 18th, 2018 I went to visit Costa Rica, a country well known for it's significant Volcanoes. During my adventure, I experienced the longest zipline in Central America at Monteverde, soaring through the canopy and witnessing incredible views of the volcanic landscape below. I explored various types of rainforests, from cloud forests to tropical rainforests, each offering unique ecosystems and breathtaking biodiversity. Pura vida!
                                 </Text>
                               </VStack>
@@ -1258,7 +1126,6 @@ export default function InterestsGrid() {
                       <TabPanel px={0} py={0}>
                         <Box bg="gradient-to-br from-pink.50 to-pink.100" borderRadius="lg" pt={4} px={0} pb={0}>
                           <Flex direction={{ base: "column", lg: "row" }} align="stretch">
-                            {/* Video */}
                             <Box flex={1}>
                               <Box
                                 position="relative"
@@ -1283,11 +1150,10 @@ export default function InterestsGrid() {
                               </Box>
                             </Box>
                             
-                            {/* Text Content */}
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Poppy</Heading>
-                                <Text fontSize={{ base: "sm", lg: "md" }} color="purple.700" lineHeight="1.6">
+                                <Text fontSize="md" color="purple.700" lineHeight="1.6">
                                   A video Michael and I made for Remembrance Day. We storyplanned the entire project, incorporating voiceover of the poem "In Flanders Fields" while filming around our city, visiting parks and meaningful locations. It was played at our school assembly and we won an award from the Royal Canadian Legion, a nonprofit Canadian veterans organization, for the video. Lest we forget.
                                 </Text>
                               </VStack>

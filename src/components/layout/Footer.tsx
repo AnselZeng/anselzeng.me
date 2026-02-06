@@ -14,8 +14,6 @@ import {
 import { FaGithub, FaLinkedin, FaMedium, FaYoutube, FaSpotify } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
-const MotionBox = motion(Box);
-
 const socialLinks = [
   {
     name: 'LinkedIn',
@@ -53,34 +51,32 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <Box as="footer" bg="white" borderTop="1px solid" borderColor="gray.200">
-      <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
-        <VStack spacing={{ base: 6, lg: 8 }} py={{ base: 8, lg: 12 }}>
-          {/* Social Links */}
-          <HStack spacing={{ base: 4, lg: 6 }}>
+    <Box as="footer" bg="white" borderTop="1px solid" borderColor="gray.100">
+      <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
+        <VStack spacing={{ base: 5, lg: 6 }} py={{ base: 8, lg: 10 }}>
+          <HStack spacing={{ base: 4, lg: 5 }}>
             {socialLinks.map((social) => (
               <motion.div
                 key={social.name}
-                whileHover={{ scale: 1.1, y: -2 }}
+                whileHover={{ scale: 1.12, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Link
                   href={social.href}
                   isExternal
                   aria-label={social.name}
-                  color="gray.500"
+                  color="gray.400"
                   _hover={{ color: social.color }}
                   transition="color 0.2s"
                 >
-                  <Icon as={social.icon} boxSize={{ base: 5, lg: 6 }} />
+                  <Icon as={social.icon} boxSize={5} />
                 </Link>
               </motion.div>
             ))}
           </HStack>
 
-          <Divider borderColor="gray.200" />
+          <Divider borderColor="gray.100" />
 
-          {/* Copyright */}
           <Flex
             direction={{ base: 'column', md: 'row' }}
             align="center"
@@ -88,10 +84,10 @@ export default function Footer() {
             w="full"
             gap={4}
           >
-            <Text color="gray.500" fontSize={{ base: "xs", lg: "sm" }}>
+            <Text color="gray.500" fontSize="xs">
               © {currentYear} Ansel Zeng. All rights reserved.
             </Text>
-            <Text color="gray.500" fontSize={{ base: "xs", lg: "sm" }}>
+            <Text color="gray.500" fontSize="xs">
               Built with Next.js, Chakra UI & Framer Motion
             </Text>
           </Flex>

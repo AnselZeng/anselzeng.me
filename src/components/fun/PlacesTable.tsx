@@ -20,35 +20,10 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { motion } from "framer-motion";
 import { useState } from "react";
 import React from "react";
-
-const MotionBox = motion(Box);
-const MotionVStack = motion(VStack);
-const MotionTr = motion(Tr);
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut',
-    },
-  },
-};
+import { MotionBox, MotionVStack, MotionTr } from "@/lib/motion";
+import { containerVariants, itemVariants } from "@/lib/motion-variants";
 
 export const PlacesTable = () => {
   const isMobile = useBreakpointValue({ base: true, lg: false });
@@ -99,12 +74,12 @@ export const PlacesTable = () => {
       name: "United States", 
       continent: "North America", 
       date: "December 2013", 
-      status: "Visited", 
+      status: "Lived In", 
       color: "blue",
       expandable: true,
       subLocations: [
         { name: "Arizona", status: "Visited" },
-        { name: "California", status: "Visited" },
+        { name: "California", status: "Lived In" },
         { name: "Florida", status: "Visited" },
         { name: "Illinois", status: "Visited" },
         { name: "Massachusetts", status: "Visited" },
@@ -144,7 +119,6 @@ export const PlacesTable = () => {
     }
   };
 
-  // Canada Map Component
   const CanadaMap = () => {
     const provinces = [
       { name: "Alberta", visited: true, lived: false },
@@ -179,20 +153,19 @@ export const PlacesTable = () => {
     );
   };
 
-  // USA Map Component
   const USAMap = () => {
     const states = [
-      { name: "Arizona", visited: true },
-      { name: "California", visited: true },
-      { name: "Florida", visited: true },
-      { name: "Illinois", visited: true },
-      { name: "Massachusetts", visited: true },
-      { name: "Michigan", visited: true },
-      { name: "Nevada", visited: true },
-      { name: "New York", visited: true },
-      { name: "Utah", visited: true },
-      { name: "Washington", visited: true },
-      { name: "Washington, D.C. (Federal District)", visited: true },
+      { name: "Arizona", visited: true, lived: false },
+      { name: "California", visited: true, lived: true },
+      { name: "Florida", visited: true, lived: false },
+      { name: "Illinois", visited: true, lived: false },
+      { name: "Massachusetts", visited: true, lived: false },
+      { name: "Michigan", visited: true, lived: false },
+      { name: "Nevada", visited: true, lived: false },
+      { name: "New York", visited: true, lived: false },
+      { name: "Utah", visited: true, lived: false },
+      { name: "Washington", visited: true, lived: false },
+      { name: "Washington, D.C. (Federal District)", visited: true, lived: false },
     ];
 
     return (
@@ -208,6 +181,7 @@ export const PlacesTable = () => {
               </Text>
               <Text fontSize="sm" color="gray.600" fontWeight="500" flex={1}>
                 {state.name}
+                {state.lived && ' 🏠'}
               </Text>
             </HStack>
           ))}
@@ -217,39 +191,39 @@ export const PlacesTable = () => {
   };
 
   return (
-    <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+    <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
       <MotionVStack
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
-        spacing={16}
+        spacing={10}
       >
-        <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
+        <MotionVStack variants={itemVariants} spacing={3} textAlign="center">
           <Badge
             colorScheme="teal"
             variant="subtle"
-            px={3}
-            py={1}
+            px={2.5}
+            py={0.5}
             borderRadius="full"
-            fontSize="sm"
+            fontSize="xs"
             fontWeight="600"
           >
             Travel Logs
           </Badge>
           <Heading
-            fontSize={{ base: '3xl', lg: '4xl' }}
+            fontSize={{ base: 'xl', lg: '3xl' }}
             fontWeight="700"
             color="gray.800"
           >
             My Travel Journey
           </Heading>
           <Text
-            fontSize="lg"
+            fontSize="md"
             color="gray.600"
-            maxW="600px"
+            maxW="520px"
             mx="auto"
-            lineHeight="1.6"
+            lineHeight="1.55"
           >
             A chronological record of my global adventures and experiences across continents.
           </Text>

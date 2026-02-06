@@ -68,7 +68,6 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -102,7 +101,6 @@ export default function Navbar() {
           alignItems="center"
           justifyContent="center"
         >
-          {/* Close Button */}
           <IconButton
             aria-label="Close menu"
             icon={<CloseIcon />}
@@ -116,11 +114,11 @@ export default function Navbar() {
               transform: 'scale(1.05)',
             }}
             position="absolute"
-            top="20px"
-            right="20px"
+            top="16px"
+            right="16px"
             zIndex={1001}
-            minW="48px"
-            h="48px"
+            minW="44px"
+            h="44px"
             borderRadius="lg"
             transition="all 0.2s"
           />
@@ -136,8 +134,8 @@ export default function Navbar() {
                 <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
                   <Button
                     variant="ghost"
-                    size="lg"
-                    fontSize={{ base: "lg", sm: "xl" }}
+                    size="md"
+                    fontSize="md"
                     fontWeight="500"
                     color={isActive(item.href) ? 'brand.500' : 'gray.600'}
                     _hover={{
@@ -145,8 +143,8 @@ export default function Navbar() {
                       transform: 'scale(1.05)',
                     }}
                     transition="all 0.2s"
-                    minH="48px"
-                    px={6}
+                    minH="44px"
+                    px={5}
                   >
                     {item.emoji && <span style={{ marginRight: '8px' }}>{item.emoji}</span>}
                     {item.label}
@@ -173,14 +171,13 @@ export default function Navbar() {
         backdropFilter={scrolled ? 'blur(10px)' : 'none'}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <Flex
-            py={{ base: 3, lg: 4 }}
+            py={{ base: 2.5, lg: 3 }}
             alignItems="center"
             justifyContent="space-between"
-            minH={{ base: "60px", lg: "70px" }}
+            minH={{ base: "52px", lg: "56px" }}
           >
-            {/* Logo */}
             <Link href="/">
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -198,15 +195,14 @@ export default function Navbar() {
               </motion.div>
             </Link>
 
-            {/* Desktop Navigation */}
             {!isMobile ? (
               <HStack spacing={2}>
                 <Link href="/">
                   <Box
                     as="span"
                     display="inline-block"
-                    px={4}
-                    py={2}
+                    px={3}
+                    py={1.5}
                     fontSize="md"
                     fontWeight="500"
                     color={isActive('/') ? 'brand.500' : 'gray.600'}
@@ -238,8 +234,10 @@ export default function Navbar() {
                     <MenuButton
                       as={Button}
                       variant="ghost"
-                      size="md"
+                      size="sm"
                       rightIcon={<ChevronDownIcon />}
+                      fontSize="md"
+                      fontWeight="500"
                       color="gray.600"
                       _hover={{ color: 'brand.500' }}
                       _active={{ bg: 'transparent' }}
@@ -249,8 +247,8 @@ export default function Navbar() {
                     <MenuList
                       bg="white"
                       border="1px solid"
-                      borderColor="gray.200"
-                      borderRadius="lg"
+                      borderColor="gray.100"
+                      borderRadius="xl"
                       boxShadow="xl"
                       py={2}
                       minW="fit-content"
@@ -261,11 +259,13 @@ export default function Navbar() {
                           as={Link}
                           href={item.href}
                           bg="transparent"
+                          fontSize="md"
                           color={isActive(item.href) ? 'brand.500' : 'gray.600'}
                           _hover={{
                             bg: 'brand.50',
                             color: 'brand.500',
                           }}
+                          transition="background 0.15s ease"
                         >
                           {item.emoji && <span style={{ marginRight: '8px' }}>{item.emoji}</span>}
                           {item.label}
@@ -279,8 +279,8 @@ export default function Navbar() {
                   <Box
                     as="span"
                     display="inline-block"
-                    px={4}
-                    py={2}
+                    px={3}
+                    py={1.5}
                     fontSize="md"
                     fontWeight="500"
                     color={isActive('/about') ? 'brand.500' : 'gray.600'}
@@ -308,7 +308,6 @@ export default function Navbar() {
                 </Link>
               </HStack>
             ) : (
-              /* Mobile Menu Button */
               <IconButton
                 aria-label="Toggle menu"
                 icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -321,8 +320,8 @@ export default function Navbar() {
                   bg: 'brand.50',
                   transform: 'scale(1.05)',
                 }}
-                minW="48px"
-                h="48px"
+                minW="44px"
+                h="44px"
                 borderRadius="lg"
                 transition="all 0.2s"
               />
@@ -331,7 +330,6 @@ export default function Navbar() {
         </Container>
       </MotionBox>
 
-      {/* Mobile Menu Overlay */}
       {isMobile && <MobileMenu />}
     </>
   );

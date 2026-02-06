@@ -13,8 +13,6 @@ import {
   Grid,
   GridItem,
   Badge,
-  Divider,
-  useBreakpointValue,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -29,38 +27,11 @@ import {
   Tab,
   TabPanel,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useState, useRef, useEffect } from 'react';
-
-const MotionBox = motion(Box);
-const MotionVStack = motion(VStack);
-const MotionHStack = motion(HStack);
-const MotionGrid = motion(Grid);
-const MotionImage = motion(Image);
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut',
-    },
-  },
-};
+import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
+import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 const highlights = [
   '/rbc/1.jpeg',
@@ -137,7 +108,6 @@ const inspiringMoments = [
 ];
 
 export default function RBCPage() {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen: isTabImageOpen, onOpen: onTabImageOpen, onClose: onTabImageClose } = useDisclosure();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -190,8 +160,7 @@ export default function RBCPage() {
 
   return (
     <Box>
-      {/* Hero Section */}
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }} py={{ base: 16, lg: 32 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
           initial="hidden"
@@ -202,16 +171,16 @@ export default function RBCPage() {
               <Badge
                 colorScheme="blue"
                 variant="subtle"
-                px={4}
-                py={2}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Software Engineering Internship
               </Badge>
               <Heading
-                fontSize={{ base: '3xl', md: '4xl', lg: '6xl' }}
+                fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
@@ -223,7 +192,7 @@ export default function RBCPage() {
               <Text
                 fontSize={{ base: "md", lg: "xl" }}
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 lineHeight="1.6"
               >
                 Transforming credit adjudication strategy and processes within home equity finance
@@ -254,9 +223,8 @@ export default function RBCPage() {
         </MotionBox>
       </Container>
 
-      {/* Overview Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -271,22 +239,22 @@ export default function RBCPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 01 | Overview
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Engineering for Canada's Largest Bank
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -316,7 +284,7 @@ export default function RBCPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Role</Text>
-                    <Text fontSize="sm" color="gray.600">Software Engineer Intern</Text>
+                    <Text fontSize="md" color="gray.600">Software Engineer Intern</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -337,7 +305,7 @@ export default function RBCPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Team</Text>
-                    <Text fontSize="sm" color="gray.600">Digital Transformation, Retail Banking, Payment Technology</Text>
+                    <Text fontSize="md" color="gray.600">Digital Transformation, Retail Banking, Payment Technology</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -358,7 +326,7 @@ export default function RBCPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Tools</Text>
-                    <Text fontSize="sm" color="gray.600">Java (Spring Framework), Docker, Camunda, Jira & Confluence</Text>
+                    <Text fontSize="md" color="gray.600">Java (Spring Framework), Docker, Camunda, Jira & Confluence</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -379,7 +347,7 @@ export default function RBCPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Timeline</Text>
-                    <Text fontSize="sm" color="gray.600">May – Aug 2022</Text>
+                    <Text fontSize="md" color="gray.600">May – Aug 2022</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -388,9 +356,8 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Challenge Section */}
-      <Box bg="blue.600" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="blue.600" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -406,22 +373,22 @@ export default function RBCPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 02 | The Challenge
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="white"
               >
                 Modernizing Mortgage Applications
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="white"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -432,9 +399,8 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Key Initiatives Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -449,31 +415,31 @@ export default function RBCPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 03 | Key Initiatives
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 What I Did & What I Learned
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 This experience not only opened my eyes to the banking industry and agile software development but also taught me the importance of project management—bridging the gap between business and technology. I got to witness the integral role of product owners in leading presentations and meetings, gaining firsthand insights into their ability to guide and drive project discussions effectively.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -607,9 +573,8 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Process Section */}
-      <Box bg="blue.50" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="blue.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -624,13 +589,13 @@ export default function RBCPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 04 | Inspiring Moments
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
@@ -651,7 +616,7 @@ export default function RBCPage() {
                       <Tab
                         key={moment.title}
                         fontWeight="600"
-                        fontSize={{ base: "md", lg: "lg" }}
+                        fontSize="md"
                         flex="1"
                         py={4}
                         _selected={{
@@ -709,7 +674,7 @@ export default function RBCPage() {
                           <Box flex="1">
                             <VStack align="flex-start" spacing={6} h="full" justify="center">
                               {moment.content.map((paragraph, pIndex) => (
-                                <Text key={pIndex} color="gray.600" lineHeight="1.6" fontSize={{ base: "md", lg: "lg" }}>
+                                <Text key={pIndex} color="gray.600" lineHeight="1.6" fontSize="md">
                                   {paragraph}
                                 </Text>
                               ))}
@@ -726,9 +691,8 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Technical Implementation Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -743,22 +707,22 @@ export default function RBCPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 05 | Technical Implementation
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Technologies & Tools
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -804,7 +768,7 @@ export default function RBCPage() {
                           px={3}
                           py={1}
                           borderRadius="full"
-                          fontSize="sm"
+                          fontSize="md"
                           borderColor="gray.300"
                           color="gray.700"
                         >
@@ -820,9 +784,8 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Impact Section */}
-      <Box bg="blue.50" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="blue.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -837,31 +800,31 @@ export default function RBCPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 06 | Impact & Results
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Leaving My Mark
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Reflecting on my time at RBC, I can genuinely say that it has left an indelible mark on my journey as a software engineer. Each task I tackled and completed was done with a sense of joy that reignited my passion for coding. The memories made during my internship, whether over Webex or in person, will forever hold a special place in my heart.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
                 mb={0}
@@ -873,9 +836,8 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Highlights Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -890,13 +852,13 @@ export default function RBCPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 07 | Highlights
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
@@ -939,9 +901,8 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
-      <Box bg="brand.50" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.lg" px={{ base: 6, lg: 12 }}>
+      <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -952,16 +913,16 @@ export default function RBCPage() {
           >
             <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }}>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Financial Technology Innovation
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="600px"
+                maxW="560px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -969,24 +930,24 @@ export default function RBCPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
+            <Flex w="auto" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/work/tweebaa"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="solid"
                 rightIcon={<ChevronRightIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Next Project
               </Button>
               <Button
                 as={Link}
                 href="/work/ips"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="outline"
                 leftIcon={<ChevronLeftIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Previous Project
               </Button>
@@ -995,7 +956,6 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Image Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
         <ModalOverlay />
         <ModalContent>
@@ -1038,7 +998,6 @@ export default function RBCPage() {
           </ModalBody>
         </ModalContent>
       </Modal>
-      {/* Tab Image Modal */}
       <Modal isOpen={isTabImageOpen} onClose={onTabImageClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
         <ModalOverlay />
         <ModalContent>

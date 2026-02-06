@@ -2,12 +2,23 @@
 
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
-// Enhanced theme with better colors and typography
 const theme = extendTheme({
   fonts: {
-    heading: 'var(--font-inter), system-ui, sans-serif',
-    body: 'var(--font-inter), system-ui, sans-serif',
-    mono: 'var(--font-jetbrains-mono), monospace',
+    heading: 'var(--font-serif), Georgia, serif',
+    body: 'var(--font-sans), system-ui, sans-serif',
+    mono: 'var(--font-sans), system-ui, sans-serif',
+  },
+  fontSizes: {
+    xs: '0.75rem',
+    sm: '0.8125rem',
+    md: '0.9375rem',
+    lg: '1.125rem',
+    xl: '1.25rem',
+    '2xl': '1.375rem',
+    '3xl': '1.75rem',
+    '4xl': '2rem',
+    '5xl': '2.25rem',
+    '6xl': '2.5rem',
   },
   colors: {
     brand: {
@@ -16,7 +27,7 @@ const theme = extendTheme({
       200: '#FFDD99',
       300: '#FFCC66',
       400: '#FFBB33',
-      500: '#FF7B00', // Primary orange
+      500: '#FF7B00',
       600: '#E66A00',
       700: '#CC5900',
       800: '#B34800',
@@ -41,7 +52,8 @@ const theme = extendTheme({
         bg: 'brand.50',
         color: 'gray.800',
         fontFamily: 'body',
-        lineHeight: '1.6',
+        fontSize: 'md',
+        lineHeight: '1.5',
       },
       '*': {
         borderColor: 'gray.200',
@@ -49,6 +61,15 @@ const theme = extendTheme({
     },
   },
   components: {
+    Link: {
+      baseStyle: {
+        transition: 'color 0.2s ease',
+        _focus: {
+          boxShadow: '0 0 0 2px var(--chakra-colors-brand-500)',
+          outline: 'none',
+        },
+      },
+    },
     Button: {
       baseStyle: {
         fontWeight: '500',
@@ -61,6 +82,7 @@ const theme = extendTheme({
           color: 'white',
           _hover: {
             bg: 'brand.600',
+            color: 'white',
             transform: 'translateY(-1px)',
             boxShadow: 'lg',
           },
@@ -82,7 +104,7 @@ const theme = extendTheme({
         ghost: {
           color: 'gray.600',
           _hover: {
-            bg: 'gray.100',
+            bg: 'brand.50',
             color: 'brand.500',
           },
         },
@@ -92,6 +114,7 @@ const theme = extendTheme({
       baseStyle: {
         fontWeight: '600',
         color: 'gray.800',
+        letterSpacing: '-0.02em',
       },
     },
     Text: {

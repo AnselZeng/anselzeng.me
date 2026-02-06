@@ -11,7 +11,6 @@ import {
   HStack,
   Image,
   Badge,
-  useBreakpointValue,
   Tabs,
   TabList,
   TabPanels,
@@ -21,7 +20,6 @@ import {
   SimpleGrid,
   Grid,
   GridItem,
-  Divider,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -31,17 +29,12 @@ import {
   ModalCloseButton,
   useDisclosure,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { useState, useRef, useEffect } from 'react';
 import InterestsGrid from '@/components/about/InterestsGrid';
-
-const MotionBox = motion(Box);
-const MotionVStack = motion(VStack);
-const MotionHStack = motion(HStack);
-const MotionGrid = motion(Grid);
-const MotionImage = motion(Image);
+import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
+import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 const personalPhotos = [
   { src: '/about/ivey.jpeg', alt: 'At Ivey Business School', caption: 'Ivey Business School' },
@@ -129,27 +122,11 @@ const experiences = [
 ];
 
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
 export default function About() {
   const [selectedTab, setSelectedTab] = useState(0);
   const [tabUnderlineProps, setTabUnderlineProps] = useState({ width: 0, left: 0 });
   const tabListRef = useRef<HTMLDivElement>(null);
   
-  // Modal states for each interest
 
   useEffect(() => {
     const calculateUnderlinePosition = () => {
@@ -169,10 +146,9 @@ export default function About() {
     return () => window.removeEventListener("resize", calculateUnderlinePosition);
   }, [selectedTab]);
 
-  // Return JSX
   return (
     <Box>
-      <Container maxW="container.xl" px={{ base: 6, lg: 12 }} py={{ base: 16, lg: 32 }}>
+      <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
           initial="hidden"
@@ -181,18 +157,15 @@ export default function About() {
           alignItems="center"
           justifyContent="center"
         >
-          <VStack spacing={{ base: 12, lg: 16 }} w="100%">
-            {/* Main Profile Section */}
+          <VStack spacing={{ base: 8, lg: 12 }} w="100%">
             <MotionBox variants={itemVariants} w="100%">
-              <Grid templateColumns={{ base: '1fr', lg: '1fr 2fr' }} gap={{ base: 8, lg: 12 }} alignItems="center">
-                {/* Single Clean Featured Photo */}
-                <MotionBox variants={itemVariants}>
+              <Grid templateColumns={{ base: '1fr', lg: '1fr 2fr' }} gap={{ base: 6, lg: 10 }} alignItems="center">
+                <MotionBox variants={itemVariants} maxW={{ base: "260px", lg: "100%" }} mx={{ base: "auto", lg: 0 }} order={{ base: 2, lg: 1 }}>
                   <Box
                     position="relative"
                     borderRadius="2xl"
                     overflow="hidden"
                     boxShadow="2xl"
-                    h="100%"
                     _hover={{
                       transform: 'translateY(-8px)',
                       boxShadow: '3xl',
@@ -205,8 +178,10 @@ export default function About() {
                       src={personalPhotos[0].src}
                       alt={personalPhotos[0].alt}
                       width="100%"
-                      height={{ base: "300px", lg: "500px" }}
+                      height={{ base: "260px", lg: "auto" }}
+                      maxW={{ base: "260px", lg: "none" }}
                       objectFit="cover"
+                      display="block"
                       draggable={false}
                       onContextMenu={(e) => e.preventDefault()}
                     />
@@ -219,28 +194,27 @@ export default function About() {
                       p={6}
                       color="white"
                     >
-                      <Text fontSize={{ base: "md", lg: "lg" }} fontWeight="600" color="white" m={0} p={0}>
+                      <Text fontSize="md" fontWeight="600" color="white" m={0} p={0}>
                         Featured Moment
                       </Text>
                     </Box>
                   </Box>
                 </MotionBox>
 
-                {/* About Content */}
-                <MotionVStack variants={itemVariants} spacing={{ base: 4, lg: 6 }} align={{ base: "center", lg: "start" }} textAlign={{ base: "center", lg: "left" }}>
+                <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }} align={{ base: "center", lg: "start" }} textAlign={{ base: "center", lg: "left" }} order={{ base: 1, lg: 2 }}>
                   <Badge
                     colorScheme="orange"
                     variant="subtle"
-                    px={4}
-                    py={2}
+                    px={2.5}
+                    py={0.5}
                     borderRadius="full"
-                    fontSize="sm"
+                    fontSize="xs"
                     fontWeight="600"
                   >
                     Personal Story
                   </Badge>
                   
-                  <Heading fontSize={{ base: '3xl', lg: '6xl' }} fontWeight="700" color="gray.800" lineHeight="1.1">
+                  <Heading fontSize={{ base: '2xl', lg: '5xl' }} fontWeight="700" color="gray.800" lineHeight="1.15">
                     About{' '}
                     <Text as="span" color="brand.500">
                       Me
@@ -248,7 +222,7 @@ export default function About() {
                   </Heading>
 
                   <VStack spacing={4} align={{ base: "center", lg: "start" }}>
-                    <Text color="gray.600" lineHeight="1.6" fontSize={{ base: "md", lg: "lg" }}>
+                    <Text color="gray.600" lineHeight="1.6" fontSize="md">
                   I&apos;m a Master of Computer Science student at{' '}
                   <Text as="span" color="#990000" fontWeight="bold">
                     <Link href="https://viterbischool.usc.edu/" target="_blank" rel="noopener noreferrer">
@@ -262,7 +236,7 @@ export default function About() {
                   </Text>, where I gained valuable international perspectives on technology and innovation.
                     </Text>
                     
-                    <Text color="gray.600" lineHeight="1.6" fontSize={{ base: "md", lg: "lg" }}>
+                    <Text color="gray.600" lineHeight="1.6" fontSize="md">
                       I recently completed my undergraduate dual degree in Computer Science and Business Administration at{' '}
                       <Text as="span" color="#4F2683" fontWeight="bold">
                         <Link href="https://www.uwo.ca/index.html" target="_blank" rel="noopener noreferrer">
@@ -276,30 +250,30 @@ export default function About() {
                       </Text>, where I developed a strong foundation in both technical and business domains.
                     </Text>
                     
-                    <Text color="gray.600" lineHeight="1.6" fontSize={{ base: "md", lg: "lg" }}>
+                    <Text color="gray.600" lineHeight="1.6" fontSize="md">
                       At the core, I&apos;m passionate about building impactful solutions. I believe in technology&apos;s power to drive meaningful change and focus on blending business strategy with design thinking to create products that are not only functional but truly transformative.
                     </Text>
                   </VStack>
 
-                  <Flex w={{ base: "full", lg: "auto" }} pt={4} direction={{ base: "column", lg: "row" }} gap={3}>
+                  <Flex w={{ base: "full", lg: "auto" }} gap={3} flexWrap="wrap" justify="center">
                     <Button
                       as={Link}
                       href="/Ansel_Zeng_Resume.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
-                      size={{ base: "md", lg: "lg" }}
+                      size="sm"
                       variant="solid"
                       rightIcon={<ChevronRightIcon />}
-                      w={{ base: "full", lg: "auto" }}
+                      w="auto"
                     >
                       Download Resume
                     </Button>
                     <Button
                       as={Link}
                       href="/fun/blog"
-                      size={{ base: "md", lg: "lg" }}
+                      size="sm"
                       variant="outline"
-                      w={{ base: "full", lg: "auto" }}
+                      w="auto"
                     >
                       Read My Blog
                     </Button>
@@ -313,9 +287,8 @@ export default function About() {
         </MotionBox>
       </Container>
 
-      {/* Life Through My Lens Section */}
-      <Box bg="white" py={{ base: 20, lg: 32 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionBox
             variants={containerVariants}
             initial="hidden"
@@ -323,35 +296,33 @@ export default function About() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
           >
-            <VStack spacing={16} textAlign="center">
-              <VStack spacing={4}>
+            <VStack spacing={10} textAlign="center">
+              <VStack spacing={3}>
                 <Badge
                   colorScheme="orange"
                   variant="subtle"
-                  px={3}
-                  py={1}
+                  px={2.5}
+                  py={0.5}
                   borderRadius="full"
-                  fontSize="sm"
+                  fontSize="xs"
                   fontWeight="600"
                 >
                   Moments
                 </Badge>
-                <Heading fontSize={{ base: '3xl', lg: '4xl' }} fontWeight="700" color="gray.800">
+                <Heading fontSize={{ base: 'xl', lg: '3xl' }} fontWeight="700" color="gray.800">
                   Life Through My Lens
                 </Heading>
-                <Text fontSize={{ base: "md", lg: "lg" }} color="gray.600" maxW="600px" mx="auto" lineHeight="1.6">
+                <Text fontSize="md" color="gray.600" maxW="520px" mx="auto" lineHeight="1.55">
                   Capturing memories from adventures, achievements, and everyday moments that shape who I am.
                 </Text>
               </VStack>
 
-              {/* Dynamic Photo Grid */}
               <Grid
                 templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }}
                 templateRows={{ base: 'repeat(3, 200px)', md: 'repeat(3, 200px)' }}
                 gap={4}
                 w="full"
               >
-                {/* Everest - Large Featured */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 2' }}
                   gridRow={{ base: 'span 1', md: 'span 2' }}
@@ -405,7 +376,6 @@ export default function About() {
                   </MotionBox>
                 </GridItem>
 
-                {/* Vancouver - Portrait */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 1' }}
                   gridRow={{ base: 'span 1', md: 'span 1' }}
@@ -459,7 +429,6 @@ export default function About() {
                   </MotionBox>
                 </GridItem>
 
-                {/* Snowboarding - Tall */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 1' }}
                   gridRow={{ base: 'span 1', md: 'span 2' }}
@@ -513,7 +482,6 @@ export default function About() {
                   </MotionBox>
                 </GridItem>
 
-                {/* Bloor Street - Tall */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 1' }}
                   gridRow={{ base: 'span 1', md: 'span 2' }}
@@ -567,7 +535,6 @@ export default function About() {
                   </MotionBox>
                 </GridItem>
 
-                {/* Cozy Moments - Wide */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 2' }}
                   gridRow={{ base: 'span 1', md: 'span 1' }}
@@ -621,7 +588,6 @@ export default function About() {
                   </MotionBox>
                 </GridItem>
 
-                {/* Klein Bottle - Square */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 1' }}
                   gridRow={{ base: 'span 1', md: 'span 1' }}
@@ -680,9 +646,8 @@ export default function About() {
         </Container>
       </Box>
 
-      {/* What I Do & Experience Section */}
-      <Box bg="orange.50" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="orange.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionBox
             variants={containerVariants}
             initial="hidden"
@@ -690,30 +655,28 @@ export default function About() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
           >
-            <VStack spacing={16}>
-              {/* What I Do */}
-              <VStack spacing={4} textAlign="center">
+            <VStack spacing={10}>
+              <VStack spacing={3} textAlign="center">
                 <Badge
                   colorScheme="orange"
                   variant="subtle"
-                  px={3}
-                  py={1}
+                  px={2.5}
+                  py={0.5}
                   borderRadius="full"
-                  fontSize="sm"
+                  fontSize="xs"
                   fontWeight="600"
                 >
                   Expertise
                 </Badge>
-                <Heading fontSize={{ base: '3xl', lg: '4xl' }} fontWeight="700" color="gray.800">
-                  What I Do
-                </Heading>
-                <Text fontSize={{ base: "md", lg: "lg" }} color="gray.600" maxW="600px" mx="auto" lineHeight="1.6">
-                  Combining technical skills with creative problem-solving to build impactful solutions.
+<Heading fontSize={{ base: 'xl', lg: '3xl' }} fontWeight="700" color="gray.800">
+                What I Do
+              </Heading>
+<Text fontSize="md" color="gray.600" maxW="520px" mx="auto" lineHeight="1.55">
+                Combining technical skills with creative problem-solving to build impactful solutions.
                 </Text>
               </VStack>
               
               <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={8} w="full">
-                {/* Software Development */}
                 <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -743,7 +706,7 @@ export default function About() {
                       <Heading fontSize={{ base: 'xl', lg: '2xl' }} fontWeight="700" color="gray.800">
                         Software Development
                       </Heading>
-                      <Text fontSize={{ base: "sm", lg: "md" }} color="gray.600" lineHeight="1.7">
+                      <Text fontSize="md" color="gray.600" lineHeight="1.7">
                         Full-stack development with React, Node.js, Python, and cloud technologies. I build scalable microservices and APIs, 
                         working with modern frameworks and deployment pipelines. From frontend interfaces to backend systems, I create 
                         robust applications that handle real-world challenges.
@@ -757,7 +720,6 @@ export default function About() {
                   </HStack>
                 </MotionBox>
 
-                {/* Product Design */}
                 <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -787,7 +749,7 @@ export default function About() {
                       <Heading fontSize={{ base: 'xl', lg: '2xl' }} fontWeight="700" color="gray.800">
                         Product Design
                       </Heading>
-                      <Text fontSize={{ base: "sm", lg: "md" }} color="gray.600" lineHeight="1.7">
+                      <Text fontSize="md" color="gray.600" lineHeight="1.7">
                         User research, wireframing, prototyping, and design systems. I create intuitive interfaces using Figma and 
                         design thinking methodologies. My approach combines user empathy with technical feasibility to deliver 
                         products that users love and developers can build efficiently.
@@ -801,7 +763,6 @@ export default function About() {
                   </HStack>
                 </MotionBox>
 
-                {/* Research & Analysis */}
                 <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -831,7 +792,7 @@ export default function About() {
                       <Heading fontSize={{ base: 'xl', lg: '2xl' }} fontWeight="700" color="gray.800">
                         Research & Analysis
                       </Heading>
-                      <Text fontSize={{ base: "sm", lg: "md" }} color="gray.600" lineHeight="1.7">
+                      <Text fontSize="md" color="gray.600" lineHeight="1.7">
                         Data-driven decision making through quantitative and qualitative research methods. I conduct market analysis, 
                         user interviews, and competitive research to inform product strategy. My analytical approach helps identify 
                         opportunities and validate solutions before implementation.
@@ -845,7 +806,6 @@ export default function About() {
                   </HStack>
                 </MotionBox>
 
-                {/* System Architecture */}
                 <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -875,7 +835,7 @@ export default function About() {
                       <Heading fontSize={{ base: 'xl', lg: '2xl' }} fontWeight="700" color="gray.800">
                         System Architecture
                       </Heading>
-                      <Text fontSize={{ base: "sm", lg: "md" }} color="gray.600" lineHeight="1.7">
+                      <Text fontSize="md" color="gray.600" lineHeight="1.7">
                         Designing distributed systems, DevOps pipelines, and infrastructure. I work with Docker, Kubernetes, and cloud platforms 
                         to build scalable, maintainable architectures. My focus is on creating systems that are both performant and resilient, 
                         ensuring they can grow with business needs.
@@ -890,7 +850,6 @@ export default function About() {
                 </MotionBox>
               </Grid>
 
-              {/* Experience */}
               <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -939,16 +898,16 @@ export default function About() {
                             <Image src={item.logoSrc} alt={item.logoAlt} w={{ base: 10, lg: 12 }} h={{ base: 10, lg: 12 }} draggable={false} onContextMenu={(e) => e.preventDefault()} />
                           </Box>
                           <VStack align="flex-start" spacing={1}>
-                            <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="700" color="gray.800" m={0} p={0}>
+                            <Heading as="h3" fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="700" color="gray.800" m={0} p={0}>
                               {item.title}
-                            </Text>
+                            </Heading>
                             <Text fontSize={{ base: 'sm', lg: 'md' }} color={'gray.500'} m={0} p={0}>{item.date}</Text>
                           </VStack>
                         </HStack>
                         <Badge colorScheme={item.badgeColorScheme} variant="subtle" size={{ base: "sm", lg: "lg" }}>
                           {item.badgeText}
                         </Badge>
-                        <Text fontSize={{ base: 'md', lg: 'lg' }} color="gray.600" lineHeight="1.6">
+                        <Text fontSize="md" color="gray.600" lineHeight="1.6">
                           {item.content}
                         </Text>
                       </VStack>
@@ -964,41 +923,40 @@ export default function About() {
         </Container>
       </Box>
 
-      {/* Beyond Code Section */}
-      <Box bg="white" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            spacing={16}
+            spacing={10}
           >
-            <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
+            <MotionVStack variants={itemVariants} spacing={3} textAlign="center">
               <Badge
                 colorScheme="orange"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Interests
               </Badge>
               <Heading
-                fontSize={{ base: '3xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Beyond Code
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="600px"
+                maxW="520px"
                 mx="auto"
-                lineHeight="1.6"
+                lineHeight="1.55"
               >
                 When I&apos;m not building software, I enjoy exploring creative pursuits
                 and activities that keep me inspired and balanced.
@@ -1010,9 +968,8 @@ export default function About() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
-      <Box bg="orange.50" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.lg" px={{ base: 6, lg: 12 }}>
+      <Box bg="orange.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -1021,45 +978,45 @@ export default function About() {
             spacing={8}
             textAlign="center"
           >
-            <MotionVStack variants={itemVariants} spacing={4}>
+            <MotionVStack variants={itemVariants} spacing={3}>
               <Heading
-                fontSize={{ base: '3xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Let's Connect
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="600px"
+                maxW="520px"
                 mx="auto"
-                lineHeight="1.6"
+                lineHeight="1.55"
               >
                 Ready to collaborate on something amazing? I'd love to hear about your project and how we can work together to create something meaningful.
               </Text>
             </MotionVStack>
 
             <MotionBox variants={itemVariants} w="100%">
-              <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3} justify="center">
+              <Flex w={{ base: "full", lg: "auto" }} gap={3} justify="center" flexWrap="wrap">
                 <Button
                   as={Link}
                   href="/Ansel_Zeng_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  size={{ base: "md", lg: "lg" }}
+                  size="sm"
                   variant="solid"
                   rightIcon={<ChevronRightIcon />}
-                  w={{ base: "full", lg: "auto" }}
+                  w="auto"
                 >
                   Download Resume
                 </Button>
                 <Button
                   as={Link}
                   href="/fun/blog"
-                  size={{ base: "md", lg: "lg" }}
+                  size="sm"
                   variant="outline"
-                  w={{ base: "full", lg: "auto" }}
+                  w="auto"
                 >
                   Read My Blog
                 </Button>
@@ -1069,7 +1026,6 @@ export default function About() {
         </Container>
       </Box>
 
-      {/* Modals for Interests */}
       
 
 

@@ -12,8 +12,6 @@ import {
   Image,
   Badge,
   Avatar,
-  Divider,
-  useBreakpointValue,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -23,37 +21,11 @@ import {
   IconButton,
   Grid,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
-
-const MotionBox = motion(Box);
-const MotionVStack = motion(VStack);
-const MotionHStack = motion(HStack);
-const MotionImage = motion(Image);
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut',
-    },
-  },
-};
+import { MotionBox, MotionVStack } from '@/lib/motion';
+import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 interface BlogPostProps {
   title: string;
@@ -81,7 +53,6 @@ export default function BlogPost({
   coverImage,
   sections,
 }: BlogPostProps) {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -114,8 +85,7 @@ export default function BlogPost({
 
   return (
     <Box>
-      {/* Hero Section */}
-      <Container maxW="container.xl" px={{ base: 6, lg: 12 }} py={{ base: 16, lg: 32 }}>
+      <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
           initial="hidden"
@@ -139,16 +109,16 @@ export default function BlogPost({
               <Badge
                 colorScheme={color}
                 variant="subtle"
-                px={4}
-                py={2}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 {category}
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
+                fontSize={{ base: 'xl', md: '2xl', lg: '4xl' }}
                 fontWeight="700"
                 color="gray.800"
                 lineHeight="1.2"
@@ -166,7 +136,7 @@ export default function BlogPost({
                 borderRadius="2xl"
                 overflow="hidden"
                 boxShadow="2xl"
-                maxW={{ base: "100%", lg: "800px" }}
+                maxW={{ base: "100%", lg: "640px" }}
                 w="full"
                 _hover={{
                   transform: 'translateY(-8px)',
@@ -191,23 +161,22 @@ export default function BlogPost({
         </MotionBox>
       </Container>
 
-      {/* Content Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.lg" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 8, lg: 12 }}
+            spacing={{ base: 6, lg: 8 }}
           >
             {sections.map((section, index) => (
               <MotionBox key={index} variants={itemVariants} w="full">
                 {section.type === 'text' ? (
                   <Text
-                    fontSize={{ base: "md", lg: "xl" }}
+                    fontSize="md"
                     color="gray.700"
-                    lineHeight={{ base: "1.6", lg: "1.8" }}
+                    lineHeight="1.55"
                     textAlign="left"
                   >
                     {section.content}
@@ -253,9 +222,8 @@ export default function BlogPost({
         </Container>
       </Box>
 
-      {/* CTA Section */}
-      <Box bg="brand.50" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.lg" px={{ base: 6, lg: 12 }}>
+      <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -266,16 +234,16 @@ export default function BlogPost({
           >
             <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }}>
               <Heading
-                fontSize={{ base: 'xl', lg: '3xl' }}
+                fontSize={{ base: 'lg', lg: '2xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Thanks for Reading
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="600px"
+                maxW="560px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -283,23 +251,23 @@ export default function BlogPost({
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
+            <Flex w={{ base: "full", lg: "auto" }} gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/fun/blog"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="solid"
                 leftIcon={<ArrowBackIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Back to Blog
               </Button>
               <Button
                 as={Link}
                 href="/about"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="outline"
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Learn More About Me
               </Button>
@@ -308,11 +276,10 @@ export default function BlogPost({
         </Container>
       </Box>
 
-      {/* Image Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size={{ base: "md", md: "2xl", lg: "3xl" }} isCentered>
         <ModalOverlay />
         <ModalContent mx={{ base: 4, lg: 0 }}>
-          <ModalCloseButton size={{ base: "md", lg: "lg" }} />
+          <ModalCloseButton size="sm" />
           <ModalBody p={{ base: 2, lg: 0 }}>
             <Box position="relative">
               <Image

@@ -21,37 +21,11 @@ import {
   ModalBody,
   IconButton,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
-
-const MotionBox = motion(Box);
-const MotionVStack = motion(VStack);
-const MotionHStack = motion(HStack);
-const MotionGrid = motion(Grid);
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut',
-    },
-  },
-};
+import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
+import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 const workSections = [
   {
@@ -146,8 +120,7 @@ export default function TweebaaPage() {
 
   return (
     <Box>
-      {/* Hero Section */}
-      <Container maxW="container.xl" px={{ base: 6, lg: 12 }} py={{ base: 16, lg: 32 }}>
+      <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
           initial="hidden"
@@ -158,16 +131,16 @@ export default function TweebaaPage() {
               <Badge
                 colorScheme="red"
                 variant="subtle"
-                px={4}
-                py={2}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 UX/UI Design Internship
               </Badge>
               <Heading
-                fontSize={{ base: '3xl', md: '4xl', lg: '6xl' }}
+                fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
@@ -179,7 +152,7 @@ export default function TweebaaPage() {
               <Text
                 fontSize={{ base: 'md', lg: 'xl' }}
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 lineHeight="1.6"
               >
                 Transforming user insights into refined design prototypes for a startup launch
@@ -210,9 +183,8 @@ export default function TweebaaPage() {
         </MotionBox>
       </Container>
 
-      {/* Overview Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -227,31 +199,31 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 01 | Overview
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 My First Design Journey
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Joining Tweebaa as a UX/UI Design Intern during the summer of 2021 marked my first professional internship experience. I was tasked with helping out the lead designer with her work, but mainly was assigned a lot of brand new sections that had nothing before.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -281,7 +253,7 @@ export default function TweebaaPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Role</Text>
-                    <Text fontSize="sm" color="gray.600">UX/UI Design Intern</Text>
+                    <Text fontSize="md" color="gray.600">UX/UI Design Intern</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -302,7 +274,7 @@ export default function TweebaaPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Team</Text>
-                    <Text fontSize="sm" color="gray.600">Mobile App Design Team</Text>
+                    <Text fontSize="md" color="gray.600">Mobile App Design Team</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -323,7 +295,7 @@ export default function TweebaaPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Tools</Text>
-                    <Text fontSize="sm" color="gray.600">Figma, Adobe Creative Suite</Text>
+                    <Text fontSize="md" color="gray.600">Figma, Adobe Creative Suite</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -344,7 +316,7 @@ export default function TweebaaPage() {
                   </Box>
                   <VStack spacing={2}>
                     <Text fontWeight="600" color="gray.800">Timeline</Text>
-                    <Text fontSize="sm" color="gray.600">May – Aug 2021</Text>
+                    <Text fontSize="md" color="gray.600">May – Aug 2021</Text>
                   </VStack>
                 </VStack>
               </MotionBox>
@@ -353,9 +325,8 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* Challenge Section */}
-      <Box bg="red.700" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="red.700" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -371,22 +342,22 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 02 | The Challenge
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="white"
               >
                 Building a Mobile App from the Ground Up
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="white"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -397,9 +368,8 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* My Experience Section */}
-      <Box bg="red.50" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="red.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -414,31 +384,31 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 03 | My Experience
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Building from Blank Pages
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Being assigned brand new sections that had nothing before meant I had to wireframe things from scratch, spending countless hours tweaking the smallest components. This made me realize how every little thing starts from a blank page—literally—and that you build it out from there.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -449,9 +419,8 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* Learning Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -466,22 +435,22 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 04 | What I Learned
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Design Fundamentals & Best Practices
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -529,9 +498,8 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* My Work Section */}
-      <Box bg="red.50" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="red.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -546,31 +514,31 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 05 | My Work
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Designing Key App Sections
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Throughout my internship, I designed multiple brand new sections for the app, each requiring careful consideration of user flows, interactions, and visual consistency. I had never thought about how many actions or interactions a feature included until I had to design each and every frame—from home pages to details pages, including countless interactions like saving, favouriting, editing, and deleting.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -606,7 +574,7 @@ export default function TweebaaPage() {
                         <Heading fontSize={{ base: "xl", lg: "2xl" }} fontWeight="600" color="gray.800">
                           {section.title}
                         </Heading>
-                        <Text color="gray.600" lineHeight="1.6" fontSize={{ base: "md", lg: "lg" }}>
+                        <Text color="gray.600" lineHeight="1.6" fontSize="md">
                           {section.description}
                         </Text>
                       </VStack>
@@ -642,9 +610,8 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* Impact Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -659,22 +626,22 @@ export default function TweebaaPage() {
                 px={3}
                 py={1}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="md"
                 fontWeight="600"
               >
                 06 | Impact & Results
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Making a Difference
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -746,9 +713,8 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
-      <Box bg="brand.50" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.lg" px={{ base: 6, lg: 12 }}>
+      <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -759,25 +725,25 @@ export default function TweebaaPage() {
           >
             <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }}>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Closing the Chapter
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="600px"
+                maxW="560px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Reflecting on my time at Tweebaa, it's evident that this was a transformative experience that launched my journey into UX/UI design. As my first internship, it taught me the value of persistence, adaptability, and the importance of design thinking in creating meaningful user experiences.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="md"
                 color="gray.600"
-                maxW="600px"
+                maxW="560px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -785,23 +751,23 @@ export default function TweebaaPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
+            <Flex w="auto" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/about"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="solid"
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Learn More About Me
               </Button>
               <Button
                 as={Link}
                 href="/work/ips"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="outline"
                 leftIcon={<ChevronLeftIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Previous Project
               </Button>
@@ -810,7 +776,6 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* Image Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
         <ModalOverlay />
         <ModalContent>

@@ -12,21 +12,10 @@ import {
   Badge,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { ChevronRightIcon } from '@chakra-ui/icons';
-
-const MotionBox = motion(Box);
-const MotionVStack = motion(VStack);
-const MotionHStack = motion(HStack);
-
-// Helper function to convert hex to rgba
-const hexToRgba = (hex: string, alpha: number): string => {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-};
+import { MotionBox } from '@/lib/motion';
+import { hexToRgba } from '@/lib/utils';
 
 interface Project {
   id: string;
@@ -44,7 +33,6 @@ interface Project {
 
 interface ProjectCardProps {
   project: Project;
-  index: number;
 }
 
 const cardVariants = {
@@ -71,36 +59,56 @@ const imageVariants = {
   },
 };
 
-export default function ProjectCard({ project, index }: ProjectCardProps) {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
+export default function ProjectCard({ project }: ProjectCardProps) {
+  const isMobile = useBreakpointValue({ base: true, lg: false }) ?? false;
   const isReverse = project.reverse && !isMobile;
-  return (
-    <MotionBox
-      variants={cardVariants}
-      w="full"
-    >
-      <Flex direction={{ base: 'column', lg: 'row' }} align="center" gap={{ base: 3, lg: 4 }} py={{ base: 4, lg: 6 }} px={{ base: 4, lg: 12 }}>
-        {/* Content */}
-        <VStack align={{ base: 'center', lg: 'flex-start' }} textAlign={{ base: 'center', lg: 'left' }} spacing={{ base: 3, lg: 4 }} flex={{ base: 'initial', lg: '1 1 0%' }} w={{ base: '100%', lg: 'auto' }} px={{ base: 2, lg: 6 }} order={{ base: 2, lg: isReverse ? 2 : 1 }}>
-          {/* Logo */}
-          <Box
-            onContextMenu={(e) => e.preventDefault()}
-            userSelect="none"
-          >
-            <Image 
-              src={project.logo} 
-              alt={`${project.title} logo`} 
-              maxH={{ base: "50px", lg: "60px" }} 
-              objectFit="contain"
-              draggable={false}
+
+  if (isMobile) {
+    const mobileTags = project.tags.map((tag) => {
+      if (project.id === 'telus' && tag === 'Software Engineering') return 'SWE';
+      if (project.id === 'ips' && tag === 'Product Management') return 'SWE';
+      if (project.id === 'rbc' && tag === 'Software Engineering') return 'SWE';
+      if (project.id === 'tweebaa' && tag === 'UX/UI Design') return 'UX/UI';
+      return tag;
+    });
+
+    return (
+      <MotionBox variants={cardVariants} w="full">
+        <VStack
+          align="stretch"
+          spacing={3}
+          w="full"
+          bg="white"
+          border="2px solid"
+          borderColor={project.color}
+          borderRadius="2xl"
+          px={4}
+          py={4}
+        >
+          <HStack spacing={2} align="center">
+            <Box
               onContextMenu={(e) => e.preventDefault()}
-            />
-          </Box>
-          {/* Title & Subtitle */}
-          <VStack spacing={1} align={{ base: 'center', lg: 'flex-start' }}>
+              userSelect="none"
+              display="inline-flex"
+              alignItems="center"
+              justifyContent="center"
+              flexShrink={0}
+            >
+              <Image
+                src={project.logo}
+                alt={`${project.title} logo`}
+                w="28px"
+                h="28px"
+                objectFit="contain"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+              />
+            </Box>
+
             <Heading
-              fontSize={{ base: 'lg', lg: '2xl' }}
+              fontSize="xl"
               fontWeight="700"
+              lineHeight="1.1"
               sx={{
                 background: `linear-gradient(to right, ${project.color}, black 100%)`,
                 backgroundClip: 'text',
@@ -110,27 +118,38 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             >
               {project.title}
             </Heading>
-          </VStack>
-          {/* Description */}
-          <Text fontSize={{ base: "sm", lg: "md" }} color="gray.600" lineHeight="1.6" maxW="440px" mt={0}>{project.description}</Text>
-          {/* Tags */}
-          <HStack spacing={2} wrap="wrap" justify={{ base: 'center', lg: 'flex-start' }}>
-            {project.tags.map((tag, tagIndex) => (
-              <Badge key={tagIndex} colorScheme="gray" variant="subtle" px={{ base: 1.5, lg: 2 }} py={0.5} borderRadius="full" fontSize={{ base: "2xs", lg: "xs" }}>
+          </HStack>
+
+          <Text fontSize="md" color="gray.600" lineHeight="1.55" noOfLines={2}>
+            {project.description}
+          </Text>
+
+          <HStack spacing={1.5} wrap="wrap" justify="flex-start">
+            {mobileTags.map((tag, tagIndex) => (
+              <Badge
+                key={tagIndex}
+                colorScheme="gray"
+                variant="subtle"
+                px={1.5}
+                py={0.5}
+                borderRadius="full"
+                fontSize="xs"
+              >
                 {tag}
               </Badge>
             ))}
           </HStack>
-          {/* CTA Button */}
-          <Box pt={2}>
+
+          <Box pt={0.5} w="full">
             {project.comingSoon ? (
               <Button
-                size={{ base: "sm", lg: "md" }}
+                size="sm"
                 variant="outline"
                 borderColor={project.color}
                 color={project.color}
                 cursor="not-allowed"
                 isDisabled
+                w="full"
                 _disabled={{ opacity: 0.9, borderColor: project.color, color: project.color }}
               >
                 Coming Soon
@@ -139,11 +158,12 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               <Button
                 as={Link}
                 href={project.link}
-                size={{ base: "sm", lg: "md" }}
+                size="sm"
                 variant="outline"
                 borderColor={project.color}
                 color={project.color}
                 rightIcon={<ChevronRightIcon />}
+                w="full"
                 _hover={{ bg: project.color, color: 'white', transform: 'translateY(-2px)', boxShadow: 'lg' }}
                 transition="all 0.2s ease"
               >
@@ -151,15 +171,51 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               </Button>
             )}
           </Box>
+
+          <MotionBox variants={imageVariants} w="full">
+            <Box
+              position="relative"
+              w="full"
+              borderRadius="xl"
+              overflow="hidden"
+              bgGradient={`linear(to top, ${hexToRgba(project.color, 0.12)}, ${hexToRgba(project.color, 0.04)}, transparent)`}
+              onContextMenu={(e) => e.preventDefault()}
+              userSelect="none"
+            >
+              <Box w="100%" display="flex" justifyContent="center" alignItems="center" px={3} py={3}>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  maxH="180px"
+                  maxW="100%"
+                  height="auto"
+                  width="auto"
+                  display="block"
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
+                />
+              </Box>
+            </Box>
+          </MotionBox>
         </VStack>
-        {/* Image area - intrinsic size, capped height, centered; no stretch */}
-        <MotionBox variants={imageVariants} flex={{ base: '0 0 auto', lg: '1 1 0%' }} w={{ base: '100%', lg: 'auto' }} px={{ base: 2, lg: 6 }} order={{ base: 1, lg: isReverse ? 1 : 2 }}>
+      </MotionBox>
+    );
+  }
+
+  return (
+    <MotionBox
+      variants={cardVariants}
+      w={{ base: 'auto', lg: 'full' }}
+      maxW={{ base: '100%', lg: 'none' }}
+    >
+      <Flex align="center" gap={{ base: 3, lg: 5 }} py={{ base: 3, lg: 4 }} px={{ base: 3, lg: 8 }}>
+        <MotionBox variants={imageVariants} flex={{ base: '0 0 auto', lg: '1 1 0%' }} w={{ base: '100px', lg: 'auto' }} px={{ base: 0, lg: 4 }} order={{ base: 1, lg: isReverse ? 1 : 2 }}>
           <Box
             position="relative"
             bgGradient={`linear(to top, ${hexToRgba(project.color, 0.15)}, ${hexToRgba(project.color, 0.05)}, transparent)`}
             borderRadius="lg"
-            pt={{ base: 2, lg: 3 }}
-            pb={{ base: 4, lg: 5 }}
+            pt={{ base: 1, lg: 2 }}
+            pb={{ base: 2, lg: 4 }}
             borderBottom={`2px solid ${project.color}`}
             sx={{
               '&::after': {
@@ -181,8 +237,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                   justifyContent="center"
                   alignItems="center"
                   overflow="hidden"
-                  px={{ base: 2, lg: 3 }}
-                  py={{ base: 2, lg: 3 }}
+                  px={{ base: 1, lg: 3 }}
+                  py={{ base: 1, lg: 3 }}
                   cursor="not-allowed"
                   opacity={0.95}
                   onContextMenu={(e) => e.preventDefault()}
@@ -191,7 +247,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                   <Image
                     src={project.image}
                     alt={project.title}
-                    maxH={{ base: '120px', md: '140px', lg: '170px' }}
+                    maxH={{ base: '80px', md: '120px', lg: '140px' }}
                     maxW="100%"
                     height="auto"
                     width="auto"
@@ -210,8 +266,8 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                   justifyContent="center"
                   alignItems="center"
                   overflow="hidden"
-                  px={{ base: 2, lg: 3 }}
-                  py={{ base: 2, lg: 3 }}
+                  px={{ base: 1, lg: 3 }}
+                  py={{ base: 1, lg: 3 }}
                   _hover={{ img: { transform: 'scale(1.04)' } }}
                   onContextMenu={(e) => e.preventDefault()}
                   userSelect="none"
@@ -219,7 +275,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
                   <Image
                     src={project.image}
                     alt={project.title}
-                    maxH={{ base: '120px', md: '140px', lg: '170px' }}
+                    maxH={{ base: '80px', md: '120px', lg: '140px' }}
                     maxW="100%"
                     height="auto"
                     width="auto"
@@ -234,6 +290,76 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             )}
           </Box>
         </MotionBox>
+        <VStack align="flex-start" textAlign="left" spacing={{ base: 1.5, lg: 2.5 }} flex={{ base: 1, lg: '1 1 0%' }} minW={0} w="auto" px={{ base: 0, lg: 4 }} order={{ base: 2, lg: isReverse ? 2 : 1 }}>
+          <Box
+            onContextMenu={(e) => e.preventDefault()}
+            userSelect="none"
+            display="inline-flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Image 
+              src={project.logo} 
+              alt={`${project.title} logo`} 
+              maxW={{ base: "32px", lg: "48px" }}
+              maxH={{ base: "32px", lg: "48px" }}
+              objectFit="contain"
+              draggable={false}
+              onContextMenu={(e) => e.preventDefault()}
+            />
+          </Box>
+          <VStack spacing={0.5} align="flex-start" w="full">
+            <Heading
+              fontSize={{ base: 'lg', lg: '2xl' }}
+              fontWeight="700"
+              sx={{
+                background: `linear-gradient(to right, ${project.color}, black 100%)`,
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
+              {project.title}
+            </Heading>
+          </VStack>
+          <Text fontSize={{ base: 'sm', lg: 'md' }} color="gray.600" lineHeight="1.55" maxW="400px" mt={0} noOfLines={{ base: 2, lg: 999 }}>{project.description}</Text>
+          <HStack spacing={1.5} wrap="wrap" justify="flex-start" display={{ base: 'none', lg: 'flex' }}>
+            {project.tags.map((tag, tagIndex) => (
+              <Badge key={tagIndex} colorScheme="gray" variant="subtle" px={1.5} py={0.5} borderRadius="full" fontSize="xs">
+                {tag}
+              </Badge>
+            ))}
+          </HStack>
+          <Box pt={{ base: 0.5, lg: 1.5 }} w="full">
+            {project.comingSoon ? (
+              <Button
+                size="sm"
+                variant="outline"
+                borderColor={project.color}
+                color={project.color}
+                cursor="not-allowed"
+                isDisabled
+                _disabled={{ opacity: 0.9, borderColor: project.color, color: project.color }}
+              >
+                Coming Soon
+              </Button>
+            ) : (
+              <Button
+                as={Link}
+                href={project.link}
+                size="sm"
+                variant="outline"
+                borderColor={project.color}
+                color={project.color}
+                rightIcon={<ChevronRightIcon />}
+                _hover={{ bg: project.color, color: 'white', transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                transition="all 0.2s ease"
+              >
+                View Project
+              </Button>
+            )}
+          </Box>
+        </VStack>
       </Flex>
     </MotionBox>
   );
