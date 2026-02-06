@@ -14,7 +14,6 @@ import {
   GridItem,
   Badge,
   Avatar,
-  useBreakpointValue,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
@@ -100,8 +99,6 @@ const categories = [
 ];
 
 export default function BlogPage() {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
-
   return (
     <Box>
       {/* Hero Section */}
@@ -348,7 +345,7 @@ export default function BlogPage() {
 
                         {/* Main Content */}
                         <VStack spacing={3} align="flex-start" w="full" flex={1}>
-                          <Heading fontSize="md" fontWeight="600" color="gray.800">
+                          <Heading fontSize={{ base: 'xl', lg: '2xl' }} fontWeight="600" color="gray.800">
                             {post.title}
                           </Heading>
                           <Text color="gray.600" lineHeight="1.6" noOfLines={4} m={0} p={0}>

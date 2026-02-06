@@ -13,7 +13,6 @@ import {
   Grid,
   GridItem,
   Badge,
-  useBreakpointValue,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -63,7 +62,6 @@ const designProjects = [
 ];
 
 export default function DesignPage() {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

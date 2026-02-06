@@ -12,7 +12,6 @@ import {
   Image,
   Badge,
   Avatar,
-  useBreakpointValue,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -54,7 +53,6 @@ export default function BlogPost({
   coverImage,
   sections,
 }: BlogPostProps) {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

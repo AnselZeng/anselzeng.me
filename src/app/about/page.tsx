@@ -11,7 +11,6 @@ import {
   HStack,
   Image,
   Badge,
-  useBreakpointValue,
   Tabs,
   TabList,
   TabPanels,
@@ -927,7 +926,7 @@ export default function About() {
                         <Badge colorScheme={item.badgeColorScheme} variant="subtle" size={{ base: "sm", lg: "lg" }}>
                           {item.badgeText}
                         </Badge>
-                        <Text fontSize={{ base: 'md', lg: 'lg' }} color="gray.600" lineHeight="1.6">
+                        <Text fontSize="md" color="gray.600" lineHeight="1.6">
                           {item.content}
                         </Text>
                       </VStack>
@@ -973,7 +972,7 @@ export default function About() {
                 Beyond Code
               </Heading>
               <Text
-                fontSize="sm"
+                fontSize="md"
                 color="gray.600"
                 maxW="520px"
                 mx="auto"

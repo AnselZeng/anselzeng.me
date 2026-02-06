@@ -14,7 +14,6 @@ import {
   GridItem,
   Badge,
   Divider,
-  useBreakpointValue,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
@@ -55,8 +54,6 @@ const showcases = [
 ];
 
 export default function IPSPage() {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
-
   return (
     <Box>
       {/* Hero Section */}

@@ -13,7 +13,6 @@ import {
   Grid,
   GridItem,
   Badge,
-  useBreakpointValue,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -29,7 +28,7 @@ import {
   TabPanel,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { ChevronLeftIcon, ChevronRightIcon, ExternalLinkIcon } from '@chakra-ui/icons';
+import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useState, useRef, useEffect } from 'react';
 import { MotionBox, MotionVStack, MotionHStack, MotionGrid, MotionImage } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
@@ -86,7 +85,6 @@ const learningMoments = [
 ];
 
 export default function TelusPage() {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen: isTabImageOpen, onOpen: onTabImageOpen, onClose: onTabImageClose } = useDisclosure();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);

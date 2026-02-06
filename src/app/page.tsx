@@ -11,7 +11,6 @@ import {
   HStack,
   Image,
   Badge,
-  useBreakpointValue,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import ProjectCard from '@/components/home/ProjectCard';
@@ -71,8 +70,6 @@ const projects = [
 ];
 
 export default function Home() {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
-
   return (
     <Box>
       {/* Hero Section – tighter spacing, smaller type */}

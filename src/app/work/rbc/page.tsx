@@ -13,7 +13,6 @@ import {
   Grid,
   GridItem,
   Badge,
-  useBreakpointValue,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -109,7 +108,6 @@ const inspiringMoments = [
 ];
 
 export default function RBCPage() {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { isOpen: isTabImageOpen, onOpen: onTabImageOpen, onClose: onTabImageClose } = useDisclosure();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);

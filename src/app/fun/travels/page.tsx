@@ -67,7 +67,6 @@ const AccordionItemList: React.FC<AccordionItemListProps> = ({ title, items }) =
 );
 
 export default function TravelsPage() {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
   const mapSize = useBreakpointValue({ base: 500, lg: 600 });
 
   return (
