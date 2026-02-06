@@ -87,27 +87,27 @@ export default function IPSPage() {
   return (
     <Box>
       {/* Hero Section */}
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }} py={{ base: 16, lg: 32 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <VStack spacing={8} align="center" textAlign="center">
+          <VStack spacing={6} align="center" textAlign="center">
             <MotionVStack variants={itemVariants} spacing={4}>
               <Badge
                 colorScheme="green"
                 variant="subtle"
-                px={4}
-                py={2}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Product Management Fellowship
               </Badge>
               <Heading
-                fontSize={{ base: '3xl', md: '4xl', lg: '6xl' }}
+                fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
@@ -117,9 +117,9 @@ export default function IPSPage() {
                 </Text>
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "xl" }}
+                fontSize={{ base: "sm", lg: "md" }}
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 lineHeight="1.6"
               >
                 Enhancing Spotify's social experience through customization on the profile page
@@ -151,56 +151,56 @@ export default function IPSPage() {
       </Container>
 
       {/* Overview Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="green"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 01 | Overview
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 The Path to Product
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 The Ivey Product Fellowship is an alumni-facilitated bootcamp where students engage in product-management-focused curriculum and showcase a capstone product to industry professionals. As someone who had little to no prior experience in the product realm, I was thrilled to be surrounded by a community of accomplished alumni.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Having listened to 164,498 minutes of music in just the past year, it was natural for me to select Spotify as the app for my capstone project. As an avid music streamer from morning till night, I've become intimately familiar with the app's latest features and intricate UX/UI design details. However, this immersion also led me to harbor complaints and a persistent feeling that something was missing.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -304,7 +304,7 @@ export default function IPSPage() {
 
       {/* Challenge Section */}
       <Box bg="green.500" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -317,25 +317,25 @@ export default function IPSPage() {
               <Badge
                 colorScheme="white"
                 variant="solid"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 02 | The Challenge
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="white"
               >
                 Spotify's Social Gap
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="white"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -347,47 +347,47 @@ export default function IPSPage() {
       </Box>
 
       {/* Problem Alignment Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="green"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 03 | Problem Alignment
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Is There Really Something Wrong?
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Spotify's limited social capabilities hinder meaningful interaction between users, resulting in difficulties with music discovery, playlist sharing, and engagement with friends' listening habits. This issue can potentially impede user retention and underutilization of the platform.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -400,37 +400,37 @@ export default function IPSPage() {
 
       {/* User Research Section */}
       <Box bg="green.50" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="green"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 04 | Research
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Gaining Some User Insights
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -490,7 +490,7 @@ export default function IPSPage() {
 
       {/* Value Proposition Section */}
       <Box bg="green.500" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -503,25 +503,25 @@ export default function IPSPage() {
               <Badge
                 colorScheme="white"
                 variant="solid"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 05 | Value Proposition
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="white"
               >
                 Enhanced Social Experience
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="white"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -533,38 +533,38 @@ export default function IPSPage() {
       </Box>
 
       {/* Solution Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="green"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 06 | Solution
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Unveiling Your Melodic Persona
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -593,7 +593,7 @@ export default function IPSPage() {
                           height="auto"
                           objectFit="cover"
                         />
-                        <Text color="gray.600" lineHeight="1.6" fontSize={{ base: "md", lg: "lg" }} maxW="600px">
+                        <Text color="gray.600" lineHeight="1.6" fontSize="sm" maxW="600px">
                           {showcase.description}{' '}
                           <Text as="span" fontWeight="600" color="green.500">
                             {showcase.boldText}
@@ -614,55 +614,55 @@ export default function IPSPage() {
 
       {/* Impact Section */}
       <Box bg="green.50" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="green"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 07 | Impact & Learnings
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Key Takeaways
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 As the curtains draw on my journey with Ivey Product Society, I'm filled with gratitude for the immense growth and learning I have experienced. From creating a Product Requirements Document to conducting user research, the hands-on nature of the program not only sharpened my product skills but also taught me the art of translating ideas into tangible solutions.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Undoubtedly, one of the standout moments was presenting my capstone project to a panel of PMs from Meta and Wealthsimple. The intensity of the technical questions definitely put me on the spot, but the thorough feedback I received left a lasting mark on my product mindset and thought process. It was a transformative experience that propelled me to new heights.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -693,7 +693,7 @@ export default function IPSPage() {
                 <VStack spacing={4} align="flex-start">
                   <HStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "3xl" }}>🎯</Text>
-                    <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="600" color="gray.800">
+                    <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
                       Product Strategy
                     </Heading>
                   </HStack>
@@ -720,7 +720,7 @@ export default function IPSPage() {
                 <VStack spacing={4} align="flex-start">
                   <HStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "3xl" }}>👥</Text>
-                    <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="600" color="gray.800">
+                    <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
                       User Research
                     </Heading>
                   </HStack>
@@ -747,7 +747,7 @@ export default function IPSPage() {
                 <VStack spacing={4} align="flex-start">
                   <HStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "3xl" }}>🎨</Text>
-                    <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="600" color="gray.800">
+                    <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
                       Design Thinking
                     </Heading>
                   </HStack>
@@ -774,7 +774,7 @@ export default function IPSPage() {
                 <VStack spacing={4} align="flex-start">
                   <HStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "3xl" }}>📊</Text>
-                    <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="600" color="gray.800">
+                    <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
                       Market Analysis
                     </Heading>
                   </HStack>
@@ -789,8 +789,8 @@ export default function IPSPage() {
       </Box>
 
       {/* CTA Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.lg" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -801,14 +801,14 @@ export default function IPSPage() {
           >
             <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }}>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Product Management Journey
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
                 maxW="600px"
                 mx="auto"
@@ -822,7 +822,7 @@ export default function IPSPage() {
               <Button
                 as={Link}
                 href="/work/rbc"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="solid"
                 rightIcon={<ChevronRightIcon />}
                 w={{ base: "full", lg: "auto" }}
@@ -832,7 +832,7 @@ export default function IPSPage() {
               <Button
                 as={Link}
                 href="/work/telus"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="outline"
                 leftIcon={<ChevronLeftIcon />}
                 w={{ base: "full", lg: "auto" }}

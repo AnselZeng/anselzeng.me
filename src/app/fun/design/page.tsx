@@ -116,7 +116,7 @@ export default function DesignPage() {
   return (
     <Box>
       {/* Hero Section */}
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }} py={{ base: 16, lg: 32 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
           initial="hidden"
@@ -127,25 +127,25 @@ export default function DesignPage() {
               <Badge
                 colorScheme="pink"
                 variant="subtle"
-                px={4}
-                py={2}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Design Portfolio
               </Badge>
               <Heading
-                fontSize={{ base: '3xl', md: '4xl', lg: '6xl' }}
+                fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Design 🎨
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "xl" }}
+                fontSize={{ base: "sm", lg: "md" }}
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 lineHeight="1.6"
               >
                 A collection of creative projects that blend functionality with aesthetics
@@ -156,47 +156,47 @@ export default function DesignPage() {
       </Container>
 
       {/* Introduction Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="pink"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 About My Design Journey
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 A Brief Introduction
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Since my first internship as a UX/UI designer, I fell in love with Figma and discovered a passion for creating intuitive, user-focused designs. I've always felt a strong creative drive, which led me to volunteer for design roles in school projects, assignments, and even case competitions.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -208,38 +208,38 @@ export default function DesignPage() {
       </Box>
 
       {/* Process Section */}
-      <Box bg="pink.50" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="pink.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="pink"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Design Process
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 My Creative Approach
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="600px"
+                maxW="520px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -311,7 +311,7 @@ export default function DesignPage() {
                     >
                       {process.step}
                     </Box>
-                    <Heading fontSize={{ base: "md", lg: "lg" }} fontWeight="600" color="gray.800">
+                    <Heading fontSize="sm" fontWeight="600" color="gray.800">
                       {process.title}
                     </Heading>
                     <Text fontSize="sm" color="gray.600" lineHeight="1.5">
@@ -326,38 +326,38 @@ export default function DesignPage() {
       </Box>
 
       {/* Projects Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="pink"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Featured Projects
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Design Portfolio
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="600px"
+                maxW="520px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -414,14 +414,14 @@ export default function DesignPage() {
                       alignItems="center"
                       justifyContent="center"
                     >
-                      <Text color="white" fontWeight="600" fontSize={{ base: "md", lg: "lg" }}>
+                      <Text color="white" fontWeight="600" fontSize="sm">
                         View Details
                       </Text>
                     </Box>
                   </Box>
                   <VStack spacing={4} p={6} align="flex-start">
                     <HStack justify="space-between" w="full">
-                      <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="600" color="gray.800">
+                      <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
                         {project.title}
                       </Heading>
                       <Badge
@@ -463,8 +463,8 @@ export default function DesignPage() {
 
 
       {/* CTA Section */}
-      <Box bg="orange.50" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.lg" px={{ base: 6, lg: 12 }}>
+      <Box bg="orange.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -475,16 +475,16 @@ export default function DesignPage() {
           >
             <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }}>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Let&apos;s Create Together
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="600px"
+                maxW="520px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -496,7 +496,7 @@ export default function DesignPage() {
               <Button
                 as="a"
                 href="/fun/travels"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="solid"
                 rightIcon={<ChevronRightIcon />}
                 w={{ base: "full", lg: "auto" }}
@@ -506,7 +506,7 @@ export default function DesignPage() {
               <Button
                 as="a"
                 href="/about"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="outline"
                 w={{ base: "full", lg: "auto" }}
               >

@@ -100,7 +100,7 @@ export default function TravelsPage() {
   return (
     <Box>
       {/* Hero Section */}
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }} py={{ base: 16, lg: 32 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
           initial="hidden"
@@ -111,25 +111,25 @@ export default function TravelsPage() {
               <Badge
                 colorScheme="teal"
                 variant="subtle"
-                px={4}
-                py={2}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Travel Adventures
               </Badge>
               <Heading
-                fontSize={{ base: '3xl', md: '4xl', lg: '6xl' }}
+                fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Adventures Around the Globe ✈️
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "xl" }}
+                fontSize={{ base: "sm", lg: "md" }}
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 lineHeight="1.6"
               >
                 Exploring cultures, cities, and natural wonders
@@ -140,65 +140,65 @@ export default function TravelsPage() {
       </Container>
 
       {/* Introduction Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="teal"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 My Travel Story
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 A Brief Introduction
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Raised across three continents in three countries—the Netherlands, China, and Canada—I've had the unique privilege of experiencing the richness and diversity of different cultures early on. These experiences shaped my curiosity, fueling my desire to always ask "why" and "how," and sparked a lifelong passion for understanding the world around me.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 A special place in my heart is reserved for cities and their stories, particularly when it comes to urban development. From Barcelona's superblocks that redefine modern city life to the radial design of Mexico City, these cities reflect not only the ingenuity of their people but also the evolving needs of the communities they serve.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Some of my favorite travel memories include zip-lining through the cloud forests of Monteverde, relaxing in a rooftop hot tub while overlooking the Aegean Sea in Santorini, and spending an unforgettable night at Everest Base Camp. Each adventure deepened my appreciation for the world's natural wonders and the diverse experiences it offers.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -210,38 +210,38 @@ export default function TravelsPage() {
       </Box>
 
       {/* Travel Stats Section */}
-      <Box bg="teal.50" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="teal.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="teal"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Travel Statistics
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Places I've Explored
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="600px"
+                maxW="520px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -332,9 +332,9 @@ export default function TravelsPage() {
                             spacing={3}
                             align="center"
                           >
-                            <Text fontSize={{ base: "md", lg: "lg" }} m={0} p={0}>{stat.icon}</Text>
+                            <Text fontSize="sm" m={0} p={0}>{stat.icon}</Text>
                             <HStack spacing={2} align="center">
-                              <Text fontSize={{ base: "md", lg: "lg" }} fontWeight="700" color="teal.500" m={0} p={0}>
+                              <Text fontSize="sm" fontWeight="700" color="teal.500" m={0} p={0}>
                                 {stat.number}
                               </Text>
                               <Text fontSize={{ base: "xs", lg: "sm" }} fontWeight="500" color="gray.600" m={0} p={0}>
@@ -355,52 +355,52 @@ export default function TravelsPage() {
 
 
       {/* Travel Logs Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
         <PlacesTable />
       </Box>
 
       {/* Inspiration Section */}
-      <Box bg="teal.50" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="teal.50" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="teal"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Travel Philosophy
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Why I Travel
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
                 Earlier this year, my mom embarked on a remarkable expedition to Antarctica, fulfilling her lifelong dream of visiting all seven continents. Her achievement inspires me to continue exploring the world, not just to see new places but to gain new perspectives.
               </Text>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -449,7 +449,7 @@ export default function TravelsPage() {
                 >
                   <VStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "4xl" }}>{value.icon}</Text>
-                    <Heading fontSize={{ base: "md", lg: "lg" }} fontWeight="600" color="gray.800">
+                    <Heading fontSize="sm" fontWeight="600" color="gray.800">
                       {value.title}
                     </Heading>
                     <Text fontSize="sm" color="gray.600" lineHeight="1.5">
@@ -464,8 +464,8 @@ export default function TravelsPage() {
       </Box>
 
       {/* CTA Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.lg" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -476,16 +476,16 @@ export default function TravelsPage() {
           >
             <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }}>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Ready for the Next Adventure
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="600px"
+                maxW="520px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -497,7 +497,7 @@ export default function TravelsPage() {
               <Button
                 as={Link}
                 href="/fun/blog"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="solid"
                 rightIcon={<ChevronRightIcon />}
                 w={{ base: "full", lg: "auto" }}
@@ -507,7 +507,7 @@ export default function TravelsPage() {
               <Button
                 as={Link}
                 href="/fun/design"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="outline"
                 leftIcon={<ChevronLeftIcon />}
                 w={{ base: "full", lg: "auto" }}

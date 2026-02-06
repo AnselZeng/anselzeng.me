@@ -132,36 +132,36 @@ export default function BlogPage() {
   return (
     <Box>
       {/* Hero Section */}
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }} py={{ base: 16, lg: 32 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          <VStack spacing={8} align="center" textAlign="center">
+          <VStack spacing={6} align="center" textAlign="center">
             <MotionVStack variants={itemVariants} spacing={4}>
               <Badge
                 colorScheme="cyan"
                 variant="subtle"
-                px={4}
-                py={2}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Personal Blog
               </Badge>
               <Heading
-                fontSize={{ base: '3xl', md: '4xl', lg: '6xl' }}
+                fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 One Thought Per Year 📝
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "xl" }}
+                fontSize={{ base: "sm", lg: "md" }}
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 lineHeight="1.6"
               >
                 A collection of thoughts, experiences, and reflections from my journey through life
@@ -172,38 +172,38 @@ export default function BlogPage() {
       </Container>
 
       {/* About Blog Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="cyan"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 About This Blog
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Why I Write
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
-                maxW="800px"
+                maxW="640px"
                 mx="auto"
                 lineHeight="1.6"
               >
@@ -252,7 +252,7 @@ export default function BlogPage() {
                 >
                   <VStack spacing={4}>
                     <Text fontSize={{ base: "2xl", lg: "4xl" }}>{value.icon}</Text>
-                    <Heading fontSize={{ base: "md", lg: "lg" }} fontWeight="600" color="gray.800">
+                    <Heading fontSize="sm" fontWeight="600" color="gray.800">
                       {value.title}
                     </Heading>
                     <Text fontSize="sm" color="gray.600" lineHeight="1.5">
@@ -268,35 +268,35 @@ export default function BlogPage() {
 
       {/* Blog Posts Section */}
       <Box bg="cyan.50" py={{ base: 16, lg: 24 }}>
-        <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 12, lg: 16 }}
+            spacing={{ base: 8, lg: 10 }}
           >
             <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
               <Badge
                 colorScheme="cyan"
                 variant="subtle"
-                px={3}
-                py={1}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="sm"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Latest Posts
               </Badge>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Recent Thoughts
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
                 maxW="600px"
                 mx="auto"
@@ -306,7 +306,7 @@ export default function BlogPage() {
               </Text>
             </MotionVStack>
 
-            <VStack spacing={8} w="full">
+            <VStack spacing={6} w="full">
               {blogPosts.map((post, index) => (
                 <MotionBox
                   key={post.id}
@@ -375,7 +375,7 @@ export default function BlogPage() {
 
                         {/* Main Content */}
                         <VStack spacing={3} align="flex-start" w="full" flex={1}>
-                          <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="600" color="gray.800">
+                          <Heading fontSize={{ base: "sm", lg: "md" }} fontWeight="600" color="gray.800">
                             {post.title}
                           </Heading>
                           <Text color="gray.600" lineHeight="1.6" noOfLines={4} m={0} p={0}>
@@ -401,8 +401,8 @@ export default function BlogPage() {
       </Box>
 
       {/* CTA Section */}
-      <Box bg="white" py={{ base: 12, lg: 24 }}>
-        <Container maxW="container.lg" px={{ base: 6, lg: 12 }}>
+      <Box bg="white" py={{ base: 10, lg: 16 }}>
+        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
             initial="hidden"
@@ -413,14 +413,14 @@ export default function BlogPage() {
           >
             <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }}>
               <Heading
-                fontSize={{ base: '2xl', lg: '4xl' }}
+                fontSize={{ base: 'xl', lg: '3xl' }}
                 fontWeight="700"
                 color="gray.800"
               >
                 Stay Connected
               </Heading>
               <Text
-                fontSize={{ base: "md", lg: "lg" }}
+                fontSize="sm"
                 color="gray.600"
                 maxW="600px"
                 mx="auto"
@@ -434,7 +434,7 @@ export default function BlogPage() {
               <Button
                 as={Link}
                 href="/about"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="solid"
                 w={{ base: "full", lg: "auto" }}
               >
@@ -443,7 +443,7 @@ export default function BlogPage() {
               <Button
                 as={Link}
                 href="/fun/travels"
-                size={{ base: "md", lg: "lg" }}
+                size="sm"
                 variant="outline"
                 leftIcon={<ChevronLeftIcon />}
                 w={{ base: "full", lg: "auto" }}

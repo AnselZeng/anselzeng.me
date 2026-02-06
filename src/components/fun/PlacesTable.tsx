@@ -217,39 +217,39 @@ export const PlacesTable = () => {
   };
 
   return (
-    <Container maxW="container.xl" px={{ base: 6, lg: 12 }}>
+    <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
       <MotionVStack
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
-        spacing={16}
+        spacing={10}
       >
-        <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
+        <MotionVStack variants={itemVariants} spacing={3} textAlign="center">
           <Badge
             colorScheme="teal"
             variant="subtle"
-            px={3}
-            py={1}
+            px={2.5}
+            py={0.5}
             borderRadius="full"
-            fontSize="sm"
+            fontSize="xs"
             fontWeight="600"
           >
             Travel Logs
           </Badge>
           <Heading
-            fontSize={{ base: '3xl', lg: '4xl' }}
+            fontSize={{ base: 'xl', lg: '3xl' }}
             fontWeight="700"
             color="gray.800"
           >
             My Travel Journey
           </Heading>
           <Text
-            fontSize="lg"
+            fontSize="sm"
             color="gray.600"
-            maxW="600px"
+            maxW="520px"
             mx="auto"
-            lineHeight="1.6"
+            lineHeight="1.55"
           >
             A chronological record of my global adventures and experiences across continents.
           </Text>
