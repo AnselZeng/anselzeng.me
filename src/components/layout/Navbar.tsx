@@ -137,7 +137,7 @@ export default function Navbar() {
                   <Button
                     variant="ghost"
                     size="md"
-                    fontSize="sm"
+                    fontSize="md"
                     fontWeight="500"
                     color={isActive(item.href) ? 'brand.500' : 'gray.600'}
                     _hover={{
@@ -207,7 +207,7 @@ export default function Navbar() {
                     display="inline-block"
                     px={3}
                     py={1.5}
-                    fontSize="sm"
+                    fontSize="md"
                     fontWeight="500"
                     color={isActive('/') ? 'brand.500' : 'gray.600'}
                     bg="transparent"
@@ -240,7 +240,7 @@ export default function Navbar() {
                       variant="ghost"
                       size="sm"
                       rightIcon={<ChevronDownIcon />}
-                      fontSize="sm"
+                      fontSize="md"
                       fontWeight="500"
                       color="gray.600"
                       _hover={{ color: 'brand.500' }}
@@ -251,8 +251,8 @@ export default function Navbar() {
                     <MenuList
                       bg="white"
                       border="1px solid"
-                      borderColor="gray.200"
-                      borderRadius="lg"
+                      borderColor="gray.100"
+                      borderRadius="xl"
                       boxShadow="xl"
                       py={2}
                       minW="fit-content"
@@ -263,11 +263,13 @@ export default function Navbar() {
                           as={Link}
                           href={item.href}
                           bg="transparent"
+                          fontSize="md"
                           color={isActive(item.href) ? 'brand.500' : 'gray.600'}
                           _hover={{
                             bg: 'brand.50',
                             color: 'brand.500',
                           }}
+                          transition="background 0.15s ease"
                         >
                           {item.emoji && <span style={{ marginRight: '8px' }}>{item.emoji}</span>}
                           {item.label}
@@ -283,7 +285,7 @@ export default function Navbar() {
                     display="inline-block"
                     px={3}
                     py={1.5}
-                    fontSize="sm"
+                    fontSize="md"
                     fontWeight="500"
                     color={isActive('/about') ? 'brand.500' : 'gray.600'}
                     bg="transparent"

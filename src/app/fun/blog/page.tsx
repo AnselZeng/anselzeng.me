@@ -278,20 +278,22 @@ export default function BlogPage() {
 
             <VStack spacing={6} w="full">
               {blogPosts.map((post, index) => (
-                <MotionBox
-                  key={post.id}
-                  variants={itemVariants}
-                  w="full"
-                  bg="white"
-                  borderRadius="2xl"
-                  overflow="hidden"
-                  boxShadow="lg"
-                  _hover={{
-                    boxShadow: '2xl',
-                    transform: 'translateY(-8px)',
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
+                <MotionBox key={post.id} variants={itemVariants} w="full">
+                  <Box
+                    w="full"
+                    bg="white"
+                    borderRadius="2xl"
+                    border="1px solid"
+                    borderColor="gray.100"
+                    overflow="hidden"
+                    boxShadow="sm"
+                    transition="all 0.25s ease-out"
+                    _hover={{
+                      borderColor: 'gray.200',
+                      boxShadow: 'xl',
+                      transform: 'translateY(-4px)',
+                    }}
+                  >
                   <Link href={post.href}>
                     <Flex
                       direction={{ base: 'column', lg: 'row' }}
@@ -348,7 +350,7 @@ export default function BlogPage() {
                           <Heading fontSize={{ base: 'xl', lg: '2xl' }} fontWeight="600" color="gray.800">
                             {post.title}
                           </Heading>
-                          <Text color="gray.600" lineHeight="1.6" noOfLines={4} m={0} p={0}>
+                          <Text color="gray.600" lineHeight="1.6" noOfLines={4} m={0} p={0} fontSize="md">
                             {post.excerpt}
                           </Text>
                         </VStack>
@@ -363,6 +365,7 @@ export default function BlogPage() {
                       </VStack>
                     </Flex>
                   </Link>
+                  </Box>
                 </MotionBox>
               ))}
             </VStack>
@@ -371,7 +374,7 @@ export default function BlogPage() {
       </Box>
 
       {/* CTA Section */}
-      <Box bg="white" py={{ base: 10, lg: 16 }}>
+      <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}

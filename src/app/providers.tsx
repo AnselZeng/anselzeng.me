@@ -62,6 +62,15 @@ const theme = extendTheme({
     },
   },
   components: {
+    Link: {
+      baseStyle: {
+        transition: 'color 0.2s ease',
+        _focus: {
+          boxShadow: '0 0 0 2px var(--chakra-colors-brand-500)',
+          outline: 'none',
+        },
+      },
+    },
     Button: {
       baseStyle: {
         fontWeight: '500',
@@ -74,6 +83,7 @@ const theme = extendTheme({
           color: 'white',
           _hover: {
             bg: 'brand.600',
+            color: 'white',
             transform: 'translateY(-1px)',
             boxShadow: 'lg',
           },
@@ -95,7 +105,7 @@ const theme = extendTheme({
         ghost: {
           color: 'gray.600',
           _hover: {
-            bg: 'gray.100',
+            bg: 'brand.50',
             color: 'brand.500',
           },
         },

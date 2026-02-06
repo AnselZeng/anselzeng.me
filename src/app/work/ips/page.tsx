@@ -759,7 +759,7 @@ export default function IPSPage() {
       </Box>
 
       {/* CTA Section */}
-      <Box bg="white" py={{ base: 10, lg: 16 }}>
+      <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
             variants={containerVariants}
