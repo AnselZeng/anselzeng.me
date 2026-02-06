@@ -137,7 +137,6 @@ export default function TelusPage() {
 
   return (
     <Box>
-      {/* Hero Section */}
       <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
@@ -201,7 +200,6 @@ export default function TelusPage() {
         </MotionBox>
       </Container>
 
-      {/* Overview Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -335,7 +333,6 @@ export default function TelusPage() {
         </Container>
       </Box>
 
-      {/* Challenge Section */}
       <Box bg="purple.500" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -379,7 +376,6 @@ export default function TelusPage() {
         </Container>
       </Box>
 
-      {/* ORAN Components Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -468,7 +464,6 @@ export default function TelusPage() {
         </Container>
       </Box>
 
-      {/* Learning Moments Section */}
       <Box bg="purple.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -598,7 +593,6 @@ export default function TelusPage() {
         </Container>
       </Box>
 
-      {/* Ticket Management System Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -683,7 +677,6 @@ export default function TelusPage() {
         </Container>
       </Box>
 
-      {/* Highlights Section */}
       <Box bg="purple.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -749,7 +742,6 @@ export default function TelusPage() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
       <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -788,7 +780,7 @@ export default function TelusPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w="auto" direction="row" gap={3} flexWrap="wrap" justify="center">
+            <Flex w="auto" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/work/ips"
@@ -813,7 +805,6 @@ export default function TelusPage() {
         </Container>
       </Box>
 
-      {/* Image Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
         <ModalOverlay />
         <ModalContent>
@@ -856,7 +847,6 @@ export default function TelusPage() {
           </ModalBody>
         </ModalContent>
       </Modal>
-      {/* Tab Image Modal */}
       <Modal isOpen={isTabImageOpen} onClose={onTabImageClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
         <ModalOverlay />
         <ModalContent>

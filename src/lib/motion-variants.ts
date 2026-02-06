@@ -1,7 +1,3 @@
-/**
- * Shared Framer Motion variants for consistent page/section animations across the portfolio.
- * Use with motion() components and variants={containerVariants} / variants={itemVariants}.
- */
 export const containerVariants = {
   hidden: { opacity: 0 },
   visible: {

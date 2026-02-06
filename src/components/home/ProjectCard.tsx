@@ -33,7 +33,6 @@ interface Project {
 
 interface ProjectCardProps {
   project: Project;
-  index: number;
 }
 
 const cardVariants = {
@@ -60,17 +59,156 @@ const imageVariants = {
   },
 };
 
-export default function ProjectCard({ project, index }: ProjectCardProps) {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
+export default function ProjectCard({ project }: ProjectCardProps) {
+  const isMobile = useBreakpointValue({ base: true, lg: false }) ?? false;
   const isReverse = project.reverse && !isMobile;
+
+  if (isMobile) {
+    const mobileTags = project.tags.map((tag) => {
+      if (project.id === 'telus' && tag === 'Software Engineering') return 'SWE';
+      if (project.id === 'ips' && tag === 'Product Management') return 'SWE';
+      if (project.id === 'rbc' && tag === 'Software Engineering') return 'SWE';
+      if (project.id === 'tweebaa' && tag === 'UX/UI Design') return 'UX/UI';
+      return tag;
+    });
+
+    return (
+      <MotionBox variants={cardVariants} w="full">
+        <VStack
+          align="stretch"
+          spacing={3}
+          w="full"
+          bg="white"
+          border="2px solid"
+          borderColor={project.color}
+          borderRadius="2xl"
+          px={4}
+          py={4}
+        >
+          <HStack spacing={2} align="center">
+            <Box
+              onContextMenu={(e) => e.preventDefault()}
+              userSelect="none"
+              display="inline-flex"
+              alignItems="center"
+              justifyContent="center"
+              flexShrink={0}
+            >
+              <Image
+                src={project.logo}
+                alt={`${project.title} logo`}
+                w="28px"
+                h="28px"
+                objectFit="contain"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+              />
+            </Box>
+
+            <Heading
+              fontSize="xl"
+              fontWeight="700"
+              lineHeight="1.1"
+              sx={{
+                background: `linear-gradient(to right, ${project.color}, black 100%)`,
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+              }}
+            >
+              {project.title}
+            </Heading>
+          </HStack>
+
+          <Text fontSize="md" color="gray.600" lineHeight="1.55" noOfLines={2}>
+            {project.description}
+          </Text>
+
+          <HStack spacing={1.5} wrap="wrap" justify="flex-start">
+            {mobileTags.map((tag, tagIndex) => (
+              <Badge
+                key={tagIndex}
+                colorScheme="gray"
+                variant="subtle"
+                px={1.5}
+                py={0.5}
+                borderRadius="full"
+                fontSize="xs"
+              >
+                {tag}
+              </Badge>
+            ))}
+          </HStack>
+
+          <Box pt={0.5} w="full">
+            {project.comingSoon ? (
+              <Button
+                size="sm"
+                variant="outline"
+                borderColor={project.color}
+                color={project.color}
+                cursor="not-allowed"
+                isDisabled
+                w="full"
+                _disabled={{ opacity: 0.9, borderColor: project.color, color: project.color }}
+              >
+                Coming Soon
+              </Button>
+            ) : (
+              <Button
+                as={Link}
+                href={project.link}
+                size="sm"
+                variant="outline"
+                borderColor={project.color}
+                color={project.color}
+                rightIcon={<ChevronRightIcon />}
+                w="full"
+                _hover={{ bg: project.color, color: 'white', transform: 'translateY(-2px)', boxShadow: 'lg' }}
+                transition="all 0.2s ease"
+              >
+                View Project
+              </Button>
+            )}
+          </Box>
+
+          <MotionBox variants={imageVariants} w="full">
+            <Box
+              position="relative"
+              w="full"
+              borderRadius="xl"
+              overflow="hidden"
+              bgGradient={`linear(to top, ${hexToRgba(project.color, 0.12)}, ${hexToRgba(project.color, 0.04)}, transparent)`}
+              onContextMenu={(e) => e.preventDefault()}
+              userSelect="none"
+            >
+              <Box w="100%" display="flex" justifyContent="center" alignItems="center" px={3} py={3}>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  maxH="180px"
+                  maxW="100%"
+                  height="auto"
+                  width="auto"
+                  display="block"
+                  draggable={false}
+                  onContextMenu={(e) => e.preventDefault()}
+                />
+              </Box>
+            </Box>
+          </MotionBox>
+        </VStack>
+      </MotionBox>
+    );
+  }
+
   return (
     <MotionBox
       variants={cardVariants}
       w={{ base: 'auto', lg: 'full' }}
       maxW={{ base: '100%', lg: 'none' }}
     >
-      <Flex direction={{ base: 'row', lg: 'row' }} align={{ base: 'center', lg: 'center' }} gap={{ base: 3, lg: 5 }} py={{ base: 3, lg: 4 }} px={{ base: 3, lg: 8 }}>
-        {/* Image area - on mobile: left side, smaller; on desktop: unchanged */}
+      <Flex align="center" gap={{ base: 3, lg: 5 }} py={{ base: 3, lg: 4 }} px={{ base: 3, lg: 8 }}>
         <MotionBox variants={imageVariants} flex={{ base: '0 0 auto', lg: '1 1 0%' }} w={{ base: '100px', lg: 'auto' }} px={{ base: 0, lg: 4 }} order={{ base: 1, lg: isReverse ? 1 : 2 }}>
           <Box
             position="relative"
@@ -152,8 +290,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
             )}
           </Box>
         </MotionBox>
-        {/* Content - on mobile: right side (logo, title, description, tags, View Project); on desktop: unchanged */}
-        <VStack align={{ base: 'flex-start', lg: 'flex-start' }} textAlign={{ base: 'left', lg: 'left' }} spacing={{ base: 1.5, lg: 2.5 }} flex={{ base: 1, lg: '1 1 0%' }} minW={0} w={{ base: 'auto', lg: 'auto' }} px={{ base: 0, lg: 4 }} order={{ base: 2, lg: isReverse ? 2 : 1 }}>
+        <VStack align="flex-start" textAlign="left" spacing={{ base: 1.5, lg: 2.5 }} flex={{ base: 1, lg: '1 1 0%' }} minW={0} w="auto" px={{ base: 0, lg: 4 }} order={{ base: 2, lg: isReverse ? 2 : 1 }}>
           <Box
             onContextMenu={(e) => e.preventDefault()}
             userSelect="none"

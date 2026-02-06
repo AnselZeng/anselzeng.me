@@ -72,7 +72,6 @@ const projects = [
 export default function Home() {
   return (
     <Box>
-      {/* Hero Section – tighter spacing, smaller type */}
       <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
@@ -87,7 +86,6 @@ export default function Home() {
               gap={{ base: 6, lg: 12 }}
               w="full"
             >
-            {/* Left Content */}
             <MotionVStack
               variants={itemVariants}
               align={{ base: 'center', lg: 'flex-start' }}
@@ -132,7 +130,7 @@ export default function Home() {
                 technology, exploring how it can be leveraged to create positive change.
               </Text>
 
-               <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={2} flexWrap="wrap" justify="center">
+               <Flex w={{ base: "full", lg: "auto" }} gap={2} flexWrap="wrap" justify="center">
                 <Button
                   as={Link}
                   href="/Ansel_Zeng_Resume.pdf"
@@ -157,7 +155,6 @@ export default function Home() {
                </Flex>
             </MotionVStack>
 
-            {/* Right Image */}
             <MotionBox
               variants={itemVariants}
               flex={1}
@@ -203,7 +200,6 @@ export default function Home() {
         </MotionBox>
       </Container>
 
-      {/* Projects Section – consistent section spacing */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -246,11 +242,10 @@ export default function Home() {
             </MotionVStack>
 
             <VStack spacing={{ base: 10, lg: 12 }} w="full" alignItems={{ base: 'center', lg: 'stretch' }}>
-              {projects.map((project, index) => (
+              {projects.map((project) => (
                 <ProjectCard
                   key={project.id}
                   project={project}
-                  index={index}
                 />
               ))}
             </VStack>
@@ -258,7 +253,6 @@ export default function Home() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
       <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -289,7 +283,7 @@ export default function Home() {
               </Text>
             </MotionVStack>
 
-             <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={2} flexWrap="wrap" justify="center">
+             <Flex w={{ base: "full", lg: "auto" }} gap={2} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/about"

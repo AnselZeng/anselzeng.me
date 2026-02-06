@@ -54,7 +54,6 @@ export default function Footer() {
     <Box as="footer" bg="white" borderTop="1px solid" borderColor="gray.100">
       <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
         <VStack spacing={{ base: 5, lg: 6 }} py={{ base: 8, lg: 10 }}>
-          {/* Social Links */}
           <HStack spacing={{ base: 4, lg: 5 }}>
             {socialLinks.map((social) => (
               <motion.div
@@ -78,7 +77,6 @@ export default function Footer() {
 
           <Divider borderColor="gray.100" />
 
-          {/* Copyright */}
           <Flex
             direction={{ base: 'column', md: 'row' }}
             align="center"

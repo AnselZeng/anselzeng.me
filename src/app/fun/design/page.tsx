@@ -86,7 +86,6 @@ export default function DesignPage() {
 
   return (
     <Box>
-      {/* Hero Section */}
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
@@ -126,7 +125,6 @@ export default function DesignPage() {
         </MotionBox>
       </Container>
 
-      {/* Introduction Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -178,7 +176,6 @@ export default function DesignPage() {
         </Container>
       </Box>
 
-      {/* Process Section */}
       <Box bg="pink.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -296,7 +293,6 @@ export default function DesignPage() {
         </Container>
       </Box>
 
-      {/* Projects Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -433,7 +429,6 @@ export default function DesignPage() {
       </Box>
 
 
-      {/* CTA Section */}
       <Box bg="orange.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -463,7 +458,7 @@ export default function DesignPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w="auto" direction="row" gap={3} flexWrap="wrap" justify="center">
+            <Flex w="auto" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as="a"
                 href="/fun/travels"
@@ -488,7 +483,6 @@ export default function DesignPage() {
         </Container>
       </Box>
 
-      {/* Image Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
         <ModalOverlay />
         <ModalContent>

@@ -100,7 +100,6 @@ const categories = [
 export default function BlogPage() {
   return (
     <Box>
-      {/* Hero Section */}
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
@@ -140,7 +139,6 @@ export default function BlogPage() {
         </MotionBox>
       </Container>
 
-      {/* About Blog Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -235,7 +233,6 @@ export default function BlogPage() {
         </Container>
       </Box>
 
-      {/* Blog Posts Section */}
       <Box bg="cyan.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -298,7 +295,6 @@ export default function BlogPage() {
                       direction={{ base: 'column', lg: 'row' }}
                       align="stretch"
                     >
-                      {/* Image Section */}
                       <Box 
                         flex={{ base: 'none', lg: '0 0 500px' }}
                         w={{ base: '100%', lg: '500px' }}
@@ -318,7 +314,6 @@ export default function BlogPage() {
                         />
                       </Box>
                       
-                      {/* Content Section */}
                       <VStack
                         flex={1}
                         align="flex-start"
@@ -326,7 +321,6 @@ export default function BlogPage() {
                         p={6}
                         spacing={4}
                       >
-                        {/* Author Info */}
                         <HStack spacing={3} align="center">
                           <Box
                             onContextMenu={(e) => e.preventDefault()}
@@ -344,7 +338,6 @@ export default function BlogPage() {
                           </VStack>
                         </HStack>
 
-                        {/* Main Content */}
                         <VStack spacing={3} align="flex-start" w="full" flex={1}>
                           <Heading fontSize={{ base: 'xl', lg: '2xl' }} fontWeight="600" color="gray.800">
                             {post.title}
@@ -354,7 +347,6 @@ export default function BlogPage() {
                           </Text>
                         </VStack>
 
-                        {/* Footer */}
                         <HStack spacing={2} w="full" justify="space-between" align="center">
                           <Text fontSize="md" color="gray.500" m={0} p={0}>
                             {post.readTime}
@@ -372,7 +364,6 @@ export default function BlogPage() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
       <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -402,7 +393,7 @@ export default function BlogPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={3} flexWrap="wrap" justify="center">
+            <Flex w={{ base: "full", lg: "auto" }} gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/about"

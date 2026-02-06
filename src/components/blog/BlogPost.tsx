@@ -85,7 +85,6 @@ export default function BlogPost({
 
   return (
     <Box>
-      {/* Hero Section */}
       <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
@@ -162,7 +161,6 @@ export default function BlogPost({
         </MotionBox>
       </Container>
 
-      {/* Content Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -224,7 +222,6 @@ export default function BlogPost({
         </Container>
       </Box>
 
-      {/* CTA Section */}
       <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -254,7 +251,7 @@ export default function BlogPost({
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={3} flexWrap="wrap" justify="center">
+            <Flex w={{ base: "full", lg: "auto" }} gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/fun/blog"
@@ -279,7 +276,6 @@ export default function BlogPost({
         </Container>
       </Box>
 
-      {/* Image Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size={{ base: "md", md: "2xl", lg: "3xl" }} isCentered>
         <ModalOverlay />
         <ModalContent mx={{ base: 4, lg: 0 }}>

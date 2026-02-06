@@ -119,7 +119,6 @@ export const PlacesTable = () => {
     }
   };
 
-  // Canada Map Component
   const CanadaMap = () => {
     const provinces = [
       { name: "Alberta", visited: true, lived: false },
@@ -154,7 +153,6 @@ export const PlacesTable = () => {
     );
   };
 
-  // USA Map Component
   const USAMap = () => {
     const states = [
       { name: "Arizona", visited: true, lived: false },

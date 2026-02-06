@@ -160,7 +160,6 @@ export default function RBCPage() {
 
   return (
     <Box>
-      {/* Hero Section */}
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
@@ -224,7 +223,6 @@ export default function RBCPage() {
         </MotionBox>
       </Container>
 
-      {/* Overview Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -358,7 +356,6 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Challenge Section */}
       <Box bg="blue.600" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -402,7 +399,6 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Key Initiatives Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -577,7 +573,6 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Process Section */}
       <Box bg="blue.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -696,7 +691,6 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Technical Implementation Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -790,7 +784,6 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Impact Section */}
       <Box bg="blue.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -843,7 +836,6 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Highlights Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -909,7 +901,6 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
       <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -939,7 +930,7 @@ export default function RBCPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w="auto" direction="row" gap={3} flexWrap="wrap" justify="center">
+            <Flex w="auto" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/work/tweebaa"
@@ -965,7 +956,6 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      {/* Image Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
         <ModalOverlay />
         <ModalContent>
@@ -1008,7 +998,6 @@ export default function RBCPage() {
           </ModalBody>
         </ModalContent>
       </Modal>
-      {/* Tab Image Modal */}
       <Modal isOpen={isTabImageOpen} onClose={onTabImageClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
         <ModalOverlay />
         <ModalContent>

@@ -68,7 +68,6 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -102,7 +101,6 @@ export default function Navbar() {
           alignItems="center"
           justifyContent="center"
         >
-          {/* Close Button */}
           <IconButton
             aria-label="Close menu"
             icon={<CloseIcon />}
@@ -180,7 +178,6 @@ export default function Navbar() {
             justifyContent="space-between"
             minH={{ base: "52px", lg: "56px" }}
           >
-            {/* Logo */}
             <Link href="/">
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -198,7 +195,6 @@ export default function Navbar() {
               </motion.div>
             </Link>
 
-            {/* Desktop Navigation */}
             {!isMobile ? (
               <HStack spacing={2}>
                 <Link href="/">
@@ -312,7 +308,6 @@ export default function Navbar() {
                 </Link>
               </HStack>
             ) : (
-              /* Mobile Menu Button */
               <IconButton
                 aria-label="Toggle menu"
                 icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -335,7 +330,6 @@ export default function Navbar() {
         </Container>
       </MotionBox>
 
-      {/* Mobile Menu Overlay */}
       {isMobile && <MobileMenu />}
     </>
   );

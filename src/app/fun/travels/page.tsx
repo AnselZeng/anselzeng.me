@@ -71,7 +71,6 @@ export default function TravelsPage() {
 
   return (
     <Box>
-      {/* Hero Section */}
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
@@ -111,7 +110,6 @@ export default function TravelsPage() {
         </MotionBox>
       </Container>
 
-      {/* Introduction Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -181,7 +179,6 @@ export default function TravelsPage() {
         </Container>
       </Box>
 
-      {/* Travel Stats Section */}
       <Box bg="teal.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -221,7 +218,6 @@ export default function TravelsPage() {
               </Text>
             </MotionVStack>
 
-            {/* World Map with Legend */}
             <MotionBox variants={itemVariants} w="full">
               <Box
                 bg="white"
@@ -237,7 +233,6 @@ export default function TravelsPage() {
                 transition="all 0.3s ease"
               >
                 <Flex direction={{ base: "column", lg: "row" }} gap={{ base: 6, lg: 8 }} align={{ base: "center", lg: "start" }}>
-                  {/* Map */}
                   <Box flex={{ base: "none", lg: 2 }} w={{ base: "100%", lg: "auto" }}>
                     <VStack spacing={{ base: 2, lg: 4 }}>
                       <Box w="100%" h={{ base: "250px", lg: "400px" }} display="flex" alignItems="center" justifyContent="center">
@@ -287,7 +282,6 @@ export default function TravelsPage() {
                     </VStack>
                   </Box>
 
-                  {/* Legend */}
                   <Box flex={{ base: "none", lg: 1 }} w={{ base: "100%", lg: "auto" }} minW={{ base: "auto", lg: "200px" }} h={{ base: "auto", lg: "400px" }} display="flex" alignItems="center" justifyContent="center">
                     <Box
                       bg="gray.50"
@@ -326,12 +320,10 @@ export default function TravelsPage() {
       </Box>
 
 
-      {/* Travel Logs Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <PlacesTable />
       </Box>
 
-      {/* Inspiration Section */}
       <Box bg="teal.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -435,7 +427,6 @@ export default function TravelsPage() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
       <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -465,7 +456,7 @@ export default function TravelsPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={3} flexWrap="wrap" justify="center">
+            <Flex w={{ base: "full", lg: "auto" }} gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/fun/blog"

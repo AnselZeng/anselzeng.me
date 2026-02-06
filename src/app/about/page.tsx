@@ -127,7 +127,6 @@ export default function About() {
   const [tabUnderlineProps, setTabUnderlineProps] = useState({ width: 0, left: 0 });
   const tabListRef = useRef<HTMLDivElement>(null);
   
-  // Modal states for each interest
 
   useEffect(() => {
     const calculateUnderlinePosition = () => {
@@ -147,7 +146,6 @@ export default function About() {
     return () => window.removeEventListener("resize", calculateUnderlinePosition);
   }, [selectedTab]);
 
-  // Return JSX
   return (
     <Box>
       <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
@@ -160,10 +158,8 @@ export default function About() {
           justifyContent="center"
         >
           <VStack spacing={{ base: 8, lg: 12 }} w="100%">
-            {/* Main Profile Section */}
             <MotionBox variants={itemVariants} w="100%">
               <Grid templateColumns={{ base: '1fr', lg: '1fr 2fr' }} gap={{ base: 6, lg: 10 }} alignItems="center">
-                {/* Single Clean Featured Photo */}
                 <MotionBox variants={itemVariants} maxW={{ base: "260px", lg: "100%" }} mx={{ base: "auto", lg: 0 }} order={{ base: 2, lg: 1 }}>
                   <Box
                     position="relative"
@@ -205,7 +201,6 @@ export default function About() {
                   </Box>
                 </MotionBox>
 
-                {/* About Content */}
                 <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }} align={{ base: "center", lg: "start" }} textAlign={{ base: "center", lg: "left" }} order={{ base: 1, lg: 2 }}>
                   <Badge
                     colorScheme="orange"
@@ -260,7 +255,7 @@ export default function About() {
                     </Text>
                   </VStack>
 
-                  <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={3} flexWrap="wrap" justify="center">
+                  <Flex w={{ base: "full", lg: "auto" }} gap={3} flexWrap="wrap" justify="center">
                     <Button
                       as={Link}
                       href="/Ansel_Zeng_Resume.pdf"
@@ -292,7 +287,6 @@ export default function About() {
         </MotionBox>
       </Container>
 
-      {/* Life Through My Lens Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionBox
@@ -323,14 +317,12 @@ export default function About() {
                 </Text>
               </VStack>
 
-              {/* Dynamic Photo Grid */}
               <Grid
                 templateColumns={{ base: 'repeat(2, 1fr)', md: 'repeat(4, 1fr)' }}
                 templateRows={{ base: 'repeat(3, 200px)', md: 'repeat(3, 200px)' }}
                 gap={4}
                 w="full"
               >
-                {/* Everest - Large Featured */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 2' }}
                   gridRow={{ base: 'span 1', md: 'span 2' }}
@@ -384,7 +376,6 @@ export default function About() {
                   </MotionBox>
                 </GridItem>
 
-                {/* Vancouver - Portrait */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 1' }}
                   gridRow={{ base: 'span 1', md: 'span 1' }}
@@ -438,7 +429,6 @@ export default function About() {
                   </MotionBox>
                 </GridItem>
 
-                {/* Snowboarding - Tall */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 1' }}
                   gridRow={{ base: 'span 1', md: 'span 2' }}
@@ -492,7 +482,6 @@ export default function About() {
                   </MotionBox>
                 </GridItem>
 
-                {/* Bloor Street - Tall */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 1' }}
                   gridRow={{ base: 'span 1', md: 'span 2' }}
@@ -546,7 +535,6 @@ export default function About() {
                   </MotionBox>
                 </GridItem>
 
-                {/* Cozy Moments - Wide */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 2' }}
                   gridRow={{ base: 'span 1', md: 'span 1' }}
@@ -600,7 +588,6 @@ export default function About() {
                   </MotionBox>
                 </GridItem>
 
-                {/* Klein Bottle - Square */}
                 <GridItem
                   gridColumn={{ base: 'span 1', md: 'span 1' }}
                   gridRow={{ base: 'span 1', md: 'span 1' }}
@@ -659,7 +646,6 @@ export default function About() {
         </Container>
       </Box>
 
-      {/* What I Do & Experience Section */}
       <Box bg="orange.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionBox
@@ -670,7 +656,6 @@ export default function About() {
             transition={{ duration: 0.5 }}
           >
             <VStack spacing={10}>
-              {/* What I Do */}
               <VStack spacing={3} textAlign="center">
                 <Badge
                   colorScheme="orange"
@@ -692,7 +677,6 @@ export default function About() {
               </VStack>
               
               <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={8} w="full">
-                {/* Software Development */}
                 <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -736,7 +720,6 @@ export default function About() {
                   </HStack>
                 </MotionBox>
 
-                {/* Product Design */}
                 <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -780,7 +763,6 @@ export default function About() {
                   </HStack>
                 </MotionBox>
 
-                {/* Research & Analysis */}
                 <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -824,7 +806,6 @@ export default function About() {
                   </HStack>
                 </MotionBox>
 
-                {/* System Architecture */}
                 <MotionBox
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -869,7 +850,6 @@ export default function About() {
                 </MotionBox>
               </Grid>
 
-              {/* Experience */}
               <MotionBox
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -943,7 +923,6 @@ export default function About() {
         </Container>
       </Box>
 
-      {/* Beyond Code Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -989,7 +968,6 @@ export default function About() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
       <Box bg="orange.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -1020,7 +998,7 @@ export default function About() {
             </MotionVStack>
 
             <MotionBox variants={itemVariants} w="100%">
-              <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={3} justify="center" flexWrap="wrap">
+              <Flex w={{ base: "full", lg: "auto" }} gap={3} justify="center" flexWrap="wrap">
                 <Button
                   as={Link}
                   href="/Ansel_Zeng_Resume.pdf"
@@ -1048,7 +1026,6 @@ export default function About() {
         </Container>
       </Box>
 
-      {/* Modals for Interests */}
       
 
 

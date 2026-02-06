@@ -58,7 +58,6 @@ export default function InterestsGrid() {
   const { isOpen: isVideographyOpen, onOpen: onVideographyOpen, onClose: onVideographyClose } = useDisclosure();
   const [selectedVideoTab, setSelectedVideoTab] = useState(0);
   
-  // Sports teams state
   const [teamPositions, setTeamPositions] = useState<Record<string, { position: string; name: string; logo: string; league: string; motto: string }>>({
     saints: { position: "top", name: "New Orleans Saints", logo: "/about/sports/saints.png", league: "NFL • American Football", motto: "Who Dat Nation" },
     spurs: { position: "topRight", name: "San Antonio Spurs", logo: "/about/sports/spurs.png", league: "NBA • Basketball", motto: "Go Spurs Go" },
@@ -81,7 +80,6 @@ export default function InterestsGrid() {
       const centerTeamKey = Object.keys(newPositions).find(key => newPositions[key as keyof typeof newPositions].position === "center");
       
       if (centerTeamKey) {
-        // Swap positions
         const clickedPosition = newPositions[clickedTeamKey as keyof typeof newPositions].position;
         newPositions[clickedTeamKey as keyof typeof newPositions].position = "center";
         newPositions[centerTeamKey as keyof typeof newPositions].position = clickedPosition;
@@ -94,7 +92,6 @@ export default function InterestsGrid() {
   return (
     <>
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={6} w="full">
-        {/* 1. Movies & Shows Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
@@ -122,7 +119,6 @@ export default function InterestsGrid() {
           </Flex>
         </MotionBox>
 
-        {/* 2. Music Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
@@ -150,7 +146,6 @@ export default function InterestsGrid() {
           </Flex>
         </MotionBox>
 
-        {/* 3. Sports Teams Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
@@ -178,7 +173,6 @@ export default function InterestsGrid() {
           </Flex>
         </MotionBox>
 
-        {/* 4. Camping & Nature Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
@@ -203,7 +197,6 @@ export default function InterestsGrid() {
           </Flex>
         </MotionBox>
 
-        {/* 5. Hockey Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
@@ -228,7 +221,6 @@ export default function InterestsGrid() {
           </Flex>
         </MotionBox>
 
-        {/* 6. Videography Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
@@ -256,7 +248,6 @@ export default function InterestsGrid() {
           </Flex>
         </MotionBox>
 
-        {/* 7. Chess Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
@@ -281,7 +272,6 @@ export default function InterestsGrid() {
           </Flex>
         </MotionBox>
 
-        {/* 8. Running Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
@@ -306,7 +296,6 @@ export default function InterestsGrid() {
           </Flex>
         </MotionBox>
 
-        {/* 9. Cooking Section */}
         <MotionBox
           variants={itemVariants}
           bg="white"
@@ -332,7 +321,6 @@ export default function InterestsGrid() {
         </MotionBox>
       </SimpleGrid>
 
-      {/* Movies & Shows Modal */}
       <Modal isOpen={isMoviesOpen} onClose={onMoviesClose} size={{ base: "xl", md: "4xl", lg: "6xl" }} isCentered>
         <ModalOverlay bg="blackAlpha.600" backdropFilter="blur(4px)" />
         <ModalContent borderRadius="2xl" overflow="hidden" boxShadow="2xl">
@@ -361,17 +349,14 @@ export default function InterestsGrid() {
           <ModalCloseButton size="lg" color="red.600" />
           <ModalBody p={8} bg="gray.50">
             <HStack spacing={8} align="stretch">
-                {/* Left side container with both poster stacks */}
                 <Box flex={1} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="red.100">
                   <VStack spacing={0} align="center" justify="space-between" h="full">
-                    {/* Movies Section */}
                     <VStack spacing={0} align="center">
                     <HStack spacing={3} align="center">
                       <Box w="6px" h="6px" bg="red.500" borderRadius="full"></Box>
                       <Heading fontSize="lg" color="red.800" fontWeight="600">Movies</Heading>
                       <Box w="6px" h="6px" bg="red.500" borderRadius="full"></Box>
                     </HStack>
-                    {/* Movie Posters Stack */}
                     <Box position="relative" height="180px" width="400px" display="flex" justifyContent="center" alignItems="center">
                       {movies.map((movie, index) => (
                         <Box
@@ -393,7 +378,6 @@ export default function InterestsGrid() {
                           zIndex={index === 3 ? 20 : [15, 16, 17, 18, 19, 18, 15][index]}
                           cursor="pointer"
                           onClick={() => {
-                            // Update selected info (movie)
                             const titleEl = document.getElementById('selected-title');
                             const yearEl = document.getElementById('selected-year');
                             const directorEl = document.getElementById('selected-director');
@@ -410,7 +394,6 @@ export default function InterestsGrid() {
                             if (ratingEl) ratingEl.textContent = movie.rating;
                             if (noteEl) noteEl.textContent = movie.note;
                             
-                            // Reset all movie posters
                             const moviePosters = document.querySelectorAll('[data-movie-poster]');
                             moviePosters.forEach((poster, i) => {
                               if (i === index) {
@@ -432,7 +415,6 @@ export default function InterestsGrid() {
                               }
                             });
                             
-                            // Reset all show posters to default (middle on top, no protruding effect)
                             const showPosters = document.querySelectorAll('[data-show-poster]');
                             showPosters.forEach((poster, i) => {
                               if (i === 3) {
@@ -458,14 +440,12 @@ export default function InterestsGrid() {
                     </Box>
                   </VStack>
 
-                  {/* TV Shows Section */}
                   <VStack spacing={0} align="center">
                     <HStack spacing={3} align="center">
                       <Box w="6px" h="6px" bg="red.500" borderRadius="full"></Box>
                       <Heading fontSize="lg" color="red.800" fontWeight="600">TV Shows</Heading>
                       <Box w="6px" h="6px" bg="red.500" borderRadius="full"></Box>
                     </HStack>
-                    {/* Show Posters Stack */}
                     <Box position="relative" height="180px" width="400px" display="flex" justifyContent="center" alignItems="center">
                       {shows.map((show, index) => (
                         <Box
@@ -487,7 +467,6 @@ export default function InterestsGrid() {
                           zIndex={index === 3 ? 20 : [15, 16, 17, 18, 19, 18, 15][index]}
                           cursor="pointer"
                           onClick={() => {
-                            // Update selected info (show)
                             const titleEl = document.getElementById('selected-title');
                             const yearEl = document.getElementById('selected-year');
                             const directorEl = document.getElementById('selected-director');
@@ -504,7 +483,6 @@ export default function InterestsGrid() {
                             if (ratingEl) ratingEl.textContent = show.rating;
                             if (noteEl) noteEl.textContent = show.note;
                             
-                            // Reset all show posters
                             const showPosters = document.querySelectorAll('[data-show-poster]');
                             showPosters.forEach((poster, i) => {
                               if (i === index) {
@@ -526,7 +504,6 @@ export default function InterestsGrid() {
                               }
                             });
                             
-                            // Reset all movie posters to default (middle on top, no protruding effect)
                             const moviePosters = document.querySelectorAll('[data-movie-poster]');
                             moviePosters.forEach((poster, i) => {
                               if (i === 3) {
@@ -554,7 +531,6 @@ export default function InterestsGrid() {
                   </VStack>
                 </Box>
                 
-                {/* Right side with single info box */}
                 <Box flex={1} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="red.100">
                   <VStack spacing={5} align="center">
                     <Box position="relative">
@@ -622,7 +598,6 @@ export default function InterestsGrid() {
         </ModalContent>
       </Modal>
 
-      {/* Music Modal */}
       <Modal isOpen={isMusicOpen} onClose={onMusicClose} size={{ base: "xl", md: "4xl", lg: "6xl" }} isCentered>
         <ModalOverlay bg="blackAlpha.600" backdropFilter="blur(4px)" />
         <ModalContent borderRadius="2xl" overflow="hidden" boxShadow="2xl">
@@ -651,7 +626,6 @@ export default function InterestsGrid() {
           <ModalCloseButton size="lg" color="teal.600" />
           <ModalBody p={8} bg="gray.50">
             <VStack spacing={8} align="stretch">
-              {/* Currently Listening Section */}
               <Box bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="teal.100">
                 <VStack spacing={6} align="stretch">
                   <HStack spacing={3} align="center" justify="center">
@@ -661,7 +635,6 @@ export default function InterestsGrid() {
                   </HStack>
                   
                   <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
-                    {/* Le Sserafim */}
                     <MotionBox 
                       bg="gradient-to-br from-red.50 to-red.100" 
                       borderRadius="lg" 
@@ -691,7 +664,6 @@ export default function InterestsGrid() {
                       </HStack>
                     </MotionBox>
 
-                    {/* AJ Tracey */}
                     <MotionBox 
                       bg="gradient-to-br from-blue.50 to-blue.100" 
                       borderRadius="lg" 
@@ -721,7 +693,6 @@ export default function InterestsGrid() {
                       </HStack>
                     </MotionBox>
 
-                    {/* ODESZA */}
                     <MotionBox 
                       bg="gradient-to-br from-green.50 to-green.100" 
                       borderRadius="lg" 
@@ -751,7 +722,6 @@ export default function InterestsGrid() {
                       </HStack>
                     </MotionBox>
 
-                    {/* Zhao Lei */}
                     <MotionBox 
                       bg="gradient-to-br from-yellow.50 to-yellow.100" 
                       borderRadius="lg" 
@@ -784,9 +754,7 @@ export default function InterestsGrid() {
                 </VStack>
               </Box>
 
-              {/* Bottom Section - Side by Side */}
               <HStack spacing={6} align="stretch">
-                {/* Spotify Wrapped Stats */}
                 <Box flex={1} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="teal.100">
                   <VStack spacing={4} align="stretch" justify="center" h="full">
                     <HStack spacing={3} align="center" justify="center">
@@ -830,7 +798,6 @@ export default function InterestsGrid() {
                   </VStack>
                 </Box>
 
-                {/* Musical Lifestyle */}
                 <Box flex={1.5} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="teal.100">
                   <VStack spacing={4} align="stretch">
                     
@@ -849,7 +816,6 @@ export default function InterestsGrid() {
         </ModalContent>
       </Modal>
 
-      {/* Sports Teams Modal */}
       <Modal isOpen={isSportsOpen} onClose={onSportsClose} size={{ base: "xl", md: "4xl", lg: "6xl" }} isCentered>
         <ModalOverlay bg="blackAlpha.600" backdropFilter="blur(4px)" />
         <ModalContent borderRadius="2xl" overflow="hidden" boxShadow="2xl">
@@ -878,14 +844,12 @@ export default function InterestsGrid() {
           <ModalCloseButton size="lg" color="orange.600" />
           <ModalBody p={8} bg="gray.50">
             <HStack spacing={8} align="stretch">
-              {/* Left side - Circular logo arrangement */}
               <Box flex={1} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="orange.100">
                 <VStack spacing={6} align="center" justify="center" h="full">
                   <Text fontSize="sm" color="orange.600" fontWeight="500" textAlign="center">
                     Click any team to view details
                   </Text>
                   <Box position="relative" width="300px" height="300px" display="flex" alignItems="center" justifyContent="center">
-                    {/* Dynamic team logos based on positions */}
                     {Object.entries(teamPositions).map(([teamKey, team]) => {
                       const isCenter = team.position === "center";
                       const size = isCenter ? "80px" : "60px";
@@ -962,7 +926,6 @@ export default function InterestsGrid() {
                 </VStack>
               </Box>
 
-              {/* Right side - Selected team info */}
               <Box flex={1} bg="white" borderRadius="xl" p={6} boxShadow="lg" border="1px solid" borderColor="orange.100">
                 <VStack spacing={6} align="center" justify="center" h="full">
                   <Box
@@ -1002,7 +965,6 @@ export default function InterestsGrid() {
         </ModalContent>
       </Modal>
 
-      {/* Videography Modal */}
       <Modal isOpen={isVideographyOpen} onClose={onVideographyClose} size={{ base: "xl", md: "4xl", lg: "6xl" }} isCentered>
         <ModalOverlay bg="blackAlpha.600" backdropFilter="blur(4px)" />
         <ModalContent borderRadius="2xl" overflow="hidden" boxShadow="2xl">
@@ -1031,7 +993,6 @@ export default function InterestsGrid() {
           <ModalCloseButton size={{ base: "md", lg: "lg" }} color="purple.600" />
           <ModalBody p={{ base: 4, lg: 8 }} bg="gray.50">
             <VStack spacing={{ base: 6, lg: 8 }} align="stretch">
-              {/* Featured Videos Section */}
               <Box bg="white" borderRadius="xl" p={{ base: 4, lg: 6 }} boxShadow="lg" border="1px solid" borderColor="purple.100">
                 <VStack spacing={6} align="stretch">
                   <HStack spacing={3} align="center" justify="center">
@@ -1051,7 +1012,6 @@ export default function InterestsGrid() {
                       <TabPanel px={0} py={0}>
                         <Box bg="gradient-to-br from-purple.50 to-purple.100" borderRadius="lg" pt={4} px={0} pb={0}>
                           <Flex direction={{ base: "column", lg: "row" }} align="stretch">
-                            {/* Video */}
                             <Box flex={1}>
                               <Box
                                 position="relative"
@@ -1076,7 +1036,6 @@ export default function InterestsGrid() {
                               </Box>
                             </Box>
                             
-                            {/* Text Content */}
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Vienna Visit</Heading>
@@ -1091,7 +1050,6 @@ export default function InterestsGrid() {
                       <TabPanel px={0} py={0}>
                         <Box bg="gradient-to-br from-blue.50 to-blue.100" borderRadius="lg" pt={4} px={0} pb={0}>
                           <Flex direction={{ base: "column", lg: "row" }} align="stretch">
-                            {/* Video */}
                             <Box flex={1}>
                               <Box
                                 position="relative"
@@ -1116,7 +1074,6 @@ export default function InterestsGrid() {
                               </Box>
                             </Box>
                             
-                            {/* Text Content */}
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Panama Adventure</Heading>
@@ -1131,7 +1088,6 @@ export default function InterestsGrid() {
                       <TabPanel px={0} py={0}>
                         <Box bg="gradient-to-br from-green.50 to-green.100" borderRadius="lg" pt={4} px={0} pb={0}>
                           <Flex direction={{ base: "column", lg: "row" }} align="stretch">
-                            {/* Video */}
                             <Box flex={1}>
                               <Box
                                 position="relative"
@@ -1156,7 +1112,6 @@ export default function InterestsGrid() {
                               </Box>
                             </Box>
                             
-                            {/* Text Content */}
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Costa Rica Journey</Heading>
@@ -1171,7 +1126,6 @@ export default function InterestsGrid() {
                       <TabPanel px={0} py={0}>
                         <Box bg="gradient-to-br from-pink.50 to-pink.100" borderRadius="lg" pt={4} px={0} pb={0}>
                           <Flex direction={{ base: "column", lg: "row" }} align="stretch">
-                            {/* Video */}
                             <Box flex={1}>
                               <Box
                                 position="relative"
@@ -1196,7 +1150,6 @@ export default function InterestsGrid() {
                               </Box>
                             </Box>
                             
-                            {/* Text Content */}
                             <Box flex={1} pt={{ base: 2, lg: 4 }} pl={{ base: 2, lg: 4 }} pb={{ base: 2, lg: 4 }}>
                               <VStack spacing={{ base: 2, lg: 3 }} align="stretch">
                                 <Heading fontSize={{ base: "lg", lg: "xl" }} color="purple.800" fontWeight="600">Poppy</Heading>

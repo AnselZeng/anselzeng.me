@@ -120,7 +120,6 @@ export default function TweebaaPage() {
 
   return (
     <Box>
-      {/* Hero Section */}
       <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
         <MotionBox
           variants={containerVariants}
@@ -184,7 +183,6 @@ export default function TweebaaPage() {
         </MotionBox>
       </Container>
 
-      {/* Overview Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -327,7 +325,6 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* Challenge Section */}
       <Box bg="red.700" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -371,7 +368,6 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* My Experience Section */}
       <Box bg="red.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -423,7 +419,6 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* Learning Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -503,7 +498,6 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* My Work Section */}
       <Box bg="red.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -616,7 +610,6 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* Impact Section */}
       <Box bg="white" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -720,7 +713,6 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* CTA Section */}
       <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
         <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
           <MotionVStack
@@ -759,7 +751,7 @@ export default function TweebaaPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w="auto" direction="row" gap={3} flexWrap="wrap" justify="center">
+            <Flex w="auto" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/about"
@@ -784,7 +776,6 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      {/* Image Modal */}
       <Modal isOpen={isOpen} onClose={onClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
         <ModalOverlay />
         <ModalContent>
