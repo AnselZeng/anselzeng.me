@@ -23,7 +23,7 @@ import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { PlacesTable } from '@/components/fun/PlacesTable';
 import World from '@react-map/world';
-import { MotionBox, MotionVStack, MotionHStack, MotionGrid, MotionAccordionItem } from '@/lib/motion';
+import { MotionBox, MotionVStack, MotionGrid, MotionAccordionItem } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 const travelStats = [
@@ -465,14 +465,14 @@ export default function TravelsPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
+            <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/fun/blog"
                 size="sm"
                 variant="solid"
                 rightIcon={<ChevronRightIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Read My Blog
               </Button>
@@ -482,7 +482,7 @@ export default function TravelsPage() {
                 size="sm"
                 variant="outline"
                 leftIcon={<ChevronLeftIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 View My Designs
               </Button>

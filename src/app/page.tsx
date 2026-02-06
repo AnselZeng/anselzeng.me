@@ -15,7 +15,7 @@ import {
 import Link from 'next/link';
 import ProjectCard from '@/components/home/ProjectCard';
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { MotionBox, MotionVStack, MotionHStack } from '@/lib/motion';
+import { MotionBox, MotionVStack } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 const projects = [
@@ -84,7 +84,7 @@ export default function Home() {
             <Flex
               direction={{ base: 'column', lg: 'row' }}
               align="center"
-              gap={{ base: 6, lg: 14 }}
+              gap={{ base: 6, lg: 12 }}
               w="full"
             >
             {/* Left Content */}
@@ -125,7 +125,6 @@ export default function Home() {
               <Text
                 fontSize="md"
                 color="gray.600"
-                maxW="520px"
                 lineHeight="1.55"
               >
                 CS & business student passionate about software development and creating
@@ -133,7 +132,7 @@ export default function Home() {
                 technology, exploring how it can be leveraged to create positive change.
               </Text>
 
-               <Flex pt={3} w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={2}>
+               <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={2} flexWrap="wrap" justify="center">
                 <Button
                   as={Link}
                   href="/Ansel_Zeng_Resume.pdf"
@@ -142,7 +141,7 @@ export default function Home() {
                   size="sm"
                   variant="solid"
                   rightIcon={<ChevronRightIcon />}
-                  w={{ base: "full", lg: "auto" }}
+                  w="auto"
                 >
                   Download Resume
                 </Button>
@@ -151,7 +150,7 @@ export default function Home() {
                   href="/about"
                   size="sm"
                   variant="outline"
-                  w={{ base: "full", lg: "auto" }}
+                  w="auto"
                 >
                  Learn More
                 </Button>
@@ -289,14 +288,14 @@ export default function Home() {
               </Text>
             </MotionVStack>
 
-             <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={2}>
+             <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={2} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/about"
                 size="sm"
                 variant="solid"
                 rightIcon={<ChevronRightIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Get In Touch
               </Button>
@@ -305,7 +304,7 @@ export default function Home() {
                 href="/fun/blog"
                 size="sm"
                 variant="outline"
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                  Read My Blog
                 </Button>

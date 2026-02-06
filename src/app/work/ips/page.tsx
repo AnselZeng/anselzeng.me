@@ -17,7 +17,7 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { MotionBox, MotionVStack, MotionHStack, MotionGrid, MotionImage } from '@/lib/motion';
+import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 const userInsights = [
@@ -788,14 +788,14 @@ export default function IPSPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
+            <Flex w="auto" direction="row" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/work/rbc"
                 size="sm"
                 variant="solid"
                 rightIcon={<ChevronRightIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Next Project
               </Button>
@@ -805,7 +805,7 @@ export default function IPSPage() {
                 size="sm"
                 variant="outline"
                 leftIcon={<ChevronLeftIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Previous Project
               </Button>

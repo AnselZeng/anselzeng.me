@@ -23,7 +23,7 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { MotionBox, MotionVStack, MotionHStack, MotionGrid, MotionImage } from '@/lib/motion';
+import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 const designProjects = [
@@ -463,14 +463,14 @@ export default function DesignPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
+            <Flex w="auto" direction="row" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as="a"
                 href="/fun/travels"
                 size="sm"
                 variant="solid"
                 rightIcon={<ChevronRightIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 View My Travels
               </Button>
@@ -479,7 +479,7 @@ export default function DesignPage() {
                 href="/about"
                 size="sm"
                 variant="outline"
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Learn More About Me
               </Button>

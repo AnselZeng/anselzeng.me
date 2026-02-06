@@ -30,7 +30,7 @@ import {
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useState, useRef, useEffect } from 'react';
-import { MotionBox, MotionVStack, MotionHStack, MotionGrid, MotionImage } from '@/lib/motion';
+import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 const highlights = [
@@ -149,10 +149,10 @@ export default function TelusPage() {
               <Badge
                 colorScheme="purple"
                 variant="subtle"
-                px={4}
-                py={2}
+                px={2.5}
+                py={0.5}
                 borderRadius="full"
-                fontSize="md"
+                fontSize="xs"
                 fontWeight="600"
               >
                 Software Engineering Internship
@@ -788,14 +788,14 @@ export default function TelusPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
+            <Flex w="auto" direction="row" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/work/ips"
                 size="sm"
                 variant="solid"
                 rightIcon={<ChevronRightIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Next Project
               </Button>
@@ -804,7 +804,7 @@ export default function TelusPage() {
                 href="/about"
                 size="sm"
                 variant="outline"
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Learn More About Me
               </Button>

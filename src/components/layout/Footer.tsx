@@ -14,8 +14,6 @@ import {
 import { FaGithub, FaLinkedin, FaMedium, FaYoutube, FaSpotify } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
-const MotionBox = motion(Box);
-
 const socialLinks = [
   {
     name: 'LinkedIn',

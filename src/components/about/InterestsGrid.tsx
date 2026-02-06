@@ -101,40 +101,25 @@ export default function InterestsGrid() {
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
-          cursor="pointer"
-          _hover={{
-            borderColor: "red.300",
-            boxShadow: "lg",
-            transform: "translateY(-2px)",
-          }}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "pointer" }}
+          _hover={isMobile ? undefined : { borderColor: "red.300", boxShadow: "lg", transform: "translateY(-2px)" }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          onClick={() => {
-            if (isMobile) {
-              alert("Coming Soon!");
-            } else {
-              onMoviesOpen();
-            }
-          }}
+          onClick={() => { if (!isMobile) onMoviesOpen(); }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="red.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🍿</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="red.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🍿</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Movies & Shows</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              From Studio Ghibli films to binge-worthy series. I love getting lost in great storytelling.
-            </Text>
-            <Text fontSize="sm" color="red.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Movies & Shows</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                From Studio Ghibli films to binge-worthy series. I love getting lost in great storytelling.
+              </Text>
+              <Text fontSize="xs" color="red.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
         {/* 2. Music Section */}
@@ -144,40 +129,25 @@ export default function InterestsGrid() {
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
-          cursor="pointer"
-          _hover={{
-            borderColor: "teal.300",
-            boxShadow: "lg",
-            transform: "translateY(-2px)",
-          }}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "pointer" }}
+          _hover={isMobile ? undefined : { borderColor: "teal.300", boxShadow: "lg", transform: "translateY(-2px)" }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          onClick={() => {
-            if (isMobile) {
-              alert("Coming Soon!");
-            } else {
-              onMusicOpen();
-            }
-          }}
+          onClick={() => { if (!isMobile) onMusicOpen(); }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="teal.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🎵</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="teal.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🎵</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Music</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              A huge music enthusiast with 150K+ minutes streamed annually. From vinyl collecting to discovering new artists.
-            </Text>
-            <Text fontSize="sm" color="teal.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Music</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                A huge music enthusiast with 150K+ minutes streamed annually. From vinyl collecting to discovering new artists.
+              </Text>
+              <Text fontSize="xs" color="teal.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
         {/* 3. Sports Teams Section */}
@@ -187,100 +157,75 @@ export default function InterestsGrid() {
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
-          cursor="pointer"
-          _hover={{
-            borderColor: "orange.300",
-            boxShadow: "lg",
-            transform: "translateY(-2px)",
-          }}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "pointer" }}
+          _hover={isMobile ? undefined : { borderColor: "orange.300", boxShadow: "lg", transform: "translateY(-2px)" }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          onClick={() => {
-            if (isMobile) {
-              alert("Coming Soon!");
-            } else {
-              onSportsOpen();
-            }
-          }}
+          onClick={() => { if (!isMobile) onSportsOpen(); }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="orange.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">⚽</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="orange.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>⚽</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Sports Teams</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              Following multiple teams across different sports and leagues. Always cheering for my favourites.
-            </Text>
-            <Text fontSize="sm" color="orange.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Sports Teams</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                Following multiple teams across different sports and leagues. Always cheering for my favourites.
+              </Text>
+              <Text fontSize="xs" color="orange.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
         {/* 4. Camping & Nature Section */}
-        {/* Note: Modal was disabled - green colors used were: green.300 (hover border), green.500 (text), green.600 (modal title), green.50 (modal bg), green.800 (modal text), green.700 (modal bullets) */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "auto" }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="green.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🏕️</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="green.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🏕️</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Camping & Nature</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              From scouting adventures to outdoor exploration. Proud recipient of the Chief Scout&apos;s Award.
-            </Text>
-            <Text fontSize="sm" color="gray.400" fontWeight="500">Coming Soon</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Camping & Nature</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                From scouting adventures to outdoor exploration. Proud recipient of the Chief Scout&apos;s Award.
+              </Text>
+              <Text fontSize="xs" color="gray.400" fontWeight="500">Coming Soon</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
         {/* 5. Hockey Section */}
-        {/* Note: Modal was disabled - colors used were: blue.300 (hover border), blue.500 (text), blue.600 (modal title), blue.50 (modal bg), blue.800 (modal text), blue.700 (modal bullets) */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "auto" }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="blue.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🏒</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="blue.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🏒</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Hockey</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              11 years of competitive hockey taught me discipline, resilience, and the value of teamwork.
-            </Text>
-            <Text fontSize="sm" color="gray.400" fontWeight="500">Coming Soon</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Hockey</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                11 years of competitive hockey taught me discipline, resilience, and the value of teamwork.
+              </Text>
+              <Text fontSize="xs" color="gray.400" fontWeight="500">Coming Soon</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
         {/* 6. Videography Section */}
@@ -290,130 +235,100 @@ export default function InterestsGrid() {
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
-          cursor="pointer"
-          _hover={{
-            borderColor: "purple.300",
-            boxShadow: "lg",
-            transform: "translateY(-2px)",
-          }}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "pointer" }}
+          _hover={isMobile ? undefined : { borderColor: "purple.300", boxShadow: "lg", transform: "translateY(-2px)" }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          onClick={() => {
-            if (isMobile) {
-              alert("Coming Soon!");
-            } else {
-              onVideographyOpen();
-            }
-          }}
+          onClick={() => { if (!isMobile) onVideographyOpen(); }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="purple.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🎬</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="purple.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🎬</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Videography</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              Cinematic vlogs, travel documentaries, and robotics coverage. Passionate about storytelling through film.
-            </Text>
-            <Text fontSize="sm" color="purple.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Videography</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                Cinematic vlogs, travel documentaries, and robotics coverage. Passionate about storytelling through film.
+              </Text>
+              <Text fontSize="xs" color="purple.500" fontWeight="500">{isMobile ? "Coming Soon" : "Click to learn more"}</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
         {/* 7. Chess Section */}
-        {/* Note: Modal was disabled - colors used were: gray.400 (hover border), gray.500 (text), gray.600 (modal title), gray.50 (modal bg), gray.800 (modal text), gray.700 (modal bullets) */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "auto" }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="gray.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">♟️</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="gray.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>♟️</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Chess</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              Strategic thinking and problem-solving through the ancient game of kings.
-            </Text>
-            <Text fontSize="sm" color="gray.400" fontWeight="500">Coming Soon</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Chess</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                Strategic thinking and problem-solving through the ancient game of kings.
+              </Text>
+              <Text fontSize="xs" color="gray.400" fontWeight="500">Coming Soon</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
         {/* 8. Running Section */}
-        {/* Note: Modal was disabled - colors used were: cyan.300 (hover border), cyan.500 (text), cyan.600 (modal title), cyan.50 (modal bg), cyan.800 (modal text), cyan.700 (modal bullets) */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "auto" }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="cyan.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">🏃</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="cyan.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>🏃</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Running</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              Tracking my runs and staying active with Strava. From casual jogs to longer distances.
-            </Text>
-            <Text fontSize="sm" color="gray.400" fontWeight="500">Coming Soon</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Running</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                Tracking my runs and staying active with Strava. From casual jogs to longer distances.
+              </Text>
+              <Text fontSize="xs" color="gray.400" fontWeight="500">Coming Soon</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
 
         {/* 9. Cooking Section */}
-        {/* Note: Modal was disabled - colors used were: yellow.400 (hover border), yellow.600 (text), yellow.600 (modal title), yellow.50 (modal bg), yellow.800 (modal text), yellow.700 (modal bullets) */}
         <MotionBox
           variants={itemVariants}
           bg="white"
           borderRadius="2xl"
           border="1px solid"
           borderColor="gray.200"
-          p={6}
+          p={{ base: 4, lg: 6 }}
+          cursor={{ base: "default", lg: "auto" }}
+          pointerEvents={{ base: "none", lg: "auto" }}
         >
-          <VStack spacing={3} align="center" textAlign="center">
-            <Box
-              w="80px"
-              h="80px"
-              bg="yellow.50"
-              borderRadius="xl"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text fontSize="4xl">👨‍🍳</Text>
+          <Flex direction={{ base: "row", lg: "column" }} align={{ base: "flex-start", lg: "center" }} gap={{ base: 4, lg: 0 }} textAlign={{ base: "left", lg: "center" }}>
+            <Box flexShrink={0} w={{ base: "56px", lg: "80px" }} h={{ base: "56px", lg: "80px" }} bg="yellow.50" borderRadius="xl" display="flex" alignItems="center" justifyContent="center">
+              <Text fontSize={{ base: "2xl", lg: "4xl" }}>👨‍🍳</Text>
             </Box>
-            <Heading fontSize="xl" fontWeight="700" color="gray.800">Cooking</Heading>
-            <Text fontSize="md" color="gray.600" lineHeight="1.6" noOfLines={3}>
-              Experimenting with flavours and techniques to create delicious meals and memories.
-            </Text>
-            <Text fontSize="sm" color="gray.400" fontWeight="500">Coming Soon</Text>
-          </VStack>
+            <VStack spacing={{ base: 1, lg: 3 }} align={{ base: "flex-start", lg: "center" }} textAlign={{ base: "left", lg: "center" }} flex={1} minW={0}>
+              <Heading fontSize={{ base: "md", lg: "xl" }} fontWeight="700" color="gray.800">Cooking</Heading>
+              <Text fontSize="sm" color="gray.600" lineHeight="1.6" noOfLines={{ base: 2, lg: 3 }}>
+                Experimenting with flavours and techniques to create delicious meals and memories.
+              </Text>
+              <Text fontSize="xs" color="gray.400" fontWeight="500">Coming Soon</Text>
+            </VStack>
+          </Flex>
         </MotionBox>
       </SimpleGrid>
 

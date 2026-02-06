@@ -33,7 +33,7 @@ import Link from 'next/link';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { useState, useRef, useEffect } from 'react';
 import InterestsGrid from '@/components/about/InterestsGrid';
-import { MotionBox, MotionVStack, MotionHStack, MotionGrid, MotionImage } from '@/lib/motion';
+import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 const personalPhotos = [
@@ -164,13 +164,12 @@ export default function About() {
             <MotionBox variants={itemVariants} w="100%">
               <Grid templateColumns={{ base: '1fr', lg: '1fr 2fr' }} gap={{ base: 6, lg: 10 }} alignItems="center">
                 {/* Single Clean Featured Photo */}
-                <MotionBox variants={itemVariants}>
+                <MotionBox variants={itemVariants} maxW={{ base: "260px", lg: "100%" }} mx={{ base: "auto", lg: 0 }} order={{ base: 2, lg: 1 }}>
                   <Box
                     position="relative"
                     borderRadius="2xl"
                     overflow="hidden"
                     boxShadow="2xl"
-                    h="100%"
                     _hover={{
                       transform: 'translateY(-8px)',
                       boxShadow: '3xl',
@@ -183,8 +182,10 @@ export default function About() {
                       src={personalPhotos[0].src}
                       alt={personalPhotos[0].alt}
                       width="100%"
-                      height={{ base: "300px", lg: "500px" }}
+                      height={{ base: "260px", lg: "auto" }}
+                      maxW={{ base: "260px", lg: "none" }}
                       objectFit="cover"
+                      display="block"
                       draggable={false}
                       onContextMenu={(e) => e.preventDefault()}
                     />
@@ -205,7 +206,7 @@ export default function About() {
                 </MotionBox>
 
                 {/* About Content */}
-                <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }} align={{ base: "center", lg: "start" }} textAlign={{ base: "center", lg: "left" }}>
+                <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }} align={{ base: "center", lg: "start" }} textAlign={{ base: "center", lg: "left" }} order={{ base: 1, lg: 2 }}>
                   <Badge
                     colorScheme="orange"
                     variant="subtle"
@@ -259,7 +260,7 @@ export default function About() {
                     </Text>
                   </VStack>
 
-                  <Flex w={{ base: "full", lg: "auto" }} pt={4} direction={{ base: "column", lg: "row" }} gap={3}>
+                  <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={3} flexWrap="wrap" justify="center">
                     <Button
                       as={Link}
                       href="/Ansel_Zeng_Resume.pdf"
@@ -268,7 +269,7 @@ export default function About() {
                       size="sm"
                       variant="solid"
                       rightIcon={<ChevronRightIcon />}
-                      w={{ base: "full", lg: "auto" }}
+                      w="auto"
                     >
                       Download Resume
                     </Button>
@@ -277,7 +278,7 @@ export default function About() {
                       href="/fun/blog"
                       size="sm"
                       variant="outline"
-                      w={{ base: "full", lg: "auto" }}
+                      w="auto"
                     >
                       Read My Blog
                     </Button>
@@ -917,9 +918,9 @@ export default function About() {
                             <Image src={item.logoSrc} alt={item.logoAlt} w={{ base: 10, lg: 12 }} h={{ base: 10, lg: 12 }} draggable={false} onContextMenu={(e) => e.preventDefault()} />
                           </Box>
                           <VStack align="flex-start" spacing={1}>
-                            <Text fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="700" color="gray.800" m={0} p={0}>
+                            <Heading as="h3" fontSize={{ base: 'lg', lg: 'xl' }} fontWeight="700" color="gray.800" m={0} p={0}>
                               {item.title}
-                            </Text>
+                            </Heading>
                             <Text fontSize={{ base: 'sm', lg: 'md' }} color={'gray.500'} m={0} p={0}>{item.date}</Text>
                           </VStack>
                         </HStack>
@@ -1019,7 +1020,7 @@ export default function About() {
             </MotionVStack>
 
             <MotionBox variants={itemVariants} w="100%">
-              <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3} justify="center">
+              <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={3} justify="center" flexWrap="wrap">
                 <Button
                   as={Link}
                   href="/Ansel_Zeng_Resume.pdf"
@@ -1028,7 +1029,7 @@ export default function About() {
                   size="sm"
                   variant="solid"
                   rightIcon={<ChevronRightIcon />}
-                  w={{ base: "full", lg: "auto" }}
+                  w="auto"
                 >
                   Download Resume
                 </Button>
@@ -1037,7 +1038,7 @@ export default function About() {
                   href="/fun/blog"
                   size="sm"
                   variant="outline"
-                  w={{ base: "full", lg: "auto" }}
+                  w="auto"
                 >
                   Read My Blog
                 </Button>

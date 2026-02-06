@@ -24,7 +24,7 @@ import {
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
-import { MotionBox, MotionVStack, MotionHStack, MotionImage } from '@/lib/motion';
+import { MotionBox, MotionVStack } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 interface BlogPostProps {
@@ -254,14 +254,14 @@ export default function BlogPost({
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
+            <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/fun/blog"
                 size="sm"
                 variant="solid"
                 leftIcon={<ArrowBackIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Back to Blog
               </Button>
@@ -270,7 +270,7 @@ export default function BlogPost({
                 href="/about"
                 size="sm"
                 variant="outline"
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Learn More About Me
               </Button>

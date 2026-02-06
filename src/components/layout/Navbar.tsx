@@ -188,7 +188,7 @@ export default function Navbar() {
               >
                 <Heading
                   as="span"
-                  fontSize={{ base: 'lg', lg: '2xl' }}
+                  fontSize={{ base: 'xl', lg: '3xl' }}
                   fontWeight="700"
                   color="brand.500"
                   cursor="pointer"

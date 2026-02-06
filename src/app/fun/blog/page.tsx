@@ -11,13 +11,12 @@ import {
   HStack,
   Image,
   Grid,
-  GridItem,
   Badge,
   Avatar,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { MotionBox, MotionVStack, MotionHStack, MotionGrid } from '@/lib/motion';
+import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
 
 const blogPosts = [
@@ -403,13 +402,13 @@ export default function BlogPage() {
               </Text>
             </MotionVStack>
 
-            <Flex w={{ base: "full", lg: "auto" }} direction={{ base: "column", lg: "row" }} gap={3}>
+            <Flex w={{ base: "full", lg: "auto" }} direction="row" gap={3} flexWrap="wrap" justify="center">
               <Button
                 as={Link}
                 href="/about"
                 size="sm"
                 variant="solid"
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 Learn More About Me
               </Button>
@@ -419,7 +418,7 @@ export default function BlogPage() {
                 size="sm"
                 variant="outline"
                 leftIcon={<ChevronLeftIcon />}
-                w={{ base: "full", lg: "auto" }}
+                w="auto"
               >
                 View My Travels
               </Button>
