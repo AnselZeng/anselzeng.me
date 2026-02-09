@@ -150,7 +150,7 @@ export default function TweebaaPage() {
                 </Text>
               </Heading>
               <Text
-                fontSize={{ base: 'md', lg: 'xl' }}
+                fontSize="md"
                 color="gray.600"
                 maxW="640px"
                 lineHeight="1.6"
