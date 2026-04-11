@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "ansel zeng | chapter",
+  title: "az | chapter",
 };
 
 export default function ChapterLayout({ children }: { children: ReactNode }) {

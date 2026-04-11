@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "ansel zeng | blackpink",
+  title: "az | blackpink",
 };
 
 export default function BlackpinkLayout({ children }: { children: ReactNode }) {

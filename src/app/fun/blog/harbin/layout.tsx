@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "ansel zeng | harbin",
+  title: "az | harbin",
 };
 
 export default function HarbinLayout({ children }: { children: ReactNode }) {

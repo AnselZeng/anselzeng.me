@@ -14,15 +14,15 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "ansel zeng | home",
-    template: "ansel zeng | %s",
+    default: "az | home",
+    template: "az | %s",
   },
-  description: "CS & business student passionate about software development and creating meaningful user experiences",
+  description: "Master of Computer Science student passionate about software development and creating meaningful user experiences",
   keywords: ["portfolio", "software engineer", "product management", "UX design", "Ansel Zeng"],
   authors: [{ name: "Ansel Zeng" }],
   openGraph: {
-    title: "ansel zeng",
-    description: "CS & business student passionate about software development and creating meaningful user experiences",
+    title: "az",
+    description: "Master of Computer Science student passionate about software development and creating meaningful user experiences",
     type: "website",
   },
 };
