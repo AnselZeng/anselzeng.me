@@ -74,7 +74,12 @@ const theme = extendTheme({
       baseStyle: {
         fontWeight: '500',
         borderRadius: 'lg',
-        transition: 'all 0.2s',
+        transform: 'scale(1)',
+        transformOrigin: 'center',
+        transitionProperty:
+          'transform, box-shadow, background-color, color, border-color, border',
+        transitionDuration: '0.4s',
+        transitionTimingFunction: 'cubic-bezier(0.33, 1, 0.68, 1)',
       },
       variants: {
         solid: {
@@ -83,12 +88,12 @@ const theme = extendTheme({
           _hover: {
             bg: 'brand.600',
             color: 'white',
-            transform: 'translateY(-1px)',
+            transform: 'scale(1.008)',
             boxShadow: 'lg',
           },
           _active: {
             bg: 'brand.700',
-            transform: 'translateY(0)',
+            transform: 'scale(1.004)',
           },
         },
         outline: {
@@ -97,8 +102,11 @@ const theme = extendTheme({
           _hover: {
             bg: 'brand.500',
             color: 'white',
-            transform: 'translateY(-1px)',
+            transform: 'scale(1.008)',
             boxShadow: 'lg',
+          },
+          _active: {
+            transform: 'scale(1.004)',
           },
         },
         ghost: {
@@ -106,6 +114,10 @@ const theme = extendTheme({
           _hover: {
             bg: 'brand.50',
             color: 'brand.500',
+            transform: 'scale(1.008)',
+          },
+          _active: {
+            transform: 'scale(1.004)',
           },
         },
       },

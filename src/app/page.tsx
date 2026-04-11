@@ -174,7 +174,7 @@ export default function Home() {
                     as="h1"
                     fontFamily="heading"
                     fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
-                    fontWeight="600"
+                    fontWeight="700"
                     lineHeight="1.1"
                     color="gray.800"
                   >

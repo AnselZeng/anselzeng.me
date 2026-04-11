@@ -14,12 +14,6 @@ import {
   GridItem,
   Badge,
   useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalCloseButton,
-  ModalBody,
-  IconButton,
   AspectRatio,
   Tabs,
   TabList,
@@ -32,6 +26,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useState, useRef, useEffect } from 'react';
 import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
+import { ImageLightboxModal } from '@/components/ui/ImageLightboxModal';
 
 const highlights = [
   '/rbc/1.jpeg',
@@ -956,63 +951,19 @@ export default function RBCPage() {
         </Container>
       </Box>
 
-      <Modal isOpen={isOpen} onClose={onClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton />
-          <ModalBody p={0}>
-            <Box position="relative">
-              <Image
-                src={selectedImage || ''}
-                alt="Highlight"
-                width="100%"
-                height="auto"
-                objectFit="cover"
-              />
-              <HStack
-                position="absolute"
-                top="50%"
-                left={4}
-                right={4}
-                justify="space-between"
-                transform="translateY(-50%)"
-              >
-                <IconButton
-                  aria-label="Previous image"
-                  icon={<ChevronLeftIcon />}
-                  onClick={prevImage}
-                  bg="white"
-                  color="gray.800"
-                  _hover={{ bg: 'gray.100' }}
-                />
-                <IconButton
-                  aria-label="Next image"
-                  icon={<ChevronRightIcon />}
-                  onClick={nextImage}
-                  bg="white"
-                  color="gray.800"
-                  _hover={{ bg: 'gray.100' }}
-                />
-              </HStack>
-            </Box>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
-      <Modal isOpen={isTabImageOpen} onClose={onTabImageClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton />
-          <ModalBody p={0}>
-            <Image
-              src={selectedTabImage || ''}
-              alt="Tab Image"
-              width="100%"
-              height="auto"
-              objectFit="cover"
-            />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <ImageLightboxModal
+        isOpen={isOpen}
+        onClose={onClose}
+        imageSrc={selectedImage || ''}
+        alt="Highlight"
+        navigation={{ onPrev: prevImage, onNext: nextImage }}
+      />
+      <ImageLightboxModal
+        isOpen={isTabImageOpen}
+        onClose={onTabImageClose}
+        imageSrc={selectedTabImage || ''}
+        alt="Tab Image"
+      />
     </Box>
   );
 }

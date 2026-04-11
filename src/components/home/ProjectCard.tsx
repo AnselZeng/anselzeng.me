@@ -161,8 +161,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 color={project.color}
                 rightIcon={<ChevronRightIcon />}
                 w="full"
-                _hover={{ bg: project.color, color: 'white', transform: 'translateY(-2px)', boxShadow: 'lg' }}
-                transition="all 0.2s ease"
+                _hover={{
+                  bg: project.color,
+                  color: 'white',
+                  transform: 'scale(1.008)',
+                  boxShadow: 'lg',
+                }}
+                _active={{ transform: 'scale(1.004)' }}
               >
                 View Project
               </Button>
@@ -343,8 +348,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                   borderColor={project.color}
                   color={project.color}
                   rightIcon={<ChevronRightIcon />}
-                  _hover={{ bg: project.color, color: 'white', transform: 'translateY(-2px)', boxShadow: 'lg' }}
-                  transition="all 0.2s ease"
+                  _hover={{
+                    bg: project.color,
+                    color: 'white',
+                    transform: 'scale(1.008)',
+                    boxShadow: 'lg',
+                  }}
+                  _active={{ transform: 'scale(1.004)' }}
                 >
                   View Project
                 </Button>

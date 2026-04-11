@@ -13,19 +13,14 @@ import {
   Badge,
   Avatar,
   useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalCloseButton,
-  ModalBody,
-  IconButton,
   Grid,
 } from '@chakra-ui/react';
 import Link from 'next/link';
-import { ChevronLeftIcon, ChevronRightIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import { ArrowBackIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import { MotionBox, MotionVStack } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
+import { ImageLightboxModal } from '@/components/ui/ImageLightboxModal';
 
 interface BlogPostProps {
   title: string;
@@ -82,6 +77,14 @@ export default function BlogPost({
       setSelectedImage(currentGroup.images[prevIndex].src);
     }
   };
+
+  const currentGroup = sections[currentGroupIndex];
+  const lightboxNavigation =
+    currentGroup?.type === 'imageGroup' &&
+    currentGroup.images &&
+    currentGroup.images.length > 1
+      ? { onPrev: prevImage, onNext: nextImage }
+      : undefined;
 
   return (
     <Box>
@@ -276,48 +279,13 @@ export default function BlogPost({
         </Container>
       </Box>
 
-      <Modal isOpen={isOpen} onClose={onClose} size={{ base: "md", md: "2xl", lg: "3xl" }} isCentered>
-        <ModalOverlay />
-        <ModalContent mx={{ base: 4, lg: 0 }}>
-          <ModalCloseButton size="sm" />
-          <ModalBody p={{ base: 2, lg: 0 }}>
-            <Box position="relative">
-              <Image
-                src={selectedImage || ''}
-                alt="Blog Image"
-                width="100%"
-                height="auto"
-                objectFit="cover"
-              />
-              <HStack
-                position="absolute"
-                top="50%"
-                left={4}
-                right={4}
-                justify="space-between"
-                transform="translateY(-50%)"
-              >
-                <IconButton
-                  aria-label="Previous image"
-                  icon={<ChevronLeftIcon />}
-                  onClick={prevImage}
-                  bg="white"
-                  color="gray.800"
-                  _hover={{ bg: 'gray.100' }}
-                />
-                <IconButton
-                  aria-label="Next image"
-                  icon={<ChevronRightIcon />}
-                  onClick={nextImage}
-                  bg="white"
-                  color="gray.800"
-                  _hover={{ bg: 'gray.100' }}
-                />
-              </HStack>
-            </Box>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <ImageLightboxModal
+        isOpen={isOpen}
+        onClose={onClose}
+        imageSrc={selectedImage || ''}
+        alt="Blog Image"
+        navigation={lightboxNavigation}
+      />
     </Box>
   );
 }

@@ -108,10 +108,10 @@ export default function Navbar() {
             size="md"
             onClick={() => setIsMenuOpen(false)}
             color="gray.600"
-            _hover={{ 
+            _hover={{
               color: 'brand.500',
               bg: 'brand.50',
-              transform: 'scale(1.05)',
+              transform: 'scale(1.008)',
             }}
             position="absolute"
             top="16px"
@@ -120,7 +120,6 @@ export default function Navbar() {
             minW="44px"
             h="44px"
             borderRadius="lg"
-            transition="all 0.2s"
           />
           
           <VStack spacing={6} align="center" px={4}>
@@ -140,9 +139,7 @@ export default function Navbar() {
                     color={isActive(item.href) ? 'brand.500' : 'gray.600'}
                     _hover={{
                       color: 'brand.500',
-                      transform: 'scale(1.05)',
                     }}
-                    transition="all 0.2s"
                     minH="44px"
                     px={5}
                   >
@@ -315,15 +312,14 @@ export default function Navbar() {
                 size="md"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 color="gray.600"
-                _hover={{ 
+                _hover={{
                   color: 'brand.500',
                   bg: 'brand.50',
-                  transform: 'scale(1.05)',
+                  transform: 'scale(1.008)',
                 }}
                 minW="44px"
                 h="44px"
                 borderRadius="lg"
-                transition="all 0.2s"
               />
             )}
           </Flex>

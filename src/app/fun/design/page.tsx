@@ -14,17 +14,12 @@ import {
   GridItem,
   Badge,
   useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalCloseButton,
-  ModalBody,
-  IconButton,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
+import { ImageLightboxModal } from '@/components/ui/ImageLightboxModal';
 
 const designProjects = [
   {
@@ -483,25 +478,12 @@ export default function DesignPage() {
         </Container>
       </Box>
 
-      <Modal isOpen={isOpen} onClose={onClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton zIndex={10} />
-          <ModalBody p={0}>
-            <Box position="relative">
-              <Image
-                src={selectedImage || ''}
-                alt="Design Project"
-                width="100%"
-                height="auto"
-                objectFit="cover"
-                loading="eager"
-                decoding="async"
-              />
-            </Box>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <ImageLightboxModal
+        isOpen={isOpen}
+        onClose={onClose}
+        imageSrc={selectedImage || ''}
+        alt="Design Project"
+      />
     </Box>
   );
 }

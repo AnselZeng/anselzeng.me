@@ -14,18 +14,13 @@ import {
   Grid,
   AspectRatio,
   useDisclosure,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalCloseButton,
-  ModalBody,
-  IconButton,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
 import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
+import { ImageLightboxModal } from '@/components/ui/ImageLightboxModal';
 
 const workSections = [
   {
@@ -96,26 +91,10 @@ const designLearnings = [
 export default function TweebaaPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const workImages = workSections.map(section => section.image);
-
-  const handleImageClick = (imageSrc: string, index: number) => {
+  const handleImageClick = (imageSrc: string) => {
     setSelectedImage(imageSrc);
-    setCurrentImageIndex(index);
     onOpen();
-  };
-
-  const nextImage = () => {
-    const nextIndex = (currentImageIndex + 1) % workImages.length;
-    setCurrentImageIndex(nextIndex);
-    setSelectedImage(workImages[nextIndex]);
-  };
-
-  const prevImage = () => {
-    const prevIndex = (currentImageIndex - 1 + workImages.length) % workImages.length;
-    setCurrentImageIndex(prevIndex);
-    setSelectedImage(workImages[prevIndex]);
   };
 
   return (
@@ -552,7 +531,7 @@ export default function TweebaaPage() {
               gap={8}
               w="full"
             >
-              {workSections.map((section, index) => (
+              {workSections.map((section) => (
                 <MotionBox
                   key={section.title}
                   variants={itemVariants}
@@ -589,7 +568,7 @@ export default function TweebaaPage() {
                           opacity: 0.9,
                         }}
                         transition="opacity 0.2s ease"
-                        onClick={() => handleImageClick(section.image, index)}
+                        onClick={() => handleImageClick(section.image)}
                       >
                         <AspectRatio ratio={16 / 9} w="100%">
                           <Image
@@ -776,49 +755,12 @@ export default function TweebaaPage() {
         </Container>
       </Box>
 
-      <Modal isOpen={isOpen} onClose={onClose} size={{ base: "xl", md: "2xl", lg: "3xl" }} isCentered>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalCloseButton />
-          <ModalBody p={4}>
-            <Box position="relative">
-              <Image
-                src={selectedImage || ''}
-                alt="Work Section"
-                width="100%"
-                height="auto"
-                objectFit="cover"
-                borderRadius="md"
-              />
-              <HStack
-                position="absolute"
-                top="50%"
-                left={4}
-                right={4}
-                justify="space-between"
-                transform="translateY(-50%)"
-              >
-                <IconButton
-                  aria-label="Previous image"
-                  icon={<ChevronLeftIcon />}
-                  onClick={prevImage}
-                  bg="white"
-                  color="gray.800"
-                  _hover={{ bg: 'gray.100' }}
-                />
-                <IconButton
-                  aria-label="Next image"
-                  icon={<ChevronRightIcon />}
-                  onClick={nextImage}
-                  bg="white"
-                  color="gray.800"
-                  _hover={{ bg: 'gray.100' }}
-                />
-              </HStack>
-            </Box>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+      <ImageLightboxModal
+        isOpen={isOpen}
+        onClose={onClose}
+        imageSrc={selectedImage || ''}
+        alt="Work Section"
+      />
     </Box>
   );
 }
