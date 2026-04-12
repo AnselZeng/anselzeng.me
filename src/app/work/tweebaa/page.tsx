@@ -742,7 +742,7 @@ export default function TweebaaPage() {
               </Button>
               <Button
                 as={Link}
-                href="/work/ips"
+                href="/work/rbc"
                 size="sm"
                 variant="outline"
                 leftIcon={<ChevronLeftIcon />}

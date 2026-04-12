@@ -148,7 +148,7 @@ export default function About() {
 
   return (
     <Box>
-      <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
+      <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 12, lg: 24 }}>
         <MotionBox
           variants={containerVariants}
           initial="hidden"
@@ -156,23 +156,33 @@ export default function About() {
           display="flex"
           alignItems="center"
           justifyContent="center"
+          w="full"
+          px={{ base: 4, lg: 12 }}
         >
           <VStack spacing={{ base: 8, lg: 12 }} w="100%">
             <MotionBox variants={itemVariants} w="100%">
               <Grid templateColumns={{ base: '1fr', lg: '1fr 2fr' }} gap={{ base: 6, lg: 10 }} alignItems="center">
                 <MotionBox variants={itemVariants} maxW={{ base: "260px", lg: "100%" }} mx={{ base: "auto", lg: 0 }} order={{ base: 2, lg: 1 }}>
                   <Box
+                    role="group"
                     position="relative"
                     borderRadius="2xl"
                     overflow="hidden"
-                    boxShadow="2xl"
-                    _hover={{
-                      transform: 'translateY(-8px)',
-                      boxShadow: '3xl',
-                    }}
-                    transition="all 0.3s ease"
+                    borderWidth="1px"
+                    borderColor="gray.200"
+                    boxShadow="md"
+                    transform="scale(1)"
+                    transformOrigin="center"
+                    transitionProperty="transform, border-color, box-shadow"
+                    transitionDuration="0.4s"
+                    transitionTimingFunction="cubic-bezier(0.33, 1, 0.68, 1)"
                     onContextMenu={(e) => e.preventDefault()}
                     userSelect="none"
+                    _hover={{
+                      transform: 'scale(1.008)',
+                      borderColor: 'brand.300',
+                      boxShadow: 'lg',
+                    }}
                   >
                     <Image
                       src={personalPhotos[0].src}
@@ -187,9 +197,19 @@ export default function About() {
                     />
                     <Box
                       position="absolute"
+                      inset={0}
+                      bg="linear-gradient(135deg, rgba(255, 123, 0, 0.07) 0%, transparent 50%)"
+                      opacity={0}
+                      pointerEvents="none"
+                      transition="opacity 0.4s cubic-bezier(0.33, 1, 0.68, 1)"
+                      _groupHover={{ opacity: 1 }}
+                    />
+                    <Box
+                      position="absolute"
                       bottom="0"
                       left="0"
                       right="0"
+                      zIndex={1}
                       bg="linear-gradient(transparent, rgba(0,0,0,0.7))"
                       p={6}
                       color="white"
@@ -202,23 +222,8 @@ export default function About() {
                 </MotionBox>
 
                 <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }} align={{ base: "center", lg: "start" }} textAlign={{ base: "center", lg: "left" }} order={{ base: 1, lg: 2 }}>
-                  <Badge
-                    colorScheme="orange"
-                    variant="subtle"
-                    px={2.5}
-                    py={0.5}
-                    borderRadius="full"
-                    fontSize="xs"
-                    fontWeight="600"
-                  >
-                    Personal Story
-                  </Badge>
-                  
                   <Heading fontSize={{ base: '2xl', lg: '5xl' }} fontWeight="700" color="gray.800" lineHeight="1.15">
-                    About{' '}
-                    <Text as="span" color="brand.500">
-                      Me
-                    </Text>
+                    About Me
                   </Heading>
 
                   <VStack spacing={4} align={{ base: "center", lg: "start" }}>
@@ -295,6 +300,8 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
+            w="full"
+            px={{ base: 4, lg: 12 }}
           >
             <VStack spacing={10} textAlign="center">
               <VStack spacing={3}>
@@ -654,6 +661,8 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
+            w="full"
+            px={{ base: 4, lg: 12 }}
           >
             <VStack spacing={10}>
               <VStack spacing={3} textAlign="center">
@@ -931,6 +940,8 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             spacing={10}
+            w="full"
+            px={{ base: 4, lg: 12 }}
           >
             <MotionVStack variants={itemVariants} spacing={3} textAlign="center">
               <Badge
@@ -977,6 +988,8 @@ export default function About() {
             viewport={{ once: true, margin: '-100px' }}
             spacing={8}
             textAlign="center"
+            w="full"
+            px={{ base: 4, lg: 12 }}
           >
             <MotionVStack variants={itemVariants} spacing={3}>
               <Heading

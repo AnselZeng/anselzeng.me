@@ -11,7 +11,6 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  useBreakpointValue,
   VStack,
   IconButton,
   useColorModeValue,
@@ -62,9 +61,14 @@ const allNavItems: NavItem[] = [
   { href: '/about', label: 'About' },
 ];
 
+function sectionPathPrefix(section: NavSection): string {
+  const href = section.items[0]?.href ?? '';
+  const firstSegment = href.split('/').filter(Boolean)[0];
+  return firstSegment ? `/${firstSegment}` : '';
+}
+
 export default function Navbar() {
   const pathname = usePathname();
-  const isMobile = useBreakpointValue({ base: true, lg: false });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -76,10 +80,28 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 62em)');
+    const closeOnDesktop = () => {
+      if (mq.matches) setIsMenuOpen(false);
+    };
+    mq.addEventListener('change', closeOnDesktop);
+    return () => mq.removeEventListener('change', closeOnDesktop);
+  }, []);
+
   const bgColor = useColorModeValue('rgba(255, 248, 235, 0.95)', 'rgba(17, 24, 39, 0.95)');
   const borderColor = useColorModeValue('rgba(255, 123, 0, 0.1)', 'rgba(255, 123, 0, 0.2)');
 
-  const isActive = (href: string) => pathname === href;
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+
+  const isSectionActive = (section: NavSection) => {
+    const prefix = sectionPathPrefix(section);
+    if (!prefix) return false;
+    return pathname === prefix || pathname.startsWith(`${prefix}/`);
+  };
 
   const MobileMenu = () => (
     <AnimatePresence>
@@ -192,8 +214,7 @@ export default function Navbar() {
               </motion.div>
             </Link>
 
-            {!isMobile ? (
-              <HStack spacing={2}>
+            <HStack spacing={2} display={{ base: 'none', lg: 'flex' }}>
                 <Link href="/">
                   <Box
                     as="span"
@@ -235,7 +256,7 @@ export default function Navbar() {
                       rightIcon={<ChevronDownIcon />}
                       fontSize="md"
                       fontWeight="500"
-                      color="gray.600"
+                      color={isSectionActive(section) ? 'brand.500' : 'gray.600'}
                       _hover={{ color: 'brand.500' }}
                       _active={{ bg: 'transparent' }}
                     >
@@ -303,30 +324,30 @@ export default function Navbar() {
                     About
                   </Box>
                 </Link>
-              </HStack>
-            ) : (
-              <IconButton
-                aria-label="Toggle menu"
-                icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
-                variant="ghost"
-                size="md"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                color="gray.600"
-                _hover={{
-                  color: 'brand.500',
-                  bg: 'brand.50',
-                  transform: 'scale(1.008)',
-                }}
-                minW="44px"
-                h="44px"
-                borderRadius="lg"
-              />
-            )}
+            </HStack>
+
+            <IconButton
+              aria-label="Toggle menu"
+              icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
+              variant="ghost"
+              size="md"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              color="gray.600"
+              display={{ base: 'flex', lg: 'none' }}
+              _hover={{
+                color: 'brand.500',
+                bg: 'brand.50',
+                transform: 'scale(1.008)',
+              }}
+              minW="44px"
+              h="44px"
+              borderRadius="lg"
+            />
           </Flex>
         </Container>
       </MotionBox>
 
-      {isMobile && <MobileMenu />}
+      <MobileMenu />
     </>
   );
 }

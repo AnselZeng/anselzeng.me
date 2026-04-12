@@ -103,7 +103,7 @@ export const PlacesTable = () => {
     { flag: "🇦🇮", name: "Anguilla", continent: "North America", date: "December 2024", status: "Visited", color: "blue" },
     { flag: "🇦🇹", name: "Austria", continent: "Central Europe", date: "September 2025", status: "Visited", color: "blue" },
     { flag: "🇨🇿", name: "Czech Republic", continent: "Central Europe", date: "September 2025", status: "Visited", color: "blue" },
-    { flag: "🇰🇷", name: "South Korea", continent: "East Asia", date: "Spring 2026", status: "Next Up", color: "purple" },
+    { flag: "🇰🇷", name: "South Korea", continent: "East Asia", date: "Summer 2026", status: "Next Up", color: "purple" },
   ];
 
   const getStatusColor = (status: string) => {
@@ -136,7 +136,7 @@ export const PlacesTable = () => {
         <Text fontSize="sm" fontWeight="600" color="gray.700" mb={3} textAlign="center">
           Canadian Provinces & Territories
         </Text>
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={2} w="100%">
+        <SimpleGrid columns={{ base: 1, md: 4 }} spacing={2} w="100%">
           {provinces.map((province, index) => (
             <HStack key={province.name} spacing={2} py={0.5}>
               <Text fontSize="xs" color="gray.400" fontWeight="600" minW="16px" textAlign="center">
@@ -173,7 +173,7 @@ export const PlacesTable = () => {
         <Text fontSize="sm" fontWeight="600" color="gray.700" mb={3} textAlign="center">
           US States Visited
         </Text>
-        <SimpleGrid columns={{ base: 1, md: 3 }} spacing={2} w="100%">
+        <SimpleGrid columns={{ base: 1, md: 4 }} spacing={2} w="100%">
           {states.map((state, index) => (
             <HStack key={state.name} spacing={2} py={0.5}>
               <Text fontSize="xs" color="gray.400" fontWeight="600" minW="16px" textAlign="center">
