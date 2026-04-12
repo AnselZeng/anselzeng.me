@@ -13,46 +13,59 @@ import {
   Grid,
   GridItem,
   Badge,
+  Link,
   useDisclosure,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { ChevronLeftIcon, ChevronRightIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
 import { containerVariants, itemVariants } from '@/lib/motion-variants';
 import { ImageLightboxModal } from '@/components/ui/ImageLightboxModal';
 
-const designProjects = [
+type DesignProject = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  link?: { href: string; label: string };
+};
+
+const designProjects: DesignProject[] = [
   {
     id: 'timbuddies',
     title: 'Tim Buddies',
-    description: 'Mobile app design for connecting coffee enthusiasts with local cafes and coffee shops.',
+    description:
+      'Mobile app concept for Tim Hortons: a rewards system we pitched as part of the Deloitte Innovation Forum, an annual Ivey HBA case event sponsored by Deloitte. Our team took second place.',
     image: '/design/timbuddies.png',
-    category: 'Mobile App',
-    tags: ['UI/UX', 'Mobile Design', 'Figma'],
+    link: {
+      href: 'https://www.ivey.uwo.ca/news/news-ivey/2023/january/deloitte-innovation-forum-serves-up-real-world-experience-for-hba1s/',
+      label: 'Ivey article',
+    },
   },
   {
     id: 'pepsico',
     title: 'PepsiCo Campaign',
-    description: 'Brand campaign design and digital marketing materials for PepsiCo product launch.',
+    description:
+      'Course project: a web experience where people can plan ahead and choose healthier snacks and drink options from PepsiCo’s lineup, making better-for-you choices easier to discover and stick with.',
     image: '/design/pepsico.png',
-    category: 'Brand Design',
-    tags: ['Branding', 'Marketing', 'Adobe Creative Suite'],
   },
   {
     id: 'lilprotectors',
     title: 'Little Protectors',
-    description: 'Educational platform design focused on child safety and awareness programs.',
+    description:
+      'Tower defense game for CS 4474 (Human-Computer Interaction), built with Python and Pygame, exploring HCI through a full playable prototype.',
     image: '/design/lilprotectors.png',
-    category: 'Web Platform',
-    tags: ['Web Design', 'Education', 'User Research'],
+    link: {
+      href: 'https://github.com/AnselZeng/little-protectors',
+      label: 'GitHub repo',
+    },
   },
   {
     id: 'agrilink',
     title: 'AgriLink',
-    description: 'Agricultural technology platform connecting farmers with suppliers and resources.',
+    description:
+      'Mobile app design for farmers to grow a community: share resources, swap knowledge, and stay connected. Think of it as a social layer built around agriculture and local collaboration.',
     image: '/design/agrilink.png',
-    category: 'Web Platform',
-    tags: ['Web Design', 'Agriculture', 'Data Visualization'],
   },
 ];
 
@@ -381,40 +394,52 @@ export default function DesignPage() {
                       </Text>
                     </Box>
                   </Box>
-                  <VStack spacing={4} p={6} align="flex-start">
-                    <HStack justify="space-between" w="full">
-                      <Heading fontSize="md" fontWeight="600" color="gray.800">
+                  <VStack spacing={3} p={6} align="flex-start">
+                    <HStack
+                      justify="space-between"
+                      w="full"
+                      align="flex-start"
+                      gap={3}
+                      flexWrap="wrap"
+                    >
+                      <Heading
+                        as="h3"
+                        fontSize={{ base: 'xl', md: '2xl' }}
+                        fontWeight="700"
+                        color="gray.800"
+                        lineHeight="1.2"
+                        flex="1"
+                        minW={{ base: '100%', md: '0' }}
+                      >
                         {project.title}
                       </Heading>
-                      <Badge
-                        colorScheme="pink"
-                        variant="subtle"
-                        px={3}
-                        py={1}
-                        borderRadius="full"
-                        fontSize="md"
-                      >
-                        {project.category}
-                      </Badge>
+                      {project.link ? (
+                        <Link
+                          href={project.link.href}
+                          isExternal
+                          rel="noopener noreferrer"
+                          display="inline-flex"
+                          alignItems="center"
+                          gap={1.5}
+                          fontSize="sm"
+                          fontWeight="600"
+                          color="brand.500"
+                          flexShrink={0}
+                          alignSelf={{ base: 'flex-start', md: 'center' }}
+                          aria-label={`${project.link.label} (opens in new tab)`}
+                          _hover={{
+                            color: 'brand.600',
+                            textDecoration: 'underline',
+                          }}
+                        >
+                          {project.link.label}
+                          <ExternalLinkIcon boxSize={3.5} aria-hidden />
+                        </Link>
+                      ) : null}
                     </HStack>
-                    <Text color="gray.600" lineHeight="1.6">
+                    <Text color="gray.600" lineHeight="1.6" fontSize="md">
                       {project.description}
                     </Text>
-                    <HStack spacing={2} wrap="wrap">
-                      {project.tags.map((tag, tagIndex) => (
-                        <Badge
-                          key={tagIndex}
-                          colorScheme="gray"
-                          variant="subtle"
-                          px={2}
-                          py={1}
-                          borderRadius="full"
-                          fontSize="xs"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </HStack>
                   </VStack>
                 </MotionBox>
               ))}
