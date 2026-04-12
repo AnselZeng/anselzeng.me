@@ -18,7 +18,7 @@ import { itemVariants } from '@/lib/motion-variants';
 
 const inView = { once: true, margin: '-100px' } as const;
 
-const favoriteFilms = [
+const favouriteFilms = [
   {
     src: '/about/movies-shows/movies/lit.jpg',
     title: 'Lost in Translation',
@@ -42,7 +42,7 @@ const favoriteFilms = [
   },
 ];
 
-const favoriteShows = [
+const favouriteShows = [
   {
     src: '/about/movies-shows/shows/nge.jpg',
     title: 'Neon Genesis Evangelion',
@@ -79,7 +79,7 @@ const NOW_PLAYING = {
   title: 'Halo',
   artist: 'Tiffany Day',
   coverSrc: '/about/music/halo.png',
-  albumName: "EVERYTHING I'VE EVER WANTED",
+  albumName: "EVERYTHING I'VE EVER WANTED & DOIT4ME",
   albumTrackSrc: '/about/music/eiew.mp3',
 };
 
@@ -98,7 +98,7 @@ const sportsTeams = [
 const maxListeningMinutes = Math.max(...listeningMinutesByYear.map((y) => y.minutes));
 
 function formatMinutes(n: number) {
-  return `${n.toLocaleString('en-US')} min`;
+  return `${n.toLocaleString('en-GB')} min`;
 }
 
 function SectionLabel({ children }: { children: ReactNode }) {
@@ -268,7 +268,7 @@ export default function InterestsGrid() {
           Three I return to
         </Heading>
         <SimpleGrid columns={{ base: 1, sm: 3 }} spacing={6}>
-          {favoriteFilms.map((m) => (
+          {favouriteFilms.map((m) => (
             <PickCard
               key={m.title}
               src={m.src}
@@ -293,7 +293,7 @@ export default function InterestsGrid() {
           Three that stuck
         </Heading>
         <SimpleGrid columns={{ base: 1, sm: 3 }} spacing={6}>
-          {favoriteShows.map((s) => (
+          {favouriteShows.map((s) => (
             <PickCard
               key={s.title}
               src={s.src}
