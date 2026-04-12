@@ -960,17 +960,16 @@ export default function About() {
                 fontWeight="700"
                 color="gray.800"
               >
-                Beyond Code
+                Beyond the screen
               </Heading>
               <Text
                 fontSize="md"
                 color="gray.600"
-                maxW="520px"
+                maxW="560px"
                 mx="auto"
                 lineHeight="1.55"
               >
-                When I&apos;m not building software, I enjoy exploring creative pursuits
-                and activities that keep me inspired and balanced.
+                Film, music, teams I cheer for, and travel videos when I remember to hit record.
               </Text>
             </MotionVStack>
 
