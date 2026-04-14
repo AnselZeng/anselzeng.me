@@ -22,7 +22,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const MotionBox = motion(Box);
-const MotionVStack = motion(VStack);
 
 interface NavItem {
   label: string;
@@ -55,16 +54,152 @@ const navSections: NavSection[] = [
   },
 ];
 
-const allNavItems: NavItem[] = [
-  { href: '/', label: 'Home' },
-  ...navSections.flatMap(section => section.items),
-  { href: '/about', label: 'About' },
-];
-
 function sectionPathPrefix(section: NavSection): string {
   const href = section.items[0]?.href ?? '';
   const firstSegment = href.split('/').filter(Boolean)[0];
   return firstSegment ? `/${firstSegment}` : '';
+}
+
+function mobileNavIsActive(pathname: string, href: string) {
+  if (href === '/') return pathname === '/';
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function MobileNavLinkRow({
+  href,
+  label,
+  emoji,
+  pathname,
+  onNavigate,
+}: {
+  href: string;
+  label: string;
+  emoji?: string;
+  pathname: string;
+  onNavigate: () => void;
+}) {
+  const active = mobileNavIsActive(pathname, href);
+  return (
+    <Link href={href} onClick={onNavigate} style={{ textDecoration: 'none' }}>
+      <Box py={3.5} px={1} _active={{ bg: 'orange.50' }}>
+        <HStack spacing={3}>
+          {emoji ? (
+            <Box as="span" fontSize="lg" aria-hidden>
+              {emoji}
+            </Box>
+          ) : null}
+          <Box
+            as="span"
+            fontSize="lg"
+            fontWeight={active ? '700' : '500'}
+            color={active ? 'brand.500' : 'gray.700'}
+          >
+            {label}
+          </Box>
+        </HStack>
+      </Box>
+    </Link>
+  );
+}
+
+function MobileNavOverlay({
+  isOpen,
+  onClose,
+  pathname,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  pathname: string;
+}) {
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          key="mobile-menu-overlay"
+          role="presentation"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          onClick={onClose}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 1000,
+            backgroundColor: 'rgba(255, 248, 235, 0.97)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '100dvh',
+            width: '100%',
+            boxSizing: 'border-box',
+            paddingTop: 'max(1rem, env(safe-area-inset-top, 0px))',
+            paddingBottom: 'max(1rem, env(safe-area-inset-bottom, 0px))',
+            overflowY: 'auto',
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              width: '100%',
+              maxWidth: '24rem',
+              flexShrink: 0,
+            }}
+          >
+            <Box px={{ base: 5, sm: 6 }} py={{ base: 4, sm: 5 }}>
+              <VStack align="stretch" spacing={0}>
+                <MobileNavLinkRow href="/" label="Home" pathname={pathname} onNavigate={onClose} />
+
+                {navSections.map((section) => (
+                  <Box key={section.label} pt={8}>
+                    <Box
+                      as="p"
+                      fontSize="xs"
+                      fontWeight="700"
+                      letterSpacing="0.14em"
+                      textTransform="uppercase"
+                      color="gray.400"
+                      mb={2}
+                      px={1}
+                    >
+                      {section.label}
+                    </Box>
+                    <VStack align="stretch" spacing={0}>
+                      {section.items.map((item) => (
+                        <MobileNavLinkRow
+                          key={item.href}
+                          href={item.href}
+                          label={item.label}
+                          emoji={item.emoji}
+                          pathname={pathname}
+                          onNavigate={onClose}
+                        />
+                      ))}
+                    </VStack>
+                  </Box>
+                ))}
+
+                <Box pt={8}>
+                  <MobileNavLinkRow
+                    href="/about"
+                    label="About"
+                    pathname={pathname}
+                    onNavigate={onClose}
+                  />
+                </Box>
+              </VStack>
+            </Box>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 }
 
 export default function Navbar() {
@@ -89,6 +224,15 @@ export default function Navbar() {
     return () => mq.removeEventListener('change', closeOnDesktop);
   }, []);
 
+  useEffect(() => {
+    if (!isMenuOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [isMenuOpen]);
+
   const bgColor = useColorModeValue('rgba(255, 248, 235, 0.95)', 'rgba(17, 24, 39, 0.95)');
   const borderColor = useColorModeValue('rgba(255, 123, 0, 0.1)', 'rgba(255, 123, 0, 0.2)');
 
@@ -103,80 +247,6 @@ export default function Navbar() {
     return pathname === prefix || pathname.startsWith(`${prefix}/`);
   };
 
-  const MobileMenu = () => (
-    <AnimatePresence>
-      {isMenuOpen && (
-        <MotionBox
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.2 }}
-          position="fixed"
-          top="0"
-          left="0"
-          right="0"
-          bottom="0"
-          bg="rgba(255, 248, 235, 0.98)"
-          backdropFilter="blur(10px)"
-          zIndex={1000}
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-        >
-          <IconButton
-            aria-label="Close menu"
-            icon={<CloseIcon />}
-            variant="ghost"
-            size="md"
-            onClick={() => setIsMenuOpen(false)}
-            color="gray.600"
-            _hover={{
-              color: 'brand.500',
-              bg: 'brand.50',
-              transform: 'scale(1.008)',
-            }}
-            position="absolute"
-            top="16px"
-            right="16px"
-            zIndex={1001}
-            minW="44px"
-            h="44px"
-            borderRadius="lg"
-          />
-          
-          <VStack spacing={6} align="center" px={4}>
-            {allNavItems.map((item, index) => (
-              <motion.div
-                key={item.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <Link href={item.href} onClick={() => setIsMenuOpen(false)}>
-                  <Button
-                    variant="ghost"
-                    size="md"
-                    fontSize="md"
-                    fontWeight="500"
-                    color={isActive(item.href) ? 'brand.500' : 'gray.600'}
-                    _hover={{
-                      color: 'brand.500',
-                    }}
-                    minH="44px"
-                    px={5}
-                  >
-                    {item.emoji && <span style={{ marginRight: '8px' }}>{item.emoji}</span>}
-                    {item.label}
-                  </Button>
-                </Link>
-              </motion.div>
-            ))}
-          </VStack>
-        </MotionBox>
-      )}
-    </AnimatePresence>
-  );
-
   return (
     <>
       <MotionBox
@@ -184,7 +254,7 @@ export default function Navbar() {
         top="0"
         left="0"
         right="0"
-        zIndex={999}
+        zIndex={1001}
         bg={scrolled ? bgColor : 'transparent'}
         borderBottom={scrolled ? `1px solid ${borderColor}` : 'none'}
         backdropFilter={scrolled ? 'blur(10px)' : 'none'}
@@ -197,22 +267,37 @@ export default function Navbar() {
             justifyContent="space-between"
             minH={{ base: "52px", lg: "56px" }}
           >
-            <Link href="/">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Heading
-                  as="span"
-                  fontSize={{ base: 'xl', lg: '3xl' }}
-                  fontWeight="700"
-                  color="brand.500"
-                  cursor="pointer"
+            <Box
+              display={{
+                base: isMenuOpen ? 'none' : 'block',
+                lg: 'block',
+              }}
+            >
+              <Link href="/" style={{ lineHeight: 0 }}>
+                <Box
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="flex-start"
+                  minH="44px"
+                  minW={{ base: '44px', lg: 'fit-content' }}
+                  pl={{ base: 1, lg: 0 }}
+                  pr={{ base: 1, lg: 0 }}
                 >
-                  AZ
-                </Heading>
-              </motion.div>
-            </Link>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Heading
+                      as="span"
+                      fontSize={{ base: 'xl', lg: '3xl' }}
+                      fontWeight="700"
+                      color="brand.500"
+                      cursor="pointer"
+                      lineHeight="1"
+                    >
+                      AZ
+                    </Heading>
+                  </motion.div>
+                </Box>
+              </Link>
+            </Box>
 
             <HStack spacing={2} display={{ base: 'none', lg: 'flex' }}>
                 <Link href="/">
@@ -327,13 +412,14 @@ export default function Navbar() {
             </HStack>
 
             <IconButton
-              aria-label="Toggle menu"
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
               icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
               variant="ghost"
               size="md"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               color="gray.600"
               display={{ base: 'flex', lg: 'none' }}
+              ml={{ base: isMenuOpen ? 'auto' : 0, lg: 0 }}
               _hover={{
                 color: 'brand.500',
                 bg: 'brand.50',
@@ -342,12 +428,17 @@ export default function Navbar() {
               minW="44px"
               h="44px"
               borderRadius="lg"
+              mr={{ base: -1, lg: 0 }}
             />
           </Flex>
         </Container>
       </MotionBox>
 
-      <MobileMenu />
+      <MobileNavOverlay
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        pathname={pathname}
+      />
     </>
   );
 }
