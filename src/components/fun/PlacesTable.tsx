@@ -1,32 +1,126 @@
-import {
-  Box,
-  Container,
-  Heading,
-  Badge,
-  Text,
-  VStack,
-  HStack,
-  useBreakpointValue,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
-  Th,
-  Thead,
-  Tr,
-  Tooltip,
-  Collapse,
-  IconButton,
-  SimpleGrid,
-} from "@chakra-ui/react";
-import { ChevronDownIcon, ChevronRightIcon } from "@chakra-ui/icons";
-import { useState } from "react";
-import React from "react";
-import { MotionBox, MotionVStack, MotionTr } from "@/lib/motion";
-import { containerVariants, itemVariants } from "@/lib/motion-variants";
+'use client';
+
+import React, { useState } from 'react';
+import { ChevronDown, ChevronRight } from 'lucide-react';
+import { BlurFade } from '@/components/magicui/blur-fade';
+import { cn } from '@/lib/utils';
+
+type SubLocation = { name: string; status: string };
+
+type Country = {
+  flag: string;
+  name: string;
+  continent: string;
+  date: string;
+  status: string;
+  expandable?: boolean;
+  subLocations?: SubLocation[];
+};
+
+const countries: Country[] = [
+  { flag: '🇳🇱', name: 'Netherlands', continent: 'Northwestern Europe', date: 'December 2002', status: 'Lived In' },
+  { flag: '🇨🇳', name: 'China', continent: 'East Asia', date: 'August 2003', status: 'Lived In' },
+  { flag: '🇲🇻', name: 'Maldives', continent: 'South Asia', date: 'December 2005', status: 'Visited' },
+  { flag: '🇫🇷', name: 'France', continent: 'Western Europe', date: 'September 2006', status: 'Visited' },
+  { flag: '🇲🇨', name: 'Monaco', continent: 'Western Europe', date: 'September 2006', status: 'Visited' },
+  { flag: '🇹🇭', name: 'Thailand', continent: 'Southeast Asia', date: 'March 2007', status: 'Visited' },
+  { flag: '🇻🇳', name: 'Vietnam', continent: 'Southeast Asia', date: 'June 2008', status: 'Visited' },
+  { flag: '🇵🇭', name: 'Philippines', continent: 'Southeast Asia', date: 'March 2008', status: 'Visited' },
+  { flag: '🇲🇾', name: 'Malaysia', continent: 'Southeast Asia', date: 'February 2009', status: 'Visited' },
+  { flag: '🇬🇷', name: 'Greece', continent: 'Southeast Europe', date: 'January 2010', status: 'Visited' },
+  {
+    flag: '🇨🇦',
+    name: 'Canada',
+    continent: 'North America',
+    date: 'August 2010',
+    status: 'Lived In',
+    expandable: true,
+    subLocations: [
+      { name: 'Alberta', status: 'Visited' },
+      { name: 'British Columbia', status: 'Visited' },
+      { name: 'New Brunswick', status: 'Visited' },
+      { name: 'Northwest Territories', status: 'Visited' },
+      { name: 'Nova Scotia', status: 'Visited' },
+      { name: 'Ontario', status: 'Lived In' },
+      { name: 'Prince Edward Island', status: 'Visited' },
+      { name: 'Québec', status: 'Visited' },
+    ],
+  },
+  {
+    flag: '🇺🇸',
+    name: 'United States',
+    continent: 'North America',
+    date: 'December 2013',
+    status: 'Lived In',
+    expandable: true,
+    subLocations: [
+      { name: 'Arizona', status: 'Visited' },
+      { name: 'California', status: 'Lived In' },
+      { name: 'Florida', status: 'Visited' },
+      { name: 'Illinois', status: 'Visited' },
+      { name: 'Massachusetts', status: 'Visited' },
+      { name: 'Michigan', status: 'Visited' },
+      { name: 'Nevada', status: 'Visited' },
+      { name: 'New York', status: 'Visited' },
+      { name: 'Utah', status: 'Visited' },
+      { name: 'Washington', status: 'Visited' },
+      { name: 'Washington, D.C. (Federal District)', status: 'Visited' },
+    ],
+  },
+  { flag: '🇦🇼', name: 'Aruba', continent: 'North/South America', date: 'December 2014', status: 'Visited' },
+  { flag: '🇲🇽', name: 'Mexico', continent: 'North America', date: 'December 2016', status: 'Visited' },
+  { flag: '🇵🇦', name: 'Panama', continent: 'North America', date: 'December 2017', status: 'Visited' },
+  { flag: '🇨🇷', name: 'Costa Rica', continent: 'North America', date: 'March 2018', status: 'Visited' },
+  { flag: '🇵🇷', name: 'Puerto Rico', continent: 'North America', date: 'December 2018', status: 'Visited' },
+  { flag: '🇨🇺', name: 'Cuba', continent: 'North America', date: 'December 2022', status: 'Visited' },
+  { flag: '🇨🇼', name: 'Curaçao', continent: 'North/South America', date: 'December 2023', status: 'Visited' },
+  { flag: '🇧🇶', name: 'Bonaire', continent: 'North/South America', date: 'December 2023', status: 'Visited' },
+  { flag: '🇸🇽', name: 'Sint Maarten', continent: 'North America', date: 'December 2024', status: 'Visited' },
+  { flag: '🇦🇮', name: 'Anguilla', continent: 'North America', date: 'December 2024', status: 'Visited' },
+  { flag: '🇦🇹', name: 'Austria', continent: 'Central Europe', date: 'September 2025', status: 'Visited' },
+  { flag: '🇨🇿', name: 'Czech Republic', continent: 'Central Europe', date: 'September 2025', status: 'Visited' },
+  { flag: '🇰🇷', name: 'South Korea', continent: 'East Asia', date: 'Summer 2026', status: 'Next Up' },
+];
+
+function StatusBadge({ status }: { status: string }) {
+  return (
+    <span
+      className={cn(
+        'micro-label inline-block whitespace-nowrap border px-2 py-1',
+        status === 'Lived In' && 'border-ember-500 bg-ember-500 text-white',
+        status === 'Visited' && 'border-ember-300 text-ember-700',
+        status === 'Next Up' && 'border-bone-line text-ink-muted',
+      )}
+    >
+      {status}
+    </span>
+  );
+}
+
+function SubLocationList({ title, items }: { title: string; items: SubLocation[] }) {
+  return (
+    <div>
+      <p className="micro-label text-ink-muted">{title}</p>
+      <div className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1.5 md:grid-cols-4">
+        {items.map((item, index) => (
+          <div key={item.name} className="flex items-baseline gap-2">
+            <span className="micro-label min-w-[1.25rem] text-ink-muted">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <span className="text-sm text-ink-soft">
+              {item.name}
+              {item.status === 'Lived In' && (
+                <span className="micro-label ml-2 text-ember-600">Lived In</span>
+              )}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export const PlacesTable = () => {
-  const isMobile = useBreakpointValue({ base: true, lg: false });
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
 
   const toggleExpanded = (countryName: string) => {
@@ -39,281 +133,100 @@ export const PlacesTable = () => {
     setExpandedRows(newExpanded);
   };
 
-  const countries = [
-    { flag: "🇳🇱", name: "Netherlands", continent: "Northwestern Europe", date: "December 2002", status: "Lived In", color: "blue" },
-    { flag: "🇨🇳", name: "China", continent: "East Asia", date: "August 2003", status: "Lived In", color: "red" },
-    { flag: "🇲🇻", name: "Maldives", continent: "South Asia", date: "December 2005", status: "Visited", color: "teal" },
-    { flag: "🇫🇷", name: "France", continent: "Western Europe", date: "September 2006", status: "Visited", color: "blue" },
-    { flag: "🇲🇨", name: "Monaco", continent: "Western Europe", date: "September 2006", status: "Visited", color: "red" },
-    { flag: "🇹🇭", name: "Thailand", continent: "Southeast Asia", date: "March 2007", status: "Visited", color: "red" },
-    { flag: "🇻🇳", name: "Vietnam", continent: "Southeast Asia", date: "June 2008", status: "Visited", color: "red" },
-    { flag: "🇵🇭", name: "Philippines", continent: "Southeast Asia", date: "March 2008", status: "Visited", color: "blue" },
-    { flag: "🇲🇾", name: "Malaysia", continent: "Southeast Asia", date: "February 2009", status: "Visited", color: "orange" },
-    { flag: "🇬🇷", name: "Greece", continent: "Southeast Europe", date: "January 2010", status: "Visited", color: "blue" },
-    { 
-      flag: "🇨🇦", 
-      name: "Canada", 
-      continent: "North America", 
-      date: "August 2010", 
-      status: "Lived In", 
-      color: "red",
-      expandable: true,
-      subLocations: [
-        { name: "Alberta", status: "Visited" },
-        { name: "British Columbia", status: "Visited" },
-        { name: "New Brunswick", status: "Visited" },
-        { name: "Northwest Territories", status: "Visited" },
-        { name: "Nova Scotia", status: "Visited" },
-        { name: "Ontario", status: "Lived In" },
-        { name: "Prince Edward Island", status: "Visited" },
-        { name: "Québec", status: "Visited" },
-      ]
-    },
-    { 
-      flag: "🇺🇸", 
-      name: "United States", 
-      continent: "North America", 
-      date: "December 2013", 
-      status: "Lived In", 
-      color: "blue",
-      expandable: true,
-      subLocations: [
-        { name: "Arizona", status: "Visited" },
-        { name: "California", status: "Lived In" },
-        { name: "Florida", status: "Visited" },
-        { name: "Illinois", status: "Visited" },
-        { name: "Massachusetts", status: "Visited" },
-        { name: "Michigan", status: "Visited" },
-        { name: "Nevada", status: "Visited" },
-        { name: "New York", status: "Visited" },
-        { name: "Utah", status: "Visited" },
-        { name: "Washington", status: "Visited" },
-        { name: "Washington, D.C. (Federal District)", status: "Visited" },
-      ]
-    },
-    { flag: "🇦🇼", name: "Aruba", continent: "North/South America", date: "December 2014", status: "Visited", color: "orange" },
-    { flag: "🇲🇽", name: "Mexico", continent: "North America", date: "December 2016", status: "Visited", color: "green" },
-    { flag: "🇵🇦", name: "Panama", continent: "North America", date: "December 2017", status: "Visited", color: "blue" },
-    { flag: "🇨🇷", name: "Costa Rica", continent: "North America", date: "March 2018", status: "Visited", color: "blue" },
-    { flag: "🇵🇷", name: "Puerto Rico", continent: "North America", date: "December 2018", status: "Visited", color: "blue" },
-    { flag: "🇨🇺", name: "Cuba", continent: "North America", date: "December 2022", status: "Visited", color: "red" },
-    { flag: "🇨🇼", name: "Curaçao", continent: "North/South America", date: "December 2023", status: "Visited", color: "orange" },
-    { flag: "🇧🇶", name: "Bonaire", continent: "North/South America", date: "December 2023", status: "Visited", color: "orange" },
-    { flag: "🇸🇽", name: "Sint Maarten", continent: "North America", date: "December 2024", status: "Visited", color: "red" },
-    { flag: "🇦🇮", name: "Anguilla", continent: "North America", date: "December 2024", status: "Visited", color: "blue" },
-    { flag: "🇦🇹", name: "Austria", continent: "Central Europe", date: "September 2025", status: "Visited", color: "blue" },
-    { flag: "🇨🇿", name: "Czech Republic", continent: "Central Europe", date: "September 2025", status: "Visited", color: "blue" },
-    { flag: "🇰🇷", name: "South Korea", continent: "East Asia", date: "Summer 2026", status: "Next Up", color: "purple" },
-  ];
-
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Lived In":
-        return "green";
-      case "Visited":
-        return "blue";
-      case "Next Up":
-        return "purple";
-      default:
-        return "gray";
-    }
-  };
-
-  const CanadaMap = () => {
-    const provinces = [
-      { name: "Alberta", visited: true, lived: false },
-      { name: "British Columbia", visited: true, lived: false },
-      { name: "New Brunswick", visited: true, lived: false },
-      { name: "Northwest Territories", visited: true, lived: false },
-      { name: "Nova Scotia", visited: true, lived: false },
-      { name: "Ontario", visited: true, lived: true },
-      { name: "Prince Edward Island", visited: true, lived: false },
-      { name: "Québec", visited: true, lived: false },
-    ];
-
-    return (
-      <Box>
-        <Text fontSize="sm" fontWeight="600" color="gray.700" mb={3} textAlign="center">
-          Canadian Provinces & Territories
-        </Text>
-        <SimpleGrid columns={{ base: 1, md: 4 }} spacing={2} w="100%">
-          {provinces.map((province, index) => (
-            <HStack key={province.name} spacing={2} py={0.5}>
-              <Text fontSize="xs" color="gray.400" fontWeight="600" minW="16px" textAlign="center">
-                {index + 1}
-              </Text>
-              <Text fontSize="sm" color="gray.600" fontWeight="500" flex={1}>
-                {province.name}
-                {province.lived && ' 🏠'}
-              </Text>
-            </HStack>
-          ))}
-        </SimpleGrid>
-      </Box>
-    );
-  };
-
-  const USAMap = () => {
-    const states = [
-      { name: "Arizona", visited: true, lived: false },
-      { name: "California", visited: true, lived: true },
-      { name: "Florida", visited: true, lived: false },
-      { name: "Illinois", visited: true, lived: false },
-      { name: "Massachusetts", visited: true, lived: false },
-      { name: "Michigan", visited: true, lived: false },
-      { name: "Nevada", visited: true, lived: false },
-      { name: "New York", visited: true, lived: false },
-      { name: "Utah", visited: true, lived: false },
-      { name: "Washington", visited: true, lived: false },
-      { name: "Washington, D.C. (Federal District)", visited: true, lived: false },
-    ];
-
-    return (
-      <Box>
-        <Text fontSize="sm" fontWeight="600" color="gray.700" mb={3} textAlign="center">
-          US States Visited
-        </Text>
-        <SimpleGrid columns={{ base: 1, md: 4 }} spacing={2} w="100%">
-          {states.map((state, index) => (
-            <HStack key={state.name} spacing={2} py={0.5}>
-              <Text fontSize="xs" color="gray.400" fontWeight="600" minW="16px" textAlign="center">
-                {index + 1}
-              </Text>
-              <Text fontSize="sm" color="gray.600" fontWeight="500" flex={1}>
-                {state.name}
-                {state.lived && ' 🏠'}
-              </Text>
-            </HStack>
-          ))}
-        </SimpleGrid>
-      </Box>
-    );
-  };
-
   return (
-    <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-      <MotionVStack
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        spacing={10}
-      >
-        <MotionVStack variants={itemVariants} spacing={3} textAlign="center">
-          <Badge
-            colorScheme="teal"
-            variant="subtle"
-            px={2.5}
-            py={0.5}
-            borderRadius="full"
-            fontSize="xs"
-            fontWeight="600"
-          >
-            Travel Logs
-          </Badge>
-          <Heading
-            fontSize={{ base: 'xl', lg: '3xl' }}
-            fontWeight="700"
-            color="gray.800"
-          >
-            My Travel Journey
-          </Heading>
-          <Text
-            fontSize="md"
-            color="gray.600"
-            maxW="520px"
-            mx="auto"
-            lineHeight="1.55"
-          >
-            A chronological record of my global adventures and experiences across continents.
-          </Text>
-        </MotionVStack>
+    <div>
+      <BlurFade inView>
+        <div className="flex items-end justify-between">
+          <div>
+            <p className="micro-label text-ember-600">Travel Logs</p>
+            <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-5xl">
+              My Travel Journey
+            </h2>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-soft">
+              A chronological record of my global adventures and experiences across continents.
+            </p>
+          </div>
+          <p className="micro-label hidden text-ink-muted sm:block">
+            ({String(countries.length).padStart(2, '0')})
+          </p>
+        </div>
+      </BlurFade>
 
-        <MotionBox variants={itemVariants} w="full">
-          <TableContainer
-            borderRadius="xl"
-            border="1px solid"
-            borderColor="gray.200"
-            bg="white"
-            boxShadow="lg"
-            overflowX="auto"
-          >
-            <Table variant="simple" size={isMobile ? "sm" : "md"}>
-              <Thead bg="gray.50">
-                <Tr>
-                  <Th color="gray.700" fontWeight="600" fontSize="sm">Flag</Th>
-                  <Th color="gray.700" fontWeight="600" fontSize="sm">Country/Territory</Th>
-                  <Th color="gray.700" fontWeight="600" fontSize="sm" display={{ base: "none", md: "table-cell" }}>Continent</Th>
-                  <Th color="gray.700" fontWeight="600" fontSize="sm">Date</Th>
-                  <Th color="gray.700" fontWeight="600" fontSize="sm">Status</Th>
-                </Tr>
-              </Thead>
-              <Tbody>
-                {countries.map((country, index) => (
+      <BlurFade inView delay={0.1}>
+        <div className="mt-12 overflow-x-auto">
+          <table className="w-full border-collapse text-left">
+            <thead>
+              <tr className="border-b border-ink/20">
+                <th className="micro-label py-3 pr-4 font-medium text-ink-muted">
+                  Country/Territory
+                </th>
+                <th className="micro-label hidden py-3 pr-4 font-medium text-ink-muted md:table-cell">
+                  Continent
+                </th>
+                <th className="micro-label py-3 pr-4 font-medium text-ink-muted">Date</th>
+                <th className="micro-label py-3 font-medium text-ink-muted">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {countries.map((country) => {
+                const isExpanded = expandedRows.has(country.name);
+                return (
                   <React.Fragment key={country.name}>
-                    <MotionTr
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-10px" }}
-                      transition={{ duration: 0.3, delay: index * 0.05 }}
-                      _hover={{
-                        bg: "gray.50",
-                      }}
-                      sx={{
-                        transition: "all 0.2s ease",
-                        "&:hover": {
-                          transform: "translateY(-1px)",
-                        }
-                      }}
-                      cursor={country.expandable ? "pointer" : "default"}
+                    <tr
+                      className={cn(
+                        'border-b border-bone-line transition-colors hover:bg-bone-subtle/70',
+                        country.expandable && 'cursor-pointer',
+                      )}
                       onClick={country.expandable ? () => toggleExpanded(country.name) : undefined}
                     >
-                      <Td fontSize="lg" verticalAlign="middle">{country.flag}</Td>
-                      <Td fontWeight="600" color="gray.800" verticalAlign="middle">
-                        <HStack spacing={1} align="center">
-                          <Text m={0} p={0}>{country.name}</Text>
-                          {country.expandable && (
-                            <Text fontSize="sm" color="gray.500" m={0} p={0}>
-                              {expandedRows.has(country.name) ? <ChevronDownIcon /> : <ChevronRightIcon />}
-                            </Text>
-                          )}
-                        </HStack>
-                      </Td>
-                      <Td color="gray.600" display={{ base: "none", md: "table-cell" }} verticalAlign="middle">{country.continent}</Td>
-                      <Td color="gray.600" fontSize="sm" verticalAlign="middle">{country.date}</Td>
-                      <Td verticalAlign="middle">
-                        <Badge
-                          colorScheme={getStatusColor(country.status)}
-                          variant="subtle"
-                          px={2}
-                          py={1}
-                          borderRadius="full"
-                          fontSize="xs"
-                          fontWeight="600"
-                        >
-                          {country.status}
-                        </Badge>
-                      </Td>
-                    </MotionTr>
-                    
-                    {country.expandable && (
-                      <Tr>
-                        <Td colSpan={5} p={0}>
-                          <Collapse in={expandedRows.has(country.name)} animateOpacity>
-                            <Box bg="gray.50" px={4} py={4} borderLeft="3px solid" borderLeftColor="gray.300" overflow="hidden">
-                              {country.name === "Canada" ? <CanadaMap /> : <USAMap />}
-                            </Box>
-                          </Collapse>
-                        </Td>
-                      </Tr>
+                      <td className="py-3.5 pr-4 align-middle">
+                        <span className="inline-flex items-center gap-2.5 font-serif text-base font-medium">
+                          <span className="text-lg" aria-hidden>
+                            {country.flag}
+                          </span>
+                          {country.name}
+                          {country.expandable &&
+                            (isExpanded ? (
+                              <ChevronDown className="h-4 w-4 text-ink-muted" aria-hidden />
+                            ) : (
+                              <ChevronRight className="h-4 w-4 text-ink-muted" aria-hidden />
+                            ))}
+                        </span>
+                      </td>
+                      <td className="hidden py-3.5 pr-4 align-middle text-sm text-ink-soft md:table-cell">
+                        {country.continent}
+                      </td>
+                      <td className="py-3.5 pr-4 align-middle text-sm text-ink-soft">
+                        {country.date}
+                      </td>
+                      <td className="py-3.5 align-middle">
+                        <StatusBadge status={country.status} />
+                      </td>
+                    </tr>
+
+                    {country.expandable && isExpanded && country.subLocations && (
+                      <tr className="border-b border-bone-line">
+                        <td colSpan={4} className="p-0">
+                          <div className="border-l-2 border-ember-500 bg-bone-subtle/60 px-5 py-5">
+                            <SubLocationList
+                              title={
+                                country.name === 'Canada'
+                                  ? 'Canadian Provinces & Territories'
+                                  : 'US States Visited'
+                              }
+                              items={country.subLocations}
+                            />
+                          </div>
+                        </td>
+                      </tr>
                     )}
                   </React.Fragment>
-                ))}
-              </Tbody>
-            </Table>
-          </TableContainer>
-        </MotionBox>
-      </MotionVStack>
-    </Container>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </BlurFade>
+    </div>
   );
 };

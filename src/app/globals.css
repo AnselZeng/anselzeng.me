@@ -1,7 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Modern CSS Reset and Global Styles */
 :root {
   --font-sans: 'DM Sans', system-ui, sans-serif;
   --font-serif: 'Gambetta', Georgia, serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
 
   /* Type scale – smaller, cleaner, consistent */
   --text-hero: clamp(1.75rem, 3.5vw, 2.5rem);   /* ~28–40px */
@@ -16,11 +21,19 @@
   --leading-normal: 1.5;
   --leading-relaxed: 1.6;
 
-  /* Brand Colors */
-  --brand-50: #FFF8EB;
-  --brand-100: #FFEECC;
-  --brand-500: #FF7B00;
-  --brand-600: #E66A00;
+  /* Brand Colors — ember on bone */
+  --brand-50: #FDF3EB;
+  --brand-100: #FAE3D1;
+  --brand-500: #E4580B;
+  --brand-600: #C74A08;
+
+  /* Surfaces & text */
+  --bone: #FAF7F1;
+  --bone-subtle: #F2EDE3;
+  --bone-line: #E4DCCE;
+  --ink: #1B1713;
+  --ink-soft: #4A443C;
+  --ink-muted: #8A7C6F;
   
   /* Gray Scale */
   --gray-50: #F9FAFB;
@@ -74,14 +87,15 @@
 html {
   scroll-behavior: smooth;
   font-size: 15px;
+  background-color: var(--bone);
 }
 
 body {
   font-family: var(--font-sans);
   font-size: var(--text-body);
   line-height: var(--leading-normal);
-  color: var(--gray-800);
-  background-color: var(--brand-50);
+  color: var(--ink);
+  background-color: var(--bone);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
@@ -148,6 +162,15 @@ html {
 ::selection {
   background-color: var(--brand-100);
   color: var(--brand-600);
+}
+
+/* Editorial micro-label */
+.micro-label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
 /* Utility classes – consistent spacing */

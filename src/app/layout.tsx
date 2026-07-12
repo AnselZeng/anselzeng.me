@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from './providers';
 import Navbar from "@/components/layout/Navbar";
@@ -10,6 +10,13 @@ const dmSans = DM_Sans({
   variable: "--font-sans",
   display: "swap",
   weight: ["400", "500", "600", "700"],
+});
+
+const dmMono = DM_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -33,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={dmSans.variable}>
+    <html lang="en" className={`${dmSans.variable} ${dmMono.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

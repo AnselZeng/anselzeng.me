@@ -1,22 +1,5 @@
-'use client';
-
-import { useState, type ReactNode } from 'react';
-import {
-  Box,
-  Heading,
-  Text,
-  VStack,
-  SimpleGrid,
-  HStack,
-  Flex,
-  Image,
-  Grid,
-  GridItem,
-} from '@chakra-ui/react';
-import { MotionBox } from '@/lib/motion';
-import { itemVariants } from '@/lib/motion-variants';
-
-const inView = { once: true, margin: '-100px' } as const;
+import { BlurFade } from '@/components/magicui/blur-fade';
+import { ProtectedImage } from '@/components/ui/protected-image';
 
 const favouriteFilms = [
   {
@@ -101,18 +84,14 @@ function formatMinutes(n: number) {
   return `${n.toLocaleString('en-GB')} min`;
 }
 
-function SectionLabel({ children }: { children: ReactNode }) {
+function SubsectionHeader({ label, title }: { label: string; title: string }) {
   return (
-    <Text
-      fontSize="xs"
-      fontWeight="700"
-      letterSpacing="0.2em"
-      textTransform="uppercase"
-      color="brand.500"
-      mb={2}
-    >
-      {children}
-    </Text>
+    <div>
+      <p className="micro-label text-ember-600">{label}</p>
+      <h3 className="mt-3 font-serif text-2xl font-medium tracking-tight text-ink lg:text-3xl">
+        {title}
+      </h3>
+    </div>
   );
 }
 
@@ -120,456 +99,204 @@ function PickCard({
   src,
   title,
   meta,
-  blurb,
   byline,
+  blurb,
 }: {
   src: string;
   title: string;
   meta: string;
+  byline: string;
   blurb: string;
-  byline?: string;
 }) {
   return (
-    <Flex
-      direction={{ base: 'row', sm: 'column' }}
-      gap={{ base: 4, sm: 0 }}
-      align={{ base: 'center', sm: 'stretch' }}
-      borderRadius="xl"
-      overflow="hidden"
-      borderWidth="1px"
-      borderColor="gray.200"
-      bg="white"
-      boxShadow="sm"
-      transition="box-shadow 0.2s, transform 0.2s"
-      _hover={{ boxShadow: 'md', transform: 'translateY(-2px)' }}
-    >
-      <Box
-        position="relative"
-        flexShrink={0}
-        w={{ base: '6.75rem', sm: '100%' }}
-        overflow="hidden"
-        bg="gray.100"
-        sx={{ aspectRatio: '2 / 3' }}
-      >
-        <Image
+    <div className="group">
+      <div className="overflow-hidden rounded-sm border border-bone-line bg-bone-subtle">
+        <ProtectedImage
           src={src}
           alt={title}
-          position="absolute"
-          inset={0}
-          w="100%"
-          h="100%"
-          objectFit="cover"
-          objectPosition="center"
+          className="aspect-[2/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
         />
-      </Box>
-      <VStack
-        align="stretch"
-        spacing={1}
-        flex="1"
-        minW={0}
-        p={{ base: 3, sm: 4 }}
-        pl={{ base: 0, sm: 4 }}
-      >
-        <Heading as="h4" fontSize="md" fontWeight="700" color="gray.800" lineHeight="1.3">
-          {title}
-        </Heading>
-        <Text fontSize="xs" color="gray.500" fontWeight="600">
-          {byline ? `${meta} · ${byline}` : meta}
-        </Text>
-        <Text fontSize="sm" color="gray.600" lineHeight="1.55">
-          {blurb}
-        </Text>
-      </VStack>
-    </Flex>
-  );
-}
-
-function NowPlayingCover({ src, title }: { src: string; title: string }) {
-  const [failed, setFailed] = useState(false);
-
-  const shell = (child: ReactNode) => (
-    <Flex
-      flex={{ base: 'none', lg: '0 0 auto' }}
-      flexShrink={0}
-      alignSelf={{ base: 'center', lg: 'flex-start' }}
-      align="center"
-      justify="center"
-      w={{ base: 'full', lg: 'clamp(9.5rem, 40%, 12.75rem)' }}
-      maxW={{ base: '176px', lg: 'clamp(9.5rem, 40%, 12.75rem)' }}
-      mx={{ base: 'auto', lg: 0 }}
-    >
-      {child}
-    </Flex>
-  );
-
-  if (failed) {
-    return shell(
-      <Flex
-        w={{ base: '144px', lg: '100%' }}
-        h={{ base: '144px', lg: 'auto' }}
-        sx={{ aspectRatio: '1' }}
-        borderRadius="lg"
-        bg="orange.100"
-        align="center"
-        justify="center"
-        boxShadow="sm"
-        borderWidth="1px"
-        borderColor="gray.200"
-        transition="box-shadow 0.2s, transform 0.2s"
-        _hover={{ boxShadow: 'md', transform: 'translateY(-2px)' }}
-      >
-        <Text fontSize="4xl" aria-hidden>
-          🎵
-        </Text>
-      </Flex>
-    );
-  }
-
-  return shell(
-    <Box
-      position="relative"
-      w={{ base: '144px', lg: '100%' }}
-      h={{ base: '144px', lg: 'auto' }}
-      sx={{ aspectRatio: '1' }}
-      borderRadius="lg"
-      overflow="hidden"
-      boxShadow="sm"
-      borderWidth="1px"
-      borderColor="gray.200"
-      transition="box-shadow 0.2s, transform 0.2s"
-      _hover={{ boxShadow: 'md', transform: 'translateY(-2px)' }}
-    >
-      <Image
-        src={src}
-        alt={title}
-        position="absolute"
-        inset={0}
-        w="100%"
-        h="100%"
-        objectFit="cover"
-        onError={() => setFailed(true)}
-      />
-    </Box>
+      </div>
+      <h4 className="mt-4 font-serif text-lg font-medium leading-snug text-ink">{title}</h4>
+      <p className="micro-label mt-1.5 text-ink-muted">
+        {meta} · {byline}
+      </p>
+      <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">{blurb}</p>
+    </div>
   );
 }
 
 export default function InterestsGrid() {
   return (
-    <VStack spacing={{ base: 14, lg: 20 }} w="full" align="stretch">
-      <MotionBox
-        variants={itemVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={inView}
-        w="full"
-      >
-        <SectionLabel>Films</SectionLabel>
-        <Heading as="h3" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="700" color="gray.800" mb={6}>
-          Three I return to
-        </Heading>
-        <SimpleGrid columns={{ base: 1, sm: 3 }} spacing={6}>
-          {favouriteFilms.map((m) => (
-            <PickCard
-              key={m.title}
-              src={m.src}
-              title={m.title}
-              meta={m.year}
-              byline={m.director}
-              blurb={m.blurb}
-            />
-          ))}
-        </SimpleGrid>
-      </MotionBox>
-
-      <MotionBox
-        variants={itemVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={inView}
-        w="full"
-      >
-        <SectionLabel>Series</SectionLabel>
-        <Heading as="h3" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="700" color="gray.800" mb={6}>
-          Three that stuck
-        </Heading>
-        <SimpleGrid columns={{ base: 1, sm: 3 }} spacing={6}>
-          {favouriteShows.map((s) => (
-            <PickCard
-              key={s.title}
-              src={s.src}
-              title={s.title}
-              meta={s.era}
-              byline={s.byline}
-              blurb={s.blurb}
-            />
-          ))}
-        </SimpleGrid>
-      </MotionBox>
-
-      <MotionBox
-        variants={itemVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={inView}
-        w="full"
-        borderRadius="2xl"
-        borderWidth="1px"
-        borderColor="gray.200"
-        bg="gray.50"
-        p={{ base: 6, md: 8 }}
-      >
-        <SectionLabel>Music</SectionLabel>
-        <Heading as="h3" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="700" color="gray.800" mb={8}>
-          Listening, by the numbers
-        </Heading>
-        <Grid templateColumns={{ base: '1fr', lg: '1fr 1fr' }} gap={{ base: 10, lg: 12 }} alignItems="stretch">
-          <GridItem display="flex" flexDirection="column" minH={0}>
-            <Text fontSize="sm" color="gray.600" mb={4} lineHeight="1.6" flexShrink={0}>
-              Minutes streamed per year, taken from my Spotify Wrapped.
-            </Text>
-            <VStack align="stretch" spacing={4} flex="1">
-              {listeningMinutesByYear.map(({ year, minutes }) => (
-                <Box key={year}>
-                  <HStack justify="space-between" mb={1.5}>
-                    <Text fontSize="sm" fontWeight="700" color="gray.800">
-                      {year}
-                    </Text>
-                    <Text fontSize="sm" color="gray.500" sx={{ fontVariantNumeric: 'tabular-nums' }}>
-                      {formatMinutes(minutes)}
-                    </Text>
-                  </HStack>
-                  <Box h="8px" bg="white" borderRadius="full" overflow="hidden" borderWidth="1px" borderColor="gray.200">
-                    <Box
-                      h="100%"
-                      w={`${(minutes / maxListeningMinutes) * 100}%`}
-                      bg="brand.400"
-                      borderRadius="full"
-                      transition="width 0.6s ease-out"
-                    />
-                  </Box>
-                </Box>
-              ))}
-            </VStack>
-          </GridItem>
-          <GridItem display="flex" flexDirection="column" minH={0}>
-            <Text fontSize="sm" fontWeight="700" color="gray.800" mb={3} flexShrink={0}>
-              On repeat right now
-            </Text>
-            <Flex
-              direction="column"
-              flex="1"
-              minH={0}
-              bg="white"
-              borderRadius="xl"
-              p={5}
-              borderWidth="1px"
-              borderColor="gray.200"
-              w="full"
-            >
-              <Flex
-                direction={{ base: 'column', lg: 'row' }}
-                gap={6}
-                align={{ base: 'center', lg: 'stretch' }}
-                w="full"
-                flexShrink={0}
-                minH={0}
-              >
-                <NowPlayingCover src={NOW_PLAYING.coverSrc} title={NOW_PLAYING.title} />
-                <Flex
-                  direction="column"
-                  flex="1"
-                  minW={0}
-                  minH={0}
-                  w="full"
-                  align={{ base: 'center', lg: 'stretch' }}
-                  pt={{ lg: 1 }}
-                >
-                  <VStack
-                    align={{ base: 'center', lg: 'flex-start' }}
-                    spacing={1}
-                    w="full"
-                    flexShrink={0}
-                  >
-                    <Heading
-                      as="h4"
-                      fontSize="lg"
-                      fontWeight="700"
-                      color="gray.800"
-                      textAlign={{ base: 'center', lg: 'left' }}
-                    >
-                      {NOW_PLAYING.title}
-                    </Heading>
-                    <Text
-                      color="gray.600"
-                      fontWeight="500"
-                      textAlign={{ base: 'center', lg: 'left' }}
-                      lineHeight="1.35"
-                    >
-                      {NOW_PLAYING.artist}
-                    </Text>
-                  </VStack>
-                  <Box
-                    flex={{ base: 'none', lg: '1' }}
-                    minH={0}
-                    minW={0}
-                    aria-hidden
-                  />
-                  <Box
-                    w="full"
-                    flexShrink={0}
-                    borderTopWidth="1px"
-                    borderTopColor="gray.100"
-                    mt={{ base: 3, lg: 0 }}
-                  />
-                  <Box
-                    flex={{ base: 'none', lg: '1' }}
-                    minH={0}
-                    minW={0}
-                    aria-hidden
-                  />
-                  <Box w="full" flexShrink={0} pt={{ base: 3, lg: 0 }}>
-                    <Text
-                      fontSize="xs"
-                      fontWeight="700"
-                      color="gray.500"
-                      letterSpacing="0.06em"
-                      textTransform="uppercase"
-                      mb={2}
-                      textAlign={{ base: 'center', lg: 'left' }}
-                    >
-                      From the album
-                    </Text>
-                    <Text
-                      fontSize="sm"
-                      fontWeight="700"
-                      color="gray.800"
-                      lineHeight="1.35"
-                      textAlign={{ base: 'center', lg: 'left' }}
-                    >
-                      {NOW_PLAYING.albumName}
-                    </Text>
-                  </Box>
-                </Flex>
-              </Flex>
-
-              <Box flex={{ base: 'none', lg: '1' }} minH={0} minW={0} aria-hidden />
-              <Box
-                w="full"
-                flexShrink={0}
-                borderTopWidth="1px"
-                borderTopColor="gray.100"
-                mt={{ base: 5, lg: 0 }}
+    <div className="space-y-16 lg:space-y-20">
+      {/* ————— Films ————— */}
+      <div className="border-t border-bone-line pt-6">
+        <BlurFade inView>
+          <SubsectionHeader label="Films" title="Three I return to" />
+        </BlurFade>
+        <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-3">
+          {favouriteFilms.map((m, i) => (
+            <BlurFade key={m.title} inView delay={0.05 * i}>
+              <PickCard
+                src={m.src}
+                title={m.title}
+                meta={m.year}
+                byline={m.director}
+                blurb={m.blurb}
               />
-              <Box flex={{ base: 'none', lg: '1' }} minH={0} minW={0} aria-hidden />
-              <Box w="full" flexShrink={0} pt={{ base: 5, lg: 0 }}>
-                <Box
-                  as="audio"
+            </BlurFade>
+          ))}
+        </div>
+      </div>
+
+      {/* ————— Series ————— */}
+      <div className="border-t border-bone-line pt-6">
+        <BlurFade inView>
+          <SubsectionHeader label="Series" title="Three that stuck" />
+        </BlurFade>
+        <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-3">
+          {favouriteShows.map((s, i) => (
+            <BlurFade key={s.title} inView delay={0.05 * i}>
+              <PickCard
+                src={s.src}
+                title={s.title}
+                meta={s.era}
+                byline={s.byline}
+                blurb={s.blurb}
+              />
+            </BlurFade>
+          ))}
+        </div>
+      </div>
+
+      {/* ————— Music ————— */}
+      <div className="border-t border-bone-line pt-6">
+        <BlurFade inView>
+          <SubsectionHeader label="Music" title="Listening, by the numbers" />
+        </BlurFade>
+        <div className="mt-8 grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-14">
+          <BlurFade inView delay={0.05}>
+            <div>
+              <p className="max-w-md text-sm leading-relaxed text-ink-soft">
+                Minutes streamed per year, taken from my Spotify Wrapped.
+              </p>
+              <div className="mt-6 space-y-5">
+                {listeningMinutesByYear.map(({ year, minutes }) => (
+                  <div key={year}>
+                    <div className="mb-2 flex items-baseline justify-between">
+                      <span className="micro-label text-ink">{year}</span>
+                      <span className="font-mono text-xs tabular-nums text-ink-muted">
+                        {formatMinutes(minutes)}
+                      </span>
+                    </div>
+                    <div className="h-px w-full bg-bone-line">
+                      <div
+                        className="h-[3px] -translate-y-[1px] bg-ember-500 transition-[width] duration-700 ease-out"
+                        style={{ width: `${(minutes / maxListeningMinutes) * 100}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </BlurFade>
+
+          <BlurFade inView delay={0.1}>
+            <div className="flex h-full flex-col rounded-sm border border-bone-line bg-bone-subtle/60 p-6">
+              <p className="micro-label text-ember-600">On repeat right now</p>
+              <div className="mt-5 flex flex-col gap-6 sm:flex-row sm:items-start">
+                <div className="w-36 shrink-0 overflow-hidden rounded-sm border border-bone-line">
+                  <ProtectedImage
+                    src={NOW_PLAYING.coverSrc}
+                    alt={NOW_PLAYING.title}
+                    className="aspect-square w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="min-w-0">
+                  <h4 className="font-serif text-xl font-medium leading-snug text-ink">
+                    {NOW_PLAYING.title}
+                  </h4>
+                  <p className="mt-1 text-sm text-ink-soft">{NOW_PLAYING.artist}</p>
+                  <div className="mt-5 border-t border-bone-line pt-4">
+                    <p className="micro-label text-ink-muted">From the album</p>
+                    <p className="mt-2 text-sm font-medium leading-snug text-ink">
+                      {NOW_PLAYING.albumName}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-auto border-t border-bone-line pt-5">
+                <audio
                   controls
                   preload="metadata"
-                  w="full"
-                  maxW="100%"
-                  display="block"
+                  className="block w-full"
                   src={NOW_PLAYING.albumTrackSrc}
                 />
-              </Box>
-            </Flex>
-          </GridItem>
-        </Grid>
-      </MotionBox>
+              </div>
+            </div>
+          </BlurFade>
+        </div>
+      </div>
 
-      <MotionBox
-        variants={itemVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={inView}
-        w="full"
-      >
-        <SectionLabel>Sports</SectionLabel>
-        <Heading as="h3" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="700" color="gray.800" mb={2}>
-          Teams I follow
-        </Heading>
-        <Text fontSize="sm" color="gray.600" mb={8} maxW="lg" lineHeight="1.6">
-          A mix of where I&apos;ve lived, family ties, and plain old bandwagon joy.
-        </Text>
-        <SimpleGrid columns={{ base: 2, md: 3 }} spacing={4}>
-          {sportsTeams.map((team) => (
-            <Box
-              key={team.name}
-              borderRadius="xl"
-              borderWidth="1px"
-              borderColor="gray.200"
-              bg="white"
-              p={4}
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              textAlign="center"
-              gap={3}
-              transition="box-shadow 0.2s, border-color 0.2s"
-              _hover={{ borderColor: 'orange.200', boxShadow: 'md' }}
-            >
-              <Box w="56px" h="56px" flexShrink={0}>
-                <Image src={team.logo} alt={team.name} w="100%" h="100%" objectFit="contain" />
-              </Box>
-              <VStack spacing={0}>
-                <Text fontSize="sm" fontWeight="700" color="gray.800" lineHeight="1.35">
-                  {team.name}
-                </Text>
-                <Text fontSize="xs" color="gray.500">
-                  {team.league}
-                </Text>
-              </VStack>
-            </Box>
+      {/* ————— Sports ————— */}
+      <div className="border-t border-bone-line pt-6">
+        <BlurFade inView>
+          <div>
+            <SubsectionHeader label="Sports" title="Teams I follow" />
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-soft">
+              A mix of where I&apos;ve lived, family ties, and plain old bandwagon joy.
+            </p>
+          </div>
+        </BlurFade>
+        <div className="mt-8 grid grid-cols-2 gap-px border border-bone-line bg-bone-line md:grid-cols-3">
+          {sportsTeams.map((team, i) => (
+            <BlurFade key={team.name} inView delay={0.03 * i} className="h-full">
+              <div className="flex h-full flex-col items-center gap-3 bg-bone px-4 py-6 text-center transition-colors hover:bg-bone-subtle">
+                <ProtectedImage
+                  src={team.logo}
+                  alt={team.name}
+                  className="h-12 w-12 object-contain"
+                />
+                <div>
+                  <p className="font-serif text-sm font-medium leading-snug text-ink">
+                    {team.name}
+                  </p>
+                  <p className="micro-label mt-1.5 text-ink-muted">{team.league}</p>
+                </div>
+              </div>
+            </BlurFade>
           ))}
-        </SimpleGrid>
-      </MotionBox>
+        </div>
+      </div>
 
-      <MotionBox
-        variants={itemVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={inView}
-        w="full"
-      >
-        <SectionLabel>Videography</SectionLabel>
-        <Heading as="h3" fontSize={{ base: 'xl', md: '2xl' }} fontWeight="700" color="gray.800" mb={6}>
-          Four days in Vienna
-        </Heading>
-        <Box
-          borderRadius="2xl"
-          overflow="hidden"
-          borderWidth="1px"
-          borderColor="gray.200"
-          bg="white"
-          boxShadow="sm"
-        >
-          <Box position="relative" w="100%" bg="black" sx={{ aspectRatio: '16/9' }}>
-            <iframe
-              title="Four days in Vienna — travel video"
-              src="https://www.youtube.com/embed/xMHY4k8ylrQ"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
-              style={{
-                position: 'absolute',
-                inset: 0,
-                width: '100%',
-                height: '100%',
-                border: 'none',
-              }}
-            />
-          </Box>
-          <Box p={{ base: 5, md: 8 }}>
-            <Text fontSize="md" color="gray.600" lineHeight="1.7">
-              This is my latest travel vlog. The trip itself was about two weeks on the road through Austria and
-              Czechia with my mom — but this edit is only four days in Vienna. We went to museums and palaces, and
-              even saw <Text as="span" fontStyle="italic">The Kiss</Text>.
-            </Text>
-            <Text fontSize="md" color="gray.600" lineHeight="1.7" mt={3}>
-              P.S. I already miss Almdudler.
-            </Text>
-          </Box>
-        </Box>
-      </MotionBox>
-    </VStack>
+      {/* ————— Videography ————— */}
+      <div className="border-t border-bone-line pt-6">
+        <BlurFade inView>
+          <SubsectionHeader label="Videography" title="Four days in Vienna" />
+        </BlurFade>
+        <BlurFade inView delay={0.05}>
+          <div className="mt-8">
+            <div className="relative aspect-video w-full overflow-hidden rounded-sm border border-bone-line bg-ink">
+              <iframe
+                title="Four days in Vienna — travel video"
+                src="https://www.youtube.com/embed/xMHY4k8ylrQ"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="absolute inset-0 h-full w-full border-0"
+              />
+            </div>
+            <div className="mt-6 max-w-2xl space-y-3 text-sm leading-relaxed text-ink-soft">
+              <p>
+                This is my latest travel vlog. The trip itself was about two weeks on the road
+                through Austria and Czechia with my mom — but this edit is only four days in
+                Vienna. We went to museums and palaces, and even saw{' '}
+                <span className="italic">The Kiss</span>.
+              </p>
+              <p>P.S. I already miss Almdudler.</p>
+            </div>
+          </div>
+        </BlurFade>
+      </div>
+    </div>
   );
 }

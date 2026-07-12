@@ -1,25 +1,10 @@
 'use client';
 
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Text,
-  VStack,
-  HStack,
-  Image,
-  Grid,
-  GridItem,
-  Badge,
-  Link,
-  useDisclosure,
-} from '@chakra-ui/react';
 import { useState } from 'react';
-import { ChevronLeftIcon, ChevronRightIcon, ExternalLinkIcon } from '@chakra-ui/icons';
-import { MotionBox, MotionVStack, MotionGrid } from '@/lib/motion';
-import { containerVariants, itemVariants } from '@/lib/motion-variants';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { BlurFade } from '@/components/magicui/blur-fade';
+import { TextAnimate } from '@/components/magicui/text-animate';
 import { ImageLightboxModal } from '@/components/ui/ImageLightboxModal';
 
 type DesignProject = {
@@ -69,446 +54,260 @@ const designProjects: DesignProject[] = [
   },
 ];
 
+const designProcess = [
+  {
+    step: '01',
+    title: 'Research',
+    description: 'Understanding user needs, market trends, and business requirements.',
+  },
+  {
+    step: '02',
+    title: 'Ideate',
+    description: 'Brainstorming solutions and exploring creative possibilities.',
+  },
+  {
+    step: '03',
+    title: 'Design',
+    description: 'Creating wireframes, prototypes, and visual designs.',
+  },
+  {
+    step: '04',
+    title: 'Test',
+    description: 'Validating designs through user testing and feedback.',
+  },
+];
+
 export default function DesignPage() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const handleImageClick = (imageSrc: string, index: number) => {
-    setSelectedImage(imageSrc);
+  const openLightbox = (index: number) => {
     setCurrentImageIndex(index);
-    onOpen();
+    setIsLightboxOpen(true);
   };
 
   const nextImage = () => {
-    const nextIndex = (currentImageIndex + 1) % designProjects.length;
-    setCurrentImageIndex(nextIndex);
-    setSelectedImage(designProjects[nextIndex].image);
+    setCurrentImageIndex((prev) => (prev + 1) % designProjects.length);
   };
 
   const prevImage = () => {
-    const prevIndex = (currentImageIndex - 1 + designProjects.length) % designProjects.length;
-    setCurrentImageIndex(prevIndex);
-    setSelectedImage(designProjects[prevIndex].image);
+    setCurrentImageIndex((prev) => (prev - 1 + designProjects.length) % designProjects.length);
   };
 
   return (
-    <Box>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
-        <MotionBox
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <VStack spacing={8} align="center" textAlign="center">
-            <MotionVStack variants={itemVariants} spacing={4}>
-              <Badge
-                colorScheme="pink"
-                variant="subtle"
-                px={2.5}
-                py={0.5}
-                borderRadius="full"
-                fontSize="xs"
-                fontWeight="600"
-              >
-                Design Portfolio
-              </Badge>
-              <Heading
-                fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                Design 🎨
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="640px"
-                lineHeight="1.6"
-              >
-                A collection of creative projects that blend functionality with aesthetics
-              </Text>
-            </MotionVStack>
-          </VStack>
-        </MotionBox>
-      </Container>
+    <div className="bg-bone text-ink">
+      {/* ————— Hero ————— */}
+      <section className="mx-auto max-w-6xl px-5 pt-28 lg:px-10 lg:pt-36">
+        <BlurFade>
+          <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
+            <span>Fun — Design</span>
+            <span>Design Portfolio</span>
+          </div>
+        </BlurFade>
 
-      <Box bg="white" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 8, lg: 10 }}
+        <div className="pb-16 pt-12 lg:pb-24 lg:pt-16">
+          <BlurFade delay={0.1}>
+            <p className="micro-label text-ember-600">Design Portfolio</p>
+          </BlurFade>
+          <TextAnimate
+            as="h1"
+            by="word"
+            delay={0.15}
+            className="mt-5 max-w-3xl font-serif text-4xl font-medium leading-[1.08] tracking-tight lg:text-6xl"
           >
-            <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
-              <Badge
-                colorScheme="pink"
-                variant="subtle"
-                px={2.5}
-                py={0.5}
-                borderRadius="full"
-                fontSize="xs"
-                fontWeight="600"
-              >
-                About My Design Journey
-              </Badge>
-              <Heading
-                fontSize={{ base: 'xl', lg: '3xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                A Brief Introduction
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="640px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                Since my first internship as a UX/UI designer, I fell in love with Figma and discovered a passion for creating intuitive, user-focused designs. I've always felt a strong creative drive, which led me to volunteer for design roles in school projects, assignments, and even case competitions.
-              </Text>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="640px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                I thrive on the challenge of transforming abstract ideas into thoughtful user experiences that blend functionality and aesthetics. My journey in design is fueled by a constant curiosity and a desire to make digital interactions seamless, engaging, and meaningful for users everywhere.
-              </Text>
-            </MotionVStack>
-          </MotionVStack>
-        </Container>
-      </Box>
+            Design
+          </TextAnimate>
+          <BlurFade delay={0.4}>
+            <p className="mt-6 max-w-xl text-[0.9375rem] leading-relaxed text-ink-soft">
+              A collection of creative projects that blend functionality with aesthetics
+            </p>
+          </BlurFade>
+        </div>
+      </section>
 
-      <Box bg="pink.50" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 8, lg: 10 }}
-          >
-            <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
-              <Badge
-                colorScheme="pink"
-                variant="subtle"
-                px={2.5}
-                py={0.5}
-                borderRadius="full"
-                fontSize="xs"
-                fontWeight="600"
-              >
-                Design Process
-              </Badge>
-              <Heading
-                fontSize={{ base: 'xl', lg: '3xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                My Creative Approach
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="520px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                A systematic approach to design that ensures every project meets user needs and business objectives.
-              </Text>
-            </MotionVStack>
+      {/* ————— Introduction ————— */}
+      <section className="border-t border-bone-line">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-5 py-16 lg:grid-cols-12 lg:gap-14 lg:px-10 lg:py-24">
+          <BlurFade inView className="lg:col-span-4">
+            <p className="micro-label text-ember-600">About My Design Journey</p>
+            <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-4xl">
+              A Brief Introduction
+            </h2>
+          </BlurFade>
+          <BlurFade inView delay={0.1} className="lg:col-span-8">
+            <div className="max-w-2xl space-y-5 text-[0.9375rem] leading-relaxed text-ink-soft">
+              <p>
+                Since my first internship as a UX/UI designer, I fell in love with Figma and
+                discovered a passion for creating intuitive, user-focused designs. I&apos;ve always
+                felt a strong creative drive, which led me to volunteer for design roles in school
+                projects, assignments, and even case competitions.
+              </p>
+              <p>
+                I thrive on the challenge of transforming abstract ideas into thoughtful user
+                experiences that blend functionality and aesthetics. My journey in design is fueled
+                by a constant curiosity and a desire to make digital interactions seamless,
+                engaging, and meaningful for users everywhere.
+              </p>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
 
-            <MotionGrid
-              variants={containerVariants}
-              templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }}
-              gap={8}
-              w="full"
-            >
-              {[
-                {
-                  step: '01',
-                  title: 'Research',
-                  description: 'Understanding user needs, market trends, and business requirements.',
-                  icon: '🔍',
-                },
-                {
-                  step: '02',
-                  title: 'Ideate',
-                  description: 'Brainstorming solutions and exploring creative possibilities.',
-                  icon: '💡',
-                },
-                {
-                  step: '03',
-                  title: 'Design',
-                  description: 'Creating wireframes, prototypes, and visual designs.',
-                  icon: '🎨',
-                },
-                {
-                  step: '04',
-                  title: 'Test',
-                  description: 'Validating designs through user testing and feedback.',
-                  icon: '🧪',
-                },
-              ].map((process, index) => (
-                <MotionBox
-                  key={process.step}
-                  variants={itemVariants}
-                  bg="white"
-                  borderRadius="xl"
-                  border="1px solid"
-                  borderColor="gray.200"
-                  p={6}
-                  textAlign="center"
-                  _hover={{
-                    borderColor: 'pink.500',
-                    boxShadow: 'lg',
-                    transform: 'translateY(-4px)',
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <VStack spacing={4}>
-                    <Text fontSize={{ base: "2xl", lg: "3xl" }}>{process.icon}</Text>
-                    <Box
-                      w="40px"
-                      h="40px"
-                      borderRadius="full"
-                      bg="pink.100"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                      fontSize="md"
-                      fontWeight="600"
-                      color="pink.600"
-                    >
-                      {process.step}
-                    </Box>
-                    <Heading fontSize="md" fontWeight="600" color="gray.800">
-                      {process.title}
-                    </Heading>
-                    <Text fontSize="md" color="gray.600" lineHeight="1.5">
-                      {process.description}
-                    </Text>
-                  </VStack>
-                </MotionBox>
-              ))}
-            </MotionGrid>
-          </MotionVStack>
-        </Container>
-      </Box>
+      {/* ————— Process ————— */}
+      <section className="border-t border-bone-line bg-bone-subtle/60">
+        <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
+          <BlurFade inView>
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="micro-label text-ember-600">Design Process</p>
+                <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-5xl">
+                  My Creative Approach
+                </h2>
+                <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-soft">
+                  A systematic approach to design that ensures every project meets user needs and
+                  business objectives.
+                </p>
+              </div>
+              <p className="micro-label hidden text-ink-muted sm:block">
+                ({String(designProcess.length).padStart(2, '0')})
+              </p>
+            </div>
+          </BlurFade>
 
-      <Box bg="white" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 8, lg: 10 }}
-          >
-            <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
-              <Badge
-                colorScheme="pink"
-                variant="subtle"
-                px={2.5}
-                py={0.5}
-                borderRadius="full"
-                fontSize="xs"
-                fontWeight="600"
-              >
-                Featured Projects
-              </Badge>
-              <Heading
-                fontSize={{ base: 'xl', lg: '3xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                Design Portfolio
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="520px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                A collection of design projects showcasing my creative process and attention to detail.
-              </Text>
-            </MotionVStack>
+          <div className="mt-12 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            {designProcess.map((process, i) => (
+              <BlurFade key={process.step} inView delay={0.05 * i}>
+                <div className="border-t border-ink/20 pt-5">
+                  <p className="micro-label text-ember-600">{process.step}</p>
+                  <h3 className="mt-3 font-serif text-xl font-medium">{process.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                    {process.description}
+                  </p>
+                </div>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            <MotionGrid
-              variants={containerVariants}
-              templateColumns={{ base: '1fr', md: 'repeat(2, 1fr)' }}
-              gap={8}
-              w="full"
-            >
-              {designProjects.map((project, index) => (
-                <MotionBox
-                  key={project.id}
-                  variants={itemVariants}
-                  bg="white"
-                  borderRadius="2xl"
-                  overflow="hidden"
-                  boxShadow="lg"
-                  _hover={{
-                    boxShadow: '2xl',
-                    transform: 'translateY(-8px)',
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <Box
-                    position="relative"
-                    cursor="pointer"
-                    onClick={() => handleImageClick(project.image, index)}
+      {/* ————— Featured projects ————— */}
+      <section className="border-t border-bone-line">
+        <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
+          <BlurFade inView>
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="micro-label text-ember-600">Featured Projects</p>
+                <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-5xl">
+                  Design Portfolio
+                </h2>
+                <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-soft">
+                  A collection of design projects showcasing my creative process and attention to
+                  detail.
+                </p>
+              </div>
+              <p className="micro-label hidden text-ink-muted sm:block">
+                ({String(designProjects.length).padStart(2, '0')})
+              </p>
+            </div>
+          </BlurFade>
+
+          <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-16 md:grid-cols-2">
+            {designProjects.map((project, i) => (
+              <BlurFade key={project.id} inView delay={0.06 * (i % 2)}>
+                <figure>
+                  <button
+                    type="button"
+                    onClick={() => openLightbox(i)}
+                    aria-label={`View ${project.title} full size`}
+                    className="group block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left"
                   >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      width="100%"
-                      height="300px"
-                      objectFit="cover"
-                      loading="lazy"
-                      decoding="async"
-                      borderRadius="xl"
-                    />
-                    <Box
-                      position="absolute"
-                      top={0}
-                      left={0}
-                      right={0}
-                      bottom={0}
-                      bg="rgba(0, 0, 0, 0.4)"
-                      opacity={0}
-                      _hover={{ opacity: 1 }}
-                      transition="opacity 0.3s ease"
-                      display="flex"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Text color="white" fontWeight="600" fontSize="md">
-                        View Details
-                      </Text>
-                    </Box>
-                  </Box>
-                  <VStack spacing={3} p={6} align="flex-start">
-                    <HStack
-                      justify="space-between"
-                      w="full"
-                      align="flex-start"
-                      gap={3}
-                      flexWrap="wrap"
-                    >
-                      <Heading
-                        as="h3"
-                        fontSize={{ base: 'xl', md: '2xl' }}
-                        fontWeight="700"
-                        color="gray.800"
-                        lineHeight="1.2"
-                        flex="1"
-                        minW={{ base: '100%', md: '0' }}
-                      >
+                    <div className="overflow-hidden rounded-sm border border-bone-line bg-bone-subtle">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        decoding="async"
+                        className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                      />
+                    </div>
+                    <div className="micro-label mt-3 flex items-center justify-between text-ink-muted">
+                      <span>Fig. {String(i + 1).padStart(2, '0')}</span>
+                      <span className="transition-colors group-hover:text-ember-600">
+                        View larger
+                      </span>
+                    </div>
+                  </button>
+                  <figcaption className="mt-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="font-serif text-xl font-medium leading-snug lg:text-2xl">
                         {project.title}
-                      </Heading>
-                      {project.link ? (
-                        <Link
+                      </h3>
+                      {project.link && (
+                        <a
                           href={project.link.href}
-                          isExternal
+                          target="_blank"
                           rel="noopener noreferrer"
-                          display="inline-flex"
-                          alignItems="center"
-                          gap={1.5}
-                          fontSize="sm"
-                          fontWeight="600"
-                          color="brand.500"
-                          flexShrink={0}
-                          alignSelf={{ base: 'flex-start', md: 'center' }}
                           aria-label={`${project.link.label} (opens in new tab)`}
-                          _hover={{
-                            color: 'brand.600',
-                            textDecoration: 'underline',
-                          }}
+                          className="group/link micro-label inline-flex shrink-0 items-center gap-1 pt-2 text-ink-muted transition-colors hover:text-ember-600"
                         >
                           {project.link.label}
-                          <ExternalLinkIcon boxSize={3.5} aria-hidden />
-                        </Link>
-                      ) : null}
-                    </HStack>
-                    <Text color="gray.600" lineHeight="1.6" fontSize="md">
+                          <ArrowUpRight
+                            className="h-3.5 w-3.5 transition-transform group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5"
+                            aria-hidden
+                          />
+                        </a>
+                      )}
+                    </div>
+                    <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-soft">
                       {project.description}
-                    </Text>
-                  </VStack>
-                </MotionBox>
-              ))}
-            </MotionGrid>
-          </MotionVStack>
-        </Container>
-      </Box>
+                    </p>
+                  </figcaption>
+                </figure>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
+      </section>
 
-
-      <Box bg="orange.50" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 6, lg: 8 }}
-            textAlign="center"
-          >
-            <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }}>
-              <Heading
-                fontSize={{ base: 'xl', lg: '3xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                Let&apos;s Create Together
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="520px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                I&apos;m always excited to collaborate on new design projects and bring creative visions to life.
-              </Text>
-            </MotionVStack>
-
-            <Flex w="auto" gap={3} flexWrap="wrap" justify="center">
-              <Button
-                as="a"
+      {/* ————— Closing ————— */}
+      <section className="border-t border-bone-line">
+        <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
+          <BlurFade inView>
+            <p className="micro-label text-ember-600">Next</p>
+            <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-5xl">
+              Let&apos;s Create Together
+            </h2>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-soft">
+              I&apos;m always excited to collaborate on new design projects and bring creative
+              visions to life.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
                 href="/fun/travels"
-                size="sm"
-                variant="solid"
-                rightIcon={<ChevronRightIcon />}
-                w="auto"
+                className="inline-flex items-center gap-2 border border-ink px-5 py-2.5 text-sm font-medium transition-colors hover:bg-ink hover:text-bone"
               >
                 View My Travels
-              </Button>
-              <Button
-                as="a"
+                <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link
                 href="/about"
-                size="sm"
-                variant="outline"
-                w="auto"
+                className="inline-flex items-center gap-2 border border-ink px-5 py-2.5 text-sm font-medium transition-colors hover:bg-ink hover:text-bone"
               >
                 Learn More About Me
-              </Button>
-            </Flex>
-          </MotionVStack>
-        </Container>
-      </Box>
+              </Link>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
 
       <ImageLightboxModal
-        isOpen={isOpen}
-        onClose={onClose}
-        imageSrc={selectedImage || ''}
-        alt="Design Project"
+        isOpen={isLightboxOpen}
+        onClose={() => setIsLightboxOpen(false)}
+        imageSrc={designProjects[currentImageIndex].image}
+        alt={designProjects[currentImageIndex].title}
+        navigation={{ onPrev: prevImage, onNext: nextImage }}
       />
-    </Box>
+    </div>
   );
 }
