@@ -11,13 +11,6 @@ import { ProtectedImage } from '@/components/ui/protected-image';
 import { ImageLightboxModal } from '@/components/ui/ImageLightboxModal';
 import { cn } from '@/lib/utils';
 
-/* ————————————————————————————————————————————————
-   Shared editorial building blocks for /work case studies.
-   Every case study composes these so the pages read as one
-   publication: bone background, serif display, mono labels,
-   hairline rules, ember accents, ink callout bands.
-   ———————————————————————————————————————————————— */
-
 export function CaseHero({
   category,
   title,
@@ -103,7 +96,7 @@ export function CaseSection({
   title: string;
   children: React.ReactNode;
   className?: string;
-  /** When true, children span the full width below the header instead of the right column. */
+  
   wide?: boolean;
 }) {
   return (
@@ -157,22 +150,32 @@ export function CaseFigure({
   caption,
   figure,
   className,
+  parallax = true,
 }: {
   src: string;
   alt: string;
   caption?: string;
   figure?: string;
   className?: string;
+  parallax?: boolean;
 }) {
   return (
     <figure className={className}>
-      <ParallaxImage
-        src={src}
-        alt={alt}
-        strength={4}
-        className="rounded-sm border border-bone-line bg-white"
-        imgClassName="h-auto w-full"
-      />
+      {parallax ? (
+        <ParallaxImage
+          src={src}
+          alt={alt}
+          strength={4}
+          className="rounded-sm border border-bone-line bg-white"
+          imgClassName="h-auto w-full"
+        />
+      ) : (
+        <ProtectedImage
+          src={src}
+          alt={alt}
+          className="h-auto w-full rounded-sm border border-bone-line bg-white"
+        />
+      )}
       {(caption || figure) && (
         <figcaption className="micro-label mt-3 flex items-center justify-between text-ink-muted">
           <span>{figure}</span>

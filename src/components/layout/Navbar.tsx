@@ -51,8 +51,6 @@ function isSectionActive(pathname: string, section: NavSection) {
 function DesktopDropdown({ section, pathname }: { section: NavSection; pathname: string }) {
   const active = isSectionActive(pathname, section);
   const [open, setOpen] = useState(false);
-
-  // Close whenever navigation happens (hover state would otherwise linger).
   useEffect(() => {
     setOpen(false);
   }, [pathname]);

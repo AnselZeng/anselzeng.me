@@ -30,6 +30,7 @@ function schoolLink(href: string, label: string) {
 }
 
 function TimelineRow({ entry, index }: { entry: TimelineEntry; index: number }) {
+  const isExternal = entry.href?.startsWith('http');
   return (
     <BlurFade inView delay={0.04 * index}>
       <div className="grid grid-cols-1 gap-2 border-b border-bone-line py-7 sm:grid-cols-[10rem_1fr] sm:gap-8">
@@ -47,6 +48,8 @@ function TimelineRow({ entry, index }: { entry: TimelineEntry; index: number }) 
               {entry.href ? (
                 <Link
                   href={entry.href}
+                  target={isExternal ? '_blank' : undefined}
+                  rel={isExternal ? 'noopener noreferrer' : undefined}
                   className="group inline-flex items-baseline gap-1.5 transition-colors hover:text-ember-600"
                 >
                   {entry.org}
@@ -64,7 +67,7 @@ function TimelineRow({ entry, index }: { entry: TimelineEntry; index: number }) 
                 src={entry.logo}
                 alt=""
                 aria-hidden
-                className="h-5 w-5 self-center object-contain opacity-80"
+                className="h-5 w-auto max-w-[3rem] self-center object-contain opacity-80"
               />
             )}
           </div>
@@ -81,7 +84,6 @@ function TimelineRow({ entry, index }: { entry: TimelineEntry; index: number }) 
 export default function About() {
   return (
     <div className="bg-bone text-ink">
-      {/* ————— Hero ————— */}
       <section className="mx-auto max-w-6xl px-5 pt-28 lg:px-10 lg:pt-36">
         <BlurFade>
           <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
@@ -170,8 +172,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      {/* ————— Photo strip ————— */}
       <section className="mt-20 border-y border-bone-line py-4 lg:mt-28">
         <BlurFade inView>
           <Marquee pauseOnHover className="[--duration:60s] [--gap:1.5rem]">
@@ -192,8 +192,6 @@ export default function About() {
           </Marquee>
         </BlurFade>
       </section>
-
-      {/* ————— Experience ————— */}
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-10 lg:py-28">
         <BlurFade inView>
           <div className="flex items-end justify-between">
@@ -235,8 +233,6 @@ export default function About() {
           ))}
         </div>
       </section>
-
-      {/* ————— Education ————— */}
       <section className="border-t border-bone-line bg-bone-subtle/60">
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-20">
           <BlurFade inView>
@@ -254,8 +250,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      {/* ————— Expertise ————— */}
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-10 lg:py-28">
         <BlurFade inView>
           <div>
@@ -283,8 +277,6 @@ export default function About() {
           ))}
         </div>
       </section>
-
-      {/* ————— Interests ————— */}
       <section className="border-t border-bone-line">
         <div className="mx-auto max-w-6xl px-5 py-20 lg:px-10 lg:py-28">
           <BlurFade inView>

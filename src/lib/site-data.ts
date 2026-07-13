@@ -1,12 +1,10 @@
-// Central content for the home and about pages.
-// Edit here instead of digging through page markup.
 
 export type WorkPalette = {
-  /** Text-safe accent on light (bone) backgrounds. */
+  
   accent: string;
-  /** Accent legible on the dark ink callout band. */
+  
   accentBright: string;
-  /** Soft wash used as the image plate / backdrop. */
+  
   tint: string;
 };
 
@@ -23,9 +21,6 @@ export type WorkEntry = {
   emoji: string;
   palette: WorkPalette;
 };
-
-// Each engagement keeps its own brand palette (used for image plates and
-// case-study accents) while the ember/bone/ink system handles everything else.
 export const workPalettes: Record<string, WorkPalette> = {
   telus: { accent: '#79689B', accentBright: '#C9BBD8', tint: 'rgba(180, 163, 197, 0.22)' },
   ips: { accent: '#467A00', accentBright: '#8BD435', tint: 'rgba(102, 204, 0, 0.10)' },
@@ -33,7 +28,6 @@ export const workPalettes: Record<string, WorkPalette> = {
   tweebaa: { accent: '#B91C1C', accentBright: '#F08080', tint: 'rgba(220, 38, 38, 0.07)' },
 };
 
-/** CSS custom properties read by the shared case-study components. */
 export function caseAccentVars(id: keyof typeof workPalettes): Record<string, string> {
   const palette = workPalettes[id];
   return {
@@ -104,7 +98,7 @@ export type TimelineEntry = {
   date: string;
   summary?: string;
   logo?: string;
-  /** Internal case-study page for this experience, when one exists. */
+  
   href?: string;
   current?: boolean;
 };
@@ -114,12 +108,19 @@ export const workTimeline: TimelineEntry[] = [
     org: 'USC Information Sciences Institute (SPHERE)',
     role: 'Operations Engineer',
     date: 'Jun 2026 – Present',
+    summary:
+      'Automating Linux provisioning with Ansible, performing rolling Kubernetes upgrades, and setting up ZFS storage with NFS exports across a multi-node research testbed.',
+    logo: '/home/sphere.png',
     current: true,
   },
   {
-    org: 'USC InfoLab',
-    role: 'Graduate Researcher',
-    date: 'Jan 2026 – May 2026',
+    org: 'Ivey Centre for Building Sustainable Value',
+    role: 'Software Engineer',
+    date: 'Jul 2025 – Present',
+    summary:
+      'Building a Flutter mobile app and web platform that helps organic farmers connect and grow their community, on a real-time Supabase backend, alongside faculty advisors.',
+    logo: '/home/ivey.png',
+    current: true,
   },
   {
     org: 'Telus',
@@ -151,6 +152,15 @@ export const workTimeline: TimelineEntry[] = [
 ];
 
 export const leadershipTimeline: TimelineEntry[] = [
+  {
+    org: 'USC InfoLab',
+    role: 'Graduate Researcher',
+    date: 'Jan 2026 – May 2026',
+    summary:
+      'Worked on Wearables for Health, an open-source toolkit; built dashboard features and Postgres pipelines so clinical researchers can upload, analyze, and visualize wearable data.',
+    logo: '/home/infolab.png',
+    href: 'https://infolab.usc.edu/projects/W4H/',
+  },
   {
     org: 'Hack Western',
     role: 'Web Team Lead',

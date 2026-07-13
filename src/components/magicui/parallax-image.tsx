@@ -9,16 +9,12 @@ interface ParallaxImageProps {
   alt: string;
   className?: string;
   imgClassName?: string;
-  /** How far the image drifts inside its frame, as a percentage. */
+  
   strength?: number;
-  /** Inline styles for the clipping frame (e.g. tinted plate backgrounds). */
+  
   style?: React.CSSProperties;
 }
 
-/**
- * An image that drifts slowly inside its clipped frame as the page scrolls,
- * giving sections quiet depth without moving the layout itself.
- */
 export function ParallaxImage({
   src,
   alt,

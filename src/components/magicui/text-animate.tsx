@@ -36,7 +36,6 @@ export function TextAnimate({
   once = true,
   by = 'word',
 }: TextAnimateProps) {
-  // framer-motion >= 11.11 renamed motion() to motion.create()
   const create = (motion as unknown as { create?: typeof motion }).create ?? motion;
   const MotionComponent = create(Component as ElementType);
   const ref = useRef(null);

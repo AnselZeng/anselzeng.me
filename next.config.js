@@ -4,7 +4,7 @@ const nextConfig = {
     unoptimized: true
   },
   experimental: {
-    optimizePackageImports: ['@chakra-ui/react', 'framer-motion']
+    optimizePackageImports: ['framer-motion']
   }
 }
 

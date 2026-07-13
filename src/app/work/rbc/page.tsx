@@ -244,6 +244,7 @@ export default function RBCPage() {
                   alt={moment.title}
                   figure={moment.figure}
                   caption={moment.caption}
+                  parallax={false}
                 />
                 <div className="space-y-5 text-[0.9375rem] leading-relaxed text-ink-soft lg:self-center">
                   {moment.content.map((paragraph) => (

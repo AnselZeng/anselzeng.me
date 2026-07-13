@@ -4,14 +4,12 @@ import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
 import { TiltCard } from '@/components/magicui/tilt-card';
 import { Parallax } from '@/components/magicui/parallax';
-import { ParallaxImage } from '@/components/magicui/parallax-image';
 import { ProtectedImage } from '@/components/ui/protected-image';
 import { heroStats, selectedWork } from '@/lib/site-data';
 
 export default function Home() {
   return (
     <div className="bg-bone text-ink">
-      {/* ————— Hero ————— */}
       <section className="mx-auto max-w-6xl px-5 pt-28 lg:px-10 lg:pt-36">
         <BlurFade>
           <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
@@ -107,8 +105,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* ————— Selected work ————— */}
       <section className="mx-auto mt-20 max-w-6xl border-t border-bone-line px-5 py-20 lg:mt-28 lg:px-10 lg:py-28">
         <BlurFade inView>
           <div className="flex items-end justify-between">
@@ -127,14 +123,16 @@ export default function Home() {
             <BlurFade key={work.id} inView delay={0.06 * (i % 2)}>
               <Link href={work.href} className="group block">
                 <div className="relative">
-                  <ParallaxImage
-                    src={work.image}
-                    alt={`${work.org} — ${work.project}`}
-                    strength={5}
-                    className="aspect-[4/3] rounded-sm border border-bone-line"
-                    imgClassName="object-contain p-8 transition-transform duration-700 ease-out group-hover:scale-[1.04] lg:p-10"
+                  <div
+                    className="aspect-[4/3] overflow-hidden rounded-sm border border-bone-line"
                     style={{ backgroundColor: work.palette.tint }}
-                  />
+                  >
+                    <ProtectedImage
+                      src={work.image}
+                      alt={`${work.org} — ${work.project}`}
+                      className="h-full w-full object-contain p-8 transition-transform duration-700 ease-out group-hover:scale-[1.04] lg:p-10"
+                    />
+                  </div>
                   <span className="micro-label absolute left-4 top-4 rounded-full bg-bone/90 px-3 py-1.5 text-ink backdrop-blur-sm">
                     {work.index}
                   </span>

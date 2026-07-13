@@ -19,7 +19,7 @@ export default function Footer() {
     <footer className="bg-ink text-bone">
       <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
         <BlurFade inView>
-          <p className="micro-label text-ember-400">Next step</p>
+          <p className="micro-label text-ember-400">Contact</p>
           <h2 className="mt-5 max-w-3xl font-serif text-3xl font-medium leading-tight tracking-tight !text-bone sm:text-4xl lg:text-6xl">
             Let&apos;s build something worth shipping.
           </h2>
@@ -47,11 +47,9 @@ export default function Footer() {
               </a>
             ))}
           </div>
-          <div className="micro-label flex flex-wrap items-center gap-x-6 gap-y-2 text-bone/40">
-            <span>© {currentYear} Ansel Zeng</span>
-            <span>Los Angeles, CA</span>
-            <span>Next.js · Tailwind · Magic UI</span>
-          </div>
+          <p className="micro-label text-bone/40">
+            © {currentYear} Ansel Zeng · Next.js · Tailwind · Magic UI
+          </p>
         </div>
       </div>
     </footer>

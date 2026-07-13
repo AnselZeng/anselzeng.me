@@ -74,7 +74,6 @@ export default function TravelsPage() {
 
   return (
     <div className="bg-bone text-ink">
-      {/* ————— Hero ————— */}
       <section className="mx-auto max-w-6xl px-5 pt-28 lg:px-10 lg:pt-36">
         <BlurFade>
           <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
@@ -102,8 +101,6 @@ export default function TravelsPage() {
           </BlurFade>
         </div>
       </section>
-
-      {/* ————— Introduction ————— */}
       <section className="border-t border-bone-line">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-5 py-16 lg:grid-cols-12 lg:gap-14 lg:px-10 lg:py-24">
           <BlurFade inView className="lg:col-span-4">
@@ -147,8 +144,6 @@ export default function TravelsPage() {
           </BlurFade>
         </div>
       </section>
-
-      {/* ————— Map & stats ————— */}
       <section className="border-t border-bone-line bg-bone-subtle/60">
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
           <BlurFade inView>
@@ -204,15 +199,11 @@ export default function TravelsPage() {
           </BlurFade>
         </div>
       </section>
-
-      {/* ————— Travel log table ————— */}
       <section className="border-t border-bone-line">
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
           <PlacesTable />
         </div>
       </section>
-
-      {/* ————— Philosophy ————— */}
       <section className="border-t border-bone-line bg-bone-subtle/60">
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
@@ -252,8 +243,6 @@ export default function TravelsPage() {
           </div>
         </div>
       </section>
-
-      {/* ————— Closing ————— */}
       <section className="border-t border-bone-line">
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
           <BlurFade inView>

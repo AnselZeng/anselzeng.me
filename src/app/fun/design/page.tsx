@@ -96,7 +96,6 @@ export default function DesignPage() {
 
   return (
     <div className="bg-bone text-ink">
-      {/* ————— Hero ————— */}
       <section className="mx-auto max-w-6xl px-5 pt-28 lg:px-10 lg:pt-36">
         <BlurFade>
           <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
@@ -124,8 +123,6 @@ export default function DesignPage() {
           </BlurFade>
         </div>
       </section>
-
-      {/* ————— Introduction ————— */}
       <section className="border-t border-bone-line">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-5 py-16 lg:grid-cols-12 lg:gap-14 lg:px-10 lg:py-24">
           <BlurFade inView className="lg:col-span-4">
@@ -152,8 +149,6 @@ export default function DesignPage() {
           </BlurFade>
         </div>
       </section>
-
-      {/* ————— Process ————— */}
       <section className="border-t border-bone-line bg-bone-subtle/60">
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
           <BlurFade inView>
@@ -189,8 +184,6 @@ export default function DesignPage() {
           </div>
         </div>
       </section>
-
-      {/* ————— Featured projects ————— */}
       <section className="border-t border-bone-line">
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
           <BlurFade inView>
@@ -222,7 +215,6 @@ export default function DesignPage() {
                     className="group block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left"
                   >
                     <div className="overflow-hidden rounded-sm border border-bone-line bg-bone-subtle">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={project.image}
                         alt={project.title}
@@ -269,8 +261,6 @@ export default function DesignPage() {
           </div>
         </div>
       </section>
-
-      {/* ————— Closing ————— */}
       <section className="border-t border-bone-line">
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
           <BlurFade inView>

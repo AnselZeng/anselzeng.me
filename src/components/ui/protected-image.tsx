@@ -7,11 +7,11 @@ interface ProtectedImageProps extends React.ImgHTMLAttributes<HTMLImageElement> 
   alt: string;
 }
 
-export function ProtectedImage({ className, ...props }: ProtectedImageProps) {
+export function ProtectedImage({ className, alt, ...props }: ProtectedImageProps) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
     <img
       {...props}
+      alt={alt}
       draggable={false}
       onContextMenu={(e) => e.preventDefault()}
       className={cn('select-none', className)}

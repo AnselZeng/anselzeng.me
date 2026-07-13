@@ -73,8 +73,6 @@ export default function BlogPost({
     currentGroup.images.length > 1
       ? { onPrev: prevImage, onNext: nextImage }
       : undefined;
-
-  // Editorial figure numbering: cover is Fig. 01, image groups continue from there.
   let figureCounter = 1;
   const figureNumbers = sections.map((section) =>
     section.type === 'imageGroup' ? String(++figureCounter).padStart(2, '0') : null,
@@ -82,7 +80,6 @@ export default function BlogPost({
 
   return (
     <div className="bg-bone text-ink">
-      {/* ————— Header ————— */}
       <section className="mx-auto max-w-4xl px-5 pt-28 lg:px-10 lg:pt-36">
         <BlurFade>
           <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
@@ -128,8 +125,6 @@ export default function BlogPost({
           </div>
         </BlurFade>
       </section>
-
-      {/* ————— Body ————— */}
       <article className="mx-auto max-w-4xl px-5 py-16 lg:px-10 lg:py-24">
         <div className="mx-auto max-w-2xl space-y-10">
           {sections.map((section, index) => (
@@ -172,8 +167,6 @@ export default function BlogPost({
           ))}
         </div>
       </article>
-
-      {/* ————— Closing ————— */}
       <section className="border-t border-bone-line">
         <div className="mx-auto max-w-4xl px-5 py-16 lg:px-10 lg:py-20">
           <BlurFade inView>

@@ -7,13 +7,10 @@ import { cn } from '@/lib/utils';
 interface TiltCardProps {
   children: React.ReactNode;
   className?: string;
-  /** Maximum rotation in degrees. Keep small for a professional feel. */
+  
   maxTilt?: number;
 }
 
-/**
- * Subtle 3D tilt that follows the cursor, with a springy return to rest.
- */
 export function TiltCard({ children, className, maxTilt = 5 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);

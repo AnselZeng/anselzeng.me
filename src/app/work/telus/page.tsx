@@ -116,7 +116,13 @@ export default function TelusPage() {
               label: 'Telus Lab Tour',
               content: (
                 <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-                  <CaseFigure src="/telus/lab.jpeg" alt="Telus testing lab" figure="Fig. 02" caption="Testing facility" />
+                  <CaseFigure
+                    src="/telus/lab.jpeg"
+                    alt="Telus testing lab"
+                    figure="Fig. 02"
+                    caption="Testing facility"
+                    parallax={false}
+                  />
                   <div className="space-y-5 text-[0.9375rem] leading-relaxed text-ink-soft lg:self-center">
                     <p>
                       One of the most captivating and valuable components of my internship was the
@@ -194,6 +200,7 @@ export default function TelusPage() {
           alt="Ticket management system mockup"
           figure="Fig. 03"
           caption="Login, ticket grid, and modal flows"
+          parallax={false}
         />
       </section>
 

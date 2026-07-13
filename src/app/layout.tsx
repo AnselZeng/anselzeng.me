@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
-import { Providers } from './providers';
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -43,18 +42,15 @@ export default function RootLayout({
     <html lang="en" className={`${dmSans.variable} ${dmMono.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
           href="https://api.fontshare.com/v2/css?f[]=gambetta@400,500,600,700&display=swap"
           rel="stylesheet"
         />
       </head>
       <body className={dmSans.className}>
-        <Providers>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </Providers>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

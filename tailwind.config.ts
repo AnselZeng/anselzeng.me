@@ -1,9 +1,6 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  // Preflight off: Chakra UI still owns the global reset on the untouched
-  // pages (/work/*, /fun/*). Chakra's reset already zeroes borders, so
-  // Tailwind border utilities behave normally.
   corePlugins: {
     preflight: false,
   },
@@ -55,7 +52,7 @@ const config: Config = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [],
 };
 
 export default config;

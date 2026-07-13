@@ -188,6 +188,7 @@ export default function IPSPage() {
               figure={showcase.figure}
               caption={showcase.title}
               className="mt-6"
+              parallax={false}
             />
           </div>
         ))}

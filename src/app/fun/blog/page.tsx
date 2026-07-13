@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
-import { ParallaxImage } from '@/components/magicui/parallax-image';
 import { ProtectedImage } from '@/components/ui/protected-image';
 
 const blogPosts = [
@@ -79,7 +78,6 @@ export default function BlogPage() {
 
   return (
     <div className="bg-bone text-ink">
-      {/* ————— Header ————— */}
       <section className="mx-auto max-w-6xl px-5 pt-28 lg:px-10 lg:pt-36">
         <BlurFade>
           <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
@@ -108,8 +106,6 @@ export default function BlogPage() {
           </BlurFade>
         </div>
       </section>
-
-      {/* ————— Featured (newest) ————— */}
       <section className="mx-auto max-w-6xl px-5 pt-16 lg:px-10 lg:pt-24">
         <BlurFade inView>
           <p className="micro-label border-b border-bone-line pb-4 text-ink-muted">
@@ -118,13 +114,11 @@ export default function BlogPage() {
         </BlurFade>
         <BlurFade inView delay={0.1}>
           <Link href={featured.href} className="group mt-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
-            <div className="lg:col-span-7">
-              <ParallaxImage
+            <div className="overflow-hidden rounded-sm border border-bone-line bg-bone-subtle aspect-[4/3] lg:col-span-7">
+              <ProtectedImage
                 src={featured.image}
                 alt={featured.title}
-                strength={6}
-                className="aspect-[4/3] rounded-sm border border-bone-line bg-bone-subtle"
-                imgClassName="transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
               />
             </div>
             <div className="flex flex-col justify-between lg:col-span-5">
@@ -152,8 +146,6 @@ export default function BlogPage() {
           </Link>
         </BlurFade>
       </section>
-
-      {/* ————— Archive index ————— */}
       <section className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
         <BlurFade inView>
           <p className="micro-label border-b border-bone-line pb-4 text-ink-muted">

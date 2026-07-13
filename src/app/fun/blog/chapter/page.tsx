@@ -16,7 +16,7 @@ export default function ChapterPage() {
       type: 'text' as const,
       content: (
         <>
-          Funny enough, our flight will land in LA at 12:49 am on January 1st, 2026. It'll be the first time I ever set foot in the city, and well, officially moving to live in a new country. I could not have started a new chapter of my life more <em>literally</em>, on New Year's Day. I have to admit, it's slightly nerve-racking to be so far from home, moving from the East Coast to the West Coast all the way across the continent, to a city where I have no friends, no family, and no connections. I'll definitely be missing my bed, my closet, my neighbourhood, and craving home-cooked meals.
+          Funny enough, our flight will land in LA at 12:49 am on January 1st, 2026. It’ll be the first time I ever set foot in the city, and well, officially moving to live in a new country. I could not have started a new chapter of my life more <em>literally</em>, on New Year’s Day. I have to admit, it’s slightly nerve-racking to be so far from home, moving from the East Coast to the West Coast all the way across the continent, to a city where I have no friends, no family, and no connections. I’ll definitely be missing my bed, my closet, my neighbourhood, and craving home-cooked meals.
         </>
       ),
     },
@@ -24,7 +24,7 @@ export default function ChapterPage() {
       type: 'text' as const,
       content: (
         <>
-          Maybe it's just my immature thinking, but I've come to realize that the whole "frontal lobe development" thing is so real. So many things in life become clearer as the years pass and we all grow older. And I'm not even talking about the basic realizations like "everyone's on their own timeline" or "it's your parents' first time living too." These were things I always <em>knew</em>, but I don't think I fully understood them until recently. What's really hitting me now is how different people's paths actually turn out to be in reality, not just in theory. Seeing my friends' lives unfold in such varied ways — some switching career paths, some going to law school, some struggling at work, some striving, some taking a gap year to do more internships before graduating, and some already getting promoted — it's fascinating how diverse life really is. As open as I'd like to think my eyes have been to the broader world, I know there's so much more out there to discover and learn.
+          Maybe it’s just my immature thinking, but I’ve come to realize that the whole “frontal lobe development” thing is so real. So many things in life become clearer as the years pass and we all grow older. And I’m not even talking about the basic realizations like “everyone’s on their own timeline” or “it’s your parents’ first time living too.” These were things I always <em>knew</em>, but I don’t think I fully understood them until recently. What’s really hitting me now is how different people’s paths actually turn out to be in reality, not just in theory. Seeing my friends’ lives unfold in such varied ways — some switching career paths, some going to law school, some struggling at work, some striving, some taking a gap year to do more internships before graduating, and some already getting promoted — it’s fascinating how diverse life really is. As open as I’d like to think my eyes have been to the broader world, I know there’s so much more out there to discover and learn.
         </>
       ),
     },
@@ -36,7 +36,7 @@ export default function ChapterPage() {
       type: 'text' as const,
       content: (
         <>
-          The past four months had been full of twists and turns, ups and downs. When I touched down, reality hit immediately. The biggest question that used to linger at the back of my mind now jumped to the forefront, staring me down: <em>what now</em>? What direction do I take my life in? What are my true interests? What should I specialize in? Where are my strengths? This one was extra hard to answer because I know I'm a generalist at heart.
+          The past four months had been full of twists and turns, ups and downs. When I touched down, reality hit immediately. The biggest question that used to linger at the back of my mind now jumped to the forefront, staring me down: <em>what now</em>? What direction do I take my life in? What are my true interests? What should I specialize in? Where are my strengths? This one was extra hard to answer because I know I’m a generalist at heart.
         </>
       ),
     },

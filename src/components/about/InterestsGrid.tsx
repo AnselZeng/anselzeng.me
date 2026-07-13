@@ -129,7 +129,6 @@ function PickCard({
 export default function InterestsGrid() {
   return (
     <div className="space-y-16 lg:space-y-20">
-      {/* ————— Films ————— */}
       <div className="border-t border-bone-line pt-6">
         <BlurFade inView>
           <SubsectionHeader label="Films" title="Three I return to" />
@@ -148,8 +147,6 @@ export default function InterestsGrid() {
           ))}
         </div>
       </div>
-
-      {/* ————— Series ————— */}
       <div className="border-t border-bone-line pt-6">
         <BlurFade inView>
           <SubsectionHeader label="Series" title="Three that stuck" />
@@ -168,8 +165,6 @@ export default function InterestsGrid() {
           ))}
         </div>
       </div>
-
-      {/* ————— Music ————— */}
       <div className="border-t border-bone-line pt-6">
         <BlurFade inView>
           <SubsectionHeader label="Music" title="Listening, by the numbers" />
@@ -237,8 +232,6 @@ export default function InterestsGrid() {
           </BlurFade>
         </div>
       </div>
-
-      {/* ————— Sports ————— */}
       <div className="border-t border-bone-line pt-6">
         <BlurFade inView>
           <div>
@@ -268,8 +261,6 @@ export default function InterestsGrid() {
           ))}
         </div>
       </div>
-
-      {/* ————— Videography ————— */}
       <div className="border-t border-bone-line pt-6">
         <BlurFade inView>
           <SubsectionHeader label="Videography" title="Four days in Vienna" />

@@ -82,7 +82,6 @@ export function ImageLightboxModal({
             className="flex max-h-full max-w-full flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imageSrc}
               alt={alt}
