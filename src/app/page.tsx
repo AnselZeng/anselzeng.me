@@ -1,478 +1,164 @@
-'use client';
-
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Grid,
-  GridItem,
-  Heading,
-  Link,
-  Text,
-  VStack,
-  Image,
-  Badge,
-} from '@chakra-ui/react';
-import NextLink from 'next/link';
-import ProjectCard from '@/components/home/ProjectCard';
-import { ChevronRightIcon } from '@chakra-ui/icons';
-import { MotionBox, MotionVStack } from '@/lib/motion';
-import { containerVariants, itemVariants } from '@/lib/motion-variants';
-
-const sectionLabelProps = {
-  fontSize: 'xs',
-  fontWeight: '600',
-  letterSpacing: '0.2em',
-  textTransform: 'uppercase' as const,
-  color: 'gray.500',
-  lineHeight: '1.2',
-};
-
-const heroSectionLabelProps = {
-  ...sectionLabelProps,
-  color: 'brand.500',
-};
-
-const heroBodyTextProps = {
-  fontSize: 'sm' as const,
-  color: 'gray.600',
-  lineHeight: '1.65',
-};
-
-function HeroStat({ label, value, detail }: { label: string; value: string; detail?: string }) {
-  return (
-    <Box w="full">
-      <Text {...heroSectionLabelProps} mb={3}>
-        {label}
-      </Text>
-      <Text {...heroBodyTextProps}>
-        <Text as="span" fontWeight="600" color="gray.800">
-          {value}
-        </Text>
-        {detail ? (
-          <>
-            <Text as="span" color="gray.400" mx={1.5} aria-hidden>
-              —
-            </Text>
-            <Text as="span" color="gray.600" fontWeight="400">
-              {detail}
-            </Text>
-          </>
-        ) : null}
-      </Text>
-    </Box>
-  );
-}
-
-const educationLines = [
-  'University of Southern California · MS',
-  'Tsinghua University · Exchange',
-  'Ivey Business School · BA',
-  'Western University · BS',
-] as const;
-
-const serviceLines = ['Product engineering', 'Systems & APIs', 'Human-centered UX'] as const;
-
-const HERO_PHOTO_LG = { w: '300px', h: '400px' } as const;
-
-function HeroFlexGap() {
-  return (
-    <Box
-      aria-hidden
-      flex={{ base: '0 0 0px', lg: '1 1 auto' }}
-      minH={{ base: 0, lg: '2' }}
-      w="full"
-    />
-  );
-}
-
-const projects = [
-  {
-    id: 'telus',
-    title: 'Telus',
-    subtitle: 'Ticket Management System',
-    description: 'Streamlining operations with a dynamic ticket management system.',
-    tags: ['Software Engineering', 'DevOps', 'Internship'],
-    image: '/home/telus.png',
-    logo: '/home/telus.svg',
-    link: '/work/telus',
-    color: '#66CC00',
-    reverse: true,
-  },
-  {
-    id: 'ips',
-    title: 'Ivey Product Society',
-    subtitle: 'Spotify Enhancement',
-    description: "Enhancing Spotify's social experience through customization on the profile page.",
-    tags: ['Product Management', 'UX Research', 'Fellowship'],
-    image: '/home/ips.png',
-    logo: '/home/ips.svg',
-    link: '/work/ips',
-    color: '#B4A3C5',
-    reverse: false,
-  },
-  {
-    id: 'rbc',
-    title: 'Royal Bank of Canada',
-    subtitle: 'Mortgage Application Engine',
-    description: 'Redefining the mortgage application process by building an enhanced evaluation engine.',
-    tags: ['Software Engineering', 'Full-stack', 'Internship'],
-    image: '/home/rbc.png',
-    logo: '/home/rbc.svg',
-    link: '/work/rbc',
-    color: '#0066D0',
-    reverse: true,
-  },
-  {
-    id: 'tweebaa',
-    title: 'Tweebaa',
-    subtitle: 'E-commerce Innovation',
-    description: 'Pioneering the future of e-commerce through value-exchanging social networking.',
-    tags: ['UX/UI Design', 'Wireframing', 'Internship'],
-    image: '/home/tweebaa.png',
-    logo: '/home/tweebaa.svg',
-    link: '/work/tweebaa',
-    color: '#DC2626',
-    reverse: false,
-  },
-];
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
+import { BlurFade } from '@/components/magicui/blur-fade';
+import { TextAnimate } from '@/components/magicui/text-animate';
+import { TiltCard } from '@/components/magicui/tilt-card';
+import { Parallax } from '@/components/magicui/parallax';
+import { ProtectedImage } from '@/components/ui/protected-image';
+import { heroStats, selectedWork } from '@/lib/site-data';
 
 export default function Home() {
   return (
-    <Box>
-      <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 12, lg: 24 }}>
-        <MotionBox
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          w="full"
-          px={{ base: 4, lg: 12 }}
-        >
-          <Grid
-            templateColumns={{ base: '1fr', lg: 'minmax(0, 1fr) auto minmax(0, 1fr)' }}
-            templateAreas={{
-              base: `
-                "head"
-                "photo"
-                "left"
-                "right"
-              `,
-              lg: `
-                "head head head"
-                "left photo right"
-              `,
-            }}
-            columnGap={{ base: 0, lg: 10 }}
-            rowGap={{ base: 8, lg: 10 }}
-            alignItems={{ base: 'start', lg: 'stretch' }}
-          >
-            <GridItem area="head">
-              <MotionBox variants={itemVariants}>
-                <VStack spacing={{ base: 2, md: 2.5 }} textAlign="center">
-                  <Heading
-                    as="h1"
-                    fontFamily="heading"
-                    fontSize={{ base: '2xl', sm: '3xl', md: '4xl', lg: '5xl' }}
-                    fontWeight="700"
-                    lineHeight="1.1"
-                    color="gray.800"
+    <div className="bg-bone text-ink">
+      <section className="mx-auto max-w-6xl px-5 pt-28 lg:px-10 lg:pt-36">
+        <BlurFade>
+          <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
+            <span>Ansel Zeng</span>
+            <span className="flex items-center gap-2">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-ember-500" aria-hidden />
+              Los Angeles, CA
+            </span>
+          </div>
+        </BlurFade>
+
+        <div className="grid grid-cols-1 gap-10 pt-12 lg:grid-cols-12 lg:gap-14 lg:pt-16">
+          <div className="flex flex-col justify-between lg:col-span-7">
+            <div>
+              <BlurFade delay={0.1}>
+                <p className="micro-label text-ember-600">Software Engineer</p>
+              </BlurFade>
+              <TextAnimate
+                as="h1"
+                by="word"
+                delay={0.15}
+                className="mt-5 font-serif text-[2.5rem] font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-[4.25rem]"
+              >
+                Building software that feels considered.
+              </TextAnimate>
+              <BlurFade delay={0.45}>
+                <p className="mt-7 max-w-md text-[0.9375rem] leading-relaxed text-ink-soft">
+                  MS Computer Science student at USC, passionate about building
+                  software end to end — from the systems underneath to the pixels on
+                  top. Previously across engineering, product, and design teams.
+                </p>
+              </BlurFade>
+              <BlurFade delay={0.55}>
+                <div className="mt-8 flex flex-wrap items-center gap-6">
+                  <a
+                    href="mailto:ansel.zeng@usc.edu"
+                    className="group inline-flex items-center gap-2 border-b border-ink pb-1 text-sm font-medium text-ink transition-colors hover:border-ember-500 hover:text-ember-600"
                   >
-                    Ansel Zeng
-                  </Heading>
-                  <Text
-                    fontFamily="body"
-                    fontSize={{ base: 'sm', md: 'md', lg: 'lg' }}
-                    color="gray.600"
-                    lineHeight="1.35"
+                    ansel.zeng@usc.edu
+                    <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
+                  <a
+                    href="/Ansel_Zeng_Resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="micro-label text-ink-muted transition-colors hover:text-ember-600"
                   >
-                    Software Engineer
-                  </Text>
-                </VStack>
-              </MotionBox>
-            </GridItem>
+                    Resume ↗
+                  </a>
+                  <Link
+                    href="/about"
+                    className="micro-label text-ink-muted transition-colors hover:text-ember-600"
+                  >
+                    More about me →
+                  </Link>
+                </div>
+              </BlurFade>
+            </div>
 
-            <GridItem area="left">
-              <MotionBox
-                variants={itemVariants}
-                w="full"
-                h={{ base: 'auto', lg: '100%' }}
-                minH={{ base: undefined, lg: HERO_PHOTO_LG.h }}
-                display="flex"
-                flexDirection="column"
-              >
-                <VStack
-                  align="flex-start"
-                  spacing={{ base: 4, lg: 0 }}
-                  flex={{ base: undefined, lg: 1 }}
-                  minH={{ base: undefined, lg: 0 }}
-                  maxW={{ base: 'full', lg: '280px' }}
-                  mx={{ base: 'auto', lg: 0 }}
-                  w="full"
-                >
-                  <Box w="full">
-                    <Text {...heroSectionLabelProps} mb={3}>
-                      Biography
-                    </Text>
-                    <Text {...heroBodyTextProps}>
-                      MS Computer Science student, passionate about software development and
-                      meaningful user experiences. Inspired by how technology evolves and how it can
-                      drive positive change.
-                    </Text>
-                  </Box>
-                  <HeroFlexGap />
-                  <Box w="full">
-                    <Text {...heroSectionLabelProps} mb={3}>
-                      Education
-                    </Text>
-                    <Text {...heroBodyTextProps} whiteSpace="pre-line">
-                      {educationLines.join('\n')}
-                    </Text>
-                  </Box>
-                  <HeroFlexGap />
-                  <Box w="full">
-                    <Text {...heroSectionLabelProps} mb={3}>
-                      Contact
-                    </Text>
-                    <Text {...heroBodyTextProps} as="div">
-                      <Link
-                        href="mailto:ansel.zeng@usc.edu"
-                        fontSize="sm"
-                        lineHeight="1.65"
-                        color="gray.700"
-                        fontWeight="600"
-                        _hover={{ color: 'brand.500' }}
-                        wordBreak="break-all"
-                      >
-                        ansel.zeng@usc.edu
-                      </Link>
-                      <br />
-                      <Text as="span">
-                        <Text as="span" aria-hidden mr={1.5}>
-                          📍
-                        </Text>
-                        Los Angeles, CA
-                      </Text>
-                    </Text>
-                  </Box>
-                </VStack>
-              </MotionBox>
-            </GridItem>
+            <BlurFade delay={0.65} inView>
+              <div className="mt-14 grid grid-cols-3 gap-6 border-t border-bone-line pt-8 lg:mt-0">
+                {heroStats.map((stat) => (
+                  <div key={stat.label}>
+                    <p className="font-serif text-3xl font-medium lg:text-4xl">{stat.value}</p>
+                    <p className="micro-label mt-2 text-ink-muted">{stat.label}</p>
+                    <p className="mt-2 hidden text-xs leading-relaxed text-ink-muted md:block">
+                      {stat.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </BlurFade>
+          </div>
 
-            <GridItem area="photo" justifySelf="center" alignSelf={{ base: 'center', lg: 'start' }}>
-              <MotionBox variants={itemVariants}>
-                <Box
-                  role="group"
-                  position="relative"
-                  w={{ base: 'min(72vw, 280px)', lg: HERO_PHOTO_LG.w }}
-                  h={{ base: 'min(96vw, 380px)', lg: HERO_PHOTO_LG.h }}
-                  maxW={HERO_PHOTO_LG.w}
-                  maxH={{ base: '380px', lg: HERO_PHOTO_LG.h }}
-                  borderRadius="2xl"
-                  overflow="hidden"
-                  flexShrink={0}
-                  borderWidth="1px"
-                  borderColor="gray.200"
-                  boxShadow="md"
-                  transform="scale(1)"
-                  transformOrigin="center"
-                  transitionProperty="transform, border-color, box-shadow"
-                  transitionDuration="0.4s"
-                  transitionTimingFunction="cubic-bezier(0.33, 1, 0.68, 1)"
-                  onContextMenu={(e) => e.preventDefault()}
-                  userSelect="none"
-                  _hover={{
-                    transform: 'scale(1.008)',
-                    borderColor: 'brand.300',
-                    boxShadow: 'lg',
-                  }}
-                >
-                  <Image
-                    src="/home/me.png"
-                    alt="Ansel Zeng"
-                    w="100%"
-                    h="100%"
-                    objectFit="cover"
-                    objectPosition="center top"
-                    draggable={false}
-                    onContextMenu={(e) => e.preventDefault()}
+          <div className="lg:col-span-5">
+            <BlurFade delay={0.3}>
+              <Parallax offset={-26} className="mx-auto max-w-[22rem] lg:ml-auto lg:mr-0">
+                <TiltCard maxTilt={4}>
+                  <div className="overflow-hidden rounded-t-[10rem] border border-bone-line">
+                    <ProtectedImage
+                      src="/home/me.png"
+                      alt="Ansel Zeng"
+                      className="aspect-[3/4] w-full object-cover object-top"
+                    />
+                  </div>
+                </TiltCard>
+                <div className="micro-label mt-3 flex items-center justify-between text-ink-muted">
+                  <span>Fig. 01</span>
+                  <span>Ansel Zeng, 2026</span>
+                </div>
+              </Parallax>
+            </BlurFade>
+          </div>
+        </div>
+      </section>
+      <section className="mx-auto mt-20 max-w-6xl border-t border-bone-line px-5 py-20 lg:mt-28 lg:px-10 lg:py-28">
+        <BlurFade inView>
+          <div className="flex items-end justify-between">
+            <div>
+              <p className="micro-label text-ember-600">Selected Work</p>
+              <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-5xl">
+                Recent projects
+              </h2>
+            </div>
+            <p className="micro-label hidden text-ink-muted sm:block">(04)</p>
+          </div>
+        </BlurFade>
+
+        <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-16 md:grid-cols-2">
+          {selectedWork.map((work, i) => (
+            <BlurFade key={work.id} inView delay={0.06 * (i % 2)}>
+              <Link href={work.href} className="group block">
+                <div className="relative">
+                  <div
+                    className="aspect-[4/3] overflow-hidden rounded-sm border border-bone-line"
+                    style={{ backgroundColor: work.palette.tint }}
+                  >
+                    <ProtectedImage
+                      src={work.image}
+                      alt={`${work.org} — ${work.project}`}
+                      className="h-full w-full object-contain p-8 transition-transform duration-700 ease-out group-hover:scale-[1.04] lg:p-10"
+                    />
+                  </div>
+                  <span className="micro-label absolute left-4 top-4 rounded-full bg-bone/90 px-3 py-1.5 text-ink backdrop-blur-sm">
+                    {work.index}
+                  </span>
+                </div>
+                <div className="mt-5 flex items-start justify-between gap-4">
+                  <div className="min-w-0">
+                    <h3 className="font-serif text-xl font-medium leading-snug transition-colors group-hover:text-ember-700 lg:text-2xl">
+                      {work.org}
+                      <span className="text-ink-muted"> — {work.project}</span>
+                    </h3>
+                    <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-muted">
+                      {work.description}
+                    </p>
+                    <p className="micro-label mt-3 text-ink-muted">{work.tags.join('  ·  ')}</p>
+                  </div>
+                  <ArrowUpRight
+                    className="mt-1.5 h-5 w-5 shrink-0 text-ink-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ember-600"
+                    aria-hidden
                   />
-                  <Box
-                    position="absolute"
-                    inset={0}
-                    bg="linear-gradient(135deg, rgba(255, 123, 0, 0.07) 0%, transparent 50%)"
-                    opacity={0}
-                    pointerEvents="none"
-                    transition="opacity 0.4s cubic-bezier(0.33, 1, 0.68, 1)"
-                    _groupHover={{ opacity: 1 }}
-                  />
-                </Box>
-              </MotionBox>
-            </GridItem>
+                </div>
+              </Link>
+            </BlurFade>
+          ))}
+        </div>
+      </section>
 
-            <GridItem area="right">
-              <MotionBox
-                variants={itemVariants}
-                w="full"
-                h={{ base: 'auto', lg: '100%' }}
-                minH={{ base: undefined, lg: HERO_PHOTO_LG.h }}
-                display="flex"
-                flexDirection="column"
-              >
-                <VStack
-                  align={{ base: 'flex-start', lg: 'flex-end' }}
-                  spacing={{ base: 4, lg: 0 }}
-                  flex={{ base: undefined, lg: 1 }}
-                  minH={{ base: undefined, lg: 0 }}
-                  maxW={{ base: 'full', lg: '300px' }}
-                  w="full"
-                  ml={{ base: 0, lg: 'auto' }}
-                  textAlign={{ base: 'left', lg: 'right' }}
-                >
-                  <HeroStat
-                    label="Years building"
-                    value="5+"
-                    detail="Coding across school, internships, research, and projects."
-                  />
-                  <HeroFlexGap />
-                  <HeroStat
-                    label="Internships"
-                    value="3"
-                    detail="Software engineering roles in product and platform teams."
-                  />
-                  <HeroFlexGap />
-                  <HeroStat
-                    label="Research roles"
-                    value="2"
-                    detail="Graduate and undergraduate research assistantships."
-                  />
-                  <HeroFlexGap />
-                  <Box w="full">
-                    <Text {...heroSectionLabelProps} mb={3}>
-                      Focus
-                    </Text>
-                    <Text
-                      {...heroBodyTextProps}
-                      whiteSpace="pre-line"
-                      textAlign={{ base: 'left', lg: 'right' }}
-                    >
-                      {serviceLines.join('\n')}
-                    </Text>
-                  </Box>
-                </VStack>
-              </MotionBox>
-            </GridItem>
-          </Grid>
-        </MotionBox>
-      </Container>
-
-      <Box bg="white" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            spacing={{ base: 8, lg: 10 }}
-            align={{ base: 'center', lg: 'stretch' }}
-          >
-            <MotionVStack variants={itemVariants} spacing={3} textAlign="center">
-              <Badge
-                colorScheme="orange"
-                variant="subtle"
-                px={2.5}
-                py={0.5}
-                borderRadius="full"
-                fontSize="xs"
-                fontWeight="600"
-              >
-                Featured Work
-              </Badge>
-              <Heading
-                fontSize={{ base: 'xl', lg: '3xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                Recent Projects
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="480px"
-                mx="auto"
-                lineHeight="1.55"
-              >
-                A collection of my recent work experiences and projects that showcase my
-                skills in software engineering, product management, and design.
-              </Text>
-            </MotionVStack>
-
-            <VStack spacing={{ base: 10, lg: 12 }} w="full" alignItems={{ base: 'center', lg: 'stretch' }}>
-              {projects.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                />
-              ))}
-            </VStack>
-          </MotionVStack>
-        </Container>
-      </Box>
-
-      <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-80px' }}
-            spacing={{ base: 4, lg: 5 }}
-            textAlign="center"
-          >
-            <MotionVStack variants={itemVariants} spacing={2}>
-              <Heading
-                fontSize={{ base: 'xl', lg: '3xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                Let&apos;s Work Together
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="440px"
-                mx="auto"
-                lineHeight="1.55"
-              >
-                I&apos;m always interested in new opportunities and exciting projects.
-                Let&apos;s connect and create something amazing together.
-              </Text>
-            </MotionVStack>
-
-             <Flex w={{ base: "full", lg: "auto" }} gap={2} flexWrap="wrap" justify="center">
-              <Button
-                as={NextLink}
-                href="/about"
-                size="sm"
-                variant="solid"
-                rightIcon={<ChevronRightIcon />}
-                w="auto"
-              >
-                Get In Touch
-              </Button>
-              <Button
-                as={NextLink}
-                href="/fun/blog"
-                size="sm"
-                variant="outline"
-                w="auto"
-              >
-                 Read My Blog
-                </Button>
-             </Flex>
-          </MotionVStack>
-        </Container>
-      </Box>
-    </Box>
+    </div>
   );
 }

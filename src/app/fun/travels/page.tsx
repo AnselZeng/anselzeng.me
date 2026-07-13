@@ -1,486 +1,278 @@
 'use client';
 
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Text,
-  VStack,
-  HStack,
-  Grid,
-  Badge,
-  useBreakpointValue,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  OrderedList,
-  ListItem,
-} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
-import { PlacesTable } from '@/components/fun/PlacesTable';
+import { ArrowUpRight } from 'lucide-react';
 import World from '@react-map/world';
-import { MotionBox, MotionVStack, MotionGrid, MotionAccordionItem } from '@/lib/motion';
-import { containerVariants, itemVariants } from '@/lib/motion-variants';
+import { BlurFade } from '@/components/magicui/blur-fade';
+import { TextAnimate } from '@/components/magicui/text-animate';
+import { PlacesTable } from '@/components/fun/PlacesTable';
 
 const travelStats = [
-  { number: '18', label: 'Countries Visited', icon: '🌍' },
-  { number: '6', label: 'Territories Explored', icon: '🏝️' },
-  { number: '8/13', label: 'Canadian Provinces', icon: '🍁' },
-  { number: '10/50', label: 'US States', icon: '🗽' },
+  { number: '18', label: 'Countries Visited' },
+  { number: '6', label: 'Territories Explored' },
+  { number: '8/13', label: 'Canadian Provinces' },
+  { number: '10/50', label: 'US States' },
 ];
 
-interface AccordionItemListProps {
-  title: string;
-  items: string[];
-}
+const travelValues = [
+  {
+    title: 'Cultural Understanding',
+    description: 'Experiencing different ways of life and perspectives.',
+  },
+  {
+    title: 'Personal Growth',
+    description: 'Stepping out of comfort zones and embracing new challenges.',
+  },
+  {
+    title: 'Global Perspective',
+    description: 'Understanding interconnectedness and shared humanity.',
+  },
+];
 
-const AccordionItemList: React.FC<AccordionItemListProps> = ({ title, items }) => (
-  <MotionAccordionItem
-    variants={itemVariants}
-    border="1px solid"
-    borderColor="gray.200"
-    borderRadius="lg"
-    mb={4}
-  >
-    <h2>
-      <AccordionButton _hover={{ bg: 'gray.50' }}>
-        <Box as="span" flex="1" textAlign="left" fontWeight="600" color="gray.800">
-          {title}
-        </Box>
-        <AccordionIcon />
-      </AccordionButton>
-    </h2>
-    <AccordionPanel pb={4}>
-      <OrderedList spacing={1}>
-        {items.map((item, index) => (
-          <ListItem key={index} color="gray.600" ml={4}>
-            {item}
-          </ListItem>
-        ))}
-      </OrderedList>
-    </AccordionPanel>
-  </MotionAccordionItem>
-);
+const EMBER = '#E4580B';
+
+const visitedCountryColors = {
+  Netherlands: EMBER,
+  China: EMBER,
+  'Hong Kong': EMBER,
+  Maldives: EMBER,
+  France: EMBER,
+  Monaco: EMBER,
+  Thailand: EMBER,
+  Vietnam: EMBER,
+  Philippines: EMBER,
+  Malaysia: EMBER,
+  Greece: EMBER,
+  Canada: EMBER,
+  'United States': EMBER,
+  Aruba: EMBER,
+  Mexico: EMBER,
+  Panama: EMBER,
+  'Costa Rica': EMBER,
+  'Puerto Rico': EMBER,
+  Cuba: EMBER,
+  'Curaçao': EMBER,
+  Bonaire: EMBER,
+  'Sint Maarten': EMBER,
+  Anguilla: EMBER,
+  Austria: EMBER,
+  'Czech Republic': EMBER,
+  Czechia: EMBER,
+};
 
 export default function TravelsPage() {
-  const mapSize = useBreakpointValue({ base: 500, lg: 600 });
+  const [mapSize, setMapSize] = useState(600);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(min-width: 62em)');
+    const update = () => setMapSize(mq.matches ? 600 : 500);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
 
   return (
-    <Box>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
-        <MotionBox
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <VStack spacing={8} align="center" textAlign="center">
-            <MotionVStack variants={itemVariants} spacing={4}>
-              <Badge
-                colorScheme="teal"
-                variant="subtle"
-                px={2.5}
-                py={0.5}
-                borderRadius="full"
-                fontSize="xs"
-                fontWeight="600"
-              >
-                Travel Adventures
-              </Badge>
-              <Heading
-                fontSize={{ base: '2xl', md: '3xl', lg: '5xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                Adventures Around the Globe ✈️
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="640px"
-                lineHeight="1.6"
-              >
-                Exploring cultures, cities, and natural wonders
-              </Text>
-            </MotionVStack>
-          </VStack>
-        </MotionBox>
-      </Container>
+    <div className="bg-bone text-ink">
+      <section className="mx-auto max-w-6xl px-5 pt-28 lg:px-10 lg:pt-36">
+        <BlurFade>
+          <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
+            <span>Fun — Travels</span>
+            <span>Travel Adventures</span>
+          </div>
+        </BlurFade>
 
-      <Box bg="white" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 8, lg: 10 }}
+        <div className="pb-16 pt-12 lg:pb-24 lg:pt-16">
+          <BlurFade delay={0.1}>
+            <p className="micro-label text-ember-600">Travel Adventures</p>
+          </BlurFade>
+          <TextAnimate
+            as="h1"
+            by="word"
+            delay={0.15}
+            className="mt-5 max-w-3xl font-serif text-4xl font-medium leading-[1.08] tracking-tight lg:text-6xl"
           >
-            <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
-              <Badge
-                colorScheme="teal"
-                variant="subtle"
-                px={2.5}
-                py={0.5}
-                borderRadius="full"
-                fontSize="xs"
-                fontWeight="600"
-              >
-                My Travel Story
-              </Badge>
-              <Heading
-                fontSize={{ base: 'xl', lg: '3xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                A Brief Introduction
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="640px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                Raised across three continents in three countries—the Netherlands, China, and Canada—I've had the unique privilege of experiencing the richness and diversity of different cultures early on. These experiences shaped my curiosity, fueling my desire to always ask "why" and "how," and sparked a lifelong passion for understanding the world around me.
-              </Text>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="640px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                A special place in my heart is reserved for cities and their stories, particularly when it comes to urban development. From Barcelona's superblocks that redefine modern city life to the radial design of Mexico City, these cities reflect not only the ingenuity of their people but also the evolving needs of the communities they serve.
-              </Text>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="640px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                Some of my favorite travel memories include zip-lining through the cloud forests of Monteverde, relaxing in a rooftop hot tub while overlooking the Aegean Sea in Santorini, and spending an unforgettable night at Everest Base Camp. Each adventure deepened my appreciation for the world's natural wonders and the diverse experiences it offers.
-              </Text>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="640px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                Earlier this year, my mom embarked on a remarkable expedition to Antarctica, fulfilling her lifelong dream of visiting all seven continents. Her achievement inspires me to continue exploring the world, not just to see new places but to gain new perspectives. Each journey and destination helps me see the bigger picture, deepens my understanding of the world, and ultimately inspires me to make a meaningful impact.
-              </Text>
-            </MotionVStack>
-          </MotionVStack>
-        </Container>
-      </Box>
+            Adventures Around the Globe
+          </TextAnimate>
+          <BlurFade delay={0.4}>
+            <p className="mt-6 max-w-xl text-[0.9375rem] leading-relaxed text-ink-soft">
+              Exploring cultures, cities, and natural wonders
+            </p>
+          </BlurFade>
+        </div>
+      </section>
+      <section className="border-t border-bone-line">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-5 py-16 lg:grid-cols-12 lg:gap-14 lg:px-10 lg:py-24">
+          <BlurFade inView className="lg:col-span-4">
+            <p className="micro-label text-ember-600">My Travel Story</p>
+            <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-4xl">
+              A Brief Introduction
+            </h2>
+          </BlurFade>
+          <BlurFade inView delay={0.1} className="lg:col-span-8">
+            <div className="max-w-2xl space-y-5 text-[0.9375rem] leading-relaxed text-ink-soft">
+              <p>
+                Raised across three continents in three countries—the Netherlands, China, and
+                Canada—I&apos;ve had the unique privilege of experiencing the richness and diversity
+                of different cultures early on. These experiences shaped my curiosity, fueling my
+                desire to always ask &quot;why&quot; and &quot;how,&quot; and sparked a lifelong
+                passion for understanding the world around me.
+              </p>
+              <p>
+                A special place in my heart is reserved for cities and their stories, particularly
+                when it comes to urban development. From Barcelona&apos;s superblocks that redefine
+                modern city life to the radial design of Mexico City, these cities reflect not only
+                the ingenuity of their people but also the evolving needs of the communities they
+                serve.
+              </p>
+              <p>
+                Some of my favorite travel memories include zip-lining through the cloud forests of
+                Monteverde, relaxing in a rooftop hot tub while overlooking the Aegean Sea in
+                Santorini, and spending an unforgettable night at Everest Base Camp. Each adventure
+                deepened my appreciation for the world&apos;s natural wonders and the diverse
+                experiences it offers.
+              </p>
+              <p>
+                Earlier this year, my mom embarked on a remarkable expedition to Antarctica,
+                fulfilling her lifelong dream of visiting all seven continents. Her achievement
+                inspires me to continue exploring the world, not just to see new places but to gain
+                new perspectives. Each journey and destination helps me see the bigger picture,
+                deepens my understanding of the world, and ultimately inspires me to make a
+                meaningful impact.
+              </p>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
+      <section className="border-t border-bone-line bg-bone-subtle/60">
+        <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
+          <BlurFade inView>
+            <div className="flex items-end justify-between">
+              <div>
+                <p className="micro-label text-ember-600">Travel Statistics</p>
+                <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-5xl">
+                  Places I&apos;ve Explored
+                </h2>
+                <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-soft">
+                  A comprehensive overview of my global adventures and explorations.
+                </p>
+              </div>
+              <p className="micro-label hidden text-ink-muted sm:block">Fig. 01 — World map</p>
+            </div>
+          </BlurFade>
 
-      <Box bg="teal.50" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 8, lg: 10 }}
-          >
-            <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
-              <Badge
-                colorScheme="teal"
-                variant="subtle"
-                px={2.5}
-                py={0.5}
-                borderRadius="full"
-                fontSize="xs"
-                fontWeight="600"
-              >
-                Travel Statistics
-              </Badge>
-              <Heading
-                fontSize={{ base: 'xl', lg: '3xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                Places I've Explored
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="520px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                A comprehensive overview of my global adventures and explorations.
-              </Text>
-            </MotionVStack>
+          <BlurFade inView delay={0.1}>
+            <div className="mt-12 rounded-sm border border-bone-line bg-bone p-4 lg:p-8">
+              <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start">
+                <div className="flex min-h-[250px] w-full items-center justify-center lg:min-h-[400px] lg:flex-[2]">
+                  <World
+                    type="select-multiple"
+                    size={mapSize}
+                    mapColor="#F2EDE3"
+                    strokeColor="#E4DCCE"
+                    strokeWidth={1}
+                    hoverColor="#C74A08"
+                    selectColor="#E4580B"
+                    hints={false}
+                    disableClick={true}
+                    cityColors={visitedCountryColors}
+                    onSelect={(countries) => {
+                      console.log('Selected countries:', countries);
+                    }}
+                  />
+                </div>
 
-            <MotionBox variants={itemVariants} w="full">
-              <Box
-                bg="white"
-                borderRadius="xl"
-                border="1px solid"
-                borderColor="gray.200"
-                p={{ base: 4, lg: 8 }}
-                _hover={{
-                  borderColor: 'teal.500',
-                  boxShadow: 'lg',
-                  transform: 'translateY(-4px)',
-                }}
-                transition="all 0.3s ease"
-              >
-                <Flex direction={{ base: "column", lg: "row" }} gap={{ base: 6, lg: 8 }} align={{ base: "center", lg: "start" }}>
-                  <Box flex={{ base: "none", lg: 2 }} w={{ base: "100%", lg: "auto" }}>
-                    <VStack spacing={{ base: 2, lg: 4 }}>
-                      <Box w="100%" h={{ base: "250px", lg: "400px" }} display="flex" alignItems="center" justifyContent="center">
-                        <World
-                          type="select-multiple"
-                          size={mapSize}
-                          mapColor="#E2E8F0"
-                          strokeColor="#CBD5E0"
-                          strokeWidth={1}
-                          hoverColor="#0D9488"
-                          selectColor="#14B8A6"
-                          hints={false}
-                          disableClick={true}
-                          cityColors={{
-                            "Netherlands": "#14B8A6",
-                            "China": "#14B8A6",
-                            "Hong Kong": "#14B8A6",
-                            "Maldives": "#14B8A6",
-                            "France": "#14B8A6",
-                            "Monaco": "#14B8A6",
-                            "Thailand": "#14B8A6",
-                            "Vietnam": "#14B8A6",
-                            "Philippines": "#14B8A6",
-                            "Malaysia": "#14B8A6",
-                            "Greece": "#14B8A6",
-                            "Canada": "#14B8A6",
-                            "United States": "#14B8A6",
-                            "Aruba": "#14B8A6",
-                            "Mexico": "#14B8A6",
-                            "Panama": "#14B8A6",
-                            "Costa Rica": "#14B8A6",
-                            "Puerto Rico": "#14B8A6",
-                            "Cuba": "#14B8A6",
-                            "Curaçao": "#14B8A6",
-                            "Bonaire": "#14B8A6",
-                            "Sint Maarten": "#14B8A6",
-                            "Anguilla": "#14B8A6",
-                            "Austria": "#14B8A6",
-                            "Czech Republic": "#14B8A6",
-                            "Czechia": "#14B8A6"
-                          }}
-                          onSelect={(countries) => {
-                            console.log('Selected countries:', countries);
-                          }}
-                        />
-                      </Box>
-                    </VStack>
-                  </Box>
-
-                  <Box flex={{ base: "none", lg: 1 }} w={{ base: "100%", lg: "auto" }} minW={{ base: "auto", lg: "200px" }} h={{ base: "auto", lg: "400px" }} display="flex" alignItems="center" justifyContent="center">
-                    <Box
-                      bg="gray.50"
-                      borderRadius="lg"
-                      p={4}
-                      border="1px solid"
-                      borderColor="gray.200"
-                      w="full"
-                    >
-                      <VStack spacing={3} align="stretch">
-                        {travelStats.map((stat, index) => (
-                          <HStack
-                            key={stat.label}
-                            spacing={3}
-                            align="center"
-                          >
-                            <Text fontSize="md" m={0} p={0}>{stat.icon}</Text>
-                            <HStack spacing={2} align="center">
-                              <Text fontSize="md" fontWeight="700" color="teal.500" m={0} p={0}>
-                                {stat.number}
-                              </Text>
-                              <Text fontSize={{ base: "xs", lg: "sm" }} fontWeight="500" color="gray.600" m={0} p={0}>
-                                {stat.label}
-                              </Text>
-                            </HStack>
-                          </HStack>
-                        ))}
-                      </VStack>
-                    </Box>
-                  </Box>
-                </Flex>
-              </Box>
-            </MotionBox>
-          </MotionVStack>
-        </Container>
-      </Box>
-
-
-      <Box bg="white" py={{ base: 10, lg: 16 }}>
-        <PlacesTable />
-      </Box>
-
-      <Box bg="teal.50" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 8, lg: 10 }}
-          >
-            <MotionVStack variants={itemVariants} spacing={4} textAlign="center">
-              <Badge
-                colorScheme="teal"
-                variant="subtle"
-                px={2.5}
-                py={0.5}
-                borderRadius="full"
-                fontSize="xs"
-                fontWeight="600"
-              >
-                Travel Philosophy
-              </Badge>
-              <Heading
-                fontSize={{ base: 'xl', lg: '3xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
+                <div className="w-full self-stretch lg:w-auto lg:min-w-[220px] lg:flex-1">
+                  <div className="flex h-full flex-col justify-center gap-6 border-t border-bone-line pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+                    {travelStats.map((stat) => (
+                      <div key={stat.label}>
+                        <p className="font-serif text-2xl font-medium text-ember-600 lg:text-3xl">
+                          {stat.number}
+                        </p>
+                        <p className="micro-label mt-1.5 text-ink-muted">{stat.label}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
+      <section className="border-t border-bone-line">
+        <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
+          <PlacesTable />
+        </div>
+      </section>
+      <section className="border-t border-bone-line bg-bone-subtle/60">
+        <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
+            <BlurFade inView className="lg:col-span-4">
+              <p className="micro-label text-ember-600">Travel Philosophy</p>
+              <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-4xl">
                 Why I Travel
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="640px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                Earlier this year, my mom embarked on a remarkable expedition to Antarctica, fulfilling her lifelong dream of visiting all seven continents. Her achievement inspires me to continue exploring the world, not just to see new places but to gain new perspectives.
-              </Text>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="640px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                Each journey and destination helps me see the bigger picture, deepens my understanding of the world, and ultimately inspires me to make a meaningful impact.
-              </Text>
-            </MotionVStack>
+              </h2>
+            </BlurFade>
+            <BlurFade inView delay={0.1} className="lg:col-span-8">
+              <div className="max-w-2xl space-y-5 text-[0.9375rem] leading-relaxed text-ink-soft">
+                <p>
+                  Earlier this year, my mom embarked on a remarkable expedition to Antarctica,
+                  fulfilling her lifelong dream of visiting all seven continents. Her achievement
+                  inspires me to continue exploring the world, not just to see new places but to
+                  gain new perspectives.
+                </p>
+                <p>
+                  Each journey and destination helps me see the bigger picture, deepens my
+                  understanding of the world, and ultimately inspires me to make a meaningful
+                  impact.
+                </p>
+              </div>
+            </BlurFade>
+          </div>
 
-            <MotionGrid
-              variants={containerVariants}
-              templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
-              gap={8}
-              w="full"
-            >
-              {[
-                {
-                  title: 'Cultural Understanding',
-                  description: 'Experiencing different ways of life and perspectives.',
-                  icon: '🌍',
-                },
-                {
-                  title: 'Personal Growth',
-                  description: 'Stepping out of comfort zones and embracing new challenges.',
-                  icon: '🌱',
-                },
-                {
-                  title: 'Global Perspective',
-                  description: 'Understanding interconnectedness and shared humanity.',
-                  icon: '🤝',
-                },
-              ].map((value, index) => (
-                <MotionBox
-                  key={value.title}
-                  variants={itemVariants}
-                  bg="white"
-                  borderRadius="xl"
-                  border="1px solid"
-                  borderColor="gray.200"
-                  p={8}
-                  textAlign="center"
-                  _hover={{
-                    borderColor: 'teal.500',
-                    boxShadow: 'lg',
-                    transform: 'translateY(-4px)',
-                  }}
-                  transition={{ duration: 0.3, ease: "easeInOut" }}
-                >
-                  <VStack spacing={4}>
-                    <Text fontSize={{ base: "2xl", lg: "4xl" }}>{value.icon}</Text>
-                    <Heading fontSize="md" fontWeight="600" color="gray.800">
-                      {value.title}
-                    </Heading>
-                    <Text fontSize="md" color="gray.600" lineHeight="1.5">
-                      {value.description}
-                    </Text>
-                  </VStack>
-                </MotionBox>
-              ))}
-            </MotionGrid>
-          </MotionVStack>
-        </Container>
-      </Box>
-
-      <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 6, lg: 8 }}
-            textAlign="center"
-          >
-            <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }}>
-              <Heading
-                fontSize={{ base: 'xl', lg: '3xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                Ready for the Next Adventure
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="520px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                Travel continues to be one of my greatest sources of inspiration and learning. I'm always excited to discover new places and create meaningful connections around the world.
-              </Text>
-            </MotionVStack>
-
-            <Flex w={{ base: "full", lg: "auto" }} gap={3} flexWrap="wrap" justify="center">
-              <Button
-                as={Link}
+          <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-3">
+            {travelValues.map((value, i) => (
+              <BlurFade key={value.title} inView delay={0.05 * i}>
+                <div className="border-t border-ink/20 pt-5">
+                  <p className="micro-label text-ember-600">{String(i + 1).padStart(2, '0')}</p>
+                  <h3 className="mt-3 font-serif text-xl font-medium">{value.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">{value.description}</p>
+                </div>
+              </BlurFade>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="border-t border-bone-line">
+        <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
+          <BlurFade inView>
+            <p className="micro-label text-ember-600">Next</p>
+            <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-5xl">
+              Ready for the Next Adventure
+            </h2>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-soft">
+              Travel continues to be one of my greatest sources of inspiration and learning.
+              I&apos;m always excited to discover new places and create meaningful connections
+              around the world.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
                 href="/fun/blog"
-                size="sm"
-                variant="solid"
-                rightIcon={<ChevronRightIcon />}
-                w="auto"
+                className="inline-flex items-center gap-2 border border-ink px-5 py-2.5 text-sm font-medium transition-colors hover:bg-ink hover:text-bone"
               >
                 Read My Blog
-              </Button>
-              <Button
-                as={Link}
+                <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link
                 href="/fun/design"
-                size="sm"
-                variant="outline"
-                leftIcon={<ChevronLeftIcon />}
-                w="auto"
+                className="inline-flex items-center gap-2 border border-ink px-5 py-2.5 text-sm font-medium transition-colors hover:bg-ink hover:text-bone"
               >
                 View My Designs
-              </Button>
-            </Flex>
-          </MotionVStack>
-        </Container>
-      </Box>
-    </Box>
+              </Link>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
+    </div>
   );
 }

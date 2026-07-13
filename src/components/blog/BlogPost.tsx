@@ -1,25 +1,13 @@
 'use client';
 
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Text,
-  VStack,
-  HStack,
-  Image,
-  Badge,
-  Avatar,
-  useDisclosure,
-  Grid,
-} from '@chakra-ui/react';
 import Link from 'next/link';
-import { ArrowBackIcon } from '@chakra-ui/icons';
 import { useState } from 'react';
-import { MotionBox, MotionVStack } from '@/lib/motion';
-import { containerVariants, itemVariants } from '@/lib/motion-variants';
+import { ArrowLeft } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { BlurFade } from '@/components/magicui/blur-fade';
+import { TextAnimate } from '@/components/magicui/text-animate';
+import { ParallaxImage } from '@/components/magicui/parallax-image';
+import { ProtectedImage } from '@/components/ui/protected-image';
 import { ImageLightboxModal } from '@/components/ui/ImageLightboxModal';
 
 interface BlogPostProps {
@@ -44,11 +32,10 @@ export default function BlogPost({
   date,
   readTime,
   category,
-  color,
   coverImage,
   sections,
 }: BlogPostProps) {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
@@ -57,7 +44,7 @@ export default function BlogPost({
     setSelectedImage(imageSrc);
     setCurrentImageIndex(imageIndex);
     setCurrentGroupIndex(groupIndex);
-    onOpen();
+    setIsOpen(true);
   };
 
   const nextImage = () => {
@@ -72,7 +59,8 @@ export default function BlogPost({
   const prevImage = () => {
     const currentGroup = sections[currentGroupIndex];
     if (currentGroup.type === 'imageGroup' && currentGroup.images) {
-      const prevIndex = (currentImageIndex - 1 + currentGroup.images.length) % currentGroup.images.length;
+      const prevIndex =
+        (currentImageIndex - 1 + currentGroup.images.length) % currentGroup.images.length;
       setCurrentImageIndex(prevIndex);
       setSelectedImage(currentGroup.images[prevIndex].src);
     }
@@ -85,207 +73,128 @@ export default function BlogPost({
     currentGroup.images.length > 1
       ? { onPrev: prevImage, onNext: nextImage }
       : undefined;
+  let figureCounter = 1;
+  const figureNumbers = sections.map((section) =>
+    section.type === 'imageGroup' ? String(++figureCounter).padStart(2, '0') : null,
+  );
 
   return (
-    <Box>
-      <Container maxW="container.lg" px={{ base: 5, lg: 10 }} py={{ base: 10, lg: 20 }}>
-        <MotionBox
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <VStack spacing={{ base: 6, lg: 8 }} align="center" textAlign="center">
-            <MotionBox variants={itemVariants}>
-              <Button
-                as={Link}
-                href="/fun/blog"
-                leftIcon={<ArrowBackIcon />}
-                variant="outline"
-                size="sm"
-                mb={8}
-              >
-                Back to Blog
-              </Button>
-            </MotionBox>
+    <div className="bg-bone text-ink">
+      <section className="mx-auto max-w-4xl px-5 pt-28 lg:px-10 lg:pt-36">
+        <BlurFade>
+          <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
+            <Link
+              href="/fun/blog"
+              className="flex items-center gap-2 transition-colors hover:text-ember-600"
+            >
+              <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
+              Back to journal
+            </Link>
+            <span className="text-ember-600">{category}</span>
+          </div>
+        </BlurFade>
 
-            <MotionVStack variants={itemVariants} spacing={4}>
-              <Badge
-                colorScheme={color}
-                variant="subtle"
-                px={2.5}
-                py={0.5}
-                borderRadius="full"
-                fontSize="xs"
-                fontWeight="600"
-              >
-                {category}
-              </Badge>
-              <Heading
-                fontSize={{ base: 'xl', md: '2xl', lg: '4xl' }}
-                fontWeight="700"
-                color="gray.800"
-                lineHeight="1.2"
-              >
-                {title}
-              </Heading>
-              <HStack spacing={{ base: 4, lg: 6 }} color="gray.600">
-                <Text fontSize={{ base: "xs", lg: "sm" }}>{date}</Text>
-                <Text fontSize={{ base: "xs", lg: "sm" }}>{readTime}</Text>
-              </HStack>
-            </MotionVStack>
-
-            <MotionBox variants={itemVariants}>
-              <Box
-                borderRadius="2xl"
-                overflow="hidden"
-                boxShadow="2xl"
-                maxW={{ base: "100%", lg: "640px" }}
-                w="full"
-                _hover={{
-                  transform: 'translateY(-8px)',
-                  boxShadow: '3xl',
-                }}
-                transition="all 0.3s ease"
-                onContextMenu={(e) => e.preventDefault()}
-                userSelect="none"
-              >
-                <Image
-                  src={coverImage}
-                  alt={title}
-                  width="100%"
-                  height={{ base: "250px", lg: "400px" }}
-                  objectFit="cover"
-                  draggable={false}
-                  onContextMenu={(e) => e.preventDefault()}
-                />
-              </Box>
-            </MotionBox>
-          </VStack>
-        </MotionBox>
-      </Container>
-
-      <Box bg="white" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 6, lg: 8 }}
+        <div className="pt-12 lg:pt-16">
+          <TextAnimate
+            as="h1"
+            by="word"
+            delay={0.1}
+            className="max-w-3xl font-serif text-4xl font-medium leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.6rem]"
           >
-            {sections.map((section, index) => (
-              <MotionBox key={index} variants={itemVariants} w="full">
-                {section.type === 'text' ? (
-                  <Text
-                    fontSize="md"
-                    color="gray.700"
-                    lineHeight="1.55"
-                    textAlign="left"
-                  >
-                    {section.content}
-                  </Text>
-                ) : section.type === 'imageGroup' && section.images ? (
-                  <Grid
-                    templateColumns={{ base: '1fr', md: 'repeat(3, 1fr)' }}
-                    gap={{ base: 4, lg: 6 }}
-                    w="full"
+            {title}
+          </TextAnimate>
+          <BlurFade delay={0.35}>
+            <p className="micro-label mt-6 text-ink-muted">
+              {date}
+              <span className="mx-3 text-bone-line">·</span>
+              {readTime}
+            </p>
+          </BlurFade>
+        </div>
+
+        <BlurFade delay={0.45}>
+          <ParallaxImage
+            src={coverImage}
+            alt={title}
+            strength={5}
+            className="mt-12 aspect-[16/9] rounded-sm border border-bone-line bg-bone-subtle"
+          />
+          <div className="micro-label mt-3 flex items-center justify-between text-ink-muted">
+            <span>Fig. 01</span>
+            <span>{title}</span>
+          </div>
+        </BlurFade>
+      </section>
+      <article className="mx-auto max-w-4xl px-5 py-16 lg:px-10 lg:py-24">
+        <div className="mx-auto max-w-2xl space-y-10">
+          {sections.map((section, index) => (
+            <BlurFade key={index} inView>
+              {section.type === 'text' ? (
+                <p className="text-[0.9375rem] leading-relaxed text-ink-soft">
+                  {section.content}
+                </p>
+              ) : section.type === 'imageGroup' && section.images ? (
+                <figure>
+                  <div
+                    className={cn(
+                      'grid grid-cols-2 gap-4',
+                      section.images.length > 2 && 'md:grid-cols-3',
+                    )}
                   >
                     {section.images.map((image, imageIndex) => (
-                      <Box
+                      <button
                         key={imageIndex}
-                        borderRadius="xl"
-                        overflow="hidden"
-                        boxShadow="md"
-                        cursor="pointer"
-                        _hover={{
-                          transform: 'translateY(-4px)',
-                          boxShadow: 'xl',
-                        }}
-                        transition="all 0.3s ease"
+                        type="button"
                         onClick={() => handleImageClick(image.src, index, imageIndex)}
-                        onContextMenu={(e) => e.preventDefault()}
-                        userSelect="none"
+                        className="group block w-full cursor-pointer overflow-hidden rounded-sm border border-bone-line bg-bone-subtle p-0"
+                        aria-label={`Open ${image.alt}`}
                       >
-                        <Image
+                        <ProtectedImage
                           src={image.src}
                           alt={image.alt}
-                          width="100%"
-                          height={{ base: "200px", lg: "auto" }}
-                          objectFit="cover"
-                          draggable={false}
-                          onContextMenu={(e) => e.preventDefault()}
+                          className="aspect-[4/5] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
                         />
-                      </Box>
+                      </button>
                     ))}
-                  </Grid>
-                ) : null}
-              </MotionBox>
-            ))}
-          </MotionVStack>
-        </Container>
-      </Box>
-
-      <Box bg="brand.50" py={{ base: 10, lg: 16 }}>
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <MotionVStack
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-100px' }}
-            spacing={{ base: 6, lg: 8 }}
-            textAlign="center"
-          >
-            <MotionVStack variants={itemVariants} spacing={{ base: 3, lg: 4 }}>
-              <Heading
-                fontSize={{ base: 'lg', lg: '2xl' }}
-                fontWeight="700"
-                color="gray.800"
-              >
-                Thanks for Reading
-              </Heading>
-              <Text
-                fontSize="md"
-                color="gray.600"
-                maxW="560px"
-                mx="auto"
-                lineHeight="1.6"
-              >
-                I hope you enjoyed this story. Check out more of my thoughts and experiences.
-              </Text>
-            </MotionVStack>
-
-            <Flex w={{ base: "full", lg: "auto" }} gap={3} flexWrap="wrap" justify="center">
-              <Button
-                as={Link}
+                  </div>
+                  <figcaption className="micro-label mt-3 flex items-center justify-between text-ink-muted">
+                    <span>Fig. {figureNumbers[index]}</span>
+                    <span>{category}</span>
+                  </figcaption>
+                </figure>
+              ) : null}
+            </BlurFade>
+          ))}
+        </div>
+      </article>
+      <section className="border-t border-bone-line">
+        <div className="mx-auto max-w-4xl px-5 py-16 lg:px-10 lg:py-20">
+          <BlurFade inView>
+            <div className="mx-auto flex max-w-2xl flex-col items-start gap-8 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="micro-label text-ember-600">End of entry</p>
+                <p className="mt-4 font-serif text-2xl font-medium tracking-tight lg:text-3xl">
+                  Thanks for reading.
+                </p>
+              </div>
+              <Link
                 href="/fun/blog"
-                size="sm"
-                variant="solid"
-                leftIcon={<ArrowBackIcon />}
-                w="auto"
+                className="border border-ink px-5 py-2.5 text-sm font-medium transition-colors hover:bg-ink hover:text-bone"
               >
-                Back to Blog
-              </Button>
-              <Button
-                as={Link}
-                href="/about"
-                size="sm"
-                variant="outline"
-                w="auto"
-              >
-                Learn More About Me
-              </Button>
-            </Flex>
-          </MotionVStack>
-        </Container>
-      </Box>
+                Back to journal
+              </Link>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
 
       <ImageLightboxModal
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={() => setIsOpen(false)}
         imageSrc={selectedImage || ''}
         alt="Blog Image"
         navigation={lightboxNavigation}
       />
-    </Box>
+    </div>
   );
 }

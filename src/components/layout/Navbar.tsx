@@ -1,32 +1,16 @@
 'use client';
 
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  HStack,
-  Heading,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  VStack,
-  IconButton,
-  useColorModeValue,
-} from '@chakra-ui/react';
-import { ChevronDownIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
-const MotionBox = motion(Box);
+import { ChevronDown, Menu, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface NavItem {
   label: string;
   href: string;
-  emoji?: string;
+  emoji: string;
 }
 
 interface NavSection {
@@ -39,7 +23,7 @@ const navSections: NavSection[] = [
     label: 'Work',
     items: [
       { href: '/work/telus', label: 'Telus', emoji: '🗼' },
-      { href: '/work/ips', label: 'IPS', emoji: '🎧' },
+      { href: '/work/ips', label: 'Ivey Product Society', emoji: '🎧' },
       { href: '/work/rbc', label: 'RBC', emoji: '🏦' },
       { href: '/work/tweebaa', label: 'Tweebaa', emoji: '📱' },
     ],
@@ -49,60 +33,82 @@ const navSections: NavSection[] = [
     items: [
       { href: '/fun/design', label: 'Design', emoji: '🎨' },
       { href: '/fun/travels', label: 'Travels', emoji: '✈️' },
-      { href: '/fun/blog', label: 'Blog', emoji: '📝' },
+      { href: '/fun/blog', label: 'Blog', emoji: '✏️' },
     ],
   },
 ];
 
-function sectionPathPrefix(section: NavSection): string {
-  const href = section.items[0]?.href ?? '';
-  const firstSegment = href.split('/').filter(Boolean)[0];
-  return firstSegment ? `/${firstSegment}` : '';
-}
-
-function mobileNavIsActive(pathname: string, href: string) {
+function isActive(pathname: string, href: string) {
   if (href === '/') return pathname === '/';
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-function MobileNavLinkRow({
-  href,
-  label,
-  emoji,
-  pathname,
-  onNavigate,
-}: {
-  href: string;
-  label: string;
-  emoji?: string;
-  pathname: string;
-  onNavigate: () => void;
-}) {
-  const active = mobileNavIsActive(pathname, href);
+function isSectionActive(pathname: string, section: NavSection) {
+  const first = section.items[0]?.href.split('/').filter(Boolean)[0];
+  return first ? pathname === `/${first}` || pathname.startsWith(`/${first}/`) : false;
+}
+
+function DesktopDropdown({ section, pathname }: { section: NavSection; pathname: string }) {
+  const active = isSectionActive(pathname, section);
+  const [open, setOpen] = useState(false);
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
   return (
-    <Link href={href} onClick={onNavigate} style={{ textDecoration: 'none' }}>
-      <Box py={3.5} px={1} _active={{ bg: 'orange.50' }}>
-        <HStack spacing={3}>
-          {emoji ? (
-            <Box as="span" fontSize="lg" aria-hidden>
-              {emoji}
-            </Box>
-          ) : null}
-          <Box
-            as="span"
-            fontSize="lg"
-            fontWeight={active ? '700' : '500'}
-            color={active ? 'brand.500' : 'gray.700'}
+    <div
+      className="relative"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        type="button"
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        className={cn(
+          'micro-label flex items-center gap-1.5 px-3 py-2 transition-colors hover:text-ember-600',
+          active ? 'text-ember-600' : 'text-ink-soft',
+        )}
+      >
+        {section.label}
+        <ChevronDown
+          className={cn('h-3 w-3 transition-transform', open && 'rotate-180')}
+          aria-hidden
+        />
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -4 }}
+            transition={{ duration: 0.15, ease: 'easeOut' }}
+            className="absolute left-0 top-full pt-2"
           >
-            {label}
-          </Box>
-        </HStack>
-      </Box>
-    </Link>
+            <div className="min-w-[13rem] border border-bone-line bg-bone p-2 shadow-lg shadow-ink/5">
+              {section.items.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    'flex items-center gap-2.5 px-3 py-2.5 text-sm transition-colors hover:bg-bone-subtle hover:text-ember-600',
+                    isActive(pathname, item.href) ? 'text-ember-600' : 'text-ink-soft',
+                  )}
+                >
+                  <span aria-hidden>{item.emoji}</span>
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
-function MobileNavOverlay({
+function MobileOverlay({
   isOpen,
   onClose,
   pathname,
@@ -115,87 +121,63 @@ function MobileNavOverlay({
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          key="mobile-menu-overlay"
-          role="presentation"
+          key="mobile-menu"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="fixed inset-0 z-[1000] flex min-h-[100dvh] flex-col overflow-y-auto bg-bone/[0.98] px-6 pb-10 pt-24 backdrop-blur-md"
           onClick={onClose}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 1000,
-            backgroundColor: 'rgba(255, 248, 235, 0.97)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            minHeight: '100dvh',
-            width: '100%',
-            boxSizing: 'border-box',
-            paddingTop: 'max(1rem, env(safe-area-inset-top, 0px))',
-            paddingBottom: 'max(1rem, env(safe-area-inset-bottom, 0px))',
-            overflowY: 'auto',
-          }}
         >
-          <motion.div
+          <motion.nav
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.18, ease: 'easeOut' }}
+            transition={{ duration: 0.2, ease: 'easeOut', delay: 0.05 }}
+            className="mx-auto w-full max-w-sm"
             onClick={(e) => e.stopPropagation()}
-            style={{
-              width: '100%',
-              maxWidth: '24rem',
-              flexShrink: 0,
-            }}
           >
-            <Box px={{ base: 5, sm: 6 }} py={{ base: 4, sm: 5 }}>
-              <VStack align="stretch" spacing={0}>
-                <MobileNavLinkRow href="/" label="Home" pathname={pathname} onNavigate={onClose} />
-
-                {navSections.map((section) => (
-                  <Box key={section.label} pt={8}>
-                    <Box
-                      as="p"
-                      fontSize="xs"
-                      fontWeight="700"
-                      letterSpacing="0.14em"
-                      textTransform="uppercase"
-                      color="gray.400"
-                      mb={2}
-                      px={1}
-                    >
-                      {section.label}
-                    </Box>
-                    <VStack align="stretch" spacing={0}>
-                      {section.items.map((item) => (
-                        <MobileNavLinkRow
-                          key={item.href}
-                          href={item.href}
-                          label={item.label}
-                          emoji={item.emoji}
-                          pathname={pathname}
-                          onNavigate={onClose}
-                        />
-                      ))}
-                    </VStack>
-                  </Box>
+            <Link
+              href="/"
+              onClick={onClose}
+              className={cn(
+                'block border-b border-bone-line py-4 font-serif text-3xl font-medium',
+                isActive(pathname, '/') ? 'text-ember-600' : 'text-ink',
+              )}
+            >
+              Home
+            </Link>
+            {navSections.map((section) => (
+              <div key={section.label} className="border-b border-bone-line py-4">
+                <p className="micro-label mb-2 text-ink-muted">{section.label}</p>
+                {section.items.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={onClose}
+                    className={cn(
+                      'flex items-baseline gap-3 py-2 font-serif text-2xl font-medium',
+                      isActive(pathname, item.href) ? 'text-ember-600' : 'text-ink',
+                    )}
+                  >
+                    <span aria-hidden className="text-lg">
+                      {item.emoji}
+                    </span>
+                    {item.label}
+                  </Link>
                 ))}
-
-                <Box pt={8}>
-                  <MobileNavLinkRow
-                    href="/about"
-                    label="About"
-                    pathname={pathname}
-                    onNavigate={onClose}
-                  />
-                </Box>
-              </VStack>
-            </Box>
-          </motion.div>
+              </div>
+            ))}
+            <Link
+              href="/about"
+              onClick={onClose}
+              className={cn(
+                'block py-4 font-serif text-3xl font-medium',
+                isActive(pathname, '/about') ? 'text-ember-600' : 'text-ink',
+              )}
+            >
+              About
+            </Link>
+          </motion.nav>
         </motion.div>
       )}
     </AnimatePresence>
@@ -208,15 +190,14 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    const mq = window.matchMedia('(min-width: 62em)');
+    const mq = window.matchMedia('(min-width: 64rem)');
     const closeOnDesktop = () => {
       if (mq.matches) setIsMenuOpen(false);
     };
@@ -233,212 +214,60 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
-  const bgColor = useColorModeValue('rgba(255, 248, 235, 0.95)', 'rgba(17, 24, 39, 0.95)');
-  const borderColor = useColorModeValue('rgba(255, 123, 0, 0.1)', 'rgba(255, 123, 0, 0.2)');
-
-  const isActive = (href: string) => {
-    if (href === '/') return pathname === '/';
-    return pathname === href || pathname.startsWith(`${href}/`);
-  };
-
-  const isSectionActive = (section: NavSection) => {
-    const prefix = sectionPathPrefix(section);
-    if (!prefix) return false;
-    return pathname === prefix || pathname.startsWith(`${prefix}/`);
-  };
-
   return (
     <>
-      <MotionBox
-        position="fixed"
-        top="0"
-        left="0"
-        right="0"
-        zIndex={1001}
-        bg={scrolled ? bgColor : 'transparent'}
-        borderBottom={scrolled ? `1px solid ${borderColor}` : 'none'}
-        backdropFilter={scrolled ? 'blur(10px)' : 'none'}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
+      <header
+        className={cn(
+          'fixed inset-x-0 top-0 z-[1001] transition-all duration-300',
+          scrolled
+            ? 'border-b border-bone-line bg-bone/90 backdrop-blur-md'
+            : 'border-b border-transparent bg-transparent',
+        )}
       >
-        <Container maxW="container.lg" px={{ base: 5, lg: 10 }}>
-          <Flex
-            py={{ base: 2.5, lg: 3 }}
-            alignItems="center"
-            justifyContent="space-between"
-            minH={{ base: "52px", lg: "56px" }}
+        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 lg:px-10">
+          <Link
+            href="/"
+            className="font-serif text-2xl font-semibold tracking-tight text-ink transition-colors hover:text-ember-600"
           >
-            <Box
-              display={{
-                base: isMenuOpen ? 'none' : 'block',
-                lg: 'block',
-              }}
+            AZ<span className="text-ember-500">.</span>
+          </Link>
+
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+            <Link
+              href="/"
+              className={cn(
+                'micro-label px-3 py-2 transition-colors hover:text-ember-600',
+                isActive(pathname, '/') ? 'text-ember-600' : 'text-ink-soft',
+              )}
             >
-              <Link href="/" style={{ lineHeight: 0 }}>
-                <Box
-                  display="flex"
-                  alignItems="center"
-                  justifyContent="flex-start"
-                  minH="44px"
-                  minW={{ base: '44px', lg: 'fit-content' }}
-                  pl={{ base: 1, lg: 0 }}
-                  pr={{ base: 1, lg: 0 }}
-                >
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Heading
-                      as="span"
-                      fontSize={{ base: 'xl', lg: '3xl' }}
-                      fontWeight="700"
-                      color="brand.500"
-                      cursor="pointer"
-                      lineHeight="1"
-                    >
-                      AZ
-                    </Heading>
-                  </motion.div>
-                </Box>
-              </Link>
-            </Box>
+              Home
+            </Link>
+            {navSections.map((section) => (
+              <DesktopDropdown key={section.label} section={section} pathname={pathname} />
+            ))}
+            <Link
+              href="/about"
+              className={cn(
+                'micro-label px-3 py-2 transition-colors hover:text-ember-600',
+                isActive(pathname, '/about') ? 'text-ember-600' : 'text-ink-soft',
+              )}
+            >
+              About
+            </Link>
+          </nav>
 
-            <HStack spacing={2} display={{ base: 'none', lg: 'flex' }}>
-                <Link href="/">
-                  <Box
-                    as="span"
-                    display="inline-block"
-                    px={3}
-                    py={1.5}
-                    fontSize="md"
-                    fontWeight="500"
-                    color={isActive('/') ? 'brand.500' : 'gray.600'}
-                    bg="transparent"
-                    borderRadius="md"
-                    cursor="pointer"
-                    transition="all 0.2s"
-                    _hover={{ 
-                      color: 'brand.500',
-                      bg: 'transparent'
-                    }}
-                    _active={{ 
-                      bg: 'transparent',
-                      color: 'brand.500',
-                      transform: 'none'
-                    }}
-                    _focus={{ 
-                      bg: 'transparent',
-                      color: 'brand.500',
-                      outline: 'none'
-                    }}
-                  >
-                    Home
-                  </Box>
-                </Link>
+          <button
+            type="button"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="z-[1002] flex h-11 w-11 items-center justify-center text-ink transition-colors hover:text-ember-600 lg:hidden"
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+      </header>
 
-                {navSections.map((section) => (
-                  <Menu key={section.label}>
-                    <MenuButton
-                      as={Button}
-                      variant="ghost"
-                      size="sm"
-                      rightIcon={<ChevronDownIcon />}
-                      fontSize="md"
-                      fontWeight="500"
-                      color={isSectionActive(section) ? 'brand.500' : 'gray.600'}
-                      _hover={{ color: 'brand.500' }}
-                      _active={{ bg: 'transparent' }}
-                    >
-                      {section.label}
-                    </MenuButton>
-                    <MenuList
-                      bg="white"
-                      border="1px solid"
-                      borderColor="gray.100"
-                      borderRadius="xl"
-                      boxShadow="xl"
-                      py={2}
-                      minW="fit-content"
-                    >
-                      {section.items.map((item) => (
-                        <MenuItem
-                          key={item.href}
-                          as={Link}
-                          href={item.href}
-                          bg="transparent"
-                          fontSize="md"
-                          color={isActive(item.href) ? 'brand.500' : 'gray.600'}
-                          _hover={{
-                            bg: 'brand.50',
-                            color: 'brand.500',
-                          }}
-                          transition="background 0.15s ease"
-                        >
-                          {item.emoji && <span style={{ marginRight: '8px' }}>{item.emoji}</span>}
-                          {item.label}
-                        </MenuItem>
-                      ))}
-                    </MenuList>
-                  </Menu>
-                ))}
-
-                <Link href="/about">
-                  <Box
-                    as="span"
-                    display="inline-block"
-                    px={3}
-                    py={1.5}
-                    fontSize="md"
-                    fontWeight="500"
-                    color={isActive('/about') ? 'brand.500' : 'gray.600'}
-                    bg="transparent"
-                    borderRadius="md"
-                    cursor="pointer"
-                    transition="all 0.2s"
-                    _hover={{ 
-                      color: 'brand.500',
-                      bg: 'transparent'
-                    }}
-                    _active={{ 
-                      bg: 'transparent',
-                      color: 'brand.500',
-                      transform: 'none'
-                    }}
-                    _focus={{ 
-                      bg: 'transparent',
-                      color: 'brand.500',
-                      outline: 'none'
-                    }}
-                  >
-                    About
-                  </Box>
-                </Link>
-            </HStack>
-
-            <IconButton
-              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-              icon={isMenuOpen ? <CloseIcon /> : <HamburgerIcon />}
-              variant="ghost"
-              size="md"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              color="gray.600"
-              display={{ base: 'flex', lg: 'none' }}
-              ml={{ base: isMenuOpen ? 'auto' : 0, lg: 0 }}
-              _hover={{
-                color: 'brand.500',
-                bg: 'brand.50',
-                transform: 'scale(1.008)',
-              }}
-              minW="44px"
-              h="44px"
-              borderRadius="lg"
-              mr={{ base: -1, lg: 0 }}
-            />
-          </Flex>
-        </Container>
-      </MotionBox>
-
-      <MobileNavOverlay
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-        pathname={pathname}
-      />
+      <MobileOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} pathname={pathname} />
     </>
   );
 }
