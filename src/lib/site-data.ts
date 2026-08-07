@@ -106,7 +106,7 @@ export type TimelineEntry = {
 export const workTimeline: TimelineEntry[] = [
   {
     org: 'USC Information Sciences Institute (SPHERE)',
-    role: 'Operations Engineer',
+    role: 'Junior Operations Engineer',
     date: 'Jun 2026 – Present',
     summary:
       'Automating Linux provisioning with Ansible, performing rolling Kubernetes upgrades, and setting up ZFS storage with NFS exports across a multi-node research testbed.',
@@ -154,8 +154,8 @@ export const workTimeline: TimelineEntry[] = [
 export const leadershipTimeline: TimelineEntry[] = [
   {
     org: 'USC InfoLab',
-    role: 'Graduate Researcher',
-    date: 'Jan 2026 – May 2026',
+    role: 'Research Assistant',
+    date: 'Feb 2026 – May 2026',
     summary:
       'Worked on Wearables for Health, an open-source toolkit; built dashboard features and Postgres pipelines so clinical researchers can upload, analyze, and visualize wearable data.',
     logo: '/home/infolab.png',
