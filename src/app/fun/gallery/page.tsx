@@ -35,12 +35,12 @@ export default function GalleryPage() {
             delay={0.15}
             className="mt-5 max-w-3xl font-serif text-4xl font-medium leading-[1.08] tracking-tight lg:text-6xl"
           >
-            Digi pics.
+            Digi Pics
           </TextAnimate>
           <BlurFade delay={0.4}>
             <p className="mt-6 max-w-xl text-[0.9375rem] leading-relaxed text-ink-soft">
-              June 26, 2026 is when my digi finally arrived. Thank you eBay. A Sony
-              Cyber-shot T700, from 2008.
+              Ever since the start of the year, I&apos;ve had my eyes on a digi
+              camera. On 06/26/2026 it finally arrived: my Sony Cybershot DSC-T700.
             </p>
           </BlurFade>
         </div>
@@ -122,6 +122,37 @@ export default function GalleryPage() {
           </div>
         </section>
       )}
+
+      <section className="border-t border-bone-line">
+        <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
+          <BlurFade inView>
+            <p className="micro-label text-ember-600">Next</p>
+            <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-5xl">
+              That&apos;s the roll, for now.
+            </h2>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-soft">
+              The T700 lives in my left pocket, when I remember to bring it.
+              I&apos;ll dump more frames here when there&apos;s another card
+              worth looking at.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="/fun/blog"
+                className="inline-flex items-center gap-2 border border-ink px-5 py-2.5 text-sm font-medium transition-colors hover:bg-ink hover:text-bone"
+              >
+                Read My Blog
+                <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link
+                href="/fun/travels"
+                className="inline-flex items-center gap-2 border border-ink px-5 py-2.5 text-sm font-medium transition-colors hover:bg-ink hover:text-bone"
+              >
+                View My Travels
+              </Link>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
     </div>
   );
 }

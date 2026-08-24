@@ -31,9 +31,9 @@ export const galleryGroups: GalleryGroup[] = [
   {
     id: 'other',
     folder: '',
-    title: 'Also shot',
-    eyebrow: 'Other frames',
-    summary: 'The rest of the roll — not D.C., not San Diego.',
+    title: 'Los Angeles',
+    eyebrow: 'Everyday',
+    summary: '(LA)rping around the city.',
   },
 ];
 

@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils';
 interface NavItem {
   label: string;
   href: string;
+  emoji: string;
 }
 
 interface NavSection {
@@ -22,19 +23,19 @@ const navSections: NavSection[] = [
   {
     label: 'Work',
     items: [
-      { href: '/work/telus', label: 'Telus' },
-      { href: '/work/ips', label: 'Ivey Product Society' },
-      { href: '/work/rbc', label: 'RBC' },
-      { href: '/work/tweebaa', label: 'Tweebaa' },
+      { href: '/work/telus', label: 'Telus', emoji: '🗼' },
+      { href: '/work/ips', label: 'Ivey Product Society', emoji: '🎧' },
+      { href: '/work/rbc', label: 'RBC', emoji: '🏦' },
+      { href: '/work/tweebaa', label: 'Tweebaa', emoji: '📱' },
     ],
   },
   {
     label: 'Fun',
     items: [
-      { href: '/fun/design', label: 'Design' },
-      { href: '/fun/travels', label: 'Travels' },
-      { href: '/fun/gallery', label: 'Gallery' },
-      { href: '/fun/blog', label: 'Blog' },
+      { href: '/fun/design', label: 'Design', emoji: '🎨' },
+      { href: '/fun/travels', label: 'Travels', emoji: '✈️' },
+      { href: '/fun/gallery', label: 'Gallery', emoji: '📷' },
+      { href: '/fun/blog', label: 'Blog', emoji: '✏️' },
     ],
   },
 ];
@@ -93,10 +94,11 @@ function DesktopDropdown({ section, pathname }: { section: NavSection; pathname:
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    'flex items-center px-3 py-2.5 text-sm transition-colors hover:bg-bone-subtle hover:text-ember-600',
+                    'flex items-center gap-2.5 px-3 py-2.5 text-sm transition-colors hover:bg-bone-subtle hover:text-ember-600',
                     isActive(pathname, item.href) ? 'text-ember-600' : 'text-ink-soft',
                   )}
                 >
+                  <span aria-hidden>{item.emoji}</span>
                   {item.label}
                 </Link>
               ))}
@@ -155,10 +157,13 @@ function MobileOverlay({
                     href={item.href}
                     onClick={onClose}
                     className={cn(
-                      'block py-2 font-serif text-2xl font-medium',
+                      'flex items-baseline gap-3 py-2 font-serif text-2xl font-medium',
                       isActive(pathname, item.href) ? 'text-ember-600' : 'text-ink',
                     )}
                   >
+                    <span aria-hidden className="text-lg">
+                      {item.emoji}
+                    </span>
                     {item.label}
                   </Link>
                 ))}
