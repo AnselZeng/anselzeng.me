@@ -33,6 +33,7 @@ const navSections: NavSection[] = [
     items: [
       { href: '/fun/design', label: 'Design' },
       { href: '/fun/travels', label: 'Travels' },
+      { href: '/fun/gallery', label: 'Gallery' },
       { href: '/fun/blog', label: 'Blog' },
     ],
   },

@@ -138,7 +138,7 @@ a:hover {
 }
 
 .hero-wash {
-  inset: -20% -28% -12%;
+  inset: -18% -16% -10%;
   z-index: 0;
   background: radial-gradient(
     ellipse 70% 65% at 50% 38%,

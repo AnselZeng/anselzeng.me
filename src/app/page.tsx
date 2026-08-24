@@ -12,8 +12,8 @@ import { selectedWork } from '@/lib/site-data';
 
 export default function Home() {
   return (
-    <div className="bg-bone text-ink">
-      <section className="relative">
+    <div className="overflow-x-clip bg-bone text-ink">
+      <section className="relative overflow-x-clip">
         <div className="relative mx-auto max-w-6xl px-5 pt-28 lg:px-10 lg:pt-36">
           <BlurFade>
             <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
@@ -93,7 +93,7 @@ export default function Home() {
                   </TiltCard>
                   <div className="micro-label mt-3 flex items-center justify-between text-ink-muted">
                     <span>Fig. 01</span>
-                    <span>Hack Western portrait</span>
+                    <span>Hack Western headshot</span>
                   </div>
                 </Parallax>
               </BlurFade>
