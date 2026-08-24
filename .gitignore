@@ -41,5 +41,9 @@ next-env.d.ts
 *.swp
 *.swo
 
-# gallery preview files (generated)
+# generated image thumbs
 /public/gallery/thumbs/
+/public/about/thumbs/
+/public/home/thumbs/
+/public/design/thumbs/
+/public/blog/thumbs/

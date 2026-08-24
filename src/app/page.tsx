@@ -2,11 +2,9 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
-import { ProtectedImage } from '@/components/ui/protected-image';
 import { MagneticLink } from '@/components/ui/magnetic-link';
-import { TiltCard } from '@/components/magicui/tilt-card';
-import { Parallax } from '@/components/magicui/parallax';
 import { HeroStats } from '@/components/home/hero-stats';
+import { HeroPortrait } from '@/components/home/hero-portrait';
 import { WorkCard } from '@/components/home/work-card';
 import { selectedWork } from '@/lib/site-data';
 
@@ -80,22 +78,7 @@ export default function Home() {
 
             <div className="lg:col-span-5">
               <BlurFade delay={0.24}>
-                <Parallax offset={-26} className="relative z-10 mx-auto max-w-[22rem] lg:ml-auto lg:mr-0">
-                  <div className="hero-wash" aria-hidden />
-                  <TiltCard maxTilt={9}>
-                    <div className="relative z-10 overflow-hidden rounded-t-[10rem] border border-bone-line bg-bone">
-                      <ProtectedImage
-                        src="/home/me.png"
-                        alt="Ansel Zeng"
-                        className="aspect-[3/4] w-full object-cover object-top"
-                      />
-                    </div>
-                  </TiltCard>
-                  <div className="micro-label mt-3 flex items-center justify-between text-ink-muted">
-                    <span>Fig. 01</span>
-                    <span>Hack Western headshot</span>
-                  </div>
-                </Parallax>
+                <HeroPortrait />
               </BlurFade>
             </div>
           </div>

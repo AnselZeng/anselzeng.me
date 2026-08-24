@@ -98,9 +98,9 @@ export type TimelineEntry = {
   date: string;
   summary?: string;
   logo?: string;
-  
   href?: string;
   current?: boolean;
+  detail?: string;
 };
 
 export const workTimeline: TimelineEntry[] = [
@@ -111,6 +111,7 @@ export const workTimeline: TimelineEntry[] = [
     summary:
       'Automating Linux provisioning with Ansible, performing rolling Kubernetes upgrades, and setting up ZFS storage with NFS exports across a multi-node research testbed.',
     logo: '/home/sphere.png',
+    href: 'https://sphere-project.net/',
     current: true,
   },
   {
@@ -164,10 +165,12 @@ export const leadershipTimeline: TimelineEntry[] = [
   {
     org: 'Hack Western',
     role: 'Web Team Lead',
+    detail: 'HW 8, 9, 10',
     date: 'Mar 2021 – Feb 2024',
     summary:
       "Led eight developers end-to-end for one of Canada's largest hackathons — landing page, live site, and an application portal serving 1,000+ applicants.",
     logo: '/home/hw.svg',
+    href: 'https://archive.hackwestern.com/',
   },
   {
     org: 'Ivey Product Society',
@@ -185,6 +188,7 @@ export const leadershipTimeline: TimelineEntry[] = [
     summary:
       'Organized events like "Acing the PM Interview," partnering with Western Product Society on PM insights and interview prep.',
     logo: '/home/itc.svg',
+    href: 'https://wheatsnackbread.github.io/iveytechclub.ca/alumni',
   },
   {
     org: 'Western Founders Network',
@@ -248,13 +252,41 @@ export const expertiseAreas = [
   },
 ];
 
+export const portraitPhotos = [
+  {
+    src: '/about/thumbs/griffith-portrait.webp',
+    fullSrc: '/about/griffith.jpeg',
+    alt: 'At Griffith Observatory',
+    caption: 'Griffith Observatory',
+  },
+  {
+    src: '/about/thumbs/oscars-portrait.webp',
+    fullSrc: '/about/oscars.jpeg',
+    alt: 'At the Academy Museum',
+    caption: 'Academy Museum',
+  },
+  {
+    src: '/about/thumbs/innout-portrait.webp',
+    fullSrc: '/about/innout.jpeg',
+    alt: 'At In-N-Out',
+    caption: 'In-N-Out',
+  },
+  {
+    src: '/about/thumbs/vct-portrait.webp',
+    fullSrc: '/about/vct.jpeg',
+    alt: 'At VCT Americas',
+    caption: 'VCT Americas',
+  },
+];
+
 export const personalPhotos = [
-  { src: '/about/ivey.jpeg', alt: 'At Ivey Business School', caption: 'Ivey Business School' },
-  { src: '/about/everest.jpeg', alt: 'Everest Base Camp', caption: 'Everest Base Camp' },
-  { src: '/about/van.jpeg', alt: 'Vancouver', caption: 'Vancouver' },
-  { src: '/about/snowboard.jpeg', alt: 'Snowboarding at Blue Mountain', caption: 'Blue Mountain' },
-  { src: '/about/bloor.jpeg', alt: 'Bloor Street, Toronto', caption: 'Toronto' },
-  { src: '/about/klein.jpeg', alt: 'Klein Curaçao', caption: 'Klein Curaçao' },
-  { src: '/about/pillows.jpeg', alt: 'Canadian Clay and Glass Gallery', caption: 'Clay & Glass Gallery' },
+  { src: '/about/ivey.jpeg', thumbSrc: '/about/thumbs/ivey.webp', alt: 'At Ivey Business School', caption: 'Ivey Business School' },
+  { src: '/about/everest.jpeg', thumbSrc: '/about/thumbs/everest.webp', alt: 'Everest Base Camp', caption: 'Everest Base Camp' },
+  { src: '/about/van.jpeg', thumbSrc: '/about/thumbs/van.webp', alt: 'Vancouver', caption: 'Vancouver' },
+  { src: '/about/snowboard.jpeg', thumbSrc: '/about/thumbs/snowboard.webp', alt: 'Snowboarding at Blue Mountain', caption: 'Blue Mountain' },
+  { src: '/about/bloor.jpeg', thumbSrc: '/about/thumbs/bloor.webp', alt: 'Bloor Street, Toronto', caption: 'Toronto' },
+  { src: '/about/klein.jpeg', thumbSrc: '/about/thumbs/klein.webp', alt: 'Klein Curaçao', caption: 'Klein Curaçao' },
+  { src: '/about/pillows.jpeg', thumbSrc: '/about/thumbs/pillows.webp', alt: 'Canadian Clay and Glass Gallery', caption: 'Clay & Glass Gallery' },
+  { src: '/about/malibu.jpeg', thumbSrc: '/about/thumbs/malibu.webp', alt: 'Malibu', caption: 'Malibu' },
 ];
 

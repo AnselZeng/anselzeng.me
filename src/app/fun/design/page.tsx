@@ -12,6 +12,7 @@ type DesignProject = {
   title: string;
   description: string;
   image: string;
+  thumb: string;
   link?: { href: string; label: string };
 };
 
@@ -22,6 +23,7 @@ const designProjects: DesignProject[] = [
     description:
       'Mobile app concept for Tim Hortons: a rewards system we pitched as part of the Deloitte Innovation Forum, an annual Ivey HBA case event sponsored by Deloitte. Our team took second place.',
     image: '/design/timbuddies.png',
+    thumb: '/design/thumbs/timbuddies.webp',
     link: {
       href: 'https://www.ivey.uwo.ca/news/news-ivey/2023/january/deloitte-innovation-forum-serves-up-real-world-experience-for-hba1s/',
       label: 'Ivey article',
@@ -33,6 +35,7 @@ const designProjects: DesignProject[] = [
     description:
       'Course project: a web experience where people can plan ahead and choose healthier snacks and drink options from PepsiCo’s lineup, making better-for-you choices easier to discover and stick with.',
     image: '/design/pepsico.png',
+    thumb: '/design/thumbs/pepsico.webp',
   },
   {
     id: 'lilprotectors',
@@ -40,6 +43,7 @@ const designProjects: DesignProject[] = [
     description:
       'Tower defense game for CS 4474 (Human-Computer Interaction), built with Python and Pygame, exploring HCI through a full playable prototype.',
     image: '/design/lilprotectors.png',
+    thumb: '/design/thumbs/lilprotectors.webp',
     link: {
       href: 'https://github.com/AnselZeng/little-protectors',
       label: 'GitHub repo',
@@ -51,6 +55,7 @@ const designProjects: DesignProject[] = [
     description:
       'Mobile app design for farmers to grow a community: share resources, swap knowledge, and stay connected. Think of it as a social layer built around agriculture and local collaboration.',
     image: '/design/agrilink.png',
+    thumb: '/design/thumbs/agrilink.webp',
   },
 ];
 
@@ -216,7 +221,7 @@ export default function DesignPage() {
                   >
                     <div className="overflow-hidden rounded-sm border border-bone-line bg-bone-subtle">
                       <img
-                        src={project.image}
+                        src={project.thumb}
                         alt={project.title}
                         loading="lazy"
                         decoding="async"

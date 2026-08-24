@@ -40,6 +40,16 @@ export default function BlogPost({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [currentGroupIndex, setCurrentGroupIndex] = useState(0);
 
+  const blogThumb = (src: string) =>
+    `/blog/thumbs/${src.replace(/^\/blog\//, '').replace(/\.[^.]+$/, '.webp')}`;
+  const coverThumb = blogThumb(coverImage);
+
+  const handleCoverClick = () => {
+    setSelectedImage(coverImage);
+    setCurrentGroupIndex(-1);
+    setIsOpen(true);
+  };
+
   const handleImageClick = (imageSrc: string, groupIndex: number, imageIndex: number) => {
     setSelectedImage(imageSrc);
     setCurrentImageIndex(imageIndex);
@@ -49,7 +59,7 @@ export default function BlogPost({
 
   const nextImage = () => {
     const currentGroup = sections[currentGroupIndex];
-    if (currentGroup.type === 'imageGroup' && currentGroup.images) {
+    if (currentGroup?.type === 'imageGroup' && currentGroup.images) {
       const nextIndex = (currentImageIndex + 1) % currentGroup.images.length;
       setCurrentImageIndex(nextIndex);
       setSelectedImage(currentGroup.images[nextIndex].src);
@@ -58,7 +68,7 @@ export default function BlogPost({
 
   const prevImage = () => {
     const currentGroup = sections[currentGroupIndex];
-    if (currentGroup.type === 'imageGroup' && currentGroup.images) {
+    if (currentGroup?.type === 'imageGroup' && currentGroup.images) {
       const prevIndex =
         (currentImageIndex - 1 + currentGroup.images.length) % currentGroup.images.length;
       setCurrentImageIndex(prevIndex);
@@ -88,7 +98,7 @@ export default function BlogPost({
               className="flex items-center gap-2 transition-colors hover:text-ember-600"
             >
               <ArrowLeft className="h-3.5 w-3.5" aria-hidden />
-              Back to journal
+              Back to blog
             </Link>
             <span className="text-ember-600">{category}</span>
           </div>
@@ -113,12 +123,19 @@ export default function BlogPost({
         </div>
 
         <BlurFade delay={0.45}>
-          <ParallaxImage
-            src={coverImage}
-            alt={title}
-            strength={5}
-            className="mt-12 aspect-[16/9] rounded-sm border border-bone-line bg-bone-subtle"
-          />
+          <button
+            type="button"
+            onClick={handleCoverClick}
+            aria-label={`Open ${title}`}
+            className="mt-12 block w-full cursor-pointer border-0 bg-transparent p-0 text-left"
+          >
+            <ParallaxImage
+              src={coverThumb}
+              alt={title}
+              strength={5}
+              className="aspect-[16/9] rounded-sm border border-bone-line bg-bone-subtle"
+            />
+          </button>
           <div className="micro-label mt-3 flex items-center justify-between text-ink-muted">
             <span>Fig. 01</span>
             <span>{title}</span>
@@ -150,7 +167,7 @@ export default function BlogPost({
                         aria-label={`Open ${image.alt}`}
                       >
                         <ProtectedImage
-                          src={image.src}
+                          src={blogThumb(image.src)}
                           alt={image.alt}
                           className="aspect-[4/5] w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
                         />
@@ -181,7 +198,7 @@ export default function BlogPost({
                 href="/fun/blog"
                 className="border border-ink px-5 py-2.5 text-sm font-medium transition-colors hover:bg-ink hover:text-bone"
               >
-                Back to journal
+                Back to blog
               </Link>
             </div>
           </BlurFade>
@@ -192,7 +209,7 @@ export default function BlogPost({
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
         imageSrc={selectedImage || ''}
-        alt="Blog Image"
+        alt={selectedImage === coverImage ? title : 'Blog Image'}
         navigation={lightboxNavigation}
       />
     </div>

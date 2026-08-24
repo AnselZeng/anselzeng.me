@@ -1,5 +1,7 @@
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ProtectedImage } from '@/components/ui/protected-image';
+import { MediaPicks } from '@/components/about/media-picks';
+import { AlbumCover } from '@/components/about/album-cover';
 
 const favouriteFilms = [
   {
@@ -95,76 +97,31 @@ function SubsectionHeader({ label, title }: { label: string; title: string }) {
   );
 }
 
-function PickCard({
-  src,
-  title,
-  meta,
-  byline,
-  blurb,
-}: {
-  src: string;
-  title: string;
-  meta: string;
-  byline: string;
-  blurb: string;
-}) {
-  return (
-    <div className="group">
-      <div className="overflow-hidden rounded-sm border border-bone-line bg-bone-subtle">
-        <ProtectedImage
-          src={src}
-          alt={title}
-          className="aspect-[2/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-        />
-      </div>
-      <h4 className="mt-4 font-serif text-lg font-medium leading-snug text-ink">{title}</h4>
-      <p className="micro-label mt-1.5 text-ink-muted">
-        {meta} · {byline}
-      </p>
-      <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">{blurb}</p>
-    </div>
-  );
-}
-
 export default function InterestsGrid() {
   return (
     <div className="space-y-16 lg:space-y-20">
-      <div className="border-t border-bone-line pt-6">
-        <BlurFade inView>
-          <SubsectionHeader label="Films" title="Three I return to" />
-        </BlurFade>
-        <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-3">
-          {favouriteFilms.map((m, i) => (
-            <BlurFade key={m.title} inView delay={0.05 * i}>
-              <PickCard
-                src={m.src}
-                title={m.title}
-                meta={m.year}
-                byline={m.director}
-                blurb={m.blurb}
-              />
-            </BlurFade>
-          ))}
-        </div>
-      </div>
-      <div className="border-t border-bone-line pt-6">
-        <BlurFade inView>
-          <SubsectionHeader label="Series" title="Three that stuck" />
-        </BlurFade>
-        <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-3">
-          {favouriteShows.map((s, i) => (
-            <BlurFade key={s.title} inView delay={0.05 * i}>
-              <PickCard
-                src={s.src}
-                title={s.title}
-                meta={s.era}
-                byline={s.byline}
-                blurb={s.blurb}
-              />
-            </BlurFade>
-          ))}
-        </div>
-      </div>
+      <MediaPicks
+        label="Films"
+        title="Three I return to"
+        items={favouriteFilms.map((m) => ({
+          src: m.src,
+          title: m.title,
+          meta: m.year,
+          byline: m.director,
+          blurb: m.blurb,
+        }))}
+      />
+      <MediaPicks
+        label="Series"
+        title="Three that stuck"
+        items={favouriteShows.map((s) => ({
+          src: s.src,
+          title: s.title,
+          meta: s.era,
+          byline: s.byline,
+          blurb: s.blurb,
+        }))}
+      />
       <div className="border-t border-bone-line pt-6">
         <BlurFade inView>
           <SubsectionHeader label="Music" title="Listening, by the numbers" />
@@ -200,13 +157,11 @@ export default function InterestsGrid() {
             <div className="flex h-full flex-col rounded-sm border border-bone-line bg-bone-subtle/60 p-6">
               <p className="micro-label text-ember-600">On repeat right now</p>
               <div className="mt-5 flex flex-col gap-6 sm:flex-row sm:items-start">
-                <div className="w-36 shrink-0 overflow-hidden rounded-sm border border-bone-line">
-                  <ProtectedImage
-                    src={NOW_PLAYING.coverSrc}
-                    alt={NOW_PLAYING.title}
-                    className="aspect-square w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
-                  />
-                </div>
+                <AlbumCover
+                  thumbSrc="/about/thumbs/halo.webp"
+                  fullSrc={NOW_PLAYING.coverSrc}
+                  alt={`${NOW_PLAYING.title} — ${NOW_PLAYING.artist}`}
+                />
                 <div className="min-w-0">
                   <h4 className="font-serif text-xl font-medium leading-snug text-ink">
                     {NOW_PLAYING.title}

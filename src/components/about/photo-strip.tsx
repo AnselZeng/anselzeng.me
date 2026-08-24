@@ -8,13 +8,17 @@ import { personalPhotos } from '@/lib/site-data';
 export function PhotoStrip() {
   return (
     <div className="relative">
-      <Marquee pauseOnHover className="[--duration:60s] [--gap:1.5rem]">
+      <Marquee pauseOnHover repeat={2} className="[--duration:60s] [--gap:1.5rem]">
         {personalPhotos.map((photo) => (
           <figure key={photo.src} className="w-56 shrink-0 sm:w-64">
             <div className="overflow-hidden rounded-sm border border-bone-line">
               <ProtectedImage
-                src={photo.src}
+                src={photo.thumbSrc}
                 alt={photo.alt}
+                width={640}
+                height={480}
+                loading="eager"
+                decoding="async"
                 className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-out hover:scale-[1.03]"
               />
             </div>

@@ -73,6 +73,10 @@ const blogPosts = [
   },
 ];
 
+function coverThumb(src: string) {
+  return `/blog/thumbs/${src.replace(/^\/blog\//, '').replace(/\.[^.]+$/, '.webp')}`;
+}
+
 export default function BlogPage() {
   const [featured, ...rest] = blogPosts;
 
@@ -116,7 +120,7 @@ export default function BlogPage() {
           <Link href={featured.href} className="group mt-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
             <div className="overflow-hidden rounded-sm border border-bone-line bg-bone-subtle aspect-[4/3] lg:col-span-7">
               <ProtectedImage
-                src={featured.image}
+                src={coverThumb(featured.image)}
                 alt={featured.title}
                 className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
               />
@@ -176,7 +180,7 @@ export default function BlogPage() {
                 <div className="hidden sm:col-span-2 sm:block">
                   <div className="ml-auto w-24 overflow-hidden rounded-sm border border-bone-line bg-bone-subtle">
                     <ProtectedImage
-                      src={post.image}
+                      src={coverThumb(post.image)}
                       alt={post.title}
                       className="aspect-[4/3] w-full object-cover opacity-90 transition-all duration-500 ease-out group-hover:scale-[1.06] group-hover:opacity-100"
                     />

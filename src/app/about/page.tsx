@@ -1,17 +1,16 @@
 import Link from 'next/link';
-import { ArrowUpRight, Download } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Download } from 'lucide-react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
 import { ProtectedImage } from '@/components/ui/protected-image';
-import { TiltCard } from '@/components/magicui/tilt-card';
-import { Parallax } from '@/components/magicui/parallax';
 import InterestsGrid from '@/components/about/InterestsGrid';
 import { PhotoStrip } from '@/components/about/photo-strip';
+import { PortraitStack } from '@/components/about/portrait-stack';
+import { cn } from '@/lib/utils';
 import {
   education,
   expertiseAreas,
   leadershipTimeline,
-  personalPhotos,
   workTimeline,
   type TimelineEntry,
 } from '@/lib/site-data';
@@ -50,13 +49,28 @@ function TimelineRow({ entry, index }: { entry: TimelineEntry; index: number }) 
                   href={entry.href}
                   target={isExternal ? '_blank' : undefined}
                   rel={isExternal ? 'noopener noreferrer' : undefined}
+                  title={isExternal ? 'Opens in a new tab' : undefined}
                   className="group inline-flex items-baseline gap-1.5 transition-colors hover:text-ember-600"
                 >
-                  {entry.org}
-                  <ArrowUpRight
-                    className="h-4 w-4 self-center text-ink-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ember-600"
-                    aria-hidden
-                  />
+                  <span
+                    className={cn(
+                      !isExternal &&
+                        'underline decoration-ember-300 decoration-[1.5px] underline-offset-4',
+                    )}
+                  >
+                    {entry.org}
+                  </span>
+                  {isExternal ? (
+                    <ArrowUpRight
+                      className="h-4 w-4 self-center text-ink-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ember-600"
+                      aria-hidden
+                    />
+                  ) : (
+                    <ArrowRight
+                      className="h-4 w-4 self-center text-ink-muted transition-all group-hover:translate-x-0.5 group-hover:text-ember-600"
+                      aria-hidden
+                    />
+                  )}
                 </Link>
               ) : (
                 entry.org
@@ -71,7 +85,12 @@ function TimelineRow({ entry, index }: { entry: TimelineEntry; index: number }) 
               />
             )}
           </div>
-          <p className="micro-label mt-1.5 text-ember-600">{entry.role}</p>
+          <p className="micro-label mt-1.5 text-ember-600">
+            {entry.role}
+            {entry.detail && (
+              <span className="text-ink-muted"> · {entry.detail}</span>
+            )}
+          </p>
           {entry.summary && (
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-soft">{entry.summary}</p>
           )}
@@ -95,21 +114,7 @@ export default function About() {
         <div className="grid grid-cols-1 gap-12 pt-12 lg:grid-cols-12 lg:gap-14 lg:pt-16">
           <div className="order-2 lg:order-1 lg:col-span-5">
             <BlurFade delay={0.25}>
-              <Parallax offset={-26} className="mx-auto max-w-[24rem] lg:mx-0">
-                <TiltCard maxTilt={4}>
-                  <div className="overflow-hidden rounded-t-[10rem] border border-bone-line">
-                    <ProtectedImage
-                      src={personalPhotos[0].src}
-                      alt={personalPhotos[0].alt}
-                      className="aspect-[3/4] w-full object-cover"
-                    />
-                  </div>
-                </TiltCard>
-                <div className="micro-label mt-3 flex items-center justify-between text-ink-muted">
-                  <span>Fig. 02</span>
-                  <span>{personalPhotos[0].caption}</span>
-                </div>
-              </Parallax>
+              <PortraitStack />
             </BlurFade>
           </div>
 
