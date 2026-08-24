@@ -31,7 +31,7 @@ export function AnimatedNumber({
     const controls = animate(motionValue, value, {
       duration,
       delay,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.22, 0.65, 0.36, 1],
     });
     return () => controls.stop();
   }, [delay, duration, motionValue, reduceMotion, value]);

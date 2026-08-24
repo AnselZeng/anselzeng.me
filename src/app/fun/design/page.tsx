@@ -131,10 +131,12 @@ export default function DesignPage() {
       <section className="border-t border-bone-line">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-5 py-16 lg:grid-cols-12 lg:gap-14 lg:px-10 lg:py-24">
           <BlurFade inView className="lg:col-span-4">
-            <p className="micro-label text-ember-600">About My Design Journey</p>
-            <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-4xl">
-              A Brief Introduction
-            </h2>
+            <div className="lg:sticky lg:top-28">
+              <p className="micro-label text-ember-600">About My Design Journey</p>
+              <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-4xl">
+                A Brief Introduction
+              </h2>
+            </div>
           </BlurFade>
           <BlurFade inView delay={0.1} className="lg:col-span-8">
             <div className="max-w-2xl space-y-5 text-[0.9375rem] leading-relaxed text-ink-soft">

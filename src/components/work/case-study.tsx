@@ -328,12 +328,14 @@ export function CaseClosing({
       <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
           <BlurFade inView className="lg:col-span-4">
-            <p className="micro-label text-[color:var(--case-accent,#C74A08)]">
-              Closing the chapter
-            </p>
-            <h2 className="mt-4 font-serif text-2xl font-medium leading-snug tracking-tight lg:text-4xl">
-              {title}
-            </h2>
+            <div className="lg:sticky lg:top-28">
+              <p className="micro-label text-[color:var(--case-accent,#C74A08)]">
+                Closing the chapter
+              </p>
+              <h2 className="mt-4 font-serif text-2xl font-medium leading-snug tracking-tight lg:text-4xl">
+                {title}
+              </h2>
+            </div>
           </BlurFade>
           <BlurFade inView delay={0.1} className="lg:col-span-8">
             <div className="space-y-5 text-[0.9375rem] leading-relaxed text-ink-soft">

@@ -14,12 +14,41 @@ type Country = {
   date: string;
   status: string;
   expandable?: boolean;
+  subLocationsTitle?: string;
   subLocations?: SubLocation[];
 };
 
 const countries: Country[] = [
   { flag: '🇳🇱', name: 'Netherlands', continent: 'Northwestern Europe', date: 'December 2002', status: 'Lived In' },
-  { flag: '🇨🇳', name: 'China', continent: 'East Asia', date: 'August 2003', status: 'Lived In' },
+  {
+    flag: '🇨🇳',
+    name: 'China',
+    continent: 'East Asia',
+    date: 'August 2003',
+    status: 'Lived In',
+    expandable: true,
+    subLocationsTitle: 'Chinese Provinces & Regions',
+    subLocations: [
+      { name: 'Beijing', status: 'Lived In' },
+      { name: 'Chongqing', status: 'Visited' },
+      { name: 'Guangxi', status: 'Visited' },
+      { name: 'Hainan', status: 'Visited' },
+      { name: 'Hebei', status: 'Visited' },
+      { name: 'Heilongjiang', status: 'Visited' },
+      { name: 'Henan', status: 'Visited' },
+      { name: 'Hubei', status: 'Visited' },
+      { name: 'Jiangsu', status: 'Visited' },
+      { name: 'Liaoning', status: 'Visited' },
+      { name: 'Shaanxi', status: 'Visited' },
+      { name: 'Shandong', status: 'Visited' },
+      { name: 'Shanghai', status: 'Visited' },
+      { name: 'Shanxi', status: 'Visited' },
+      { name: 'Tianjin', status: 'Visited' },
+      { name: 'Tibet', status: 'Visited' },
+      { name: 'Yunnan', status: 'Visited' },
+      { name: 'Zhejiang', status: 'Visited' },
+    ],
+  },
   { flag: '🇲🇻', name: 'Maldives', continent: 'South Asia', date: 'December 2005', status: 'Visited' },
   { flag: '🇫🇷', name: 'France', continent: 'Western Europe', date: 'September 2006', status: 'Visited' },
   { flag: '🇲🇨', name: 'Monaco', continent: 'Western Europe', date: 'September 2006', status: 'Visited' },
@@ -35,6 +64,7 @@ const countries: Country[] = [
     date: 'August 2010',
     status: 'Lived In',
     expandable: true,
+    subLocationsTitle: 'Canadian Provinces & Territories',
     subLocations: [
       { name: 'Alberta', status: 'Visited' },
       { name: 'British Columbia', status: 'Visited' },
@@ -53,6 +83,7 @@ const countries: Country[] = [
     date: 'December 2013',
     status: 'Lived In',
     expandable: true,
+    subLocationsTitle: 'US States Visited',
     subLocations: [
       { name: 'Arizona', status: 'Visited' },
       { name: 'California', status: 'Lived In' },
@@ -209,11 +240,7 @@ export const PlacesTable = () => {
                         <td colSpan={4} className="p-0">
                           <div className="border-l-2 border-ember-500 bg-bone-subtle/60 px-5 py-5">
                             <SubLocationList
-                              title={
-                                country.name === 'Canada'
-                                  ? 'Canadian Provinces & Territories'
-                                  : 'US States Visited'
-                              }
+                              title={country.subLocationsTitle ?? 'Places'}
                               items={country.subLocations}
                             />
                           </div>

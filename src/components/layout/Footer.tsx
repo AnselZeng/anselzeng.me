@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaMedium, FaYoutube, FaSpotify } from 'react-icons/fa';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { Magnetic } from '@/components/motion/magnetic';
+import { Spotlight } from '@/components/motion/spotlight';
 
 const socialLinks = [
   { name: 'LinkedIn', icon: FaLinkedin, href: 'https://www.linkedin.com/in/anselzeng/' },
@@ -17,8 +18,13 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-ink text-bone">
-      <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
+    <footer className="relative overflow-hidden bg-ink text-bone">
+      <Spotlight
+        size={560}
+        springOptions={{ bounce: 0, stiffness: 280, damping: 30 }}
+        className="z-0 mix-blend-screen from-ember-400/40 via-ember-500/16 to-transparent"
+      />
+      <div className="relative z-10 mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
         <BlurFade inView>
           <p className="micro-label text-ember-400">Contact</p>
           <h2 className="mt-5 max-w-3xl font-serif text-3xl font-medium leading-tight tracking-tight !text-bone sm:text-4xl lg:text-6xl">

@@ -3,11 +3,15 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
-import World from '@react-map/world';
 import { useInView } from 'framer-motion';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
 import { PlacesTable } from '@/components/fun/PlacesTable';
+import {
+  TravelMap,
+  travelMapFigLabel,
+  type TravelMapView,
+} from '@/components/fun/travel-map';
 import { AnimatedNumber } from '@/components/motion/animated-number';
 
 const travelStats = [
@@ -32,39 +36,9 @@ const travelValues = [
   },
 ];
 
-const EMBER = '#E4580B';
-
-const visitedCountryColors = {
-  Netherlands: EMBER,
-  China: EMBER,
-  'Hong Kong': EMBER,
-  Maldives: EMBER,
-  France: EMBER,
-  Monaco: EMBER,
-  Thailand: EMBER,
-  Vietnam: EMBER,
-  Philippines: EMBER,
-  Malaysia: EMBER,
-  Greece: EMBER,
-  Canada: EMBER,
-  'United States': EMBER,
-  Aruba: EMBER,
-  Mexico: EMBER,
-  Panama: EMBER,
-  'Costa Rica': EMBER,
-  'Puerto Rico': EMBER,
-  Cuba: EMBER,
-  'Curaçao': EMBER,
-  Bonaire: EMBER,
-  'Sint Maarten': EMBER,
-  Anguilla: EMBER,
-  Austria: EMBER,
-  'Czech Republic': EMBER,
-  Czechia: EMBER,
-};
-
 export default function TravelsPage() {
   const [mapSize, setMapSize] = useState(600);
+  const [mapView, setMapView] = useState<TravelMapView>('world');
   const statsRef = useRef<HTMLDivElement>(null);
   const statsInView = useInView(statsRef, { once: true, margin: '-40px' });
 
@@ -108,10 +82,12 @@ export default function TravelsPage() {
       <section className="border-t border-bone-line">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 px-5 py-16 lg:grid-cols-12 lg:gap-14 lg:px-10 lg:py-24">
           <BlurFade inView className="lg:col-span-4">
-            <p className="micro-label text-ember-600">My Travel Story</p>
-            <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-4xl">
-              A Brief Introduction
-            </h2>
+            <div className="lg:sticky lg:top-28">
+              <p className="micro-label text-ember-600">My Travel Story</p>
+              <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-4xl">
+                A Brief Introduction
+              </h2>
+            </div>
           </BlurFade>
           <BlurFade inView delay={0.1} className="lg:col-span-8">
             <div className="max-w-2xl space-y-5 text-[0.9375rem] leading-relaxed text-ink-soft">
@@ -161,29 +137,17 @@ export default function TravelsPage() {
                   A comprehensive overview of my global adventures and explorations.
                 </p>
               </div>
-              <p className="micro-label hidden text-ink-muted sm:block">Fig. 01 — World map</p>
+              <p className="micro-label hidden text-ink-muted sm:block">
+                {travelMapFigLabel(mapView)}
+              </p>
             </div>
           </BlurFade>
 
           <BlurFade inView delay={0.1}>
             <div className="mt-12 rounded-sm border border-bone-line bg-bone p-4 lg:p-8">
               <div className="flex flex-col items-center gap-8 lg:flex-row lg:items-start">
-                <div className="flex min-h-[250px] w-full items-center justify-center lg:min-h-[400px] lg:flex-[2]">
-                  <World
-                    type="select-multiple"
-                    size={mapSize}
-                    mapColor="#F2EDE3"
-                    strokeColor="#E4DCCE"
-                    strokeWidth={1}
-                    hoverColor="#C74A08"
-                    selectColor="#E4580B"
-                    hints={false}
-                    disableClick={true}
-                    cityColors={visitedCountryColors}
-                    onSelect={(countries) => {
-                      console.log('Selected countries:', countries);
-                    }}
-                  />
+                <div className="w-full lg:flex-[2]">
+                  <TravelMap size={mapSize} view={mapView} onViewChange={setMapView} />
                 </div>
 
                 <div className="w-full self-stretch lg:w-auto lg:min-w-[220px] lg:flex-1">
@@ -197,7 +161,7 @@ export default function TravelsPage() {
                           <AnimatedNumber
                             value={statsInView ? stat.value : 0}
                             suffix={stat.suffix}
-                            duration={1.5}
+                            duration={2.4}
                           />
                         </p>
                         <p className="micro-label mt-1.5 text-ink-muted">{stat.label}</p>
@@ -219,10 +183,12 @@ export default function TravelsPage() {
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-14">
             <BlurFade inView className="lg:col-span-4">
-              <p className="micro-label text-ember-600">Travel Philosophy</p>
-              <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-4xl">
-                Why I Travel
-              </h2>
+              <div className="lg:sticky lg:top-28">
+                <p className="micro-label text-ember-600">Travel Philosophy</p>
+                <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-4xl">
+                  Why I Travel
+                </h2>
+              </div>
             </BlurFade>
             <BlurFade inView delay={0.1} className="lg:col-span-8">
               <div className="max-w-2xl space-y-5 text-[0.9375rem] leading-relaxed text-ink-soft">
