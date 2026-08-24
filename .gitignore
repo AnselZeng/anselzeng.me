@@ -41,5 +41,5 @@ next-env.d.ts
 *.swp
 *.swo
 
-# OS
-Thumbs.db
+# gallery preview files (generated)
+/public/gallery/thumbs/

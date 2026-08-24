@@ -15,7 +15,7 @@ export function generateMetadata({ params }: { params: { roll: string } }): Meta
   return { title: trip ? `gallery · ${trip.id}` : 'gallery' };
 }
 
-export default function GalleryRollPage({ params }: { params: { roll: string } }) {
+export default async function GalleryRollPage({ params }: { params: { roll: string } }) {
   const trip = galleryTripBySlug(params.roll);
   if (!trip) notFound();
 

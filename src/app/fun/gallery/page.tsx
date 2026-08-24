@@ -3,12 +3,13 @@ import { ArrowUpRight } from 'lucide-react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
 import { GalleryGrid } from '@/components/fun/GalleryGrid';
+import { GalleryThumb } from '@/components/fun/gallery-thumb';
 import { galleryGroups } from '@/lib/gallery-data';
 import { listGalleryFolder } from '@/lib/list-gallery';
 
 export const dynamic = 'force-dynamic';
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
   const trips = galleryGroups
     .filter((group) => group.slug)
     .map((group) => ({ ...group, images: listGalleryFolder(group.folder) }));
@@ -62,15 +63,11 @@ export default function GalleryPage() {
                   >
                     <div className="w-24 shrink-0 overflow-hidden rounded-sm border border-bone-line bg-bone-subtle sm:w-28">
                       {cover ? (
-                        <img
-                          src={cover.src}
+                        <GalleryThumb
+                          src={cover.thumbSrc}
                           alt=""
-                          width={2592}
-                          height={1944}
-                          loading="lazy"
-                          decoding="async"
-                          draggable={false}
-                          className="aspect-[4/3] w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                          priority
+                          className="transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                         />
                       ) : (
                         <div className="aspect-[4/3] w-full bg-bone-subtle" />

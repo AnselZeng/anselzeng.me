@@ -1,7 +1,6 @@
 const nextConfig = {
   images: {
-    domains: ['localhost'],
-    unoptimized: true
+    formats: ['image/avif', 'image/webp'],
   },
   experimental: {
     optimizePackageImports: ['framer-motion']

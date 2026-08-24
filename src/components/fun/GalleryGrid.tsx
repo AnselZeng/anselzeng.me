@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ImageLightboxModal } from '@/components/ui/ImageLightboxModal';
+import { GalleryThumb } from '@/components/fun/gallery-thumb';
 import type { GalleryImage } from '@/lib/list-gallery';
 
 export function GalleryGrid({ images }: { images: GalleryImage[] }) {
@@ -28,16 +29,11 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
               className="group block w-full cursor-zoom-in border-0 bg-transparent p-0 text-left"
             >
               <div className="overflow-hidden rounded-sm border border-bone-line bg-bone-subtle">
-                <img
-                  src={image.src}
+                <GalleryThumb
+                  src={image.thumbSrc}
                   alt={image.caption ?? `Frame ${image.index}`}
-                  width={2592}
-                  height={1944}
-                  loading="lazy"
-                  decoding="async"
-                  draggable={false}
-                  onContextMenu={(e) => e.preventDefault()}
-                  className="aspect-[4/3] w-full object-cover [content-visibility:auto] [contain-intrinsic-size:2592px_1944px] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                  priority={i < 6}
+                  className="transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 />
               </div>
               <div className="micro-label mt-2 flex items-center justify-between gap-3 text-ink-muted">
