@@ -81,8 +81,8 @@ export default function BlogPage() {
       <section className="mx-auto max-w-6xl px-5 pt-28 lg:px-10 lg:pt-36">
         <BlurFade>
           <div className="micro-label flex flex-wrap items-center justify-between gap-2 border-b border-bone-line pb-4 text-ink-muted">
-            <span>Journal</span>
-            <span>({String(blogPosts.length).padStart(2, '0')})</span>
+            <span>Fun — Blog</span>
+            <span>Personal blog</span>
           </div>
         </BlurFade>
 

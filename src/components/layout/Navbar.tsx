@@ -5,12 +5,12 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Menu, X } from 'lucide-react';
+import { ScrollProgress } from '@/components/motion/scroll-progress';
 import { cn } from '@/lib/utils';
 
 interface NavItem {
   label: string;
   href: string;
-  emoji: string;
 }
 
 interface NavSection {
@@ -22,18 +22,18 @@ const navSections: NavSection[] = [
   {
     label: 'Work',
     items: [
-      { href: '/work/telus', label: 'Telus', emoji: '🗼' },
-      { href: '/work/ips', label: 'Ivey Product Society', emoji: '🎧' },
-      { href: '/work/rbc', label: 'RBC', emoji: '🏦' },
-      { href: '/work/tweebaa', label: 'Tweebaa', emoji: '📱' },
+      { href: '/work/telus', label: 'Telus' },
+      { href: '/work/ips', label: 'Ivey Product Society' },
+      { href: '/work/rbc', label: 'RBC' },
+      { href: '/work/tweebaa', label: 'Tweebaa' },
     ],
   },
   {
     label: 'Fun',
     items: [
-      { href: '/fun/design', label: 'Design', emoji: '🎨' },
-      { href: '/fun/travels', label: 'Travels', emoji: '✈️' },
-      { href: '/fun/blog', label: 'Blog', emoji: '✏️' },
+      { href: '/fun/design', label: 'Design' },
+      { href: '/fun/travels', label: 'Travels' },
+      { href: '/fun/blog', label: 'Blog' },
     ],
   },
 ];
@@ -79,24 +79,23 @@ function DesktopDropdown({ section, pathname }: { section: NavSection; pathname:
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: -4 }}
+            initial={{ opacity: 0, y: -6 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -4 }}
-            transition={{ duration: 0.15, ease: 'easeOut' }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="absolute left-0 top-full pt-2"
           >
-            <div className="min-w-[13rem] border border-bone-line bg-bone p-2 shadow-lg shadow-ink/5">
+            <div className="min-w-[13rem] border border-bone-line bg-bone/95 p-1.5 shadow-lg shadow-ink/5 backdrop-blur-sm">
               {section.items.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
                   className={cn(
-                    'flex items-center gap-2.5 px-3 py-2.5 text-sm transition-colors hover:bg-bone-subtle hover:text-ember-600',
+                    'flex items-center px-3 py-2.5 text-sm transition-colors hover:bg-bone-subtle hover:text-ember-600',
                     isActive(pathname, item.href) ? 'text-ember-600' : 'text-ink-soft',
                   )}
                 >
-                  <span aria-hidden>{item.emoji}</span>
                   {item.label}
                 </Link>
               ))}
@@ -155,13 +154,10 @@ function MobileOverlay({
                     href={item.href}
                     onClick={onClose}
                     className={cn(
-                      'flex items-baseline gap-3 py-2 font-serif text-2xl font-medium',
+                      'block py-2 font-serif text-2xl font-medium',
                       isActive(pathname, item.href) ? 'text-ember-600' : 'text-ink',
                     )}
                   >
-                    <span aria-hidden className="text-lg">
-                      {item.emoji}
-                    </span>
                     {item.label}
                   </Link>
                 ))}
@@ -265,6 +261,7 @@ export default function Navbar() {
             {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
+        <ScrollProgress className="absolute inset-x-0 bottom-0 h-px bg-ember-500/80" />
       </header>
 
       <MobileOverlay isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} pathname={pathname} />

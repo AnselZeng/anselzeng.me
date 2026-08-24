@@ -48,6 +48,7 @@ export default function RootLayout({
         />
       </head>
       <body className={dmSans.className}>
+        <div className="site-grain" aria-hidden />
         <Navbar />
         <main>{children}</main>
         <Footer />

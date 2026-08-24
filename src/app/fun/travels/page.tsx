@@ -1,18 +1,20 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import World from '@react-map/world';
+import { useInView } from 'framer-motion';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
 import { PlacesTable } from '@/components/fun/PlacesTable';
+import { AnimatedNumber } from '@/components/motion/animated-number';
 
 const travelStats = [
-  { number: '18', label: 'Countries Visited' },
-  { number: '6', label: 'Territories Explored' },
-  { number: '8/13', label: 'Canadian Provinces' },
-  { number: '10/50', label: 'US States' },
+  { value: 18, suffix: '', label: 'Countries Visited' },
+  { value: 6, suffix: '', label: 'Territories Explored' },
+  { value: 8, suffix: '/13', label: 'Canadian Provinces' },
+  { value: 10, suffix: '/50', label: 'US States' },
 ];
 
 const travelValues = [
@@ -63,6 +65,8 @@ const visitedCountryColors = {
 
 export default function TravelsPage() {
   const [mapSize, setMapSize] = useState(600);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const statsInView = useInView(statsRef, { once: true, margin: '-40px' });
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 62em)');
@@ -183,11 +187,18 @@ export default function TravelsPage() {
                 </div>
 
                 <div className="w-full self-stretch lg:w-auto lg:min-w-[220px] lg:flex-1">
-                  <div className="flex h-full flex-col justify-center gap-6 border-t border-bone-line pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
+                  <div
+                    ref={statsRef}
+                    className="flex h-full flex-col justify-center gap-6 border-t border-bone-line pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0"
+                  >
                     {travelStats.map((stat) => (
                       <div key={stat.label}>
                         <p className="font-serif text-2xl font-medium text-ember-600 lg:text-3xl">
-                          {stat.number}
+                          <AnimatedNumber
+                            value={statsInView ? stat.value : 0}
+                            suffix={stat.suffix}
+                            duration={1.5}
+                          />
                         </p>
                         <p className="micro-label mt-1.5 text-ink-muted">{stat.label}</p>
                       </div>
