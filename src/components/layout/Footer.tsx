@@ -3,6 +3,7 @@
 import { ArrowUpRight } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaMedium, FaYoutube, FaSpotify } from 'react-icons/fa';
 import { BlurFade } from '@/components/magicui/blur-fade';
+import { Magnetic } from '@/components/motion/magnetic';
 
 const socialLinks = [
   { name: 'LinkedIn', icon: FaLinkedin, href: 'https://www.linkedin.com/in/anselzeng/' },
@@ -23,13 +24,15 @@ export default function Footer() {
           <h2 className="mt-5 max-w-3xl font-serif text-3xl font-medium leading-tight tracking-tight !text-bone sm:text-4xl lg:text-6xl">
             Let&apos;s build something worth shipping.
           </h2>
-          <a
-            href="mailto:ansel.zeng@usc.edu"
-            className="group mt-8 inline-flex items-center gap-2 border-b border-bone/40 pb-1 font-serif text-xl text-bone transition-colors hover:border-ember-400 hover:text-ember-300 sm:text-2xl"
-          >
-            ansel.zeng@usc.edu
-            <ArrowUpRight className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </a>
+          <Magnetic intensity={0.12} range={80} className="mt-8 inline-flex">
+            <a
+              href="mailto:ansel.zeng@usc.edu"
+              className="group link-draw inline-flex items-center gap-2 pb-1 font-serif text-xl text-bone hover:text-ember-300 sm:text-2xl"
+            >
+              ansel.zeng@usc.edu
+              <ArrowUpRight className="h-5 w-5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </a>
+          </Magnetic>
         </BlurFade>
 
         <div className="mt-16 flex flex-col gap-6 border-t border-bone/15 pt-8 sm:flex-row sm:items-center sm:justify-between">

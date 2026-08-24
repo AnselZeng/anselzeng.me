@@ -212,9 +212,9 @@ export const education = [
 ];
 
 export const heroStats = [
-  { value: '6+', label: 'Years building', detail: 'School, internships, research, and side projects.' },
-  { value: '4', label: 'Internships', detail: 'Engineering roles across product and platform teams.' },
-  { value: '2', label: 'Research roles', detail: 'Graduate and undergraduate assistantships.' },
+  { value: 6, suffix: '+', label: 'Years building', detail: 'School, internships, research, and side projects.' },
+  { value: 4, suffix: '', label: 'Internships', detail: 'Engineering roles across product and platform teams.' },
+  { value: 2, suffix: '', label: 'Research roles', detail: 'Graduate and undergraduate assistantships.' },
 ];
 
 export const expertiseAreas = [

@@ -114,7 +114,7 @@ export default function DesignPage() {
             delay={0.15}
             className="mt-5 max-w-3xl font-serif text-4xl font-medium leading-[1.08] tracking-tight lg:text-6xl"
           >
-            Design
+            Playing with Pixels
           </TextAnimate>
           <BlurFade delay={0.4}>
             <p className="mt-6 max-w-xl text-[0.9375rem] leading-relaxed text-ink-soft">

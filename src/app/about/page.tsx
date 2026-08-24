@@ -2,11 +2,11 @@ import Link from 'next/link';
 import { ArrowUpRight, Download } from 'lucide-react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
-import { Marquee } from '@/components/magicui/marquee';
+import { ProtectedImage } from '@/components/ui/protected-image';
 import { TiltCard } from '@/components/magicui/tilt-card';
 import { Parallax } from '@/components/magicui/parallax';
-import { ProtectedImage } from '@/components/ui/protected-image';
 import InterestsGrid from '@/components/about/InterestsGrid';
+import { PhotoStrip } from '@/components/about/photo-strip';
 import {
   education,
   expertiseAreas,
@@ -174,22 +174,7 @@ export default function About() {
       </section>
       <section className="mt-20 border-y border-bone-line py-4 lg:mt-28">
         <BlurFade inView>
-          <Marquee pauseOnHover className="[--duration:60s] [--gap:1.5rem]">
-            {personalPhotos.map((photo) => (
-              <figure key={photo.src} className="w-56 shrink-0 sm:w-64">
-                <div className="overflow-hidden rounded-sm border border-bone-line">
-                  <ProtectedImage
-                    src={photo.src}
-                    alt={photo.alt}
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-500 ease-out hover:scale-105"
-                  />
-                </div>
-                <figcaption className="micro-label mt-2 text-ink-muted">
-                  {photo.caption}
-                </figcaption>
-              </figure>
-            ))}
-          </Marquee>
+          <PhotoStrip />
         </BlurFade>
       </section>
       <section className="mx-auto max-w-6xl px-5 py-20 lg:px-10 lg:py-28">
