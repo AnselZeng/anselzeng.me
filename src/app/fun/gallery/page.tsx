@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
-import { GalleryGrid } from '@/components/fun/GalleryGrid';
+import { GalleryParallax } from '@/components/fun/gallery-parallax';
 import { GalleryThumb } from '@/components/fun/gallery-thumb';
 import { galleryGroups } from '@/lib/gallery-data';
 import { listGalleryFolder } from '@/lib/list-gallery';
@@ -11,9 +11,9 @@ export const dynamic = 'force-dynamic';
 
 export default async function GalleryPage() {
   const trips = galleryGroups
-    .filter((group) => group.slug)
+    .filter((group) => group.slug && group.folder)
     .map((group) => ({ ...group, images: listGalleryFolder(group.folder) }));
-  const loose = galleryGroups.find((group) => !group.slug);
+  const loose = galleryGroups.find((group) => group.slug && !group.folder);
   const looseImages = loose ? listGalleryFolder(loose.folder) : [];
 
   return (
@@ -97,8 +97,8 @@ export default async function GalleryPage() {
       </section>
 
       {loose && (
-        <section className="border-t border-bone-line">
-          <div className="mx-auto max-w-6xl px-5 py-14 lg:px-10 lg:py-16">
+        <section className="overflow-x-clip border-t border-bone-line">
+          <div className="mx-auto max-w-6xl px-5 pt-14 lg:px-10 lg:pt-16">
             <BlurFade inView>
               <div className="flex items-end justify-between gap-6">
                 <div>
@@ -117,7 +117,9 @@ export default async function GalleryPage() {
                 </p>
               </div>
             </BlurFade>
-            <GalleryGrid images={looseImages} />
+          </div>
+          <div className="mt-10 pb-14 lg:pb-16">
+            <GalleryParallax images={looseImages} />
           </div>
         </section>
       )}

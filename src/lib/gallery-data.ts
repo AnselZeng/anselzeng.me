@@ -40,6 +40,7 @@ export const galleryGroups: GalleryGroup[] = [
   {
     id: 'other',
     folder: '',
+    slug: 'la',
     title: 'Los Angeles',
     eyebrow: 'Everyday',
     summary: '(LA)rping around the city.',
