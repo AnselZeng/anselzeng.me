@@ -25,7 +25,7 @@ const navSections: NavSection[] = [
     items: [
       { href: '/work/telus', label: 'Telus', emoji: '🗼' },
       { href: '/work/ips', label: 'Ivey Product Society', emoji: '🎧' },
-      { href: '/work/rbc', label: 'RBC', emoji: '🏦' },
+      { href: '/work/rbc', label: 'Royal Bank of Canada', emoji: '🏦' },
       { href: '/work/tweebaa', label: 'Tweebaa', emoji: '📱' },
     ],
   },
@@ -87,7 +87,7 @@ function DesktopDropdown({ section, pathname }: { section: NavSection; pathname:
             transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="absolute left-0 top-full pt-2"
           >
-            <div className="min-w-[13rem] border border-bone-line bg-bone/95 p-1.5 shadow-lg shadow-ink/5 backdrop-blur-sm">
+            <div className="w-max border border-bone-line bg-bone/95 p-1.5 shadow-lg shadow-ink/5 backdrop-blur-sm">
               {section.items.map((item) => (
                 <Link
                   key={item.href}

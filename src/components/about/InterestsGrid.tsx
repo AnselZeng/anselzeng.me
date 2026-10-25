@@ -196,20 +196,20 @@ export default function InterestsGrid() {
             </p>
           </div>
         </BlurFade>
-        <div className="mt-8 grid grid-cols-2 gap-px border border-bone-line bg-bone-line md:grid-cols-3">
+        <div className="mt-8 grid grid-cols-3 gap-px border border-bone-line bg-bone-line">
           {sportsTeams.map((team, i) => (
             <BlurFade key={team.name} inView delay={0.03 * i} className="h-full">
-              <div className="flex h-full flex-col items-center gap-3 bg-bone px-4 py-6 text-center transition-colors hover:bg-bone-subtle">
+              <div className="flex h-full flex-col items-center gap-2 bg-bone px-2 py-4 text-center transition-colors hover:bg-bone-subtle sm:gap-3 sm:px-4 sm:py-6">
                 <ProtectedImage
                   src={team.logo}
                   alt={team.name}
-                  className="h-12 w-12 object-contain"
+                  className="h-10 w-10 object-contain sm:h-12 sm:w-12"
                 />
                 <div>
-                  <p className="font-serif text-sm font-medium leading-snug text-ink">
+                  <p className="font-serif text-xs font-medium leading-snug text-ink sm:text-sm">
                     {team.name}
                   </p>
-                  <p className="micro-label mt-1.5 text-ink-muted">{team.league}</p>
+                  <p className="micro-label mt-1 text-ink-muted sm:mt-1.5">{team.league}</p>
                 </div>
               </div>
             </BlurFade>
