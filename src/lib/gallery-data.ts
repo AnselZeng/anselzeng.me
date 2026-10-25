@@ -29,6 +29,15 @@ export const galleryGroups: GalleryGroup[] = [
     cover: 'DSC00307.JPG',
   },
   {
+    id: 'sf',
+    folder: 'sf',
+    slug: 'sf',
+    title: 'San Francisco',
+    eyebrow: 'Trip 03',
+    summary: 'A roll from the bay.',
+    cover: 'DSC01330.JPG',
+  },
+  {
     id: 'other',
     folder: '',
     title: 'Los Angeles',
