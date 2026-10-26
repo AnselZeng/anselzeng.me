@@ -5,10 +5,17 @@ import { ArrowLeft } from 'lucide-react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
 import { GalleryGrid } from '@/components/fun/GalleryGrid';
-import { galleryTripBySlug } from '@/lib/gallery-data';
+import { galleryGroups, galleryTripBySlug } from '@/lib/gallery-data';
 import { listGalleryFolder } from '@/lib/list-gallery';
 
-export const dynamic = 'force-dynamic';
+export function generateStaticParams() {
+  return galleryGroups
+    .map((group) => group.slug)
+    .filter((slug): slug is string => Boolean(slug))
+    .map((roll) => ({ roll }));
+}
+
+export const dynamicParams = false;
 
 export function generateMetadata({ params }: { params: { roll: string } }): Metadata {
   const trip = galleryTripBySlug(params.roll);

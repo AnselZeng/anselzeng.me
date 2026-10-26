@@ -7,8 +7,6 @@ import { GalleryThumb } from '@/components/fun/gallery-thumb';
 import { galleryGroups } from '@/lib/gallery-data';
 import { listGalleryFolder } from '@/lib/list-gallery';
 
-export const dynamic = 'force-dynamic';
-
 export default async function GalleryPage() {
   const trips = galleryGroups
     .filter((group) => group.slug && group.folder)
