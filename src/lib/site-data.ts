@@ -117,11 +117,10 @@ export const workTimeline: TimelineEntry[] = [
   {
     org: 'Ivey Centre for Building Sustainable Value',
     role: 'Software Engineer',
-    date: 'Jul 2025 – Present',
+    date: 'Jul 2025 – Jul 2026',
     summary:
-      'Building a Flutter mobile app and web platform that helps organic farmers connect and grow their community, on a real-time Supabase backend, alongside faculty advisors.',
+      'Shipped a Flutter mobile app that helps organic farmers connect and grow their community, now used by 40+ farmers with real-time sync across distributed users.',
     logo: '/home/ivey.png',
-    current: true,
   },
   {
     org: 'Telus',

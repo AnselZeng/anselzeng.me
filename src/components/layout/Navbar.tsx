@@ -234,38 +234,50 @@ export default function Navbar() {
             AZ<span className="text-ember-500">.</span>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
-            <Link
-              href="/"
-              className={cn(
-                'micro-label px-3 py-2 transition-colors hover:text-ember-600',
-                isActive(pathname, '/') ? 'text-ember-600' : 'text-ink-soft',
-              )}
-            >
-              Home
-            </Link>
-            {navSections.map((section) => (
-              <DesktopDropdown key={section.label} section={section} pathname={pathname} />
-            ))}
-            <Link
-              href="/about"
-              className={cn(
-                'micro-label px-3 py-2 transition-colors hover:text-ember-600',
-                isActive(pathname, '/about') ? 'text-ember-600' : 'text-ink-soft',
-              )}
-            >
-              About
-            </Link>
-          </nav>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
+              <Link
+                href="/"
+                className={cn(
+                  'micro-label px-3 py-2 transition-colors hover:text-ember-600',
+                  isActive(pathname, '/') ? 'text-ember-600' : 'text-ink-soft',
+                )}
+              >
+                Home
+              </Link>
+              {navSections.map((section) => (
+                <DesktopDropdown key={section.label} section={section} pathname={pathname} />
+              ))}
+              <Link
+                href="/about"
+                className={cn(
+                  'micro-label px-3 py-2 transition-colors hover:text-ember-600',
+                  isActive(pathname, '/about') ? 'text-ember-600' : 'text-ink-soft',
+                )}
+              >
+                About
+              </Link>
+            </nav>
 
-          <button
-            type="button"
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-            onClick={() => setIsMenuOpen((open) => !open)}
-            className="z-[1002] flex h-11 w-11 items-center justify-center text-ink transition-colors hover:text-ember-600 lg:hidden"
-          >
-            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+            <a
+              href="/Ansel_Zeng_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Opens in a new tab"
+              className="micro-label inline-flex items-center border border-ink px-3 py-1.5 text-ink transition-colors hover:bg-ink hover:text-bone"
+            >
+              Resume
+            </a>
+
+            <button
+              type="button"
+              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              onClick={() => setIsMenuOpen((open) => !open)}
+              className="z-[1002] flex h-11 w-11 items-center justify-center text-ink transition-colors hover:text-ember-600 lg:hidden"
+            >
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
         <ScrollProgress className="absolute inset-x-0 bottom-0 h-px bg-ember-500/80" />
       </header>

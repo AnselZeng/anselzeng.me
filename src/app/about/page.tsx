@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, Download } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
 import { ProtectedImage } from '@/components/ui/protected-image';
@@ -160,17 +160,20 @@ export default function About() {
                   href="/Ansel_Zeng_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border border-ink px-5 py-2.5 text-sm font-medium transition-colors hover:bg-ink hover:text-bone"
+                  className="group inline-flex items-center gap-2 border border-ink px-5 py-2.5 text-sm font-medium transition-colors hover:bg-ink hover:text-bone"
                 >
-                  <Download className="h-4 w-4" aria-hidden />
                   Resume
+                  <ArrowUpRight
+                    className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                    aria-hidden
+                  />
                 </a>
                 <Link
                   href="/fun/blog"
                   className="group inline-flex items-center gap-2 px-2 py-2.5 text-sm font-medium text-ink-soft transition-colors hover:text-ember-600"
                 >
                   Read my blog
-                  <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
                 </Link>
               </div>
             </BlurFade>
