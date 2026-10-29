@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
-import { GalleryParallax } from '@/components/fun/gallery-parallax';
+import { EverydayGallery } from '@/components/fun/everyday-gallery';
 import { GalleryThumb } from '@/components/fun/gallery-thumb';
 import { galleryGroups } from '@/lib/gallery-data';
 import { listGalleryFolder } from '@/lib/list-gallery';
@@ -94,33 +94,7 @@ export default async function GalleryPage() {
         </div>
       </section>
 
-      {loose && (
-        <section className="overflow-x-clip border-t border-bone-line">
-          <div className="mx-auto max-w-6xl px-5 pt-14 lg:px-10 lg:pt-16">
-            <BlurFade inView>
-              <div className="flex items-end justify-between gap-6">
-                <div>
-                  <p className="micro-label text-ember-600">{loose.eyebrow}</p>
-                  <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-5xl">
-                    {loose.title}
-                  </h2>
-                  {loose.summary && (
-                    <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-soft">
-                      {loose.summary}
-                    </p>
-                  )}
-                </div>
-                <p className="micro-label hidden text-ink-muted sm:block">
-                  ({String(looseImages.length).padStart(2, '0')})
-                </p>
-              </div>
-            </BlurFade>
-          </div>
-          <div className="mt-10 pb-14 lg:pb-16">
-            <GalleryParallax images={looseImages} />
-          </div>
-        </section>
-      )}
+      {loose && <EverydayGallery group={loose} images={looseImages} />}
 
       <section className="border-t border-bone-line">
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">

@@ -4,14 +4,17 @@ import { useState } from 'react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ImageLightboxModal } from '@/components/ui/ImageLightboxModal';
 import { GalleryThumb } from '@/components/fun/gallery-thumb';
+import { cn } from '@/lib/utils';
 import type { GalleryImage } from '@/lib/list-gallery';
 
 export function GalleryGrid({
   images,
   limit,
+  className,
 }: {
   images: GalleryImage[];
   limit?: number;
+  className?: string;
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const visible = limit && images.length > limit ? images.slice(0, limit) : images;
@@ -26,7 +29,7 @@ export function GalleryGrid({
 
   return (
     <>
-      <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
+      <div className={cn('mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3', className)}>
         {visible.map((image, i) => (
           <BlurFade key={image.src} inView delay={Math.min(0.04 * (i % 6), 0.2)}>
             <button

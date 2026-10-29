@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { BlurFade } from '@/components/magicui/blur-fade';
 import { Marquee } from '@/components/magicui/marquee';
 import { ProgressiveBlur } from '@/components/motion/progressive-blur';
 import { GalleryThumb } from '@/components/fun/gallery-thumb';
@@ -32,8 +33,8 @@ export function GalleryParallax({ images }: { images: GalleryImage[] }) {
     <div className="relative overflow-x-clip">
       <div ref={stripRef} className="space-y-4 py-8">
         {rows.map((row, rowIndex) => (
+          <BlurFade key={rowIndex} inView delay={0.05 * rowIndex}>
           <motion.div
-            key={rowIndex}
             style={{ y: rowIndex === 0 ? yTop : rowIndex === 2 ? yBottom : 0 }}
             className="will-change-transform"
           >
@@ -73,6 +74,7 @@ export function GalleryParallax({ images }: { images: GalleryImage[] }) {
               })}
             </Marquee>
           </motion.div>
+          </BlurFade>
         ))}
       </div>
       <ProgressiveBlur
