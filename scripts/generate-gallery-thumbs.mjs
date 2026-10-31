@@ -157,3 +157,27 @@ for (const portrait of PORTRAITS) {
 }
 
 console.log(`thumbs: ${total}`);
+
+const galleryRoot = path.join(process.cwd(), 'public', 'gallery');
+const folders = {};
+if (fs.existsSync(galleryRoot)) {
+  for (const entry of fs.readdirSync(galleryRoot, { withFileTypes: true })) {
+    if (entry.name.startsWith('.') || entry.name === 'thumbs') continue;
+    if (entry.isFile() && EXT.test(entry.name)) {
+      folders[''] ??= [];
+      folders[''].push(entry.name);
+    } else if (entry.isDirectory()) {
+      const names = fs
+        .readdirSync(path.join(galleryRoot, entry.name), { withFileTypes: true })
+        .filter((file) => file.isFile() && EXT.test(file.name) && !file.name.startsWith('.'))
+        .map((file) => file.name);
+      folders[entry.name] = names;
+    }
+  }
+  for (const key of Object.keys(folders)) {
+    folders[key].sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+  }
+}
+const manifestPath = path.join(process.cwd(), 'src', 'lib', 'gallery-manifest.json');
+fs.writeFileSync(manifestPath, `${JSON.stringify(folders, null, 2)}\n`);
+console.log(`gallery manifest: ${Object.values(folders).reduce((n, files) => n + files.length, 0)}`);

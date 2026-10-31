@@ -53,14 +53,6 @@ export default function Home() {
                       ansel.zeng@usc.edu
                       <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                     </MagneticLink>
-                    <a
-                      href="/Ansel_Zeng_Resume.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="micro-label text-ink-muted transition-colors hover:text-ember-600"
-                    >
-                      Resume ↗
-                    </a>
                     <Link
                       href="/about"
                       className="micro-label text-ink-muted transition-colors hover:text-ember-600"

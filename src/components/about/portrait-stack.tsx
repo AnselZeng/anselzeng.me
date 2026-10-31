@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState, type PointerEvent } from 'react';
 import { motion } from 'framer-motion';
 import { TiltCard } from '@/components/magicui/tilt-card';
 import { Parallax } from '@/components/magicui/parallax';
@@ -18,10 +18,23 @@ function fanFor(offset: number, count: number) {
 export function PortraitStack() {
   const [front, setFront] = useState(0);
   const [open, setOpen] = useState(false);
+  const pointerStart = useRef<{ x: number; y: number } | null>(null);
+  const handledPointer = useRef(false);
   const count = portraitPhotos.length;
   const photo = portraitPhotos[front];
   const prev = (front - 1 + count) % count;
   const next = (front + 1) % count;
+
+  const releasePointer = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  const unlessPointerHandled = (action: () => void) => {
+    if (handledPointer.current) return;
+    action();
+  };
 
   return (
     <Parallax offset={-26} className="group mx-auto max-w-[24rem] lg:mx-0">
@@ -48,23 +61,56 @@ export function PortraitStack() {
               );
             })}
           </div>
-          <div className="absolute inset-0 z-20 flex">
+          <div
+            className="absolute inset-0 z-20 flex touch-pan-y"
+            onPointerDown={(event) => {
+              pointerStart.current = { x: event.clientX, y: event.clientY };
+              handledPointer.current = false;
+              event.currentTarget.setPointerCapture(event.pointerId);
+            }}
+            onPointerUp={(event) => {
+              const start = pointerStart.current;
+              pointerStart.current = null;
+              releasePointer(event);
+              if (!start) return;
+
+              const dx = event.clientX - start.x;
+              const dy = event.clientY - start.y;
+              handledPointer.current = true;
+
+              if (Math.abs(dx) >= 40 && Math.abs(dx) > Math.abs(dy)) {
+                setFront(dx < 0 ? next : prev);
+                return;
+              }
+
+              const rect = event.currentTarget.getBoundingClientRect();
+              const edge = rect.width * 0.22;
+              const x = start.x - rect.left;
+              if (x < edge) setFront(prev);
+              else if (x > rect.width - edge) setFront(next);
+              else setOpen(true);
+            }}
+            onPointerCancel={(event) => {
+              pointerStart.current = null;
+              releasePointer(event);
+            }}
+          >
             <button
               type="button"
               aria-label={`Show ${portraitPhotos[prev].caption}`}
-              onClick={() => setFront(prev)}
+              onClick={() => unlessPointerHandled(() => setFront(prev))}
               className="w-[22%] cursor-pointer border-0 bg-transparent p-0"
             />
             <button
               type="button"
               aria-label={`Open ${photo.caption}`}
-              onClick={() => setOpen(true)}
+              onClick={() => unlessPointerHandled(() => setOpen(true))}
               className="flex-1 cursor-pointer border-0 bg-transparent p-0"
             />
             <button
               type="button"
               aria-label={`Show ${portraitPhotos[next].caption}`}
-              onClick={() => setFront(next)}
+              onClick={() => unlessPointerHandled(() => setFront(next))}
               className="w-[22%] cursor-pointer border-0 bg-transparent p-0"
             />
           </div>

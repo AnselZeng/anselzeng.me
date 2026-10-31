@@ -4,10 +4,20 @@ import { useState } from 'react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { ImageLightboxModal } from '@/components/ui/ImageLightboxModal';
 import { GalleryThumb } from '@/components/fun/gallery-thumb';
+import { cn } from '@/lib/utils';
 import type { GalleryImage } from '@/lib/list-gallery';
 
-export function GalleryGrid({ images }: { images: GalleryImage[] }) {
+export function GalleryGrid({
+  images,
+  limit,
+  className,
+}: {
+  images: GalleryImage[];
+  limit?: number;
+  className?: string;
+}) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const visible = limit && images.length > limit ? images.slice(0, limit) : images;
 
   if (images.length === 0) {
     return (
@@ -19,8 +29,8 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
 
   return (
     <>
-      <div className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3">
-        {images.map((image, i) => (
+      <div className={cn('mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3', className)}>
+        {visible.map((image, i) => (
           <BlurFade key={image.src} inView delay={Math.min(0.04 * (i % 6), 0.2)}>
             <button
               type="button"
@@ -54,18 +64,21 @@ export function GalleryGrid({ images }: { images: GalleryImage[] }) {
       <ImageLightboxModal
         isOpen={openIndex !== null}
         onClose={() => setOpenIndex(null)}
-        imageSrc={openIndex !== null ? images[openIndex].src : ''}
+        imageSrc={openIndex !== null ? visible[openIndex].src : ''}
         alt={
           openIndex !== null
-            ? (images[openIndex].caption ?? `Fig. ${images[openIndex].index}`)
+            ? (visible[openIndex].caption ?? `Fig. ${visible[openIndex].index}`)
             : ''
         }
         navigation={
-          images.length > 1
+          visible.length > 1
             ? {
                 onPrev: () =>
-                  setOpenIndex((i) => (i === null ? null : (i - 1 + images.length) % images.length)),
-                onNext: () => setOpenIndex((i) => (i === null ? null : (i + 1) % images.length)),
+                  setOpenIndex((i) =>
+                    i === null ? null : (i - 1 + visible.length) % visible.length,
+                  ),
+                onNext: () =>
+                  setOpenIndex((i) => (i === null ? null : (i + 1) % visible.length)),
               }
             : undefined
         }

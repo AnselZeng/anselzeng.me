@@ -2,18 +2,16 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { BlurFade } from '@/components/magicui/blur-fade';
 import { TextAnimate } from '@/components/magicui/text-animate';
-import { GalleryGrid } from '@/components/fun/GalleryGrid';
+import { EverydayGallery } from '@/components/fun/everyday-gallery';
 import { GalleryThumb } from '@/components/fun/gallery-thumb';
 import { galleryGroups } from '@/lib/gallery-data';
 import { listGalleryFolder } from '@/lib/list-gallery';
 
-export const dynamic = 'force-dynamic';
-
 export default async function GalleryPage() {
   const trips = galleryGroups
-    .filter((group) => group.slug)
+    .filter((group) => group.slug && group.folder)
     .map((group) => ({ ...group, images: listGalleryFolder(group.folder) }));
-  const loose = galleryGroups.find((group) => !group.slug);
+  const loose = galleryGroups.find((group) => group.slug && !group.folder);
   const looseImages = loose ? listGalleryFolder(loose.folder) : [];
 
   return (
@@ -49,7 +47,7 @@ export default async function GalleryPage() {
 
       <section className="border-t border-bone-line">
         <div className="mx-auto max-w-6xl px-5 py-10 lg:px-10 lg:py-12">
-          <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
             {trips.map((trip, i) => {
               const cover =
                 trip.images.find(
@@ -59,9 +57,9 @@ export default async function GalleryPage() {
                 <BlurFade key={trip.id} inView delay={0.05 * i}>
                   <Link
                     href={`/fun/gallery/${trip.slug}`}
-                    className="group flex items-center gap-4 rounded-sm border border-bone-line bg-bone p-3 transition-colors hover:bg-bone-subtle"
+                    className="group flex flex-col rounded-sm border border-bone-line bg-bone p-3 transition-colors hover:bg-bone-subtle"
                   >
-                    <div className="w-24 shrink-0 overflow-hidden rounded-sm border border-bone-line bg-bone-subtle sm:w-28">
+                    <div className="overflow-hidden rounded-sm border border-bone-line bg-bone-subtle">
                       {cover ? (
                         <GalleryThumb
                           src={cover.thumbSrc}
@@ -73,19 +71,21 @@ export default async function GalleryPage() {
                         <div className="aspect-[4/3] w-full bg-bone-subtle" />
                       )}
                     </div>
-                    <div className="min-w-0 flex-1">
-                      <p className="micro-label text-ember-600">{trip.eyebrow}</p>
-                      <h2 className="mt-1 font-serif text-xl font-medium leading-snug transition-colors group-hover:text-ember-700 lg:text-2xl">
-                        {trip.title}
-                      </h2>
-                      <p className="micro-label mt-1.5 text-ink-muted">
-                        {String(trip.images.length).padStart(2, '0')} frames
-                      </p>
+                    <div className="mt-3 flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="micro-label text-ember-600">{trip.eyebrow}</p>
+                        <h2 className="mt-1 font-serif text-xl font-medium leading-snug transition-colors group-hover:text-ember-700 lg:text-2xl">
+                          {trip.title}
+                        </h2>
+                        <p className="micro-label mt-1.5 text-ink-muted">
+                          {String(trip.images.length).padStart(2, '0')} frames
+                        </p>
+                      </div>
+                      <ArrowUpRight
+                        className="mt-0.5 h-4 w-4 shrink-0 text-ink-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ember-600"
+                        aria-hidden
+                      />
                     </div>
-                    <ArrowUpRight
-                      className="h-4 w-4 shrink-0 text-ink-muted transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ember-600"
-                      aria-hidden
-                    />
                   </Link>
                 </BlurFade>
               );
@@ -94,31 +94,7 @@ export default async function GalleryPage() {
         </div>
       </section>
 
-      {loose && (
-        <section className="border-t border-bone-line">
-          <div className="mx-auto max-w-6xl px-5 py-14 lg:px-10 lg:py-16">
-            <BlurFade inView>
-              <div className="flex items-end justify-between gap-6">
-                <div>
-                  <p className="micro-label text-ember-600">{loose.eyebrow}</p>
-                  <h2 className="mt-4 font-serif text-3xl font-medium tracking-tight lg:text-5xl">
-                    {loose.title}
-                  </h2>
-                  {loose.summary && (
-                    <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-soft">
-                      {loose.summary}
-                    </p>
-                  )}
-                </div>
-                <p className="micro-label hidden text-ink-muted sm:block">
-                  ({String(looseImages.length).padStart(2, '0')})
-                </p>
-              </div>
-            </BlurFade>
-            <GalleryGrid images={looseImages} />
-          </div>
-        </section>
-      )}
+      {loose && <EverydayGallery group={loose} images={looseImages} />}
 
       <section className="border-t border-bone-line">
         <div className="mx-auto max-w-6xl px-5 py-16 lg:px-10 lg:py-24">

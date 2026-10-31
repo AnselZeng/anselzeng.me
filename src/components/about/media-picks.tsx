@@ -26,12 +26,12 @@ function PickCard({
   onOpen,
 }: MediaPick & { onOpen: () => void }) {
   return (
-    <div>
+    <div className="flex gap-4 sm:block">
       <button
         type="button"
         onClick={onOpen}
         aria-label={`View poster for ${title}`}
-        className="group block w-full cursor-pointer border-0 bg-transparent p-0 text-left"
+        className="group block w-24 shrink-0 cursor-pointer border-0 bg-transparent p-0 text-left sm:w-full"
       >
         <div className="overflow-hidden rounded-sm border border-bone-line bg-bone-subtle">
           <ProtectedImage
@@ -41,11 +41,13 @@ function PickCard({
           />
         </div>
       </button>
-      <h4 className="mt-4 font-serif text-lg font-medium leading-snug text-ink">{title}</h4>
-      <p className="micro-label mt-1.5 text-ink-muted">
-        {meta} · {byline}
-      </p>
-      <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">{blurb}</p>
+      <div className="min-w-0">
+        <h4 className="font-serif text-lg font-medium leading-snug text-ink sm:mt-4">{title}</h4>
+        <p className="micro-label mt-1.5 text-ink-muted">
+          {meta} · {byline}
+        </p>
+        <p className="mt-2.5 text-sm leading-relaxed text-ink-soft">{blurb}</p>
+      </div>
     </div>
   );
 }
@@ -72,7 +74,7 @@ export function MediaPicks({
           </h3>
         </div>
       </BlurFade>
-      <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-3">
+      <div className="mt-8 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-3 sm:gap-y-10">
         {items.map((item, i) => (
           <BlurFade key={item.title} inView delay={0.05 * i}>
             <PickCard {...item} onOpen={() => setOpenIndex(i)} />
